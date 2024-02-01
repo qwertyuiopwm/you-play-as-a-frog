@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Test"
-run/main_scene="res://Forest1.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://art/icon.png"
 
 [display]
