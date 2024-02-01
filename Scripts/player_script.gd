@@ -28,4 +28,9 @@ func _physics_process(delta):
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		move_and_collide(velocity * delta)
+		
+		var velocityX = Vector2(velocity.x, 0)
+		move_and_collide(velocityX * delta)
+		
+		var velocityY = Vector2(0, velocity.y)
+		move_and_collide(velocityY * delta)
