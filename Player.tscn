@@ -4,8 +4,8 @@
 [ext_resource path="res://Scripts/player_script.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 31.0
-height = 74.0
+radius = 15.0
+height = 36.0
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
@@ -45,7 +45,6 @@ animations = [ {
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 400, 400 )
-scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -53,19 +52,22 @@ __meta__ = {
 speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -7 )
+position = Vector2( 0, -5 )
 shape = SubResource( 1 )
-
-[node name="Body" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
-
-[node name="Head" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -52 )
-frames = SubResource( 5 )
-
-[node name="Feet" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 44 )
-frames = SubResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="PlayerSprite" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Body" type="AnimatedSprite" parent="PlayerSprite"]
+frames = SubResource( 2 )
+
+[node name="Head" type="AnimatedSprite" parent="PlayerSprite"]
+position = Vector2( 0, -52 )
+frames = SubResource( 5 )
+
+[node name="Feet" type="AnimatedSprite" parent="PlayerSprite"]
+position = Vector2( 0, 44 )
+frames = SubResource( 7 )
