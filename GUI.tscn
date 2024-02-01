@@ -22,31 +22,33 @@ corner_radius_bottom_left = 8
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Top Bar" type="MarginContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Top Bar" type="MarginContainer" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 0.1
 margin_bottom = -16.0
 
-[node name="stats_bg" type="TextureRect" parent="Top Bar"]
+[node name="stats_bg" type="TextureRect" parent="CanvasLayer/Top Bar"]
 margin_right = 800.0
 margin_bottom = 64.0
 texture = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Top Bar/stats_bg"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Top Bar/stats_bg"]
 margin_right = 256.0
 margin_bottom = 64.0
 custom_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Top Bar/stats_bg/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer"]
 size_flags_horizontal = 2
 size_flags_vertical = 2
 custom_constants/separation = 0
 
-[node name="HP_Canvas" type="CanvasLayer" parent="Top Bar/stats_bg/VBoxContainer/HBoxContainer"]
+[node name="HP_Canvas" type="CanvasLayer" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer"]
 offset = Vector2( 16, 0 )
 transform = Transform2D( 1, 0, 0, 1, 16, 0 )
 
-[node name="Panel" type="Panel" parent="Top Bar/stats_bg/VBoxContainer/HBoxContainer/HP_Canvas"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer/HP_Canvas"]
 margin_left = 64.0
 margin_top = 8.0
 margin_right = 192.0
@@ -54,17 +56,17 @@ margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 8 )
 custom_styles/panel = SubResource( 1 )
 
-[node name="TextureRect" type="TextureRect" parent="Top Bar/stats_bg/VBoxContainer/HBoxContainer/HP_Canvas"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer/HP_Canvas"]
 margin_left = 16.0
 margin_right = 48.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
 
-[node name="Mana_Canvas" type="CanvasLayer" parent="Top Bar/stats_bg/VBoxContainer/HBoxContainer"]
+[node name="Mana_Canvas" type="CanvasLayer" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer"]
 offset = Vector2( 16, 32 )
 transform = Transform2D( 1, 0, 0, 1, 16, 32 )
 
-[node name="Panel" type="Panel" parent="Top Bar/stats_bg/VBoxContainer/HBoxContainer/Mana_Canvas"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer/Mana_Canvas"]
 margin_left = 64.0
 margin_top = 8.0
 margin_right = 192.0
@@ -72,7 +74,7 @@ margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 8 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="Top Bar/stats_bg/VBoxContainer/HBoxContainer/Mana_Canvas"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer/Mana_Canvas"]
 margin_right = 32.0
 margin_bottom = 32.0
 texture = ExtResource( 1 )
