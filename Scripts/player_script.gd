@@ -16,8 +16,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#func _process(delta):
+	#pass
 		
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
@@ -34,3 +34,10 @@ func _physics_process(delta):
 		
 		var velocityY = Vector2(0, velocity.y)
 		move_and_collide(velocityY * delta)
+		
+		if velocity.x > 0: set_flip(true)
+		if velocity.x < 0: set_flip(false)
+
+func set_flip(flip_h):
+	for node in $PlayerSprite.get_children():
+		node.flip_h = flip_h
