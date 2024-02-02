@@ -45,6 +45,7 @@ size_flags_vertical = 2
 custom_constants/separation = 0
 
 [node name="HP_Canvas" type="CanvasLayer" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer"]
+layer = 2
 offset = Vector2( 16, 0 )
 transform = Transform2D( 1, 0, 0, 1, 16, 0 )
 
@@ -63,6 +64,7 @@ margin_bottom = 32.0
 texture = ExtResource( 3 )
 
 [node name="Mana_Canvas" type="CanvasLayer" parent="CanvasLayer/Top Bar/stats_bg/VBoxContainer/HBoxContainer"]
+layer = 2
 offset = Vector2( 16, 32 )
 transform = Transform2D( 1, 0, 0, 1, 16, 32 )
 
