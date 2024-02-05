@@ -24,7 +24,7 @@ func condition():
 	return get_enemies_left() == 0
 
 
-func _process(delta):
+func _process(_delta):
 	var triggered = condition()
 	
 	if triggered and CanOn and (prev_triggered == false):
