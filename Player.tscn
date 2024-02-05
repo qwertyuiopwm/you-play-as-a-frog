@@ -44,7 +44,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 position = Vector2( 400, 400 )
 script = ExtResource( 2 )
 __meta__ = {
