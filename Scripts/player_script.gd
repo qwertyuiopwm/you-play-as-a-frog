@@ -27,10 +27,9 @@ func _physics_process(delta):
 		
 		var velocityY = Vector2(0, velocity.y)
 		move_and_collide(velocityY * delta)
-		
-		if velocity.x > 0: set_flip(true)
-		if velocity.x < 0: set_flip(false)
-
-func set_flip(flip_h):
-	for node in $PlayerSprite.get_children():
-		node.flip_h = flip_h
+	
+		if velocity.y > 0: $PlayerSprite.play("down")
+		if velocity.y < 0: $PlayerSprite.play("up")
+		if velocity.y == 0:
+			if velocity.x > 0: $PlayerSprite.play("right")
+			if velocity.x < 0: $PlayerSprite.play("left")
