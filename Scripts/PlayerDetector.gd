@@ -13,10 +13,6 @@ func trigger(_trigger: bool):
 		get_node(triggerable).trigger(_trigger)
 
 
-func _ready():
-	print("e")
-
-
 func _on_PlayerDetector_body_entered(body):
 	if body.is_in_group("Player") and CanOn:
 		trigger(!InverseSignal)
