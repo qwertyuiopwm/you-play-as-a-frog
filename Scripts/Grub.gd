@@ -4,7 +4,8 @@ extends KinematicBody2D
 export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
 export var SPEED = 50
-var CIRCLE_RADIUS = 40
+export var health = 10
+#export var CIRCLE_RADIUS = 40
 export var SLAM_DAMAGE = 10
 
 onready var rand = RandomNumberGenerator.new()
@@ -77,13 +78,13 @@ func move(target, delta):
 	velocity = move_and_slide(velocity)
 
 
-func get_circle_position(target, random):
-	var circle_center = target.global_position
-	var angle = random * PI * 2
-	var x = circle_center + cos(angle) * CIRCLE_RADIUS
-	var y = circle_center + sin(angle) * CIRCLE_RADIUS
-	
-	return Vector2(x, y)
+#func get_circle_position(target, random):
+#	var circle_center = target.global_position
+#	var angle = random * PI * 2
+#	var x = circle_center + cos(angle) * CIRCLE_RADIUS
+#	var y = circle_center + sin(angle) * CIRCLE_RADIUS
+#
+#	return Vector2(x, y)
 
 
 func get_nearest_player():
