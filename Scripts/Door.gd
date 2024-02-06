@@ -14,6 +14,4 @@ func trigger(close: bool):
 	self.visible = close
 
 func _ready():
-	print(startPos)
-	print(openPos)
 	self.trigger(StartClosed)
