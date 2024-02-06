@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
 export var speed = 400
 
 onready var screen_size = get_viewport_rect().size
@@ -9,9 +8,9 @@ onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
-var health = 100
+var maxHealth = 100
+var health = maxHealth
 
-		
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	velocity.y = int(Input.is_action_pressed("move_down")) - \
