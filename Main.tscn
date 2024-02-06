@@ -6,7 +6,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Map1" parent="." instance=ExtResource( 2 )]
+[node name="Forest1" parent="." instance=ExtResource( 2 )]
 
 [node name="Forest2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1216, 960 )
@@ -15,4 +15,4 @@ __meta__ = {
 }
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1200, 1344 )
+position = Vector2( 396, 199 )
