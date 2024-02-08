@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.0
-height = 32.0
+height = 22.0
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 4 )
@@ -104,7 +104,6 @@ __meta__ = {
 speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -5 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -112,8 +111,8 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -8 )
-scale = Vector2( 1.1, 1.1 )
+position = Vector2( 0, -6 )
+scale = Vector2( 1, 1.1 )
 frames = SubResource( 24 )
 animation = "down"
 
