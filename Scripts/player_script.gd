@@ -22,17 +22,21 @@ func _physics_process(delta):
 	velocity.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	if velocity.length() <= 0:
+		$PlayerSprite.frame = 0
+		$PlayerSprite.stop()
+		return
 		
-		var velocityX = Vector2(velocity.x, 0)
-		move_and_collide(velocityX * delta)
-		
-		var velocityY = Vector2(0, velocity.y)
-		move_and_collide(velocityY * delta)
+	velocity = velocity.normalized() * speed
 	
-		if velocity.y > 0: $PlayerSprite.play("down")
-		if velocity.y < 0: $PlayerSprite.play("up")
-		if velocity.y == 0:
-			if velocity.x > 0: $PlayerSprite.play("right")
-			if velocity.x < 0: $PlayerSprite.play("left")
+	var velocityX = Vector2(velocity.x, 0)
+	move_and_collide(velocityX * delta)
+	
+	var velocityY = Vector2(0, velocity.y)
+	move_and_collide(velocityY * delta)
+
+	if velocity.y > 0: $PlayerSprite.play("down")
+	if velocity.y < 0: $PlayerSprite.play("up")
+	if velocity.y == 0:
+		if velocity.x > 0: $PlayerSprite.play("right")
+		if velocity.x < 0: $PlayerSprite.play("left")
