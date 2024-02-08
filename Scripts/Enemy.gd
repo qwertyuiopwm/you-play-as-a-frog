@@ -1,0 +1,68 @@
+tool
+extends KinematicBody2D
+
+
+export var TARGET_RANGE = 300
+export var ATTACK_RANGE = 50
+export var SPEED = 50
+export var health = 10
+
+var STEERING_MULT = 2.5
+
+onready var rand = RandomNumberGenerator.new()
+
+var velocity = Vector2(0, 0)
+var target_player
+var target_pos
+
+
+func animation_finished():
+	assert(false, "Script does not override animation_finished method!")
+
+
+func get_state():
+	assert(false, "Script does not override get_state method!")
+
+
+func _ready():
+	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	
+	
+func set_target():
+	if (target_player == null) or \
+	   (global_position.distance_to(target_player.global_position) > TARGET_RANGE):
+		 target_player = get_nearest_player()
+
+
+func move(delta):
+	var direction = (target_pos - global_position).normalized()
+	var desired_velocity = direction * SPEED
+	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
+	velocity += steering
+	if velocity.x > 0: $AnimatedSprite.flip_h = true
+	if velocity.x < 0: $AnimatedSprite.flip_h = false
+	velocity = move_and_slide(velocity)
+
+
+func get_circle_position(random, circle_radius):
+	var circle_center = target_pos
+	var angle = random * PI * 2
+	var x = circle_center + cos(angle) * circle_radius
+	var y = circle_center + sin(angle) * circle_radius
+
+	return Vector2(x, y)
+
+
+func get_nearest_player():
+	var players = get_tree().get_nodes_in_group("Player")
+	var nearest_player
+	var lowest_dist = ATTACK_RANGE
+	
+	for player in players:
+		var dist = self.global_position.distance_to(player.global_position)
+		if dist >= lowest_dist: continue
+		
+		nearest_player = player
+		lowest_dist = dist
+	
+	return nearest_player
