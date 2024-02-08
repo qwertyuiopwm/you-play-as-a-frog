@@ -13,7 +13,7 @@ onready var rand = RandomNumberGenerator.new()
 var velocity = Vector2(0, 0)
 var target
 
-enum {
+enum states {
 	STILL,
 	INCH,
 	ATTACK,
@@ -21,7 +21,7 @@ enum {
 }
 
 
-var state = INCH
+var state = states.INCH
 
 
 func _ready():
@@ -32,27 +32,19 @@ func _physics_process(delta):
 	if (target == null) or \
 	   (global_position.distance_to(target.global_position) > TARGET_RANGE):
 		 target = get_nearest_player()
-	if target == null: state = STILL
-	
-	# i know this can be done way better, you can fix it if you want
-	else:
-		if state == ATTACKING:
-			pass
-		else: if (global_position.distance_to(target.global_position) > ATTACK_RANGE):
-			state = INCH
-		else: if state != ATTACKING:
-			state = ATTACK
+		
+	state = get_state()
 	
 	
 	match state:
-		STILL:
+		states.STILL:
 			$AnimatedSprite.play("still")
-		INCH:
+		states.INCH:
 			$AnimatedSprite.play("walking")
 			move(target.global_position, delta)
-		ATTACK:
+		states.ATTACK:
 			$AnimatedSprite.play("raise")
-			state = ATTACKING
+			state = states.ATTACKING
 	
 
 func animation_finished():
@@ -64,7 +56,7 @@ func animation_finished():
 				body.health -= SLAM_DAMAGE
 			$AnimatedSprite.play("hit")
 		"hit":
-			state = STILL
+			state = states.STILL
 		
 
 
@@ -76,6 +68,20 @@ func move(target, delta):
 	if velocity.x > 0: $AnimatedSprite.flip_h = true
 	if velocity.x < 0: $AnimatedSprite.flip_h = false
 	velocity = move_and_slide(velocity)
+
+
+func get_state():
+	if target == null:
+		return states.STILL
+	
+	if state == states.ATTACKING:
+		return states.ATTACKING
+
+	if (global_position.distance_to(target.global_position) <= TARGET_RANGE):
+		return states.INCH
+	
+	if (global_position.distance_to(target.global_position) <= ATTACK_RANGE):
+		return states.ATTACK
 
 
 #func get_circle_position(target, random):
