@@ -76,12 +76,12 @@ func get_state():
 	
 	if state == states.ATTACKING:
 		return states.ATTACKING
-
-	if (global_position.distance_to(target.global_position) <= TARGET_RANGE):
-		return states.INCH
 	
 	if (global_position.distance_to(target.global_position) <= ATTACK_RANGE):
 		return states.ATTACK
+
+	if (global_position.distance_to(target.global_position) <= TARGET_RANGE):
+		return states.INCH
 
 
 #func get_circle_position(target, random):
