@@ -58,21 +58,16 @@ func _physics_process(delta):
 	
 	var velocityX = Vector2(velocity.x, 0)
 	move_and_collide(velocityX * delta)
-	
-<<<<<<< HEAD
-		if velocity.y > 0: $PlayerSprite.play("down")
-		if velocity.y < 0: $PlayerSprite.play("up")
-		if velocity.y == 0:
-			if velocity.x > 0: $PlayerSprite.play("right")
-			if velocity.x < 0: $PlayerSprite.play("left")
-
-=======
 	var velocityY = Vector2(0, velocity.y)
 	move_and_collide(velocityY * delta)
-
-	if velocity.y > 0: $PlayerSprite.play("down")
-	if velocity.y < 0: $PlayerSprite.play("up")
+	
+	if velocity.y > 0: 
+		$PlayerSprite.play("down")
+	if velocity.y < 0: 
+		$PlayerSprite.play("up")
 	if velocity.y == 0:
-		if velocity.x > 0: $PlayerSprite.play("right")
-		if velocity.x < 0: $PlayerSprite.play("left")
->>>>>>> 4262fa5e691e3e5ed58bc7bf4b6a8053006d0a7a
+		if velocity.x > 0: 
+			$PlayerSprite.play("right")
+		if velocity.x < 0: 
+			$PlayerSprite.play("left")
+
