@@ -11,6 +11,10 @@ onready var half_height = height / 2
 var maxHealth = 100
 var health = maxHealth
 
+func _ready():
+	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
+	pass
+
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	velocity.y = int(Input.is_action_pressed("move_down")) - \

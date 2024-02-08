@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Music/Boss1-song.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Music/Forest-bg.mp3" type="AudioStream" id=2]
+[ext_resource path="res://MusicPlayer.gd" type="Script" id=3]
+
+[node name="Node" type="Node"]
+script = ExtResource( 3 )
+
+[node name="ForestMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="Boss1Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )

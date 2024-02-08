@@ -6,9 +6,15 @@ export var CanOn = true
 export var CanOff = false
 export var Reusable = false
 export var InverseSignal = false
+export var Music = ""
 
+onready var PlayerNode = load("res://Player.tscn").instance()
+onready var MusicPlayer = PlayerNode.get_node("MusicPlayer")
 
 func trigger(_trigger: bool):
+	if Music != "":
+		MusicPlayer.PlaySong(Music)
+	
 	for triggerable in Triggerables:
 		get_node(triggerable).trigger(_trigger)
 
