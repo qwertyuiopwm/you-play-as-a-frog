@@ -32,7 +32,8 @@ func _physics_process(delta):
 	if (target == null) or \
 	   (global_position.distance_to(target.global_position) > TARGET_RANGE):
 		 target = get_nearest_player()
-		
+	
+	
 	state = get_state()
 	
 	
@@ -96,7 +97,7 @@ func get_state():
 func get_nearest_player():
 	var players = get_tree().get_nodes_in_group("Player")
 	var nearest_player
-	var lowest_dist = ATTACK_RANGE
+	var lowest_dist = TARGET_RANGE
 	
 	for player in players:
 		var dist = self.global_position.distance_to(player.global_position)
