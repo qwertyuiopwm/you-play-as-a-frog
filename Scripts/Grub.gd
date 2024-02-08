@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
-export var SPEED = 50
+export var SPEED = 100
 export var health = 10
 #export var CIRCLE_RADIUS = 40
 export var SLAM_DAMAGE = 10

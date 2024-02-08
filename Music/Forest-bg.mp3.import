@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Forest-bg.mp3-993b5e308248352b7831b88db9f95fcf.mp3str"
+
+[deps]
+
+source_file="res://Music/Forest-bg.mp3"
+dest_files=[ "res://.import/Forest-bg.mp3-993b5e308248352b7831b88db9f95fcf.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
