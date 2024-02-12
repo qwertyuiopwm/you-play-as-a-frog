@@ -21,7 +21,7 @@ func trigger(_trigger: bool):
 
 
 func condition():
-	return get_enemies_left() == 0
+	return get_enemies_left() > 0
 
 
 func _process(_delta):
