@@ -2,6 +2,10 @@ extends KinematicBody2D
 
 
 export var speed = 400
+export var selected_spell: Script
+export var spells = [
+	preload("res://Spells/ProcureCondiment.tscn")
+]
 
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
@@ -11,9 +15,9 @@ onready var half_height = height / 2
 var maxHealth = 100
 var health = maxHealth
 
+
 func _ready():
 	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
-	pass
 
 func _on_DEATH_animation_finished():
 	$DEATH.visible = false
@@ -43,6 +47,10 @@ func Heal(hp: int):
 func _physics_process(delta):
 	if health <= 0:
 		return
+	
+	if Input.is_action_just_pressed("cast_spell"):
+		cast_spell()
+	
 	var velocity = Vector2.ZERO
 	velocity.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
@@ -53,14 +61,21 @@ func _physics_process(delta):
 		$PlayerSprite.frame = 0
 		$PlayerSprite.stop()
 		return
-		
+	
 	velocity = velocity.normalized() * speed
 	
-	var velocityX = Vector2(velocity.x, 0)
-	move_and_collide(velocityX * delta)
-	var velocityY = Vector2(0, velocity.y)
-	move_and_collide(velocityY * delta)
+	move_and_slide(velocity)
 	
+	set_animation(velocity)
+
+
+func cast_spell():
+	var spell = selected_spell.instance()
+	spell.global_position = global_position
+	get_parent().add_child(spell)
+
+
+func set_animation(velocity):
 	if velocity.y > 0: 
 		$PlayerSprite.play("down")
 	if velocity.y < 0: 
@@ -70,4 +85,5 @@ func _physics_process(delta):
 			$PlayerSprite.play("right")
 		if velocity.x < 0: 
 			$PlayerSprite.play("left")
-
+	
+	
