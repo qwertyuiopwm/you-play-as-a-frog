@@ -54,7 +54,7 @@ func animation_finished():
 			for body in $SlamCollider.get_overlapping_bodies():
 				if !body.is_in_group("Player"): continue
 				
-				body.health -= SLAM_DAMAGE
+				body.Hurt(SLAM_DAMAGE)
 			$AnimatedSprite.play("hit")
 		"hit":
 			state = states.STILL
