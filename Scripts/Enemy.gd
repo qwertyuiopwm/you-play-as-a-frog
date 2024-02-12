@@ -12,6 +12,7 @@ var STEERING_MULT = 2.5
 onready var rand = RandomNumberGenerator.new()
 
 var velocity = Vector2(0, 0)
+var curr_speed = SPEED
 var target_player
 var target_pos
 
@@ -34,9 +35,9 @@ func set_target():
 		 target_player = get_nearest_player()
 
 
-func move(delta):
-	var direction = (target_pos - global_position).normalized()
-	var desired_velocity = direction * SPEED
+func move(_target, delta):
+	var direction = (_target - global_position).normalized()
+	var desired_velocity = direction * curr_speed
 	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
 	velocity += steering
 	if velocity.x > 0: $AnimatedSprite.flip_h = true
@@ -45,10 +46,10 @@ func move(delta):
 
 
 func get_circle_position(random, circle_radius):
-	var circle_center = target_pos
+	var circle_center = target_player.global_position
 	var angle = random * PI * 2
-	var x = circle_center + cos(angle) * circle_radius
-	var y = circle_center + sin(angle) * circle_radius
+	var x = circle_center.x + cos(angle) * circle_radius
+	var y = circle_center.y + sin(angle) * circle_radius
 
 	return Vector2(x, y)
 
