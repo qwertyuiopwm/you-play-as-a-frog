@@ -7,7 +7,7 @@
 [ext_resource path="res://Forest/Forest5.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Forest/Forest4.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Forest1" parent="." instance=ExtResource( 2 )]
 
@@ -27,4 +27,4 @@ position = Vector2( 3648, 1024 )
 position = Vector2( 2432, 768 )
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 396, 199 )
+position = Vector2( 416, 168 )
