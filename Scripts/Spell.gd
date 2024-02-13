@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 
+export var damage = 10
 export var VELOCITY = 50
 export var DURATION = 5
 export var BOUNCES = 0
@@ -20,6 +21,11 @@ func on_process():
 
 func on_settle():
 	pass
+
+
+func hit(body):
+	if body.is_in_group("Enemy"):
+		body.hurt(damage)
 
 
 func _ready():
