@@ -1,7 +1,5 @@
 extends "res://Scripts/Spell.gd"
 
-export var SpellIcon = "res://art/spellicon.png"
-
 var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn")
 
 
