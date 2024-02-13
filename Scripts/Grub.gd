@@ -13,10 +13,6 @@ enum states {
 
 
 var state = states.INCH
-
-
-func _ready():
-	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	
 	
 func _physics_process(delta):
