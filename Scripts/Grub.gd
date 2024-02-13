@@ -1,17 +1,8 @@
-extends KinematicBody2D
+extends "res://Scripts/Enemy.gd"
 
 
-export var TARGET_RANGE = 300
-export var ATTACK_RANGE = 50
-export var SPEED = 100
-export var health = 10
-#export var CIRCLE_RADIUS = 40
 export var SLAM_DAMAGE = 10
 
-onready var rand = RandomNumberGenerator.new()
-
-var velocity = Vector2(0, 0)
-var target
 
 enum states {
 	STILL,
@@ -29,11 +20,9 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if (target == null) or \
-	   (global_position.distance_to(target.global_position) > TARGET_RANGE):
-		 target = get_nearest_player()
-	
-	
+	set_target()
+	if target_player != null:
+		target_pos = target_player.global_position
 	state = get_state()
 	
 	
@@ -42,7 +31,7 @@ func _physics_process(delta):
 			$AnimatedSprite.play("still")
 		states.INCH:
 			$AnimatedSprite.play("walking")
-			move(target.global_position, delta)
+			move(target_pos, delta)
 		states.ATTACK:
 			$AnimatedSprite.play("raise")
 			state = states.ATTACKING
@@ -58,52 +47,17 @@ func animation_finished():
 			$AnimatedSprite.play("hit")
 		"hit":
 			state = states.STILL
-		
-
-
-func move(target, delta):
-	var direction = (target - global_position).normalized()
-	var desired_velocity = direction * SPEED
-	var steering = (desired_velocity - velocity) * delta * 2.5
-	velocity += steering
-	if velocity.x > 0: $AnimatedSprite.flip_h = true
-	if velocity.x < 0: $AnimatedSprite.flip_h = false
-	velocity = move_and_slide(velocity)
 
 
 func get_state():
-	if target == null:
+	if target_player == null:
 		return states.STILL
 	
 	if state == states.ATTACKING:
 		return states.ATTACKING
 	
-	if (global_position.distance_to(target.global_position) <= ATTACK_RANGE):
+	if (global_position.distance_to(target_pos) <= ATTACK_RANGE):
 		return states.ATTACK
 
-	if (global_position.distance_to(target.global_position) <= TARGET_RANGE):
+	if (global_position.distance_to(target_pos) <= TARGET_RANGE):
 		return states.INCH
-
-
-#func get_circle_position(target, random):
-#	var circle_center = target.global_position
-#	var angle = random * PI * 2
-#	var x = circle_center + cos(angle) * CIRCLE_RADIUS
-#	var y = circle_center + sin(angle) * CIRCLE_RADIUS
-#
-#	return Vector2(x, y)
-
-
-func get_nearest_player():
-	var players = get_tree().get_nodes_in_group("Player")
-	var nearest_player
-	var lowest_dist = TARGET_RANGE
-	
-	for player in players:
-		var dist = self.global_position.distance_to(player.global_position)
-		if dist >= lowest_dist: continue
-		
-		nearest_player = player
-		lowest_dist = dist
-	
-	return nearest_player
