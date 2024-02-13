@@ -25,6 +25,13 @@ func get_state():
 	assert(false, "Script does not override get_state method!")
 
 
+func hurt(damage):
+	health = max(health - damage, 0)
+	
+	if health == 0:
+		queue_free()
+
+
 func _ready():
 	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	
