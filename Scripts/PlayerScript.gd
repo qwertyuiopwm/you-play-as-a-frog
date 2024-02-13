@@ -14,7 +14,7 @@ onready var half_height = height / 2
 
 var max_health = 100
 var health = max_health
-var health_regen_delay = 10
+var regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
 
@@ -37,6 +37,8 @@ func _on_DEATH_animation_finished():
 func Hurt(dmg: int):
 	if health <= 0:
 		return
+	
+	regen_timer = regen_delay
 		
 	var newHp = health - dmg
 	if newHp <= 0:
@@ -61,9 +63,9 @@ func _physics_process(delta):
 		return
 	
 	if regen_timer == 0:
-		health = clamp(health + (health_per_second * delta),
-					   0, max_health)
-	else: regen_timer = max(regen_timer - delta, 0)
+		health = min(health + (health_per_second * delta), max_health)
+	else: 
+		regen_timer = max(regen_timer - delta, 0)
 	
 	mana = clamp(mana + (mana_per_second * delta),
 				 0, max_mana)
