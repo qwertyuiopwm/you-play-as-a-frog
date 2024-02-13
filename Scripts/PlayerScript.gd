@@ -13,17 +13,17 @@ onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
 var max_health = 100
-var health: float = max_health
+var health = max_health
 var health_regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
 
 var max_mana = 100
-var mana: float = max_mana
+var mana = max_mana
 var mana_per_second = 3
 
 var max_stamina = 100
-var stamina: float = max_stamina
+var stamina = max_stamina
 var stamina_per_second = 3
 
 
