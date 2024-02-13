@@ -26,5 +26,5 @@ position = Vector2( 3648, 1024 )
 [node name="Forest5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2432, 768 )
 
-[node name="Player2" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 416, 168 )
