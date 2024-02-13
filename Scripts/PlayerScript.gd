@@ -99,6 +99,9 @@ func _physics_process(delta):
 
 func cast_spell():
 	var spell = selected_spell.instance()
+	if mana < spell.MANA_COST: return
+	
+	mana -= spell.MANA_COST
 	spell.global_position = global_position
 	get_parent().add_child(spell)
 
