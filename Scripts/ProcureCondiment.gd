@@ -1,6 +1,13 @@
 extends "res://Scripts/Spell.gd"
 
 
-func _on_ProcureCondiment_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	remaining_bounces -= 1
-	print(remaining_bounces)
+var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn")
+
+
+func _on_Area2D_body_entered(body):
+	hit(body)
+
+
+func on_settle():
+	var residue = condiment_residue.instance()
+	residue.global_position = global_position
