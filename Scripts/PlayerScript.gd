@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 
-export var speed = 400
-export var selected_spell: Script
+export var SPEED = 400
 export var spells = [
 	preload("res://Spells/ProcureCondiment.tscn")
 ]
+export var selected_spell: PackedScene = spells[0]
 
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
@@ -14,6 +14,7 @@ onready var half_height = height / 2
 
 var maxHealth = 100
 var health = maxHealth
+var sliding_velocity = Vector2.ZERO
 
 
 func _ready():
@@ -26,6 +27,7 @@ func _on_DEATH_animation_finished():
 func Hurt(dmg: int):
 	if health <= 0:
 		return
+		
 	var newHp = health - dmg
 	if newHp <= 0:
 		$PlayerSprite.visible = false
@@ -62,7 +64,7 @@ func _physics_process(delta):
 		$PlayerSprite.stop()
 		return
 	
-	velocity = velocity.normalized() * speed
+	velocity = velocity.normalized() * SPEED
 	
 	move_and_slide(velocity)
 	
