@@ -14,6 +14,11 @@ onready var half_height = height / 2
 
 var maxHealth = 100
 var health = maxHealth
+
+var max_mana = 100
+var mana = max_mana
+var mana_per_second = 1
+
 var sliding_velocity = Vector2.ZERO
 
 
@@ -49,6 +54,8 @@ func Heal(hp: int):
 func _physics_process(delta):
 	if health <= 0:
 		return
+	
+	mana = clamp(mana + (mana_per_second * delta), 0, max_mana)
 	
 	if Input.is_action_just_pressed("cast_spell"):
 		cast_spell()
