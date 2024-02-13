@@ -19,8 +19,6 @@ var max_mana = 100
 var mana = max_mana
 var mana_per_second = 1
 
-var sliding_velocity = Vector2.ZERO
-
 
 func _ready():
 	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
