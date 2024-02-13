@@ -4,6 +4,7 @@ extends RigidBody2D
 export var VELOCITY = 50
 export var DURATION = 5
 export var BOUNCES = 0
+export var MANA_COST = 15
 
 var remaining_duration = DURATION
 var remaining_bounces = BOUNCES
