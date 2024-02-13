@@ -18,6 +18,13 @@ func _ready():
 		if node.name.find("Spell") == -1:
 			continue
 		SpellWheelPositions.push_back(node)
+	var i = 0
+	for packedSpell in Player.spells:
+		i+=1
+		var spell = packedSpell.instance()
+		var spellIcon:TextureRect = get_node("CanvasLayer/spellwheel/Spell"+String(i)+"Icon")
+		spellIcon.texture = load(spell.SpellIcon)
+		
 
 func _process(_delta):
 	var newHealthX = (maxHpSize/Player.maxHealth)*Player.health
@@ -35,4 +42,8 @@ func _process(_delta):
 			if newMag < lowestMag:
 				selectedNode = node
 				lowestMag = newMag
-	
+		var selectedSpell = Player.spells[selectedNode.SpellIndex]
+		if selectedSpell:
+			Player.selected_spell = selectedSpell
+			$CanvasLayer/spellwheel/arow.rect_rotation = selectedNode.ArrowRotation
+		
