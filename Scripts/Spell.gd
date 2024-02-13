@@ -39,5 +39,5 @@ func _process(delta):
 	remaining_duration -= delta
 	if remaining_duration <= 0:
 		on_settle()
-		free()
+		queue_free()
 	on_process()
