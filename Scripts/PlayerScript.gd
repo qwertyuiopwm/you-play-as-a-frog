@@ -12,9 +12,19 @@ onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
-var maxHealth = 100
-var health = maxHealth
-var sliding_velocity = Vector2.ZERO
+var max_health = 100
+var health = max_health
+var regen_delay = 10
+var health_per_second = 1
+var regen_timer = 0
+
+var max_mana = 100
+var mana = max_mana
+var mana_per_second = 3
+
+var max_stamina = 100
+var stamina = max_stamina
+var stamina_per_second = 3
 
 
 func _ready():
@@ -27,6 +37,8 @@ func _on_DEATH_animation_finished():
 func Hurt(dmg: int):
 	if health <= 0:
 		return
+	
+	regen_timer = regen_delay
 		
 	var newHp = health - dmg
 	if newHp <= 0:
@@ -41,14 +53,24 @@ func Heal(hp: int):
 	if health <= 0:
 		return
 	var newHp = health + hp
-	if newHp > maxHealth:
-		newHp = maxHealth
+	if newHp > max_health:
+		newHp = max_health
 	
 	health = newHp
 
 func _physics_process(delta):
 	if health <= 0:
 		return
+	
+	if regen_timer == 0:
+		health = min(health + (health_per_second * delta), max_health)
+	else: 
+		regen_timer = max(regen_timer - delta, 0)
+	
+	mana = clamp(mana + (mana_per_second * delta),
+				 0, max_mana)
+	stamina = clamp(stamina + (stamina_per_second * delta),
+					0, max_stamina)
 	
 	if Input.is_action_just_pressed("cast_spell"):
 		cast_spell()

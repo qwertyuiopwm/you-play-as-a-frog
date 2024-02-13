@@ -27,7 +27,7 @@ func _ready():
 		
 
 func _process(_delta):
-	var newHealthX = (maxHpSize/Player.maxHealth)*Player.health
+	var newHealthX = (maxHpSize/Player.max_health)*Player.health
 	var newRectSize = Vector2(newHealthX, 16)
 	hpPanel.set_size(newRectSize)
 	
