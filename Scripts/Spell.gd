@@ -9,16 +9,28 @@ var remaining_duration = DURATION
 var remaining_bounces = BOUNCES
 
 
+func on_start():
+	pass
+
+
+func on_process():
+	pass
+
+
+func on_settle():
+	pass
+
+
 func _ready():
 	var mouse_pos = get_global_mouse_position()
 	var dir = global_position.direction_to(mouse_pos)
 	linear_velocity = dir * VELOCITY
+	on_start()
 
 
 func _process(delta):
 	remaining_duration -= delta
 	if remaining_duration <= 0:
+		on_settle()
 		free()
-
-
-
+	on_process()
