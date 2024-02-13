@@ -30,9 +30,11 @@ var stamina_per_second = 3
 func _ready():
 	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
 
+
 func _on_DEATH_animation_finished():
 	$DEATH.visible = false
 	$CollisionShape2D.disabled = true
+
 
 func Hurt(dmg: int):
 	if health <= 0:
@@ -49,6 +51,7 @@ func Hurt(dmg: int):
 	
 	health = newHp
 
+
 func Heal(hp: int):
 	if health <= 0:
 		return
@@ -57,6 +60,7 @@ func Heal(hp: int):
 		newHp = max_health
 	
 	health = newHp
+
 
 func _physics_process(delta):
 	if health <= 0:
@@ -109,5 +113,3 @@ func set_animation(velocity):
 			$PlayerSprite.play("right")
 		if velocity.x < 0: 
 			$PlayerSprite.play("left")
-	
-	
