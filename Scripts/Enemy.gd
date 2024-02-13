@@ -64,7 +64,7 @@ func get_circle_position(random, circle_radius):
 func get_nearest_player():
 	var players = get_tree().get_nodes_in_group("Player")
 	var nearest_player
-	var lowest_dist = ATTACK_RANGE
+	var lowest_dist = TARGET_RANGE
 	
 	for player in players:
 		var dist = self.global_position.distance_to(player.global_position)
