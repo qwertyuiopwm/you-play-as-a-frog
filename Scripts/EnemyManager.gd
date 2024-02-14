@@ -6,7 +6,9 @@ export var TriggerVal = false
 
 
 func trigger(_trigger: bool):
-	for triggerable in Triggerables:
+	for triggerable_path in Triggerables:
+		var triggerable = get_node(triggerable_path)
+		print("triggering", triggerable)
 		triggerable.trigger(_trigger)
 
 
