@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bridgable.png-686ebf7944baae5d41d50f6387d862e8.stex"
+path="res://.import/Iteractables (1).png-5fcfa6e3a1e534e48dc6592b11201373.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Bridgable.png"
-dest_files=[ "res://.import/Bridgable.png-686ebf7944baae5d41d50f6387d862e8.stex" ]
+source_file="res://art/Iteractables (1).png"
+dest_files=[ "res://.import/Iteractables (1).png-5fcfa6e3a1e534e48dc6592b11201373.stex" ]
 
 [params]
 
