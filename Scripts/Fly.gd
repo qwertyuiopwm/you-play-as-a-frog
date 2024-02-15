@@ -64,7 +64,7 @@ func animation_finished():
 
 
 func get_state():
-	if target_player == null:
+	if target_player == null or target_pos == null:
 		return states.DEFAULT
 	
 	if state == states.SWOOPING:
