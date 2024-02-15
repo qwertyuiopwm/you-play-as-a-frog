@@ -10,6 +10,7 @@ export var health = 10
 var STEERING_MULT = 2.5
 
 onready var rand = RandomNumberGenerator.new()
+onready var debug = OS.is_debug_build()
 
 var velocity = Vector2(0, 0)
 var curr_speed = SPEED
@@ -34,8 +35,8 @@ func hurt(damage):
 
 func _ready():
 	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
-	
-	
+
+
 func set_target():
 	if (target_player == null) or \
 	   (global_position.distance_to(target_player.global_position) > TARGET_RANGE):
