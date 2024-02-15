@@ -32,7 +32,7 @@ func _physics_process(delta):
 	STEERING_MULT = 5
 	
 	if target_pos: $fly_vis.global_position = target_pos
-	if state == states.SWOOPING: modulate = Color(1, 0, 0)
+	if state == states.SWOOPING: modulate = Color(1, .9, .9)
 	else: modulate = Color(1, 1, 1)
 	
 	match state:
