@@ -1,12 +1,15 @@
 extends RigidBody2D
 
 
-export var damage = 10
+export var DAMAGE = 10
+export var COOLDOWN = 1
+export var MANA_COST = 15
+
+export var SpellIcon: String
+
 export var VELOCITY = 50
 export var DURATION = 5
 export var BOUNCES = 0
-export var MANA_COST = 15
-export var SpellIcon: String
 
 var remaining_duration = DURATION
 var remaining_bounces = BOUNCES
@@ -26,7 +29,7 @@ func on_settle():
 
 func hit(body):
 	if body.is_in_group("Enemy"):
-		body.hurt(damage)
+		body.hurt(DAMAGE)
 
 
 func _ready():
