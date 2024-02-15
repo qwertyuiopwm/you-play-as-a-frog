@@ -4,7 +4,7 @@ extends "res://Scripts/Enemy.gd"
 export var CIRCLE_RADIUS = 50
 export var SWOOP_SPEED = 150
 
-var TARGET_COMFORT_RADIUS = 3
+var TARGET_COMFORT_RADIUS = 20
 
 
 var randomnum = randf()
@@ -19,10 +19,17 @@ enum states {
 }
 
 
-func _physics_process(delta):
-	STEERING_MULT = 5
+func _ready():
+	$fly_vis.visible = debug
+
+
+func _process(delta):
 	set_target()
 	state = get_state()
+
+
+func _physics_process(delta):
+	STEERING_MULT = 5
 	
 	if target_pos: $fly_vis.global_position = target_pos
 	if state == states.SWOOPING: modulate = Color(1, 0, 0)
@@ -30,7 +37,11 @@ func _physics_process(delta):
 	
 	match state:
 		states.DEFAULT:
-			randomnum += (randf() / 6) - (1/6)
+			var target_offset = randf() / 10 + .05
+			if randf() >= .5:
+				target_offset = -target_offset
+				
+			randomnum += target_offset
 			
 		
 		states.CIRCLE:
