@@ -26,9 +26,31 @@ var max_stamina = 100
 var stamina = max_stamina
 var stamina_per_second = 3
 
+var velocity = Vector2.ZERO
+var sliding = false
+
 
 func _ready():
 	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
+
+
+func _physics_process(delta):
+	if health <= 0:
+		return
+	
+	regen_stats(delta)
+	
+	cast_spell_if_pressed()
+	
+	set_velocity()
+	
+	if velocity.length() <= 0:
+		$PlayerSprite.frame = 0
+		$PlayerSprite.stop()
+		return
+	
+	set_animation()
+	move_and_slide(velocity)
 
 
 func _on_DEATH_animation_finished():
@@ -62,10 +84,18 @@ func Heal(hp: int):
 	health = newHp
 
 
-func _physics_process(delta):
-	if health <= 0:
-		return
+func set_velocity():
+	if sliding: return
 	
+	velocity.y = int(Input.is_action_pressed("move_down")) - \
+				 int(Input.is_action_pressed("move_up"))
+	velocity.x = int(Input.is_action_pressed("move_right")) - \
+				 int(Input.is_action_pressed("move_left"))
+	
+	velocity = velocity.normalized() * SPEED
+
+
+func regen_stats(delta):
 	if regen_timer == 0:
 		health = min(health + (health_per_second * delta), max_health)
 	else: 
@@ -75,29 +105,11 @@ func _physics_process(delta):
 				 0, max_mana)
 	stamina = clamp(stamina + (stamina_per_second * delta),
 					0, max_stamina)
-	
-	if Input.is_action_just_pressed("cast_spell"):
-		cast_spell()
-	
-	var velocity = Vector2.ZERO
-	velocity.y = int(Input.is_action_pressed("move_down")) - \
-				 int(Input.is_action_pressed("move_up"))
-	velocity.x = int(Input.is_action_pressed("move_right")) - \
-				 int(Input.is_action_pressed("move_left"))
-	
-	if velocity.length() <= 0:
-		$PlayerSprite.frame = 0
-		$PlayerSprite.stop()
-		return
-	
-	velocity = velocity.normalized() * SPEED
-	
-	move_and_slide(velocity)
-	
-	set_animation(velocity)
 
 
-func cast_spell():
+func cast_spell_if_pressed():
+	if not Input.is_action_just_pressed("cast_spell"): return
+		
 	var spell = selected_spell.instance()
 	var mana_cost = spell.MANA_COST
 	
@@ -108,7 +120,7 @@ func cast_spell():
 	get_parent().add_child(spell)
 
 
-func set_animation(velocity):
+func set_animation():
 	if velocity.y > 0: 
 		$PlayerSprite.play("down")
 	if velocity.y < 0: 

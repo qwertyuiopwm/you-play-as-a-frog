@@ -9,10 +9,6 @@ func _ready():
 		Songs[String(node.name)] = node
 
 func PlaySong(song: String):
-	print(Songs)
-	print(song)
 	Songs[CurrentlyPlaying].stop()
-	print("trying to stop node", Songs[CurrentlyPlaying])
-	print("trying to play node", Songs[song])
 	Songs[song].play()
 	CurrentlyPlaying = song
