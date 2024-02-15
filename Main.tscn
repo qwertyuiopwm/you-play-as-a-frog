@@ -8,6 +8,7 @@
 [ext_resource path="res://Area maps/Forest/Forest4.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node2D"]
+scale = Vector2( 1, 1.0019 )
 
 [node name="Forest1" parent="." instance=ExtResource( 2 )]
 
@@ -21,10 +22,10 @@ __meta__ = {
 position = Vector2( 2432, 1024 )
 
 [node name="Forest4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2815, 3070 )
+position = Vector2( 2816, 3066.18 )
 
 [node name="Forest5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3901, 4050 )
+position = Vector2( 4217, 4603.27 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 416, 168 )
