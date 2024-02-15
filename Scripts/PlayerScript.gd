@@ -34,6 +34,25 @@ func _ready():
 	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
 
 
+func _physics_process(delta):
+	if health <= 0:
+		return
+	
+	regen_stats(delta)
+	
+	cast_spell_if_pressed()
+	
+	set_velocity()
+	
+	if velocity.length() <= 0:
+		$PlayerSprite.frame = 0
+		$PlayerSprite.stop()
+		return
+	
+	set_animation()
+	move_and_slide(velocity)
+
+
 func _on_DEATH_animation_finished():
 	$DEATH.visible = false
 	$CollisionShape2D.disabled = true
@@ -63,25 +82,6 @@ func Heal(hp: int):
 		newHp = max_health
 	
 	health = newHp
-
-
-func _physics_process(delta):
-	if health <= 0:
-		return
-	
-	regen_stats(delta)
-	
-	cast_spell_if_pressed()
-	
-	set_velocity()
-	
-	if velocity.length() <= 0:
-		$PlayerSprite.frame = 0
-		$PlayerSprite.stop()
-		return
-	
-	set_animation()
-	move_and_slide(velocity)
 
 
 func set_velocity():
