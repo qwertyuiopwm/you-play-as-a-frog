@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Forest/Forest1.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Area maps/Forest/Forest9.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Area maps/Forest/Forest10.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Area maps/Forest/Forest11.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Area maps/Forest/Forest12.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Area maps/Forest/Forest13.tscn" type="PackedScene" id=14]
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 1, 1.0019 )
@@ -49,8 +51,13 @@ position = Vector2( 7417, 6080 )
 position = Vector2( 6841, 6847 )
 
 [node name="Forest11" parent="." instance=ExtResource( 12 )]
-position = Vector2( 5625, 8061.68 )
+position = Vector2( 5625, 8061 )
+
+[node name="Forest12" parent="." instance=ExtResource( 13 )]
+position = Vector2( 5304, 9661 )
+
+[node name="Forest13" parent="." instance=ExtResource( 14 )]
+position = Vector2( 5303, 10813 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-visible = false
 position = Vector2( 416, 168 )
