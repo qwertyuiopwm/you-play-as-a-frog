@@ -52,5 +52,4 @@ position = Vector2( 6841, 6847 )
 position = Vector2( 5625, 8061.68 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-visible = false
 position = Vector2( 416, 168 )
