@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=2]
 
-[ext_resource path="res://Area maps/Forest/ForestTilesSheet.png" type="Texture" id=1]
+[ext_resource path="res://art/ForestTilesSheet.png" type="Texture" id=1]
 [ext_resource path="res://art/Tinted trees.png" type="Texture" id=2]
 [ext_resource path="res://art/Water tiles.png" type="Texture" id=3]
 [ext_resource path="res://art/Iteractables (1).png" type="Texture" id=4]
