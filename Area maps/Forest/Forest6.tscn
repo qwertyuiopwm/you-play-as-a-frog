@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Area maps/Forest/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Area maps/Forest/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Enemies/EnemyManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Ant.tscn" type="PackedScene" id=4]
 
 [node name="Forest6" type="Node2D"]
 
@@ -17,3 +18,21 @@ format = 1
 tile_data = PoolIntArray( 917509, 1610612736, 0, 917510, 1610612736, 0, 917511, 1610612736, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
+
+[node name="Node2D" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 634, 588 )
+
+[node name="Node2D2" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 469, 568 )
+
+[node name="Node2D3" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 549, 503 )
+
+[node name="Node2D4" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 305, 624 )
+
+[node name="Node2D5" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 232, 535 )
+
+[node name="Node2D6" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 133, 617 )

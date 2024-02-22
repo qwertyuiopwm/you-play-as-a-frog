@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Area maps/Forest/MagicBarrier.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemies/EnemyManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Area maps/Forest/ForestTiles.tres" type="TileSet" id=3]
 [ext_resource path="res://Enemies/Grub.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Ant.tscn" type="PackedScene" id=5]
 
 [node name="Forest5" type="Node2D"]
 
@@ -21,3 +22,12 @@ tile_data = PoolIntArray( -851951, -1610612736, 0, -786415, -1610612736, 0 )
 
 [node name="Grub" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 822, -978 )
+
+[node name="Node2D" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( 887, 121 )
+
+[node name="Node2D2" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( 835, 55 )
+
+[node name="Node2D3" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( 753, 138 )

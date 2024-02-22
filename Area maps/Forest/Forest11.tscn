@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Area maps/Forest/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Area maps/Forest/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Enemies/Fly.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/EnemyManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Weevil.tscn" type="PackedScene" id=5]
 
 [node name="Forest11" type="Node2D"]
 
@@ -36,3 +37,6 @@ tile_data = PoolIntArray( 1572859, 1610612736, 0, 1572860, 1610612736, 0, 157286
 
 [node name="Fly" parent="EnemyManager" instance=ExtResource( 3 )]
 position = Vector2( 196, 989 )
+
+[node name="Grub" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( -230, 1123 )
