@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Area maps/Swamp/Swamp.tres" type="TileSet" id=1]
+
+[node name="Swamp2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( 65535, 13, 0, 0, 13, 2, 131071, 13, 65536, 65536, 13, 65538, 196607, 13, 65536, 131072, 13, 65540, 131073, 13, 2, 262143, 13, 65536, 196608, 13, 65537, 196609, 13, 131078, 196610, 13, 196609, 196611, 13, 196609, 196612, 13, 196610, 327679, 13, 131072, 262144, 13, 131073, 262145, 13, 131074 )
