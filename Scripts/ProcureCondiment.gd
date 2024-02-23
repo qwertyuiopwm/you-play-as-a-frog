@@ -1,4 +1,4 @@
-extends "res://Scripts/Spell.gd"
+extends "res://Scripts/BouncingSpell.gd"
 
 var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn")
 
