@@ -69,7 +69,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=11]
 radius = 38.0132
 
-[node name="Grub" type="KinematicBody2D" groups=["Enemy"]]
+[node name="Weevil" type="KinematicBody2D" groups=["Enemy"]]
 script = ExtResource( 2 )
 health = 20
 
