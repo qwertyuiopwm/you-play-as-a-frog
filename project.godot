@@ -102,6 +102,10 @@ cast_spell={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_9="enemies"
+
 [mono]
 
 project/assembly_name="Test"
