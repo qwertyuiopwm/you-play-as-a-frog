@@ -36,20 +36,22 @@ func _ready():
 func _physics_process(delta):
 	var rootPos = Player.global_position
 	var mousePos = get_global_mouse_position()
-	
+
 	var space_rid = get_world_2d().space
 	var space_state = Physics2DServer.space_get_direct_state(space_rid)
 	
 	var rayResult = space_state.intersect_ray(
-		rootPos + Vector2(16, 0),
-		mousePos - rootPos - Vector2(16, 0),
+		(rootPos),
+		rootPos + (rootPos.direction_to(mousePos)*900),
 		[],
-		0b00000000_00000000_00000001_00000000
+		0b00000000_00000000_00000001_00001000
 	)
-	print(rayResult)
 	
-	beamLine.global_position = rootPos + Vector2(16, 0)
-	beamLine.points[1] = mousePos - rootPos - Vector2(16, 0)
+	if not rayResult.has("position"):
+		return
+	
+	beamLine.points[0] = to_local(rootPos)
+	beamLine.points[1] = to_local(rayResult.position)
 
 func _process(delta):
 	on_process()

@@ -104,6 +104,8 @@ cast_spell={
 
 [layer_names]
 
+2d_render/layer_1="player"
+2d_render/layer_4="walls"
 2d_render/layer_9="enemies"
 
 [mono]

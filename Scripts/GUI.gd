@@ -1,6 +1,7 @@
 extends Control
 
 onready var spellWheel = $CanvasLayer/spellwheel
+onready var wheelArrow = spellWheel.get_node("arrow")
 onready var hpPanel = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/Panel
 onready var spellSpot = $CanvasLayer/spellspot
 onready var manaPanel = spellSpot.get_node("mana")
@@ -71,6 +72,7 @@ func _process(_delta):
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
 	if spellWheel.visible:
+		var degPerSpell = 360/len(Player.spells)
 		var mousePos = vp.get_mouse_position()
 		var lowestMag = INF
 		var selectedIndex: int
@@ -84,6 +86,7 @@ func _process(_delta):
 		var selectedSpell = Player.spells[(selectedIndex-1)]
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
-			$CanvasLayer/spellwheel/arrow.rect_rotation = (len(Player.spells)/360)*selectedIndex
+			
+			wheelArrow.rect_rotation = degPerSpell*(selectedIndex+0)+(degPerSpell/2)
 			spellSpot.get_node("spellicon").texture = load(selectedSpell.instance().SpellIcon)
 		
