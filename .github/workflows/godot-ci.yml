@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Web Build
-        run: godot -v --export-release "HTML5" ./build/web/index.html --rendering-driver opengl3
+        run: godot --headless --verbose --export-release "HTML5" ../build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
