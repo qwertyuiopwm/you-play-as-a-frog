@@ -4,7 +4,7 @@ extends KinematicBody2D
 export var SPEED = 400
 export var spells = [
 	preload("res://Spells/ProcureCondiment.tscn"),
-	preload("res://Spells/TestBeam.tscn"),
+	preload("res://Spells/DevBeam.tscn"),
 ]
 export var selected_spell: PackedScene
 
