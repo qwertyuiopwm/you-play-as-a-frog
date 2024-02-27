@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=1]
 [ext_resource path="res://Area maps/Forest/MagicBarrier.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/EnemyManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Grub.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ChangeMusicTrigger.tscn" type="PackedScene" id=7]
 
 [node name="Forest2" type="Node2D"]
 
@@ -27,7 +28,7 @@ script = ExtResource( 1 )
 OpenOffset = Vector2( 0, 500 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
-Triggerables = [ NodePath("../Wall") ]
+Triggerables = [ NodePath("../Wall"), NodePath("../ForestMusicTrigger") ]
 
 [node name="KinematicBody2D" parent="EnemyManager" instance=ExtResource( 6 )]
 position = Vector2( 609, 416 )
@@ -35,5 +36,11 @@ position = Vector2( 609, 416 )
 [node name="PlayerDetector" parent="." instance=ExtResource( 5 )]
 position = Vector2( 250, 415 )
 scale = Vector2( 3, 29 )
-Triggerables = [ NodePath("../Wall") ]
+Triggerables = [ NodePath("../Wall"), NodePath("../BossMusicTrigger") ]
 Music = "Boss1Music"
+
+[node name="ForestMusicTrigger" parent="." instance=ExtResource( 7 )]
+Song = "ForestMusic"
+
+[node name="BossMusicTrigger" parent="." instance=ExtResource( 7 )]
+Song = "Boss1Music"

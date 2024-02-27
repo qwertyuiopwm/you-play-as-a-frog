@@ -33,7 +33,7 @@ var sliding = false
 
 
 func _ready():
-	$MusicPlayer.PlaySong($MusicPlayer.CurrentlyPlaying)
+	$MusicPlayer.PlaySong("ForestMusic")
 
 
 func _physics_process(delta):

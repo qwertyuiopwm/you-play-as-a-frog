@@ -1,6 +1,6 @@
 extends Node
 
-export var CurrentlyPlaying = "ForestMusic"
+export var CurrentlyPlaying:String = "NONE"
 
 export var Songs = {}
 
@@ -9,6 +9,8 @@ func _ready():
 		Songs[String(node.name)] = node
 
 func PlaySong(song: String):
-	Songs[CurrentlyPlaying].stop()
+	print("Switching music from "+CurrentlyPlaying+" to "+song)
+	if CurrentlyPlaying != "NONE":
+		Songs[CurrentlyPlaying].stop()
 	Songs[song].play()
 	CurrentlyPlaying = song
