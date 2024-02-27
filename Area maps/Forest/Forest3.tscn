@@ -24,6 +24,8 @@ tile_data = PoolIntArray( 720901, -1610612715, 0, 720902, -1610612717, 0, 720903
 
 [node name="Interactable" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 720905, 23, 0 )
 
