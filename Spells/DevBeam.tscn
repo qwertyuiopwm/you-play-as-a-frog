@@ -2,7 +2,9 @@
 
 [ext_resource path="res://Scripts/TestBeam.gd" type="Script" id=1]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=3]
+interpolation_mode = 1
+colors = PoolColorArray( 0.188235, 0, 0, 1, 1, 0, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -10,13 +12,15 @@
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
+MANA_COST = 0
+MANA_REQUIRED = 0
 SpellIcon = "res://art/deathicon.png"
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( -16, 0, 0, 0 )
 width = 20.0
-default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 1 )
+default_color = Color( 1, 0, 0, 1 )
+gradient = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

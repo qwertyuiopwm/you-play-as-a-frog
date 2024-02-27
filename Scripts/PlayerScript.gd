@@ -126,11 +126,16 @@ func cast_spell_if_pressed(delta):
 	if not Input.is_action_just_pressed("cast_spell"): return
 	
 	var spell = selected_spell.instance()
+	if Input.is_action_just_pressed("cast_spell") and spell.MANA_REQUIRED > mana:
+		spell.queue_free()
+		return
 	match spell.TYPE:
 		"BOUNCING":
 			var mana_cost = spell.MANA_COST
 			
-			if mana < mana_cost: return
+			if mana < mana_cost: 
+				spell.queue_free()
+				return
 			
 			mana -= mana_cost
 			spell.global_position = global_position
@@ -138,7 +143,6 @@ func cast_spell_if_pressed(delta):
 		"BEAM":
 			get_parent().add_child(spell)
 			beam = spell
-			
 
 
 func set_animation():
