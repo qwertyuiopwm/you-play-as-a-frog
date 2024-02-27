@@ -1,11 +1,8 @@
 extends "res://Scripts/Spell.gd"
 
 
-export var TYPE = "beam"
-
+export var TYPE = "BEAM"
 onready var beamLine:Line2D = get_node("Line2D")
-
-var hitCooldown = false
 
 func on_start():
 	pass
@@ -19,14 +16,10 @@ func on_settle():
 	pass
 
 
-func hit(body):
-	if hitCooldown:
+func hit(body, delta):
+	if not body.is_in_group("Enemy"):
 		return
-	if body.is_in_group("Enemy"):
-		body.hurt(DAMAGE)
-		hitCooldown = true
-		yield(wait(1), "completed")
-		hitCooldown = false
+	body.hurt(DAMAGE * delta)
 
 
 func _ready():
@@ -49,6 +42,8 @@ func _physics_process(delta):
 	
 	if not rayResult.has("position"):
 		return
+	if rayResult.collider:
+		hit(rayResult.collider, delta)
 	
 	beamLine.points[0] = to_local(rootPos)
 	beamLine.points[1] = to_local(rayResult.position)

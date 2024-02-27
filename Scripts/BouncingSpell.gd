@@ -1,5 +1,7 @@
 extends "res://Scripts/Spell.gd"
 
+
+export var TYPE = "BOUNCING"
 export var VELOCITY = 50
 export var DURATION = 5
 export var BOUNCES = 0

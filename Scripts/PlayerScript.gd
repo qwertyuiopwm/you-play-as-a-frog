@@ -6,7 +6,7 @@ export var spells = [
 	preload("res://Spells/ProcureCondiment.tscn"),
 	preload("res://Spells/TestBeam.tscn"),
 ]
-export var selected_spell: PackedScene = spells[0]
+export var selected_spell: PackedScene
 
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
@@ -22,6 +22,7 @@ var regen_timer = 0
 var max_mana = 100
 var mana = max_mana
 var mana_per_second = 3
+var beam: RigidBody2D
 
 var max_stamina = 100
 var stamina = max_stamina
@@ -41,7 +42,7 @@ func _physics_process(delta):
 	
 	regen_stats(delta)
 	
-	cast_spell_if_pressed()
+	cast_spell_if_pressed(delta)
 	
 	set_velocity()
 	
@@ -101,24 +102,43 @@ func regen_stats(delta):
 		health = min(health + (health_per_second * delta), max_health)
 	else: 
 		regen_timer = max(regen_timer - delta, 0)
-	
-	mana = clamp(mana + (mana_per_second * delta),
+	if beam == null:
+		mana = clamp(mana + (mana_per_second * delta),
 				 0, max_mana)
 	stamina = clamp(stamina + (stamina_per_second * delta),
 					0, max_stamina)
 
 
-func cast_spell_if_pressed():
-	if not Input.is_action_just_pressed("cast_spell"): return
+func cast_spell_if_pressed(delta):
+	if selected_spell == null:
+		return
+	if not Input.is_action_pressed("cast_spell") and beam != null:
+		beam.queue_free()
+		beam = null
+		return
+	if Input.is_action_pressed("cast_spell") and beam != null:
+		mana -= clamp(beam.MANA_COST*delta, 0, max_mana)
+		if mana <= 0:
+			beam.queue_free()
+			beam = null
+			return
 		
+	if not Input.is_action_just_pressed("cast_spell"): return
+	
 	var spell = selected_spell.instance()
-	var mana_cost = spell.MANA_COST
-	
-	if mana < mana_cost: return
-	
-	mana -= mana_cost
-	spell.global_position = global_position
-	get_parent().add_child(spell)
+	match spell.TYPE:
+		"BOUNCING":
+			var mana_cost = spell.MANA_COST
+			
+			if mana < mana_cost: return
+			
+			mana -= mana_cost
+			spell.global_position = global_position
+			get_parent().add_child(spell)
+		"BEAM":
+			get_parent().add_child(spell)
+			beam = spell
+			
 
 
 func set_animation():
