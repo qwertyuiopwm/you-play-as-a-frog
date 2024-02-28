@@ -1,4 +1,4 @@
-name: 'Publish to GitHub Pages'
+name: 'publish to cf pages'
 
 env:
   GODOT_VERSION: mono-3.5.2
