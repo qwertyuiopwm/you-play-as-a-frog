@@ -32,14 +32,14 @@ jobs:
       - name: "Export to HTML5"
         run: | 
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/ypaaf.html
-          ls ./build/web
+          godot -v --export "HTML5" $HOME/build/web/ypaaf.html
+          ls $HOME/build/web
 
       - name: "Upload artifact"
         uses: actions/upload-artifact@v4
         with:
           name: ypaaf-${{ github.run_id }}
-          path: build/web
+          path: $HOME/build/web
 
       - name: "Deploy to CF Pages"
         uses: cloudflare/pages-action@v1
@@ -48,4 +48,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
           directory: ./
-          workingDirectory: ./build/web/
+          workingDirectory: $HOME/build/web
