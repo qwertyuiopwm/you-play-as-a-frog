@@ -19,6 +19,11 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
+
+      - name: "Setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '12.x'
       
       - name: "Install Requirements"
         run: |
@@ -28,12 +33,11 @@ jobs:
           unzip Godot_v3.5.2-stable_mono_export_templates.tpz -d /tmp
           mv /tmp/templates/* $HOME/.local/share/godot/templates/3.5.2.stable.mono
           
-
       - name: "Export to HTML5"
         run: | 
           mkdir -v -p build/web
           godot -q --export "HTML5" ./build/web/ypaaf.html
-          apt install -y nodejs npm
+          apt install -y npm
           npm i -g npx
           ls ./build/web
 
