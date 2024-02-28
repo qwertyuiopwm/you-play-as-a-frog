@@ -34,6 +34,7 @@ jobs:
           mv /tmp/templates/* $HOME/.local/share/godot/templates/3.5.2.stable.mono
           apt install -y npm
           npm i --save esbuild
+          npm i --save wrangler
           
       - name: "Export to HTML5"
         run: | 
