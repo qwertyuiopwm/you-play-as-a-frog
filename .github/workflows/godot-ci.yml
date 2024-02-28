@@ -32,7 +32,8 @@ jobs:
       - name: "Export to HTML5"
         run: | 
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/ypaaf.html
+          godot -v --export "HTML5" /tmp/build/ypaaf.zip
+          unzip /tmp/build/ypaaf.zip -d ./build/web
 
       - name: "Upload artifact"
         uses: actions/upload-artifact@v4
@@ -47,4 +48,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
           directory: ./
-          workingDirectory: ./build/web/ypaaf.html
+          workingDirectory: ./build/web/
