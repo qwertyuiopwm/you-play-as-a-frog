@@ -27,6 +27,7 @@ jobs:
           wget https://github.com/godotengine/godot/releases/download/3.5.2-stable/Godot_v3.5.2-stable_mono_export_templates.tpz
           unzip Godot_v3.5.2-stable_mono_export_templates.tpz -d /tmp
           mv /tmp/templates/* $HOME/.local/share/godot/templates/3.5.2.stable.mono
+          npm install wrangler --save-dev
           
 
       - name: "Export to HTML5"
