@@ -1,7 +1,4 @@
-name: 'publish to cf pages'
-
-env:
-  GODOT_VERSION: mono-3.5.2
+name: "Publish to Cloudflare Site"
 
 on:
   workflow_dispatch:
@@ -10,27 +7,26 @@ on:
       - master
 
 jobs:
-  deploy:
+  export-deploy:
     runs-on: ubuntu-20.04
 
     container:
       image: barichello/godot-ci:mono-3.5.2
-
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: "export"
+      - uses: actions/checkout@v2
+      - run: | 
+          mkdir -v -p build/web
+          godot -v --export "HTML5" ./build/web/ypaaf.html
 
-      - name: Move HTML5 templates into position
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Create staging directory
-        run: mkdir -v -p build/web
+      - name: "Upload artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ypaaf-${{ GITHUB_RUN_ID }}
+          path: build/web
 
-      - name: Build
-        run: godot -v --export "HTML5" ../build/web/index.html project/project.godot
-          
-      - name: Deploy to Cloudflare Pages 🚀
+      - name: "Deploy"
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
