@@ -32,13 +32,12 @@ jobs:
           wget https://github.com/godotengine/godot/releases/download/3.5.2-stable/Godot_v3.5.2-stable_mono_export_templates.tpz
           unzip Godot_v3.5.2-stable_mono_export_templates.tpz -d /tmp
           mv /tmp/templates/* $HOME/.local/share/godot/templates/3.5.2.stable.mono
+          apt install -y npm
           
       - name: "Export to HTML5"
         run: | 
           mkdir -v -p build/web
           godot -q --export "HTML5" ./build/web/ypaaf.html
-          apt install -y npm
-          npm i -g npx
           ls ./build/web
 
       - name: "Upload artifact"
