@@ -14,9 +14,11 @@ jobs:
       image: barichello/godot-ci:mono-3.5.2
     
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+
       - name: "export"
-      - uses: actions/checkout@v2
-      - run: | 
+        run: | 
           mkdir -v -p build/web
           godot -v --export "HTML5" ./build/web/ypaaf.html
 
