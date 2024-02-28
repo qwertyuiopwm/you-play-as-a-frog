@@ -32,8 +32,8 @@ jobs:
       - name: "Export to HTML5"
         run: | 
           mkdir -v -p build/web
-          godot -v --export "HTML5" /tmp/build/ypaaf.zip
-          unzip /tmp/build/ypaaf.zip -d ./build/web
+          godot -v --export "HTML5" ./build/web/ypaaf.html
+          ls ./build/web
 
       - name: "Upload artifact"
         uses: actions/upload-artifact@v4
