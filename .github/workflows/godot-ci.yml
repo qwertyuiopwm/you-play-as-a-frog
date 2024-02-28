@@ -8,14 +8,17 @@ on:
 
 jobs:
   export-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
 
     container:
       image: barichello/godot-ci:mono-3.5.2
     
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       - name: "Install templates"
         run: |
@@ -26,7 +29,7 @@ jobs:
           mv /tmp/templates/* $HOME/.local/share/godot/templates/3.5.2.stable.mono
           
 
-      - name: "export"
+      - name: "Export to HTML5"
         run: | 
           mkdir -v -p build/web
           godot -v --export "HTML5" ./build/web/ypaaf.html
@@ -37,10 +40,11 @@ jobs:
           name: ypaaf-${{ github.run_id }}
           path: build/web
 
-      - name: "Deploy"
+      - name: "Deploy to CF Pages"
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
           directory: ./
+          workingDirectory: ./build/web/ypaaf.html
