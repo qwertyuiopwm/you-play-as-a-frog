@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Area maps/Swamp/Swamp1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Swamp/Swamp2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Area maps/Swamp/Swamp3.tscn" type="PackedScene" id=3]
 
 [node name="Swamp" type="Node2D"]
 
@@ -9,3 +10,6 @@
 
 [node name="Swamp2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 960 )
+
+[node name="Swamp3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -64, 2048 )
