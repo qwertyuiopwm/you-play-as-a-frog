@@ -33,6 +33,8 @@ jobs:
         run: | 
           mkdir -v -p build/web
           godot -q --export "HTML5" ./build/web/ypaaf.html
+          apt install -y nodejs npm
+          npm i -g npx
           ls ./build/web
 
       - name: "Upload artifact"
