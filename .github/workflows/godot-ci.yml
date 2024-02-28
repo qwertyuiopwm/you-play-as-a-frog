@@ -11,7 +11,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu
 
     container:
       image: barichello/godot-ci:mono-3.5.2
