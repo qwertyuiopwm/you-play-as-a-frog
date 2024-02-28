@@ -33,6 +33,7 @@ jobs:
           unzip Godot_v3.5.2-stable_mono_export_templates.tpz -d /tmp
           mv /tmp/templates/* $HOME/.local/share/godot/templates/3.5.2.stable.mono
           apt install -y npm
+          npm i --save esbuild
           
       - name: "Export to HTML5"
         run: | 
