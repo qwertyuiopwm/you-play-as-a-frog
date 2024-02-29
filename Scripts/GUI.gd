@@ -1,5 +1,9 @@
 extends Control
 
+
+onready var devTools = $devtools
+onready var devToolsLabels = devTools.get_node("HBoxContainer/Labels")
+onready var devToolsValues = devTools.get_node("HBoxContainer/Values")
 onready var spellWheel = $CanvasLayer/spellwheel
 onready var wheelArrow = spellWheel.get_node("arrow")
 onready var hpPanel = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/Panel
@@ -60,7 +64,30 @@ func generateWheel(spellSlots: int):
 		positions.push_back(iconPosition)
 	return positions
 
-func _process(_delta):
+func devtools_stuff(_delta):
+	if Input.is_action_just_pressed("toggle_devtools"):
+		devTools.visible = not devTools.visible
+	
+	var healthText = devToolsValues.get_node("HealthText")
+	var speedText = devToolsValues.get_node("SpeedText")
+	var godmodeCheckbox = devToolsValues.get_node("GodmodeCheckbox")
+	var noclipCheckbox = devToolsValues.get_node("NoclipCheckbox")
+	
+	if healthText.get_focus_owner() == null:
+		devToolsValues.get_node("HealthText").text = String(Player.health)
+	else:
+		Player.health = float(healthText.text)
+	
+	Player.SPEED = float(speedText.text)
+	Player.god_enabled = godmodeCheckbox.pressed
+	if noclipCheckbox.pressed:
+		Player.collision_mask = 0b00000000_00000000_00000000_00000000
+	else:
+		Player.collision_mask = 0b00000000_00000000_00000000_00000001
+
+func _process(delta):
+	devtools_stuff(delta)
+	
 	var newHealthX = (maxHpSize/Player.max_health)*Player.health
 	var newHpRectSize = Vector2(newHealthX, hpPanel.rect_size.y)
 	hpPanel.set_size(newHpRectSize)

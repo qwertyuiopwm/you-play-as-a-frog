@@ -7,6 +7,7 @@ export var spells = [
 	preload("res://Spells/DevBeam.tscn"),
 ]
 export var selected_spell: PackedScene
+export var god_enabled: bool
 
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
@@ -31,10 +32,22 @@ var stamina_per_second = 3
 var velocity = Vector2.ZERO
 var sliding = false
 
+var currentFocus: Control
+
 
 func _ready():
 	$MusicPlayer.PlaySong("ForestMusic")
+	get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 
+func _remove_focus():
+	currentFocus.disconnect("focus_exited", self, "_remove_focus")
+	currentFocus = null
+
+func _on_focus_changed(node):
+	if node == null:
+		return
+	currentFocus = node
+	currentFocus.connect("focus_exited", self, "_remove_focus")
 
 func _physics_process(delta):
 	if health <= 0:
@@ -61,6 +74,8 @@ func _on_DEATH_animation_finished():
 
 
 func Hurt(dmg: int):
+	if god_enabled:
+		return
 	if health <= 0:
 		return
 	
@@ -88,6 +103,7 @@ func Heal(hp: int):
 
 func set_velocity():
 	if sliding: return
+	if currentFocus != null: return
 	
 	velocity.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
