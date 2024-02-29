@@ -1,17 +1,15 @@
-extends TileMap
+extends "res://Scripts/Triggerable.gd"
 
 export var OpenOffset = Vector2(0, 0)
 export var Hide = true
-export var StartClosed = false
 
-onready var startPos = self.position
-onready var openPos = self.position + OpenOffset
+var startPos = global_position
+var openPos = global_position + OpenOffset
 
-func trigger(close: bool):
-	self.position = (startPos if close else openPos)
+
+
+func onTriggerAny(close: bool):
+	global_position = (startPos if close else openPos)
 	
-	if !Hide: return
-	self.visible = close
-
-func _ready():
-	self.trigger(StartClosed)
+	if Hide:
+		visible = close
