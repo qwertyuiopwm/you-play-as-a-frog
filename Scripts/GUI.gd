@@ -81,8 +81,10 @@ func devtools_stuff(_delta):
 	Player.SPEED = float(speedText.text)
 	Player.god_enabled = godmodeCheckbox.pressed
 	if noclipCheckbox.pressed:
+		Player.collision_layer = 0b00000000_00000000_00000000_00000000
 		Player.collision_mask = 0b00000000_00000000_00000000_00000000
 	else:
+		Player.collision_layer = 0b00000000_00000000_00000000_00000001
 		Player.collision_mask = 0b00000000_00000000_00000000_00000001
 
 func _process(delta):
