@@ -14,8 +14,8 @@ onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
-var max_health = 100
-var health = max_health
+export var max_health = 100
+export var health = 100
 var regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
