@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://TileMaps/ForestTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 
 [node name="Forest1" type="Node2D"]
 
