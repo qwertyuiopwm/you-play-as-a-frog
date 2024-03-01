@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.01
 
-[node name="Node2D" type="Node2D"]
+[node name="bridge" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
