@@ -166,8 +166,10 @@ func set_animation():
 		$PlayerSprite.play("down")
 	if velocity.y < 0: 
 		$PlayerSprite.play("up")
-	if velocity.y == 0:
-		if velocity.x > 0: 
-			$PlayerSprite.play("right")
-		if velocity.x < 0: 
-			$PlayerSprite.play("left")
+		
+	if velocity.y != 0: return
+	
+	if velocity.x > 0: 
+		$PlayerSprite.play("right")
+	if velocity.x < 0: 
+		$PlayerSprite.play("left")
