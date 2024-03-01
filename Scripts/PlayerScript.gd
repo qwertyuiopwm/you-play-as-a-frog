@@ -34,6 +34,8 @@ var sliding = false
 
 var currentFocus: Control
 
+var held_big_item: Node2D
+
 
 func _ready():
 	$MusicPlayer.PlaySong("ForestMusic")
@@ -173,3 +175,7 @@ func set_animation():
 		$PlayerSprite.play("right")
 	if velocity.x < 0: 
 		$PlayerSprite.play("left")
+
+
+func _on_PickupArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	body
