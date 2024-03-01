@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemies/Fly.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/EnemyManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=4]
+[ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Items/Ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=7]
+[ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=8]
 
 [node name="Forest3" type="Node2D"]
 position = Vector2( 0, -24 )
@@ -22,12 +26,12 @@ collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 720901, -1610612715, 0, 720902, -1610612717, 0, 720903, -1610612717, 0, 720904, -1610612717, 0, 720905, -1610612717, 0, 720906, -1610612717, 0, 720907, -1610612717, 0, 720908, -1610612717, 0, 720909, -1073741803, 0 )
 
-[node name="Interactable" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-collision_layer = 9
-collision_mask = 9
-format = 1
-tile_data = PoolIntArray( 720905, 23, 0 )
+[node name="PlayerDetector" parent="." instance=ExtResource( 8 )]
+position = Vector2( 610, 989 )
+Triggerables = [ NodePath("../Wall") ]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2( 41, -14 )
 
 [node name="Wall" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -35,11 +39,22 @@ collision_layer = 9
 collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 1507336, 1610612736, 0, 1507337, 1610612736, 0, 1507338, 1610612736, 0, 1507339, 1610612736, 0 )
+script = ExtResource( 7 )
+OpenOffset = Vector2( -500, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("../Wall") ]
 
 [node name="Fly" parent="EnemyManager" instance=ExtResource( 2 )]
 position = Vector2( 383, 1192 )
 
 [node name="AlsoFly" parent="EnemyManager" instance=ExtResource( 2 )]
 position = Vector2( 852, 1243 )
+
+[node name="Ladder" parent="." instance=ExtResource( 6 )]
+position = Vector2( 756, 155 )
+
+[node name="Bridge" parent="." instance=ExtResource( 5 )]
+position = Vector2( 608, 736 )
+
+[editable path="PlayerDetector"]
