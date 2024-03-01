@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://MusicPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=2]
@@ -123,6 +123,9 @@ animations = [ {
 "speed": 20.0
 } ]
 
+[sub_resource type="CircleShape2D" id=26]
+radius = 42.0
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 position = Vector2( 400, 400 )
 script = ExtResource( 2 )
@@ -154,4 +157,10 @@ scale = Vector2( 0.08, 0.08 )
 frames = SubResource( 25 )
 animation = "explosion"
 
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource( 26 )
+
 [connection signal="animation_finished" from="DEATH" to="." method="_on_DEATH_animation_finished"]
+[connection signal="body_shape_entered" from="PickupArea" to="." method="_on_PickupArea_body_shape_entered"]
