@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Area maps/Forest/AutoForestTiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Area maps/Forest/ForestTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://TileMaps/AutoForestTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://TileMaps/ForestTiles.tres" type="TileSet" id=2]
 
 [node name="Forest14" type="Node2D"]
 
