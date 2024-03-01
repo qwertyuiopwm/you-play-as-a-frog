@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Area maps/Forest/ForestTiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Area maps/Forest/MagicBarrier.tres" type="TileSet" id=2]
+[ext_resource path="res://TileMaps/ForestTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://TileMaps/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Enemies/Fly.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/EnemyManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Weevil.tscn" type="PackedScene" id=5]
