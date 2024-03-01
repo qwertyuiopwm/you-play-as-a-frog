@@ -12,8 +12,6 @@ colors = PoolColorArray( 0.188235, 0, 0, 1, 1, 0, 0, 1 )
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
-MANA_COST = 0
-MANA_REQUIRED = 0
 SpellIcon = "res://art/deathicon.png"
 
 [node name="Line2D" type="Line2D" parent="."]
