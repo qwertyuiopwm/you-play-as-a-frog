@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 
 export var SPEED = 400
+export var HELD_ITEM_POS: Vector2
 export var spells = [
 	preload("res://Spells/ProcureCondiment.tscn"),
 	preload("res://Spells/DevBeam.tscn"),
@@ -68,6 +69,9 @@ func _physics_process(delta):
 	
 	set_animation()
 	move_and_slide(velocity)
+	
+	if held_big_item != null:
+		held_big_item.global_position = $ItemHolder.global_position
 
 
 func _on_DEATH_animation_finished():
@@ -158,6 +162,7 @@ func cast_spell_if_pressed(delta):
 			mana -= mana_cost
 			spell.global_position = global_position
 			get_parent().add_child(spell)
+			
 		"BEAM":
 			get_parent().add_child(spell)
 			beam = spell
@@ -178,4 +183,8 @@ func set_animation():
 
 
 func _on_PickupArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	pass
+	if held_big_item != null: return
+	
+	var obj = body.get_parent()
+	obj.scale *= 0.5
+	held_big_item = obj
