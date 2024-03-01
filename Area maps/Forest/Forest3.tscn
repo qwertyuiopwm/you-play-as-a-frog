@@ -41,11 +41,5 @@ tile_data = PoolIntArray( 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0
 [node name="Fly" parent="EnemyManager" instance=ExtResource( 2 )]
 position = Vector2( 383, 1192 )
 
-[node name="Fly2" parent="EnemyManager" instance=ExtResource( 2 )]
-position = Vector2( 463, 1256 )
-
-[node name="Fly3" parent="EnemyManager" instance=ExtResource( 2 )]
-position = Vector2( 789, 1138 )
-
-[node name="Fly4" parent="EnemyManager" instance=ExtResource( 2 )]
+[node name="AlsoFly" parent="EnemyManager" instance=ExtResource( 2 )]
 position = Vector2( 852, 1243 )
