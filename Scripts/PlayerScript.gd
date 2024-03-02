@@ -186,5 +186,6 @@ func _on_PickupArea_body_shape_entered(body_rid, body, body_shape_index, local_s
 	if held_big_item != null: return
 	
 	var obj = body.get_parent()
-	obj.scale *= 0.5
+	if not obj.Pickupable: return
+	
 	held_big_item = obj
