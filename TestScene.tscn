@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/Ladder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( -196612, 1, 0, -196611, 11, 0, -196604, 1, 0, -131072, 10, 3, -131068, 1, 0, -2, 10, 0, -1, 10, 1, -65536, 10, 327681, -65532, 11, 0, 65533, 10, 196608, 65534, 10, 327683, 65535, 10, 131073, 0, 10, 327682, 1, 10, 196610, 4, 1, 0, 65540, 1, 0, 327677, 2, 0, 327678, 2, 0, 327679, 2, 0, 262144, 2, 0, 393214, 10, 196611 )
+
+[node name="Chest" parent="." instance=ExtResource( 6 )]
+position = Vector2( 115, -230 )
+DroppedItems = [ ExtResource( 3 ), ExtResource( 3 ) ]
+
+[node name="PlayerDetector" parent="Chest" instance=ExtResource( 5 )]
+scale = Vector2( 5, 5 )
+Triggerables = [ NodePath("..") ]
+
+[node name="bridge" parent="." instance=ExtResource( 2 )]
+position = Vector2( 288, -32 )
+rotation = 1.5708
+
+[node name="Ladder" parent="." instance=ExtResource( 3 )]
+position = Vector2( 182, 167 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( -394, 152 )
