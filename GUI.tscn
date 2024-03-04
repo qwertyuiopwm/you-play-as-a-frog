@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://art/stamina.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://art/spellicon.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/checkbox.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/devtools.gd" type="Script" id=10]
+[ext_resource path="res://art/full_mana.png" type="Texture" id=11]
+[ext_resource path="res://art/empty_mana.png" type="Texture" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.211765, 0.894118, 0.0509804, 1 )
@@ -48,33 +50,6 @@ anti_aliasing_size = 0.01
 bg_color = Color( 0, 0, 0, 1 )
 anti_aliasing = false
 anti_aliasing_size = 0.01
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 20
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0.403922, 0.403922, 0.403922, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 20
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.172549, 0.537255, 0.894118, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 20
-anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.356863, 0.356863, 0.356863, 1 )
@@ -197,18 +172,15 @@ texture = ExtResource( 2 )
 offset = Vector2( 400, 780 )
 transform = Transform2D( 1, 0, 0, 1, 400, 780 )
 
-[node name="Panel" type="Panel" parent="CanvasLayer/spellspot"]
+[node name="mana_display" type="TextureProgress" parent="CanvasLayer/spellspot"]
 margin_left = -64.0
 margin_top = -128.0
-margin_right = 64.0
-custom_styles/panel = SubResource( 13 )
-
-[node name="Panel2" type="Panel" parent="CanvasLayer/spellspot"]
-margin_left = -60.0
-margin_top = -124.0
-margin_right = 60.0
-margin_bottom = -4.0
-custom_styles/panel = SubResource( 14 )
+margin_bottom = -64.0
+rect_scale = Vector2( 2, 2 )
+step = 0.1
+texture_under = ExtResource( 12 )
+texture_progress = ExtResource( 11 )
+fill_mode = 4
 
 [node name="spellicon" type="TextureRect" parent="CanvasLayer/spellspot"]
 margin_left = -48.0
@@ -217,14 +189,8 @@ margin_right = -16.0
 margin_bottom = -80.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="mana" type="Panel" parent="CanvasLayer/spellspot"]
-margin_left = -50.0
-margin_top = -122.0
-margin_right = 50.0
-margin_bottom = -114.0
-custom_styles/panel = SubResource( 2 )
-
 [node name="devtools" type="CanvasLayer" parent="."]
+visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 script = ExtResource( 10 )

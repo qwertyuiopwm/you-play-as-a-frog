@@ -5,11 +5,10 @@ onready var spellWheel = $CanvasLayer/spellwheel
 onready var wheelArrow = spellWheel.get_node("arrow")
 onready var hpPanel = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/Panel
 onready var spellSpot = $CanvasLayer/spellspot
-onready var manaPanel = spellSpot.get_node("mana")
+onready var manaDisplay = $CanvasLayer/spellspot/mana_display
 onready var Player = get_parent()
 onready var vp = get_viewport() 
 onready var maxHpSize = hpPanel.rect_size.x
-onready var maxManaSize = manaPanel.rect_size.x
 
 var SpellWheelPositions = []
 
@@ -68,9 +67,8 @@ func _process(delta):
 	var newHpRectSize = Vector2(newHealthX, hpPanel.rect_size.y)
 	hpPanel.set_size(newHpRectSize)
 	
-	var newManaX = (maxManaSize/Player.max_mana)*Player.mana
-	var newManaRectSize = Vector2(newManaX, manaPanel.rect_size.y)
-	manaPanel.set_size(newManaRectSize)
+	manaDisplay.max_value = Player.max_mana
+	manaDisplay.value = Player.mana
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
