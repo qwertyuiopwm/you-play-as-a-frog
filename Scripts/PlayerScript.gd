@@ -23,12 +23,12 @@ var regen_timer = 0
 
 var max_mana = 100
 var mana = max_mana
-var mana_per_second = 3
+var mana_per_second = 7
 var beam: RigidBody2D
 
 var max_stamina = 100
 var stamina = max_stamina
-var stamina_per_second = 3
+var stamina_per_second = 10
 
 var velocity = Vector2.ZERO
 var sliding = false
@@ -148,24 +148,8 @@ func cast_spell_if_pressed(delta):
 	if not Input.is_action_just_pressed("cast_spell"): return
 	
 	var spell = selected_spell.instance()
-	if Input.is_action_just_pressed("cast_spell") and spell.MANA_REQUIRED > mana:
-		spell.queue_free()
-		return
-	match spell.TYPE:
-		"BOUNCING":
-			var mana_cost = spell.MANA_COST
-			
-			if mana < mana_cost: 
-				spell.queue_free()
-				return
-			
-			mana -= mana_cost
-			spell.global_position = global_position
-			get_parent().add_child(spell)
-			
-		"BEAM":
-			get_parent().add_child(spell)
-			beam = spell
+	
+	spell.try_cast(self)
 
 
 func set_animation():
