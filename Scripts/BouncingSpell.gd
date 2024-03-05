@@ -55,3 +55,13 @@ func _process(delta):
 		on_settle()
 		queue_free()
 	on_process()
+
+
+func try_cast(player):
+	if player.mana < MANA_COST: 
+		queue_free()
+		return
+	
+	player.mana -= MANA_COST
+	global_position = player.global_position
+	player.get_parent().add_child(self)
