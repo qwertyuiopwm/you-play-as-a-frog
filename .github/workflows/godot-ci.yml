@@ -1,4 +1,4 @@
-name: "Publish to Cloudflare Site"
+name: "Publish Project"
 
 on:
   workflow_dispatch:
@@ -43,8 +43,24 @@ jobs:
         run: | 
           mkdir -v -p ./build/web
           godot -v --export "HTML5" ./build/web/index.html
+      
+      - name: "Export to OSX"
+        run: |
+          mkdir -v -p ./build/mac
+          godot -v --export "Mac OSX" ./build/mac/app.zip
+
+      - name: "Export to Windows"
+        run: |
+          mkdir -v -p ./build/windows
+          godot -v --export "Windows Desktop" ./build/windows/app.exe
+
+      - name: "Export to X11"
+        run: |
+          mkdir -v -p ./build/linux
+          godot -v --export "Linux/X11" ./build/linux/app.x86_64
 
       - name: "Deploy to CF Pages"
+        id: pages_deploy
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -52,3 +68,15 @@ jobs:
           projectName: ypaaf
           directory: ./
           workingDirectory: ./build/web
+      
+      - name: "Create release"
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+          files: |
+            ./build/mac/app.zip
+            ./build/windows/app.exe
+            ./build/linux/app.x86_64
+          body: "Web build: ${{ steps.pages_deploy.outputs.url }}"

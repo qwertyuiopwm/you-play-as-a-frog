@@ -305,4 +305,6 @@ NumericOnly = true
 [node name="EnemyOption" type="OptionButton" parent="devtools/HBoxContainer/Values"]
 margin_top = 164.0
 margin_right = 72.0
-margin_bottom = 184.0
+margin_bottom = 187.0
+
+[connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]

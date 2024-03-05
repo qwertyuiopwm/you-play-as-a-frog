@@ -2,21 +2,47 @@ extends CanvasLayer
 
 
 onready var Player = get_parent().get_parent()
+onready var Main = Player.get_parent()
 onready var devTools = self
+onready var bg = devTools.get_node("bg")
 onready var devToolsLabels = devTools.get_node("HBoxContainer/Labels")
 onready var devToolsValues = devTools.get_node("HBoxContainer/Values")
 
+onready var enemies = {
+	Ant = preload("res://Enemies/Ant.tscn"),
+	Fly = preload("res://Enemies/Fly.tscn"),
+	Grub = preload("res://Enemies/Grub.tscn"),
+	Weevil = preload("res://Enemies/Weevil.tscn"),
+}
+
+var selectedEnemy:PackedScene
+
 func _ready():
 	var EnemyDropdown:OptionButton = devToolsValues.get_node("EnemyOption")
+	var i = 1
+	for name in enemies:
+		
+		EnemyDropdown.add_item(name, i)
+		i+=1
+
+func _input(event):
+	if not event is InputEventMouseButton:
+		return
+	if selectedEnemy == null:
+		return
+	var EnemyOption = devToolsValues.get_node("EnemyOption")
+	if EnemyOption.get_focus_owner() != null:
+		EnemyOption.release_focus()
+		return
 	
-	var dir = Directory.new()
-	if dir.open("res://Enemies") == OK:
-		dir.list_dir_begin(true, true)
-		var fn = dir.get_next()
-		var i = 1;
-		while fn != "":
-			EnemyDropdown.add_item(fn.trim_suffix(".tscn"), i)
-			fn = dir.get_next()
+	var newEnemy = selectedEnemy.instance()
+	Main.add_child(newEnemy)
+	newEnemy.global_position = Main.get_global_mouse_position()
+	selectedEnemy = null
+
+func _on_EnemyOption_item_selected(index: int):
+	var EnemyOption = devToolsValues.get_node("EnemyOption")
+	selectedEnemy = enemies.get(EnemyOption.text)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_devtools"):
@@ -48,3 +74,7 @@ func _process(_delta):
 	Player.SPEED = float(speedText.text)
 	Player.god_enabled = godmodeCheckbox.pressed
 	
+func _is_pos_in(checkpos:Vector2):
+	if Rect2(Vector2(), bg.rect_size).has_point(checkpos):
+		return true
+	return false
