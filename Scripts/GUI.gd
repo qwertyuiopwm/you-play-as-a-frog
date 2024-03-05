@@ -3,12 +3,12 @@ extends Control
 
 onready var spellWheel = $CanvasLayer/spellwheel
 onready var wheelArrow = spellWheel.get_node("arrow")
-onready var hpPanel = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/Panel
 onready var spellSpot = $CanvasLayer/spellspot
+onready var hpDisplay = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/HP_bar
+onready var stamDisplay = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas/stam_bar
 onready var manaDisplay = $CanvasLayer/spellspot/mana_display
 onready var Player = get_parent()
 onready var vp = get_viewport() 
-onready var maxHpSize = hpPanel.rect_size.x
 
 var SpellWheelPositions = []
 
@@ -62,10 +62,11 @@ func generateWheel(spellSlots: int):
 
 
 func _process(delta):
+	hpDisplay.max_value = Player.max_health
+	hpDisplay.value = Player.health
 	
-	var newHealthX = (maxHpSize/(100 if Player.max_health <= 0 else Player.max_health))*Player.health
-	var newHpRectSize = Vector2(newHealthX, hpPanel.rect_size.y)
-	hpPanel.set_size(newHpRectSize)
+	stamDisplay.max_value = Player.max_stamina
+	stamDisplay.value = Player.stamina
 	
 	manaDisplay.max_value = Player.max_mana
 	manaDisplay.value = Player.mana
