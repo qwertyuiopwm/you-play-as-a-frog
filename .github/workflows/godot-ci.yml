@@ -74,7 +74,7 @@ jobs:
         with:
           tag_name: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
           files: |
-            ./build/mac/app.dmg
+            ./build/mac/app.zip
             ./build/windows/app.exe
             ./build/linux/app.x86_64
           body: "Web build: ${{ steps.pages_deploy.outputs.url }}"
