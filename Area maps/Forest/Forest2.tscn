@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Grub.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ChangeMusicTrigger.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
 
 [node name="Forest2" type="Node2D"]
 
@@ -38,6 +40,9 @@ position = Vector2( 250, 415 )
 scale = Vector2( 3, 29 )
 Triggerables = [ NodePath("../Wall"), NodePath("../BossMusicTrigger") ]
 Music = "Boss1Music"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource( 1 )
 
 [node name="ForestMusicTrigger" parent="." instance=ExtResource( 7 )]
 Song = "ForestMusic"

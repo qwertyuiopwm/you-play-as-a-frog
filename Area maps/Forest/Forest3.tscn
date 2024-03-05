@@ -30,9 +30,6 @@ tile_data = PoolIntArray( 720901, -1610612715, 0, 720902, -1610612717, 0, 720903
 position = Vector2( 610, 989 )
 Triggerables = [ NodePath("../Wall") ]
 
-[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
-position = Vector2( 29.5, -4 )
-
 [node name="Wall" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
 collision_layer = 9

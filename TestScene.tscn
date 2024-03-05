@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,6 +23,9 @@ DroppedItems = [ ExtResource( 3 ), ExtResource( 3 ) ]
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 5 )]
 scale = Vector2( 5, 5 )
 Triggerables = [ NodePath("..") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
+shape = SubResource( 1 )
 
 [node name="bridge" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, -32 )
