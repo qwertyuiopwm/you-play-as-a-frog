@@ -47,7 +47,7 @@ jobs:
       - name: "Export to OSX"
         run: |
           mkdir -v -p ./build/mac
-          godot -v --export "Mac OSX" ./build/mac/app.dmg
+          godot -v --export "Mac OSX" ./build/mac/app.zip
 
       - name: "Export to Windows"
         run: |
