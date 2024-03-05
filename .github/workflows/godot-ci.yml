@@ -73,7 +73,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: build-${{ github.event.pull_request.number || github.ref }}
+          tag_name: build-${{ github.sha }}
           files: |
             ./build/mac/app.zip
             ./build/windows/app.exe
