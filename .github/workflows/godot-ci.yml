@@ -47,17 +47,17 @@ jobs:
       - name: "Export to OSX"
         run: |
           mkdir -v -p ./build/mac
-          godot -v --export "Mac OSX" ./build/mac/app.zip
+          godot -v --export "Mac OSX" ./build/mac/macos.zip
 
       - name: "Export to Windows"
         run: |
           mkdir -v -p ./build/windows
-          godot -v --export "Windows Desktop" ./build/windows/app.exe
+          godot -v --export "Windows Desktop" ./build/windows/windows.exe
 
       - name: "Export to X11"
         run: |
           mkdir -v -p ./build/linux
-          godot -v --export "Linux/X11" ./build/linux/app.x86_64
+          godot -v --export "Linux/X11" ./build/linux/linux.x86_64
 
       - name: "Deploy to CF Pages"
         id: pages_deploy
@@ -75,9 +75,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: build-${{ github.sha }}
           files: |
-            ./build/mac/app.zip
-            ./build/windows/app.exe
-            ./build/linux/app.x86_64
+            ./build/mac/macos.zip
+            ./build/windows/windows.exe
+            ./build/linux/linux.x86_64
           body: "Web build: ${{ steps.pages_deploy.outputs.url }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
