@@ -71,9 +71,12 @@ radius = 38.0132
 
 [node name="Weevil" type="KinematicBody2D" groups=["Enemy"]]
 script = ExtResource( 2 )
-health = 20
+SPEED = 60
+health = 30
+SLAM_DAMAGE = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2, -5 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
