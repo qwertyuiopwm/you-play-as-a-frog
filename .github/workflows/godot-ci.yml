@@ -47,17 +47,17 @@ jobs:
       - name: "Export to OSX"
         run: |
           mkdir -v -p ./build/mac
-          godot -v --export "OSX" ./build/mac/app.dmg
+          godot -v --export "Mac OSX" ./build/mac/app.dmg
 
       - name: "Export to Windows"
         run: |
           mkdir -v -p ./build/windows
-          godot -v --export "Windows" ./build/windows/app.exe
+          godot -v --export "Windows Desktop" ./build/windows/app.exe
 
       - name: "Export to X11"
         run: |
           mkdir -v -p ./build/linux
-          godot -v --export "X11" ./build/linux/app.x86_64
+          godot -v --export "Linux/X11" ./build/linux/app.x86_64
 
       - name: "Deploy to CF Pages"
         id: pages_deploy
