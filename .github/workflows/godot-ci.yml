@@ -71,12 +71,13 @@ jobs:
       
       - name: "Create release"
         uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
           files: |
             ./build/mac/app.zip
             ./build/windows/app.exe
             ./build/linux/app.x86_64
           body: "Web build: ${{ steps.pages_deploy.outputs.url }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
