@@ -71,6 +71,8 @@ jobs:
       
       - name: "Create release"
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
           files: |
