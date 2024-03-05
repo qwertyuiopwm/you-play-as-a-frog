@@ -15,27 +15,34 @@ onready var enemies = {
 	Weevil = preload("res://Enemies/Weevil.tscn"),
 }
 
+var selectedEnemy:PackedScene
+
 func _ready():
 	var EnemyDropdown:OptionButton = devToolsValues.get_node("EnemyOption")
-	
 	var i = 1
 	for name in enemies:
+		
 		EnemyDropdown.add_item(name, i)
 		i+=1
 
 func _input(event):
 	if not event is InputEventMouseButton:
 		return
-	if _is_pos_in(bg.get_local_mouse_position()):
+	if selectedEnemy == null:
 		return
 	var EnemyOption = devToolsValues.get_node("EnemyOption")
-	if EnemyOption.get_focus_owner() == null:
+	if EnemyOption.get_focus_owner() != null:
+		EnemyOption.release_focus()
 		return
 	
-	var newEnemy:KinematicBody2D = enemies.get(EnemyOption.text).instance()
-	newEnemy.global_position = bg.get_global_mouse_position()
+	var newEnemy = selectedEnemy.instance()
 	Main.add_child(newEnemy)
-	EnemyOption.release_focus()
+	newEnemy.global_position = Main.get_global_mouse_position()
+	selectedEnemy = null
+
+func _on_EnemyOption_item_selected(index: int):
+	var EnemyOption = devToolsValues.get_node("EnemyOption")
+	selectedEnemy = enemies.get(EnemyOption.text)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_devtools"):
