@@ -10,7 +10,7 @@
 [ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 257, 10 )
+extents = Vector2( 257, 29 )
 
 [node name="Forest3" type="Node2D"]
 position = Vector2( 0, -24 )
@@ -34,7 +34,7 @@ position = Vector2( 610, 989 )
 Triggerables = [ NodePath("../Wall") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 27, 0 )
+position = Vector2( 27, -2 )
 shape = SubResource( 1 )
 
 [node name="Wall" type="TileMap" parent="."]
