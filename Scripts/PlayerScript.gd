@@ -56,6 +56,8 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 	
+	var curr_tile = get_curr_tile()
+	
 	regen_stats(delta)
 	
 	cast_spell_if_pressed(delta)
@@ -77,6 +79,14 @@ func _physics_process(delta):
 func _on_DEATH_animation_finished():
 	$DEATH.visible = false
 	$CollisionShape2D.disabled = true
+
+
+func get_curr_tile():
+	for tile_map in get_tree().get_nodes_in_group("ground"):
+		var pos = tile_map.world_to_map(global_position) - tile_map.world_to_map(tile_map.global_position)
+		var tile_id = tile_map.get_cellv(pos)
+		if tile_id != -1:
+			return tile_id
 
 
 func Hurt(dmg: int):
