@@ -51,6 +51,7 @@ func _process(_delta):
 	var healthText = devToolsValues.get_node("HealthText")
 	var maxHealthText = devToolsValues.get_node("MaxHealthText")
 	var speedText = devToolsValues.get_node("SpeedText")
+	var damageMultText = devToolsValues.get_node("DamageText")
 	var godmodeCheckbox = devToolsValues.get_node("GodmodeCheckbox")
 	var noclipCheckbox = devToolsValues.get_node("NoclipCheckbox")
 	
@@ -63,6 +64,11 @@ func _process(_delta):
 		maxHealthText.text = String(Player.max_health)
 	else:
 		Player.max_health = float(maxHealthText.text)
+	
+	if damageMultText.get_focus_owner() == null:
+		damageMultText.text = String(Player.damage_mult)
+	else:
+		Player.damage_mult = float(damageMultText.text)
 	
 	if noclipCheckbox.pressed:
 		Player.collision_layer = 0b00000000_00000000_00000000_00000000
