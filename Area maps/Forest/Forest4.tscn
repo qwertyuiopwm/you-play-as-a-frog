@@ -4,7 +4,7 @@
 
 [node name="Forest4" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["ground"]]
 position = Vector2( -384, -192 )
 tile_set = ExtResource( 2 )
 collision_layer = 11
