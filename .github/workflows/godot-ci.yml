@@ -3,8 +3,8 @@ name: "Publish Project"
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -73,7 +73,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: build-${{ github.sha }}
+          tag_name: ${{ github.ref_name }}
           files: |
             ./build/mac/macos.zip
             ./build/windows/windows.exe
