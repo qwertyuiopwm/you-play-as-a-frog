@@ -57,8 +57,9 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 	
-	var curr_tile = get_curr_tile()
-	print(curr_tile)
+	var curr_tile: String = get_curr_tile()
+	
+	sliding = "(slide)" in curr_tile
 	
 	regen_stats(delta)
 	
