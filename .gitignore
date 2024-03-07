@@ -1,5 +1,6 @@
 # Godot-specific ignores
 export.cfg
+*crash*.json
 
 # Imported translations (automatically generated from CSV files)
 *.translation
