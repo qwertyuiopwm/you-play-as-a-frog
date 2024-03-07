@@ -2,7 +2,7 @@ extends "res://Scripts/Spell.gd"
 
 
 export var TYPE = "BEAM"
-export var MANA_REQUIRED = 15 # Minimum amount of mana needed to cast spell
+export var MANA_REQUIRED = 15 # Initial mana cost
 onready var beamLine:Line2D = get_node("Line2D")
 
 func on_start():
@@ -57,6 +57,7 @@ func try_cast(player):
 	if player.mana < MANA_REQUIRED: 
 		queue_free()
 		return
+	player.mana -= MANA_REQUIRED
 	
 	player.get_parent().add_child(self)
 	player.beam = self
