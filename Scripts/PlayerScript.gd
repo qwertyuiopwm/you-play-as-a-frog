@@ -57,6 +57,7 @@ func _physics_process(delta):
 		return
 	
 	var curr_tile = get_curr_tile()
+	print(curr_tile)
 	
 	regen_stats(delta)
 	
@@ -86,7 +87,8 @@ func get_curr_tile():
 		var pos = tile_map.world_to_map(global_position) - tile_map.world_to_map(tile_map.global_position)
 		var tile_id = tile_map.get_cellv(pos)
 		if tile_id != -1:
-			return tile_id
+			return tile_map.tile_set.tile_get_name(tile_id)
+	return "did not find tile"
 
 
 func Hurt(dmg: int):
