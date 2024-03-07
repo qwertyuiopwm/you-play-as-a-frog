@@ -20,7 +20,7 @@ func on_settle():
 func hit(body, delta):
 	if not body.is_in_group("Enemy"):
 		return
-	body.hurt(DAMAGE * delta)
+	hurt(body, DAMAGE * delta)
 
 
 func _ready():

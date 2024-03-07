@@ -32,7 +32,7 @@ func collide(body_rid, body, body_shape_index, local_shape_index):
 
 
 func hit(body):
-	body.hurt(DAMAGE)
+	hurt(body, DAMAGE)
 
 
 func bounce(body):
