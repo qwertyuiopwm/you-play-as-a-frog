@@ -18,7 +18,7 @@ func on_process():
 	pass
 
 
-func on_settle():
+func on_settle(body):
 	pass
 
 
@@ -38,7 +38,7 @@ func hit(body):
 func bounce(body):
 	BOUNCES -= 1
 	if BOUNCES < 0:
-		on_settle()
+		on_settle(body)
 		queue_free()
 
 
@@ -53,7 +53,7 @@ func _ready():
 func _process(delta):
 	remaining_duration -= delta
 	if remaining_duration <= 0:
-		on_settle()
+		on_settle(null)
 		queue_free()
 	on_process()
 
