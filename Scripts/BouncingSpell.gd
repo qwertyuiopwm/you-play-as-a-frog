@@ -38,6 +38,7 @@ func hit(body):
 func bounce(body):
 	BOUNCES -= 1
 	if BOUNCES < 0:
+		on_settle()
 		queue_free()
 
 
