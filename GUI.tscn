@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://art/empty_mana.png" type="Texture" id=12]
 [ext_resource path="res://art/stats_bg.png" type="Texture" id=13]
 [ext_resource path="res://art/hp_empty.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Comfortaa-Bold.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="StyleBoxFlat" id=11]
 corner_radius_top_left = 1024
@@ -50,42 +51,89 @@ corner_detail = 20
 [sub_resource type="StyleBoxFlat" id=16]
 draw_center = false
 
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.219608, 0.219608, 0.219608, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://Assets/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=20]
+size = 75
+font_data = SubResource( 19 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 60
+font_data = ExtResource( 15 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.313726, 0.835294, 0.356863, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.286275, 0.756863, 0.321569, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.313726, 0.835294, 0.356863, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="IngameUI" type="CanvasLayer" parent="."]
 
-[node name="top_bar" type="MarginContainer" parent="CanvasLayer"]
+[node name="top_bar" type="MarginContainer" parent="IngameUI"]
 anchor_right = 1.0
 anchor_bottom = 0.08
 margin_right = -672.0
 margin_bottom = -16.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="stats_bg" type="TextureRect" parent="CanvasLayer/top_bar"]
+[node name="stats_bg" type="TextureRect" parent="IngameUI/top_bar"]
 margin_right = 128.0
 margin_bottom = 48.0
 texture = ExtResource( 13 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/top_bar/stats_bg"]
+[node name="VBoxContainer" type="VBoxContainer" parent="IngameUI/top_bar/stats_bg"]
 anchor_right = 0.32
 anchor_bottom = 1.0
 margin_right = -3.05176e-05
 custom_constants/separation = 0
 
-[node name="stats" type="HBoxContainer" parent="CanvasLayer/top_bar/stats_bg/VBoxContainer"]
+[node name="stats" type="HBoxContainer" parent="IngameUI/top_bar/stats_bg/VBoxContainer"]
 size_flags_horizontal = 2
 size_flags_vertical = 2
 custom_constants/separation = 0
 
-[node name="HP_Canvas" type="CanvasLayer" parent="CanvasLayer/top_bar/stats_bg/VBoxContainer/stats"]
+[node name="HP_Canvas" type="CanvasLayer" parent="IngameUI/top_bar/stats_bg/VBoxContainer/stats"]
 layer = 2
 scale = Vector2( 2, 2 )
 transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 
-[node name="HP_bar" type="TextureProgress" parent="CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas"]
+[node name="HP_bar" type="TextureProgress" parent="IngameUI/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas"]
 margin_top = 5.0
 margin_right = 128.0
 margin_bottom = 21.0
@@ -93,13 +141,13 @@ value = 40.0
 texture_under = ExtResource( 14 )
 texture_progress = ExtResource( 4 )
 
-[node name="Stamina_Canvas" type="CanvasLayer" parent="CanvasLayer/top_bar/stats_bg/VBoxContainer/stats"]
+[node name="Stamina_Canvas" type="CanvasLayer" parent="IngameUI/top_bar/stats_bg/VBoxContainer/stats"]
 layer = 3
 offset = Vector2( 0, 48 )
 scale = Vector2( 2, 2 )
 transform = Transform2D( 2, 0, 0, 2, 0, 48 )
 
-[node name="stam_bar" type="TextureProgress" parent="CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas"]
+[node name="stam_bar" type="TextureProgress" parent="IngameUI/top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas"]
 margin_top = 3.0
 margin_right = 256.0
 margin_bottom = 19.0
@@ -107,26 +155,26 @@ value = 40.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 3 )
 
-[node name="spellwheel" type="CanvasLayer" parent="CanvasLayer"]
+[node name="spellwheel" type="CanvasLayer" parent="IngameUI"]
 visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
-[node name="wheel_bg" type="Panel" parent="CanvasLayer/spellwheel"]
+[node name="wheel_bg" type="Panel" parent="IngameUI/spellwheel"]
 margin_left = -128.0
 margin_top = -128.0
 margin_right = 128.0
 margin_bottom = 128.0
 custom_styles/panel = SubResource( 11 )
 
-[node name="center" type="Panel" parent="CanvasLayer/spellwheel"]
+[node name="center" type="Panel" parent="IngameUI/spellwheel"]
 margin_left = -4.0
 margin_top = -4.0
 margin_right = 4.0
 margin_bottom = 4.0
 custom_styles/panel = SubResource( 10 )
 
-[node name="line_base" type="Panel" parent="CanvasLayer/spellwheel"]
+[node name="line_base" type="Panel" parent="IngameUI/spellwheel"]
 visible = false
 margin_left = -128.0
 margin_top = -1.0
@@ -134,7 +182,7 @@ margin_bottom = 1.0
 rect_pivot_offset = Vector2( 128, 1 )
 custom_styles/panel = SubResource( 12 )
 
-[node name="icon_base" type="TextureRect" parent="CanvasLayer/spellwheel"]
+[node name="icon_base" type="TextureRect" parent="IngameUI/spellwheel"]
 visible = false
 margin_left = -16.0
 margin_top = -16.0
@@ -143,18 +191,18 @@ margin_bottom = 16.0
 rect_pivot_offset = Vector2( 16, 16 )
 texture = ExtResource( 8 )
 
-[node name="arrow" type="TextureRect" parent="CanvasLayer/spellwheel"]
+[node name="arrow" type="TextureRect" parent="IngameUI/spellwheel"]
 margin_left = -64.0
 margin_top = -16.0
 margin_bottom = 16.0
 rect_pivot_offset = Vector2( 64, 16 )
 texture = ExtResource( 2 )
 
-[node name="spellspot" type="CanvasLayer" parent="CanvasLayer"]
+[node name="spellspot" type="CanvasLayer" parent="IngameUI"]
 offset = Vector2( 400, 780 )
 transform = Transform2D( 1, 0, 0, 1, 400, 780 )
 
-[node name="mana_display" type="TextureProgress" parent="CanvasLayer/spellspot"]
+[node name="mana_display" type="TextureProgress" parent="IngameUI/spellspot"]
 margin_left = -64.0
 margin_top = -128.0
 margin_bottom = -64.0
@@ -164,7 +212,7 @@ texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 11 )
 fill_mode = 4
 
-[node name="spellicon" type="TextureRect" parent="CanvasLayer/spellspot"]
+[node name="spellicon" type="TextureRect" parent="IngameUI/spellspot"]
 margin_left = -48.0
 margin_top = -112.0
 margin_right = -16.0
@@ -172,6 +220,7 @@ margin_bottom = -80.0
 rect_scale = Vector2( 3, 3 )
 
 [node name="devtools" type="CanvasLayer" parent="."]
+layer = 5
 visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
@@ -305,6 +354,47 @@ NumericOnly = true
 [node name="EnemyOption" type="OptionButton" parent="devtools/HBoxContainer/Values"]
 margin_top = 164.0
 margin_right = 72.0
-margin_bottom = 187.0
+margin_bottom = 184.0
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="MainMenu"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 17 )
+
+[node name="bg2" type="Panel" parent="MainMenu"]
+margin_left = -380.0
+margin_top = -380.0
+margin_right = 380.0
+margin_bottom = 380.0
+custom_styles/panel = SubResource( 18 )
+
+[node name="Label" type="Label" parent="MainMenu"]
+margin_left = -364.5
+margin_top = -360.0
+margin_right = 364.5
+margin_bottom = -275.0
+custom_fonts/font = SubResource( 20 )
+text = "You Play as a Frog"
+
+[node name="Button" type="Button" parent="MainMenu"]
+margin_left = -256.0
+margin_top = -64.0
+margin_right = 256.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 21 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 22 )
+text = "Start Game"
+icon_align = 1
 
 [connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]
+[connection signal="pressed" from="MainMenu/Button" to="." method="_on_Button_pressed"]

@@ -9,6 +9,7 @@ export var health = 10
 
 var STEERING_MULT = 2.5
 
+onready var Main = get_node("/root/Main")
 onready var rand = RandomNumberGenerator.new()
 onready var debug = OS.is_debug_build()
 
@@ -44,6 +45,8 @@ func set_target():
 
 
 func move(_target, delta):
+	if not Main.GameStarted:
+		return
 	var direction = (_target - global_position).normalized()
 	var desired_velocity = direction * curr_speed
 	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
