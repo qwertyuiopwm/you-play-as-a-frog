@@ -10,6 +10,7 @@ export var spells = [
 export var selected_spell: PackedScene
 export var god_enabled: bool
 
+onready var Main = get_node("/root/Main")
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
@@ -40,7 +41,6 @@ var held_big_item: Node2D
 
 
 func _ready():
-	$MusicPlayer.PlaySong("ForestMusic")
 	get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 
 func _remove_focus():
@@ -54,6 +54,8 @@ func _on_focus_changed(node):
 	currentFocus.connect("focus_exited", self, "_remove_focus")
 
 func _physics_process(delta):
+	if not Main.GameStarted:
+		return
 	if health <= 0:
 		return
 	

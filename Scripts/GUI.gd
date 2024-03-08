@@ -1,13 +1,17 @@
 extends Control
 
 
-onready var spellWheel = $CanvasLayer/spellwheel
-onready var wheelArrow = spellWheel.get_node("arrow")
-onready var spellSpot = $CanvasLayer/spellspot
-onready var hpDisplay = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/HP_bar
-onready var stamDisplay = $CanvasLayer/top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas/stam_bar
-onready var manaDisplay = $CanvasLayer/spellspot/mana_display
+onready var Main = get_node("/root/Main")
 onready var Player = get_parent()
+onready var MusicPlayer = Player.get_node("MusicPlayer")
+onready var MainMenu = $MainMenu
+onready var ingameUI = $IngameUI
+onready var spellWheel = ingameUI.get_node("spellwheel")
+onready var wheelArrow = spellWheel.get_node("arrow")
+onready var spellSpot = ingameUI.get_node("spellspot")
+onready var hpDisplay = ingameUI.get_node("top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/HP_bar")
+onready var stamDisplay = ingameUI.get_node("top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas/stam_bar")
+onready var manaDisplay = ingameUI.get_node("spellspot/mana_display")
 onready var vp = get_viewport() 
 
 var SpellWheelPositions = []
@@ -16,12 +20,13 @@ func magnitude(vec: Vector2):
 	return sqrt(pow(vec.x, 2)+pow(vec.y, 2))
 
 func _ready():
+	MainMenu.visible = true
 	SpellWheelPositions = generateWheel(len(Player.spells))
 	var i = 0
 	for packedSpell in Player.spells:
 		i+=1
 		var spell = packedSpell.instance()
-		var spellIcon:TextureRect = get_node("CanvasLayer/spellwheel/Spell"+String(i)+"Icon")
+		var spellIcon:TextureRect =  ingameUI.get_node("spellwheel/Spell"+String(i)+"Icon")
 		spellIcon.texture = load(spell.SpellIcon)
 		
 
@@ -92,3 +97,9 @@ func _process(delta):
 			wheelArrow.rect_rotation = degPerSpell*(selectedIndex+0)+(degPerSpell/2)
 			spellSpot.get_node("spellicon").texture = load(selectedSpell.instance().SpellIcon)
 		
+
+
+func _on_Button_pressed():
+	Main.GameStarted = true
+	MainMenu.visible = false
+	MusicPlayer.PlaySong("ForestMusic")
