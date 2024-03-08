@@ -21,6 +21,12 @@ func magnitude(vec: Vector2):
 
 func _ready():
 	MainMenu.visible = true
+	for node in Main.get_children():
+		if node == Player:
+			continue
+		node.get_tree().paused = true
+		
+	
 	SpellWheelPositions = generateWheel(len(Player.spells))
 	var i = 0
 	for packedSpell in Player.spells:
@@ -103,3 +109,7 @@ func _on_Button_pressed():
 	Main.GameStarted = true
 	MainMenu.visible = false
 	MusicPlayer.PlaySong("ForestMusic")
+	for node in Main.get_children():
+		if node == Player:
+			continue
+		node.get_tree().paused = false

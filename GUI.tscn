@@ -99,6 +99,8 @@ corner_radius_bottom_left = 20
 corner_detail = 20
 
 [node name="GUI" type="Control"]
+pause_mode = 2
+physics_interpolation_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
