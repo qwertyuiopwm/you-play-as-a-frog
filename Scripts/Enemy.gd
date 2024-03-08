@@ -1,5 +1,5 @@
 tool
-extends KinematicBody2D
+extends "res://Scripts/Entity.gd"
 
 
 export var TARGET_RANGE = 300

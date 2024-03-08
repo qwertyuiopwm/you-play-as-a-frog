@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://Scripts/Entity.gd"
 
 
 export var SPEED = 400
