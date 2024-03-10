@@ -124,7 +124,7 @@ func Heal(hp: float):
 
 
 func set_velocity():
-	if sliding: return
+	if sliding and velocity.length() == 0: return
 	if currentFocus != null: return
 	
 	velocity.y = int(Input.is_action_pressed("move_down")) - \
