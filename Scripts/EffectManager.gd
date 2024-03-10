@@ -9,10 +9,18 @@ func _process(delta):
 	for effect in Effects:
 		effect.affect(get_parent(), delta)
 
-func cure(cured_effect):
+func Cure(cured_effect):
 	for effect in get_effects():
 		if effect is cured_effect:
 			effect.queue_free()
+
+
+func Afflict(effect, duration):
+	var new_effect = effect.instance()
+	
+	if duration < 0: return
+	new_effect.duration = duration
+
 
 func get_effects():
 	return get_children()
