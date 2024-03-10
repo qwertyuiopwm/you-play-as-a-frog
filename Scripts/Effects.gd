@@ -1,5 +1,5 @@
 class_name Effects
 
 
-var pison = preload("res://Effects/Poison.tscn")
-var slippy = preload("res://Effects/Slippy.tscn")
+const poison = preload("res://Effects/Poison.tscn")
+const slippy = preload("res://Effects/Slippy.tscn")
