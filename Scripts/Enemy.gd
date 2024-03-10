@@ -81,6 +81,8 @@ func get_nearest_player():
 		var dist = self.global_position.distance_to(player.global_position)
 		if dist >= lowest_dist: continue
 		
+		#TODO if cant see player, continue
+		
 		nearest_player = player
 		lowest_dist = dist
 	
