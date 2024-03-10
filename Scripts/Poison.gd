@@ -1,13 +1,9 @@
-extends "res://Effects/Effect.gd"
+extends "res://Scripts/Effect.gd"
 
 
-var DPS = 3
-var _DURATION = 5
-
-
-func _init():
-	DURATION = _DURATION
+export var DPS = 3
 
 
 func on_affect(entity, delta):
-	entity.health -= DPS * delta
+	entity.Hurt(DPS * delta)
+	print(DPS * delta)
