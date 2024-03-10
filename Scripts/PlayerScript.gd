@@ -17,8 +17,8 @@ onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
 export var damage_mult = 1
-export var max_health = 100
-export var health = 100
+export var max_health: float = 100
+export var health: float = 100
 var regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
@@ -95,14 +95,14 @@ func get_curr_tile():
 	return "did not find tile"
 
 
-func Hurt(dmg: int):
+func Hurt(dmg: float):
 	if god_enabled:
 		return
 	if health <= 0:
 		return
 	
 	regen_timer = regen_delay
-		
+	
 	var newHp = health - dmg
 	if newHp <= 0:
 		$PlayerSprite.visible = false
@@ -113,7 +113,7 @@ func Hurt(dmg: int):
 	health = newHp
 
 
-func Heal(hp: int):
+func Heal(hp: float):
 	if health <= 0:
 		return
 	var newHp = health + hp
@@ -137,7 +137,7 @@ func set_velocity():
 
 func regen_stats(delta):
 	if regen_timer == 0:
-		health = min(health + (health_per_second * delta), max_health)
+		Heal(health_per_second * delta)
 	else: 
 		regen_timer = max(regen_timer - delta, 0)
 	if beam == null:
