@@ -94,10 +94,11 @@ func get_curr_tile():
 
 
 func check_tile():
-	var curr_tile: String = get_curr_tile()
+	var curr_tile = get_curr_tile()
+	if curr_tile == null: return
 	
 	if "(slide)" in curr_tile:
-		Afflict(Effects.slippy, 0.5)
+		Afflict(Effects.slippy)
 
 
 func Hurt(dmg: float):
@@ -129,7 +130,8 @@ func Heal(hp: float):
 
 
 func set_velocity():
-	if sliding and velocity.length_squared() == 0: return
+	if sliding and velocity.length_squared() != 0: 
+		return
 	if currentFocus != null: return
 	
 	velocity.y = int(Input.is_action_pressed("move_down")) - \
