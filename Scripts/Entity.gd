@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-func Afflict(effect, duration: int=-1):
+func Afflict(effect, duration: float=-1):
 	$EffectManager.Afflict(effect, duration)
 
 func Cure(effect):
