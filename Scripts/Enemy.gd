@@ -50,7 +50,7 @@ func move(_target, delta):
 	if not Main.GameStarted:
 		return
 	
-	if sliding:
+	if sliding and velocity.length_squared() == 0:
 		move_and_slide(velocity)
 		return
 	
