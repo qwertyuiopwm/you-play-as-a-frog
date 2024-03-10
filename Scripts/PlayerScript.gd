@@ -59,9 +59,7 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 	
-	var curr_tile: String = get_curr_tile()
-	
-	sliding = "(slide)" in curr_tile
+	check_tile()
 	
 	regen_stats(delta)
 	
@@ -92,7 +90,14 @@ func get_curr_tile():
 		var tile_id = tile_map.get_cellv(pos)
 		if tile_id != -1:
 			return tile_map.tile_set.tile_get_name(tile_id)
-	return "did not find tile"
+	return null
+
+
+func check_tile():
+	var curr_tile: String = get_curr_tile()
+	
+	if "(slide)" in curr_tile:
+		Afflict(Effects.slippy, 0.5)
 
 
 func Hurt(dmg: float):
