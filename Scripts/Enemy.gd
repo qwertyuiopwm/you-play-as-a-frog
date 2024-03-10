@@ -18,6 +18,8 @@ var curr_speed = SPEED
 var target_player
 var target_pos
 
+var sliding = false
+
 
 func animation_finished():
 	assert(false, "Script does not override animation_finished method!")
@@ -47,6 +49,11 @@ func set_target():
 func move(_target, delta):
 	if not Main.GameStarted:
 		return
+	
+	if sliding:
+		move_and_slide(velocity)
+		return
+	
 	var direction = (_target - global_position).normalized()
 	var desired_velocity = direction * curr_speed
 	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
