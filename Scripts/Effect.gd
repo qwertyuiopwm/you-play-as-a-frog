@@ -1,14 +1,14 @@
+extends Node2D
 
 
-export var DURATION = 5
-
-var duration_counter = 0
+export var duration = 5
 
 func affect(entity, delta):
-	duration_counter += delta
+	duration -= delta
 	on_affect(entity, delta)
-	if duration_counter >= DURATION:
+	if duration <= 0:
 		on_effect_remove(entity)
+		queue_free()
 
 
 func on_affect(entity, delta):
