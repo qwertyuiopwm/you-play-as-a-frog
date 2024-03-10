@@ -15,8 +15,10 @@ func Cure(cured_effect):
 			effect.queue_free()
 
 
-func Afflict(effect, duration):
+func Afflict(effect, duration: float):
 	var new_effect = effect.instance()
+	
+	add_child(new_effect)
 	
 	if duration < 0: return
 	new_effect.duration = duration
