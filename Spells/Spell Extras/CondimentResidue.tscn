@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://art/mustard_spell.png" type="Texture" id=1]
-[ext_resource path="res://Spells/Spell Extras/CondimentResidue.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/CondimentResidue.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -31,9 +31,21 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 5.0
+
+[node name="CondimentResidue" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -4, 8 )
+rotation = 1.5708
+shape = SubResource( 8 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
