@@ -5,6 +5,8 @@ extends "res://Scripts/Entity.gd"
 export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
 export var SPEED = 50
+export var SLIP_WALL_DAMAGE = 10
+export var SLIP_SPEED_MULT = 	2
 export var health = 10
 
 var STEERING_MULT = 2.5
@@ -52,7 +54,14 @@ func move(_target, delta):
 		return
 	
 	if sliding and velocity.length_squared() != 0:
-		move_and_slide(velocity)
+		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
+		
+		if body == null:
+			return
+		if body.collider.get_parent().get_children()[0] is TileMap:
+			hurt(SLIP_WALL_DAMAGE)
+			print("slipped into wall, ", health)
+			Cure(Effects.slippy)
 		return
 	
 	var direction = (_target - global_position).normalized()
