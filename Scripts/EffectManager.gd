@@ -20,7 +20,7 @@ func Afflict(effect, duration: float):
 	
 	if not new_effect.CAN_STACK and has_effect(effect):
 		if new_effect.STACK_TIME: 
-			add_time(effect, max(effect.duration, duration))
+			add_time(effect, effect.duration if duration <= 0 else duration)
 		new_effect.queue_free()
 		return
 	
