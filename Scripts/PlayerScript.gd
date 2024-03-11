@@ -33,7 +33,6 @@ var stamina = max_stamina
 var stamina_per_second = 10
 
 var velocity = Vector2.ZERO
-var sliding = false
 
 var currentFocus: Control
 
@@ -65,7 +64,7 @@ func _physics_process(delta):
 	
 	cast_spell_if_pressed(delta)
 	
-	set_velocity()
+	velocity = get_velocity()
 	
 	if velocity.length() <= 0:
 		$PlayerSprite.frame = 0
@@ -129,17 +128,21 @@ func Heal(hp: float):
 	health = newHp
 
 
-func set_velocity():
-	if sliding and velocity.length_squared() != 0: 
-		return
-	if currentFocus != null: return
+func get_velocity():
+	if not can_move:
+		return Vector2.ZERO
 	
-	velocity.y = int(Input.is_action_pressed("move_down")) - \
+	var vel = Vector2.ZERO
+	if sliding and velocity.length_squared() != 0: 
+		return velocity
+	if currentFocus != null: return velocity
+	
+	vel.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
-	velocity.x = int(Input.is_action_pressed("move_right")) - \
+	vel.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
-	velocity = velocity.normalized() * SPEED
+	vel = vel.normalized() * SPEED
 
 
 func regen_stats(delta):

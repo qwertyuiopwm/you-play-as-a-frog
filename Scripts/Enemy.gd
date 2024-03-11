@@ -18,8 +18,6 @@ var curr_speed = SPEED
 var target_player
 var target_pos
 
-var sliding = false
-
 
 func animation_finished():
 	assert(false, "Script does not override animation_finished method!")
@@ -47,10 +45,10 @@ func set_target():
 
 
 func move(_target, delta):
-	if not Main.GameStarted:
+	if not Main.GameStarted or not can_move:
 		return
 	
-	if sliding and velocity.length_squared() == 0:
+	if sliding and velocity.length_squared() != 0:
 		move_and_slide(velocity)
 		return
 	

@@ -1,4 +1,9 @@
 extends KinematicBody2D
+class_name Entity
+
+
+var sliding = false
+var can_move = true
 
 
 func Afflict(effect, duration: float=-1):
