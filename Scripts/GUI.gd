@@ -112,6 +112,7 @@ func _on_Button_pressed():
 	Main.GameStarted = true
 	MainMenu.visible = false
 	MusicPlayer.PlaySong("ForestMusic")
+	
 	for node in Main.get_children():
 		if node == Player:
 			continue

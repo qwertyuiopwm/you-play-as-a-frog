@@ -11,6 +11,7 @@ export var selected_spell: PackedScene
 export var god_enabled: bool
 
 onready var Main = get_node("/root/Main")
+onready var MusicPlayer = $MusicPlayer
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
@@ -115,6 +116,7 @@ func Hurt(dmg: float):
 		$DEATH.play("explosion")
 		pass
 	
+	MusicPlayer.PlayOnNode("PlayerHurt", self)
 	health = newHp
 
 
