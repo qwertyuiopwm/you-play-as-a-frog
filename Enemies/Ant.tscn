@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Ant.gd" type="Script" id=1]
 [ext_resource path="res://art/ant (1).png" type="Texture" id=2]
+[ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -95,3 +96,5 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
 rotation = 1.5708
 shape = SubResource( 20 )
+
+[node name="EffectManager" parent="." instance=ExtResource( 3 )]
