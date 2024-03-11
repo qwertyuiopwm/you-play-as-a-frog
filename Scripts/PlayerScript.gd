@@ -162,6 +162,12 @@ func regen_stats(delta):
 func cast_spell_if_pressed(delta):
 	if selected_spell == null:
 		return
+	if beam != null and Input.is_action_pressed("select_spell"):
+		beam.queue_free()
+		beam = null
+		return
+	if Input.is_action_pressed("select_spell"):
+		return
 	if not Input.is_action_pressed("cast_spell") and beam != null:
 		beam.queue_free()
 		beam = null

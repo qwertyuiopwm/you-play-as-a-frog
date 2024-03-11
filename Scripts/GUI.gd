@@ -100,12 +100,12 @@ func _process(delta):
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
 			
-			var _mousePos = mousePos - Vector2(400,400)
-			var mouseAngle = rad2deg(_mousePos.angle())
+			var iconPos = SpellWheelPositions[selectedIndex-1] + Vector2(16,16)
+			var mouseAngle = rad2deg(iconPos.angle())
 			wheelArrow.rect_rotation = mouseAngle + 180#round(mouseAngle / degPerSpell) * degPerSpell + 180
-			
-			spellSpot.get_node("spellicon").texture = load(selectedSpell.instance().SpellIcon)
-		
+	
+	if Input.is_action_just_released("select_spell"):
+		spellSpot.get_node("spellicon").texture = load(Player.selected_spell.instance().SpellIcon)
 
 
 func _on_Button_pressed():
