@@ -59,9 +59,9 @@ func generateWheel(spellSlots: int):
 		# Generate spell icon
 		# MAAAATTHHHHHHH RAAAAAAHHHHHHHHHH
 		var newIcon = baseIcon.duplicate()
-		var iconX = (cos(deg2rad(lineAngle+sectorAngle/2)) * wheelRadius * distanceFromCenter) - (newIcon.rect_size.x/2)
-		var iconY = (sin(deg2rad(lineAngle+sectorAngle/2)) * wheelRadius * distanceFromCenter) - (newIcon.rect_size.y/2)
-		var iconPosition = Vector2(iconX, iconY)
+		var iconPosition = (Vector2(-distanceFromCenter, 0) * wheelRadius)
+		iconPosition = iconPosition.rotated(deg2rad(lineAngle - (sectorAngle/2)))
+		iconPosition -= Vector2(newIcon.rect_size.x/2, newIcon.rect_size.y/2)
 		
 		newIcon.rect_position = iconPosition
 		newIcon.visible = true
@@ -100,7 +100,10 @@ func _process(delta):
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
 			
-			wheelArrow.rect_rotation = degPerSpell*(selectedIndex+0)+(degPerSpell/2)
+			var _mousePos = mousePos - Vector2(400,400)
+			var mouseAngle = rad2deg(_mousePos.angle())
+			wheelArrow.rect_rotation = mouseAngle + 180#round(mouseAngle / degPerSpell) * degPerSpell + 180
+			
 			spellSpot.get_node("spellicon").texture = load(selectedSpell.instance().SpellIcon)
 		
 
