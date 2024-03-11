@@ -143,6 +143,8 @@ func get_velocity():
 				 int(Input.is_action_pressed("move_left"))
 	
 	vel = vel.normalized() * SPEED
+	
+	return vel
 
 
 func regen_stats(delta):
