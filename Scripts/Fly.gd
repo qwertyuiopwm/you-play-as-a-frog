@@ -3,6 +3,7 @@ extends "res://Scripts/Enemy.gd"
 
 export var CIRCLE_RADIUS = 50
 export var SWOOP_SPEED = 150
+export var DAMAGE = 5
 
 var TARGET_COMFORT_RADIUS = 20
 
@@ -20,6 +21,7 @@ enum states {
 
 
 func _ready():
+	$AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
 	$fly_vis.visible = debug
 
 
@@ -77,5 +79,8 @@ func get_state():
 		
 	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
 		return states.CIRCLE
-	
-	
+
+
+func _on_AttackCollider_body_entered(body):
+	if body.is_in_group("Player"):
+		body.Hurt(DAMAGE)

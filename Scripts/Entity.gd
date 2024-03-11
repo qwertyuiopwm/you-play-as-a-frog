@@ -1,10 +1,13 @@
 extends KinematicBody2D
+class_name Entity
 
 
-export var Effects = []
+var sliding = false
+var can_move = true
 
-func _process(delta):
-	for effect in Effects:
-		if effect.affect():
-			Effects.remove(effect)
 
+func Afflict(effect, duration: float=-1):
+	$EffectManager.Afflict(effect, duration)
+
+func Cure(effect):
+	$EffectManager.Cure(effect)

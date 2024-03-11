@@ -48,8 +48,13 @@ func set_target():
 
 
 func move(_target, delta):
-	if not Main.GameStarted:
+	if not Main.GameStarted or not can_move:
 		return
+	
+	if sliding and velocity.length_squared() != 0:
+		move_and_slide(velocity)
+		return
+	
 	var direction = (_target - global_position).normalized()
 	var desired_velocity = direction * curr_speed
 	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
@@ -76,6 +81,8 @@ func get_nearest_player():
 	for player in players:
 		var dist = self.global_position.distance_to(player.global_position)
 		if dist >= lowest_dist: continue
+		
+		#TODO if cant see player, continue
 		
 		nearest_player = player
 		lowest_dist = dist

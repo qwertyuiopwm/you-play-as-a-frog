@@ -30,7 +30,7 @@ func _physics_process(delta):
 			$AnimatedSprite.play("walk")
 			target_pos = get_circle_position(randomnum, CIRCLE_RADIUS)
 			move(target_pos, delta)
-			if true: pass
+			
 		states.SWARM:
 			move(target_player.global_position, delta)
 

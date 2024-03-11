@@ -17,8 +17,8 @@ onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
 export var damage_mult = 1
-export var max_health = 100
-export var health = 100
+export var max_health: float = 100
+export var health: float = 100
 var regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
@@ -33,7 +33,6 @@ var stamina = max_stamina
 var stamina_per_second = 10
 
 var velocity = Vector2.ZERO
-var sliding = false
 
 var currentFocus: Control
 
@@ -59,15 +58,13 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 	
-	var curr_tile: String = get_curr_tile()
-	
-	sliding = "(slide)" in curr_tile
+	check_tile()
 	
 	regen_stats(delta)
 	
 	cast_spell_if_pressed(delta)
 	
-	set_velocity()
+	velocity = get_velocity()
 	
 	if velocity.length() <= 0:
 		$PlayerSprite.frame = 0
@@ -92,17 +89,25 @@ func get_curr_tile():
 		var tile_id = tile_map.get_cellv(pos)
 		if tile_id != -1:
 			return tile_map.tile_set.tile_get_name(tile_id)
-	return "did not find tile"
+	return null
 
 
-func Hurt(dmg: int):
+func check_tile():
+	var curr_tile = get_curr_tile()
+	if curr_tile == null: return
+	
+	if "(slide)" in curr_tile:
+		Afflict(Effects.slippy)
+
+
+func Hurt(dmg: float):
 	if god_enabled:
 		return
 	if health <= 0:
 		return
 	
 	regen_timer = regen_delay
-		
+	
 	var newHp = health - dmg
 	if newHp <= 0:
 		$PlayerSprite.visible = false
@@ -113,7 +118,7 @@ func Hurt(dmg: int):
 	health = newHp
 
 
-func Heal(hp: int):
+func Heal(hp: float):
 	if health <= 0:
 		return
 	var newHp = health + hp
@@ -123,21 +128,28 @@ func Heal(hp: int):
 	health = newHp
 
 
-func set_velocity():
-	if sliding: return
-	if currentFocus != null: return
+func get_velocity():
+	if not can_move:
+		return Vector2.ZERO
 	
-	velocity.y = int(Input.is_action_pressed("move_down")) - \
+	var vel = Vector2.ZERO
+	if sliding and velocity.length_squared() != 0: 
+		return velocity
+	if currentFocus != null: return velocity
+	
+	vel.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
-	velocity.x = int(Input.is_action_pressed("move_right")) - \
+	vel.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
-	velocity = velocity.normalized() * SPEED
+	vel = vel.normalized() * SPEED
+	
+	return vel
 
 
 func regen_stats(delta):
 	if regen_timer == 0:
-		health = min(health + (health_per_second * delta), max_health)
+		Heal(health_per_second * delta)
 	else: 
 		regen_timer = max(regen_timer - delta, 0)
 	if beam == null:
