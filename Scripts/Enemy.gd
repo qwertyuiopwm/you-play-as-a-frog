@@ -39,6 +39,9 @@ func _ready():
 
 
 func set_target():
+	if target_player and !player_in_sight(target_player):
+		target_player = null
+		return
 	if (target_player == null) or \
 	   (global_position.distance_to(target_player.global_position) > TARGET_RANGE):
 		 target_player = get_nearest_player()
@@ -84,4 +87,45 @@ func get_nearest_player():
 		nearest_player = player
 		lowest_dist = dist
 	
+	if nearest_player == null:
+		return
+	
+	if !player_in_sight(nearest_player):
+		return
+	
 	return nearest_player
+
+func player_in_sight(player):
+	if player == null:
+		return false
+	
+	var playerCollision = player.get_node("CollisionShape2D")
+	if playerCollision == null:
+		return false
+	
+	var playerPos = player.global_position
+	var collisionRadius = playerCollision.shape.radius
+	var collisionHeight = playerCollision.shape.height
+	
+	var targetPositions = [Vector2(
+			playerPos.x-collisionRadius,
+			playerPos.y-(collisionHeight)
+		),Vector2(
+			playerPos.x+collisionRadius,
+			playerPos.y-(collisionHeight)
+		),Vector2(
+			playerPos.x-collisionRadius,
+			playerPos.y+(collisionHeight)
+		),Vector2(
+			playerPos.x+collisionRadius,
+			playerPos.y+(collisionHeight)
+		)]
+	
+	for p in targetPositions:
+		var rayResult = Main.cast_ray(self.global_position, p, 0b00000000_00000000_00000000_00001001, [self])
+		if not rayResult.has("position"):
+			continue
+		if rayResult.collider == player:
+			return true
+	
+	return false
