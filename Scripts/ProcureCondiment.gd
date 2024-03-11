@@ -1,9 +1,17 @@
 extends "res://Scripts/BouncingSpell.gd"
 
+
+export var SLIPPY_DURATION = 2
+
+
 var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn")
 
 
 func on_settle(body):
+	if body is Entity:
+		body.Afflict(Effects.slippy, 5)
+		return
+	
 	if not body is TileMap: return
 	
 	var residue = condiment_residue.instance()
