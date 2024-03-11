@@ -18,6 +18,12 @@ func Cure(cured_effect):
 func Afflict(effect, duration: float):
 	var new_effect = effect.instance()
 	
+	if not new_effect.CAN_STACK and has_effect(effect):
+		if new_effect.STACK_TIME: 
+			add_time(effect, max(effect.duration, duration))
+		new_effect.queue_free()
+		return
+	
 	add_child(new_effect)
 	
 	if duration < 0: return
@@ -26,3 +32,17 @@ func Afflict(effect, duration: float):
 
 func get_effects():
 	return get_children()
+
+
+func has_effect(effect):
+	for _effect in get_effects():
+		if _effect is effect.instance().get_script():
+			return true
+	
+	return false
+
+
+func add_time(effect, time):
+	for _effect in get_effects():
+		if _effect is effect.instance().get_script():
+			_effect.duration += time
