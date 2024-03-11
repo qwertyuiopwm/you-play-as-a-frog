@@ -9,7 +9,7 @@ var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn
 
 func on_settle(body):
 	if body is Entity:
-		body.Afflict(Effects.slippy, 5)
+		body.Afflict(Effects.slippy, SLIPPY_DURATION)
 		return
 	
 	if not body is TileMap: return
