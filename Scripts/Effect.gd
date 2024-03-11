@@ -3,7 +3,7 @@ extends Node2D
 
 export var duration := 5.0
 export var CAN_STACK = false
-export var STACK_TIMES = false
+export var STACK_TIME = false
 
 func affect(entity, delta):
 	duration -= delta
