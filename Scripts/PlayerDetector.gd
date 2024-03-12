@@ -1,17 +1,10 @@
-extends Area2D
+extends "res://Scripts/Trigger.gd"
 
 
-export var Triggerables: Array
 export var TriggerOnEnter = true
 export var TriggerOnExit = false
 export var FreeOnTrigger = true
 export var InverseSignal = false
-export var Music = ""
-
-
-func trigger(_trigger: bool):
-	for triggerable in Triggerables:
-		get_node(triggerable).trigger(_trigger)
 
 
 func _on_PlayerDetector_body_entered(body):

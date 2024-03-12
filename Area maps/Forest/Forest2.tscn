@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=3]
-[ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Grub.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ChangeMusicTrigger.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Triggers/PopupTrigger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -39,8 +39,7 @@ position = Vector2( 609, 416 )
 [node name="PlayerDetector" parent="." instance=ExtResource( 5 )]
 position = Vector2( 250, 415 )
 scale = Vector2( 3, 29 )
-Triggerables = [ NodePath("../Wall"), NodePath("../BossMusicTrigger"), NodePath("closecast"), NodePath("fightgrub") ]
-Music = "Boss1Music"
+Triggerables = [ NodePath("../Wall"), NodePath("../BossMusicTrigger"), NodePath("closecast"), NodePath("fightgrub"), NodePath("hidee") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource( 1 )
@@ -50,7 +49,11 @@ PopupName = "etocast"
 
 [node name="fightgrub" parent="PlayerDetector" instance=ExtResource( 8 )]
 PopupName = "fightgrub"
-Visible = true
+
+[node name="hidee" parent="PlayerDetector" instance=ExtResource( 8 )]
+position = Vector2( 20, 600 )
+PopupName = "etocast"
+Inverted = true
 
 [node name="ForestMusicTrigger" parent="." instance=ExtResource( 7 )]
 Song = "ForestMusic"
