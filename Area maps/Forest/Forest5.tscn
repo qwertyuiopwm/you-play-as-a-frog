@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=1]
 [ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=3]
 [ext_resource path="res://Enemies/Grub.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Ant.gd" type="Script" id=5]
+[ext_resource path="res://Enemies/Ant.tscn" type="PackedScene" id=6]
 
 [node name="Forest5" type="Node2D"]
 
@@ -31,3 +32,9 @@ health = 10
 CIRCLE_RADIUS = 100
 BITE_DAMAGE = 10
 TARGET_COMFORT_RADIUS = 10
+
+[node name="Node2D" parent="EnemyManager" instance=ExtResource( 6 )]
+position = Vector2( 888, -133 )
+
+[node name="Node2D2" parent="EnemyManager" instance=ExtResource( 6 )]
+position = Vector2( 743, 10 )
