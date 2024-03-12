@@ -7,7 +7,7 @@ var regex = RegEx.new()
 var oldtext = text
 func _ready():
 	regex.compile("^[0-9]*$")
-	connect("text_changed", self, "_on_text_changed")
+	var _obj = connect("text_changed", self, "_on_text_changed")
 	
 func _on_text_changed(new_text: String):
 	new_text.erase(max_length-1, 1)

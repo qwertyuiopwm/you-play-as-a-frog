@@ -26,5 +26,5 @@ func animation_finished():
 
 
 func on_start():
-	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	var _obj = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	$AnimatedSprite.play("start")
