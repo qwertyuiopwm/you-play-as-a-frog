@@ -37,24 +37,6 @@ position = Vector2( -180, -580 )
 PopupName = "qtoselect"
 Inverted = true
 
-[node name="actiontrigger" parent="." instance=ExtResource( 4 )]
-position = Vector2( 400, 200 )
-Triggerables = [ NodePath("closewasd"), NodePath("qtoselect"), NodePath("toggle") ]
-Actions = [ "move_up", "move_left", "move_down", "move_right" ]
-MaxDistance = 500.0
-
-[node name="closewasd" parent="actiontrigger" instance=ExtResource( 3 )]
-PopupName = "wasdtomove"
-
-[node name="qtoselect" parent="actiontrigger" instance=ExtResource( 3 )]
-position = Vector2( 20, 600 )
-PopupName = "qtoselect"
-Inverted = true
-
-[node name="toggle" parent="actiontrigger" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actiontrigger2")
-Toggle = true
-
 [node name="actiontrigger2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
 Triggerables = [ NodePath("hideq") ]
@@ -74,3 +56,70 @@ Actions = [ "cast_spell" ]
 [node name="hidee" parent="actiontrigger3" instance=ExtResource( 3 )]
 position = Vector2( 20, 600 )
 PopupName = "etocast"
+Inverted = true
+
+[node name="actionw" parent="." instance=ExtResource( 4 )]
+Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
+Actions = [ "move_up" ]
+
+[node name="toggle" parent="actionw" instance=ExtResource( 5 )]
+Trigger = NodePath("../../actiona")
+Toggle = true
+
+[node name="hide" parent="actionw" instance=ExtResource( 3 )]
+PopupName = "wasdtomove"
+
+[node name="show" parent="actionw" instance=ExtResource( 3 )]
+PopupName = "wasdtomove2"
+Inverted = true
+
+[node name="actiona" parent="." instance=ExtResource( 4 )]
+Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
+Enabled = false
+Actions = [ "move_left" ]
+
+[node name="toggle" parent="actiona" instance=ExtResource( 5 )]
+Trigger = NodePath("../../actions")
+Toggle = true
+
+[node name="hide" parent="actiona" instance=ExtResource( 3 )]
+PopupName = "wasdtomove2"
+
+[node name="show" parent="actiona" instance=ExtResource( 3 )]
+PopupName = "wasdtomove3"
+Inverted = true
+
+[node name="actions" parent="." instance=ExtResource( 4 )]
+Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
+Enabled = false
+Actions = [ "move_down" ]
+
+[node name="toggle" parent="actions" instance=ExtResource( 5 )]
+Trigger = NodePath("../../actiond")
+Toggle = true
+
+[node name="hide" parent="actions" instance=ExtResource( 3 )]
+PopupName = "wasdtomove3"
+
+[node name="show" parent="actions" instance=ExtResource( 3 )]
+PopupName = "wasdtomove4"
+Inverted = true
+
+[node name="actiond" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 200 )
+Triggerables = [ NodePath("closewasd"), NodePath("qtoselect"), NodePath("toggle") ]
+Enabled = false
+Actions = [ "move_right" ]
+MaxDistance = 500.0
+
+[node name="closewasd" parent="actiond" instance=ExtResource( 3 )]
+PopupName = "wasdtomove4"
+
+[node name="qtoselect" parent="actiond" instance=ExtResource( 3 )]
+position = Vector2( 20, 600 )
+PopupName = "qtoselect"
+Inverted = true
+
+[node name="toggle" parent="actiond" instance=ExtResource( 5 )]
+Trigger = NodePath("../../actiontrigger2")
+Toggle = true
