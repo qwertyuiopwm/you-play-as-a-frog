@@ -202,7 +202,7 @@ func set_animation():
 		$PlayerSprite.play("left")
 
 
-func _on_PickupArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_PickupArea_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if held_big_item != null: return
 	
 	var obj = body.get_parent()

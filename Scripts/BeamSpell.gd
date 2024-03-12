@@ -44,7 +44,7 @@ func _physics_process(delta):
 	beamLine.points[0] = to_local(rootPos)
 	beamLine.points[1] = to_local(rayResult.position)
 
-func _process(delta):
+func _process(_delta):
 	on_process()
 
 

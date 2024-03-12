@@ -40,7 +40,7 @@ func _input(event):
 	newEnemy.global_position = Main.get_global_mouse_position()
 	selectedEnemy = null
 
-func _on_EnemyOption_item_selected(index: int):
+func _on_EnemyOption_item_selected(_index: int):
 	var EnemyOption = devToolsValues.get_node("EnemyOption")
 	selectedEnemy = enemies.get(EnemyOption.text)
 

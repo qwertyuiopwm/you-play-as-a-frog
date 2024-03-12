@@ -14,8 +14,8 @@ func affect(entity, delta):
 	on_affect(entity, delta)
 
 
-func on_affect(entity, delta):
+func on_affect(_entity, _delta):
 	pass
 
-func on_effect_removed(entity):
+func on_effect_removed(_entity):
 	pass

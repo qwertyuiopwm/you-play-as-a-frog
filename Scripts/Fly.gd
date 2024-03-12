@@ -25,7 +25,7 @@ func _ready():
 	$fly_vis.visible = debug
 
 
-func _process(delta):
+func _process(_delta):
 	set_target()
 	state = get_state()
 

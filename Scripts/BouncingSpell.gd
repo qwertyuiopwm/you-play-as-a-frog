@@ -18,11 +18,11 @@ func on_process():
 	pass
 
 
-func on_settle(body):
+func on_settle(_body):
 	pass
 
 
-func collide(body_rid, body, body_shape_index, local_shape_index):
+func collide(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.collision_layer&EnemyCollision:
 		hit(body)
 

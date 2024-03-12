@@ -47,7 +47,7 @@ func generateWheel(spellSlots: int):
 	var baseIcon = spellWheel.get_node("icon_base")
 	var wheelRadius = wheel.rect_size.x / 2
 	var distanceFromCenter = 0.65
-	var sectorAngle = (360 / spellSlots)
+	var sectorAngle: float = (360.0 / spellSlots)
 	
 	for i in spellSlots:
 		# Generate seperator line
@@ -72,7 +72,7 @@ func generateWheel(spellSlots: int):
 	return positions
 
 
-func _process(delta):
+func _process(_delta):
 	hpDisplay.max_value = Player.max_health
 	hpDisplay.value = Player.health
 	
@@ -85,7 +85,6 @@ func _process(delta):
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
 	if spellWheel.visible:
-		var degPerSpell = 360/len(Player.spells)
 		var mousePos = vp.get_mouse_position()
 		var lowestMag = INF
 		var selectedIndex: int

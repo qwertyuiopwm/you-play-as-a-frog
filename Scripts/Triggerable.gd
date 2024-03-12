@@ -10,8 +10,8 @@ func trigger(trigger: bool):
 	onTrigger(trigger)
 
 
-func onTriggerAny(trigger: bool):
+func onTriggerAny(_trigger: bool):
 	pass
 
-func onTrigger(trigger: bool):
+func onTrigger(_trigger: bool):
 	pass
