@@ -71,6 +71,8 @@ animations = [ {
 radius = 38.0132
 
 [node name="Weevil" type="KinematicBody2D" groups=["Enemy"]]
+collision_layer = 259
+collision_mask = 259
 script = ExtResource( 2 )
 SPEED = 60
 health = 30
