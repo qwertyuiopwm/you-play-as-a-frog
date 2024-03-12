@@ -12,6 +12,10 @@ export var god_enabled: bool
 
 onready var Main = get_node("/root/Main")
 onready var MusicPlayer = $MusicPlayer
+onready var TongueLine = $Tongue
+onready var TonguePosition = $TonguePosition
+onready var TongueTween = $TongueTween
+onready var PlayerSprite = $PlayerSprite
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
@@ -20,9 +24,12 @@ onready var half_height = height / 2
 export var damage_mult = 1
 export var max_health: float = 100
 export var health: float = 100
+export var melee_damage: float = 5
 var regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
+var melee_distance = 100
+var tongue_speed = 350
 
 var max_mana = 100
 var mana = max_mana
@@ -65,11 +72,13 @@ func _physics_process(delta):
 	
 	cast_spell_if_pressed(delta)
 	
+	melee_if_pressed(delta)
+	
 	velocity = get_velocity()
 	
 	if velocity.length() <= 0:
-		$PlayerSprite.frame = 0
-		$PlayerSprite.stop()
+		PlayerSprite.frame = 0
+		PlayerSprite.stop()
 		return
 	
 	set_animation()
@@ -111,7 +120,7 @@ func Hurt(dmg: float):
 	
 	var newHp = health - dmg
 	if newHp <= 0:
-		$PlayerSprite.visible = false
+		PlayerSprite.visible = false
 		$DEATH.visible = true
 		$DEATH.play("explosion")
 		pass
@@ -188,18 +197,52 @@ func cast_spell_if_pressed(delta):
 	spell.try_cast(self)
 
 
+func melee_if_pressed(delta):
+	TongueLine.points[1] = TonguePosition.position
+	if not Input.is_action_just_pressed("melee"):
+		return
+	
+	var rootPos = TongueLine.global_position
+	var mousePos = get_global_mouse_position()
+	var targetPos = rootPos + (rootPos.direction_to(mousePos)*melee_distance)
+	
+	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
+	
+	var hitPos = targetPos
+	if rayResult.has("position"):
+		hitPos = rayResult.position
+	var localHitPos = TongueLine.to_local(hitPos)
+	
+	var angleToHit = abs(rad2deg(rootPos.angle_to_point(hitPos)))
+	if angleToHit >= 90:
+		TongueLine.points[0] = Vector2(8, 0)
+		PlayerSprite.play("right")
+	else:
+		TongueLine.points[0] = Vector2(-8, 0)
+		PlayerSprite.play("left")
+		
+	var tweenTime = (Vector2.ZERO.distance_to(localHitPos)/tongue_speed)
+	
+	TongueTween.interpolate_property(TonguePosition, "position", 
+		Vector2.ZERO, 
+		localHitPos, 
+		tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+	)
+	TongueTween.start()
+
+
 func set_animation():
 	if velocity.y > 0: 
-		$PlayerSprite.play("down")
+		PlayerSprite.play("down")
 	if velocity.y < 0: 
-		$PlayerSprite.play("up")
+		PlayerSprite.play("up")
 		
 	if velocity.y != 0: return
 	
 	if velocity.x > 0: 
-		$PlayerSprite.play("right")
+		PlayerSprite.play("right")
 	if velocity.x < 0: 
-		$PlayerSprite.play("left")
+		PlayerSprite.play("left")
 
 
 func _on_PickupArea_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
@@ -209,3 +252,28 @@ func _on_PickupArea_body_shape_entered(_body_rid, body, _body_shape_index, _loca
 	if not obj.Pickupable: return
 	
 	held_big_item = obj
+
+
+func _on_TongueTween_tween_completed(object, _key):
+	if object.position == Vector2.ZERO:
+		TongueLine.points[0] = Vector2.ZERO
+		return
+		
+	# Return tongue back to player
+	var tweenTime = (object.position.distance_to(Vector2.ZERO)/tongue_speed)
+	TongueTween.interpolate_property(TonguePosition, "position", 
+		object.position, 
+		Vector2.ZERO, 
+		tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+	)
+	TongueTween.start()
+	
+	# Damage enemy if exists
+	var rayResult = Main.cast_ray(
+		TongueLine.to_global(Vector2.ZERO), 
+		TongueLine.to_global(TongueLine.points[1]), 
+		0b00000000_00000000_00000001_00000000, []
+	)
+	
+	if rayResult.has("collider"):
+		rayResult.collider.hurt(melee_damage*damage_mult)
