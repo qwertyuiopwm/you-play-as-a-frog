@@ -1,8 +1,6 @@
 extends "res://Scripts/Enemy.gd"
 
 
-export var FOLLOW_DIST = 10
-
 var next_segment
 
 onready var next_segment_back = next_segment.get_node("Back")
