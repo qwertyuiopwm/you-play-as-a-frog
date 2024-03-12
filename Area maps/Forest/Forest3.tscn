@@ -2,12 +2,12 @@
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemies/Fly.tscn" type="PackedScene" id=2]
-[ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=4]
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Items/Ladder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=7]
-[ext_resource path="res://PlayerDetector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 257, 10 )
