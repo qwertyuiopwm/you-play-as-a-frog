@@ -197,7 +197,7 @@ func cast_spell_if_pressed(delta):
 	spell.try_cast(self)
 
 
-func melee_if_pressed(delta):
+func melee_if_pressed(_delta):
 	TongueLine.points[1] = TonguePosition.position
 	if not Input.is_action_just_pressed("melee"):
 		return
