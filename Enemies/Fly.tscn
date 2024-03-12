@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://art/New_Piskel.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Fly.gd" type="Script" id=2]
 [ext_resource path="res://art/image-removebg-preview.png" type="Texture" id=3]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 14.0
@@ -39,6 +40,7 @@ radius = 9.0
 collision_layer = 258
 collision_mask = 258
 script = ExtResource( 2 )
+IMMUNITIES = [ ExtResource( 5 ) ]
 SPEED = 100
 CIRCLE_RADIUS = 85
 SWOOP_SPEED = 225
@@ -55,7 +57,6 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [node name="AttackCollider" type="Area2D" parent="."]
