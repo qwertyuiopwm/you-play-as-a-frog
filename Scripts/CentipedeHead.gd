@@ -3,7 +3,7 @@ extends "res://Scripts/Enemy.gd"
 
 export var NUM_SEGMENTS = 3
 
-var segment_scene = preload("res://Enemies/CentipedeSegment.tscn")
+var segment_scene = preload("res://Enemies/Centipede/CentipedeSegment.tscn")
 
 
 func _ready():
