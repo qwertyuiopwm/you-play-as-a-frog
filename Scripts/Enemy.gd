@@ -58,10 +58,14 @@ func move(_target, delta):
 		
 		if body == null:
 			return
+			
 		if body.collider.get_parent().get_children()[0] is TileMap:
 			hurt(SLIP_WALL_DAMAGE)
 			print("slipped into wall, ", health)
+			print($EffectManager.get_effects())
 			Cure(Effects.slippy)
+			print("curing slippiness")
+			print($EffectManager.get_effects())
 		return
 	
 	var direction = (_target - global_position).normalized()

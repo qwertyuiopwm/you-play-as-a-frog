@@ -1,17 +1,18 @@
 extends Node2D
 
 
-export var Effects = []
+export var CurrEffects = []
 
 func _process(delta):
-	Effects = get_effects()
+	CurrEffects = get_effects()
 	
-	for effect in Effects:
+	for effect in CurrEffects:
 		effect.affect(get_parent(), delta)
 
 func Cure(cured_effect):
 	for effect in get_effects():
 		if effect is cured_effect.instance().get_script():
+			effect.on_effect_removed(get_parent())
 			effect.queue_free()
 
 
