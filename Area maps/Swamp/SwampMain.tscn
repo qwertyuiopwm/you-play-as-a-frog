@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Area maps/Swamp/Swamp1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Swamp/Swamp2.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Area maps/Swamp/Swamp10.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Area maps/Swamp/Swamp11.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Area maps/Swamp/Swamp12.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Area maps/Swamp/Swamp 13.tscn" type="PackedScene" id=13]
 
 [node name="Swamp" type="Node2D"]
 
@@ -49,3 +50,6 @@ position = Vector2( -7424, 5247 )
 
 [node name="Swamp12" parent="." instance=ExtResource( 12 )]
 position = Vector2( -10624, 4543 )
+
+[node name="Swamp13" parent="." instance=ExtResource( 13 )]
+position = Vector2( -10304, 2496 )
