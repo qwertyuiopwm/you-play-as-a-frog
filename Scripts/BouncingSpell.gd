@@ -46,7 +46,7 @@ func _ready():
 	var mouse_pos = get_global_mouse_position()
 	var dir = global_position.direction_to(mouse_pos)
 	linear_velocity = dir * VELOCITY
-	connect("body_shape_entered", self, "collide")
+	var _obj = connect("body_shape_entered", self, "collide")
 	on_start()
 
 

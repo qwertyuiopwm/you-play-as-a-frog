@@ -37,7 +37,7 @@ func hurt(damage):
 
 
 func _ready():
-	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	var _obj = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 
 
 func set_target():

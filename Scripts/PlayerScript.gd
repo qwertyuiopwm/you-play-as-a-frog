@@ -41,7 +41,7 @@ var held_big_item: Node2D
 
 
 func _ready():
-	get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
+	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 
 func _remove_focus():
 	currentFocus.disconnect("focus_exited", self, "_remove_focus")
@@ -51,7 +51,7 @@ func _on_focus_changed(node):
 	if node == null:
 		return
 	currentFocus = node
-	currentFocus.connect("focus_exited", self, "_remove_focus")
+	var _obj = currentFocus.connect("focus_exited", self, "_remove_focus")
 
 func _physics_process(delta):
 	if not Main.GameStarted:
@@ -73,7 +73,7 @@ func _physics_process(delta):
 		return
 	
 	set_animation()
-	move_and_slide(velocity)
+	var _v = move_and_slide(velocity)
 	
 	if held_big_item != null:
 		held_big_item.global_position = $ItemHolder.global_position

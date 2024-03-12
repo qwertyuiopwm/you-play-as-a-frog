@@ -21,7 +21,7 @@ enum states {
 
 
 func _ready():
-	$AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
+	var _obj = $AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
 	$fly_vis.visible = debug
 
 
