@@ -11,6 +11,7 @@ export var selected_spell: PackedScene
 export var god_enabled: bool
 
 onready var Main = get_node("/root/Main")
+onready var MusicPlayer = $MusicPlayer
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
@@ -40,7 +41,7 @@ var held_big_item: Node2D
 
 
 func _ready():
-	get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
+	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 
 func _remove_focus():
 	currentFocus.disconnect("focus_exited", self, "_remove_focus")
@@ -50,7 +51,7 @@ func _on_focus_changed(node):
 	if node == null:
 		return
 	currentFocus = node
-	currentFocus.connect("focus_exited", self, "_remove_focus")
+	var _obj = currentFocus.connect("focus_exited", self, "_remove_focus")
 
 func _physics_process(delta):
 	if not Main.GameStarted:
@@ -72,7 +73,7 @@ func _physics_process(delta):
 		return
 	
 	set_animation()
-	move_and_slide(velocity)
+	var _v = move_and_slide(velocity)
 	
 	if held_big_item != null:
 		held_big_item.global_position = $ItemHolder.global_position
@@ -115,6 +116,7 @@ func Hurt(dmg: float):
 		$DEATH.play("explosion")
 		pass
 	
+	MusicPlayer.PlayOnNode("PlayerHurt", self)
 	health = newHp
 
 
@@ -162,6 +164,12 @@ func regen_stats(delta):
 func cast_spell_if_pressed(delta):
 	if selected_spell == null:
 		return
+	if beam != null and Input.is_action_pressed("select_spell"):
+		beam.queue_free()
+		beam = null
+		return
+	if Input.is_action_pressed("select_spell"):
+		return
 	if not Input.is_action_pressed("cast_spell") and beam != null:
 		beam.queue_free()
 		beam = null
@@ -194,7 +202,7 @@ func set_animation():
 		$PlayerSprite.play("left")
 
 
-func _on_PickupArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_PickupArea_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if held_big_item != null: return
 	
 	var obj = body.get_parent()

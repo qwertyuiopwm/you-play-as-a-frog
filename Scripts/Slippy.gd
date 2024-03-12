@@ -1,7 +1,7 @@
 extends "res://Scripts/Effect.gd"
 
 
-func on_affect(entity, delta):
+func on_affect(entity, _delta):
 	entity.sliding = true
 
 

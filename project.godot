@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Ladder",
 "language": "GDScript",
 "path": "res://Scripts/Ladder.gd"
+}, {
+"base": "RichTextEffect",
+"class": "RichTextVAlign",
+"language": "GDScript",
+"path": "res://Assets/VAllign.gd"
 } ]
 _global_script_class_icons={
 "Effects": "",
 "Entity": "",
 "GitAPI": "",
-"Ladder": ""
+"Ladder": "",
+"RichTextVAlign": ""
 }
 
 [application]

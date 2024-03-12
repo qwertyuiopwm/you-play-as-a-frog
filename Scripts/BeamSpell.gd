@@ -3,7 +3,9 @@ extends "res://Scripts/Spell.gd"
 
 export var TYPE = "BEAM"
 export var MANA_REQUIRED = 15 # Initial mana cost
+
 onready var beamLine:Line2D = get_node("Line2D")
+onready var Main = get_node("/root/Main")
 
 func on_start():
 	pass
@@ -30,17 +32,10 @@ func _ready():
 func _physics_process(delta):
 	var rootPos = Player.global_position
 	var mousePos = get_global_mouse_position()
+	var targetPos = rootPos + (rootPos.direction_to(mousePos)*900)
+	
+	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
 
-	var space_rid = get_world_2d().space
-	var space_state = Physics2DServer.space_get_direct_state(space_rid)
-	
-	var rayResult = space_state.intersect_ray(
-		(rootPos),
-		rootPos + (rootPos.direction_to(mousePos)*900),
-		[],
-		0b00000000_00000000_00000001_00001000
-	)
-	
 	if not rayResult.has("position"):
 		return
 	if rayResult.collider:
@@ -49,7 +44,7 @@ func _physics_process(delta):
 	beamLine.points[0] = to_local(rootPos)
 	beamLine.points[1] = to_local(rayResult.position)
 
-func _process(delta):
+func _process(_delta):
 	on_process()
 
 

@@ -47,7 +47,7 @@ func generateWheel(spellSlots: int):
 	var baseIcon = spellWheel.get_node("icon_base")
 	var wheelRadius = wheel.rect_size.x / 2
 	var distanceFromCenter = 0.65
-	var sectorAngle = (360 / spellSlots)
+	var sectorAngle: float = (360.0 / spellSlots)
 	
 	for i in spellSlots:
 		# Generate seperator line
@@ -59,9 +59,9 @@ func generateWheel(spellSlots: int):
 		# Generate spell icon
 		# MAAAATTHHHHHHH RAAAAAAHHHHHHHHHH
 		var newIcon = baseIcon.duplicate()
-		var iconX = (cos(deg2rad(lineAngle+sectorAngle/2)) * wheelRadius * distanceFromCenter) - (newIcon.rect_size.x/2)
-		var iconY = (sin(deg2rad(lineAngle+sectorAngle/2)) * wheelRadius * distanceFromCenter) - (newIcon.rect_size.y/2)
-		var iconPosition = Vector2(iconX, iconY)
+		var iconPosition = (Vector2(-distanceFromCenter, 0) * wheelRadius)
+		iconPosition = iconPosition.rotated(deg2rad(lineAngle - (sectorAngle/2)))
+		iconPosition -= Vector2(newIcon.rect_size.x/2, newIcon.rect_size.y/2)
 		
 		newIcon.rect_position = iconPosition
 		newIcon.visible = true
@@ -72,7 +72,7 @@ func generateWheel(spellSlots: int):
 	return positions
 
 
-func _process(delta):
+func _process(_delta):
 	hpDisplay.max_value = Player.max_health
 	hpDisplay.value = Player.health
 	
@@ -85,7 +85,6 @@ func _process(delta):
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
 	if spellWheel.visible:
-		var degPerSpell = 360/len(Player.spells)
 		var mousePos = vp.get_mouse_position()
 		var lowestMag = INF
 		var selectedIndex: int
@@ -100,15 +99,19 @@ func _process(delta):
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
 			
-			wheelArrow.rect_rotation = degPerSpell*(selectedIndex+0)+(degPerSpell/2)
-			spellSpot.get_node("spellicon").texture = load(selectedSpell.instance().SpellIcon)
-		
+			var iconPos = SpellWheelPositions[selectedIndex-1] + Vector2(16,16)
+			var mouseAngle = rad2deg(iconPos.angle())
+			wheelArrow.rect_rotation = mouseAngle + 180#round(mouseAngle / degPerSpell) * degPerSpell + 180
+	
+	if Input.is_action_just_released("select_spell"):
+		spellSpot.get_node("spellicon").texture = load(Player.selected_spell.instance().SpellIcon)
 
 
 func _on_Button_pressed():
 	Main.GameStarted = true
 	MainMenu.visible = false
 	MusicPlayer.PlaySong("ForestMusic")
+	
 	for node in Main.get_children():
 		if node == Player:
 			continue

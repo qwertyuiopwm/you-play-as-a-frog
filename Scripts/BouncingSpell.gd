@@ -18,11 +18,11 @@ func on_process():
 	pass
 
 
-func on_settle(body):
+func on_settle(_body):
 	pass
 
 
-func collide(body_rid, body, body_shape_index, local_shape_index):
+func collide(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.collision_layer&EnemyCollision:
 		hit(body)
 
@@ -46,7 +46,7 @@ func _ready():
 	var mouse_pos = get_global_mouse_position()
 	var dir = global_position.direction_to(mouse_pos)
 	linear_velocity = dir * VELOCITY
-	connect("body_shape_entered", self, "collide")
+	var _obj = connect("body_shape_entered", self, "collide")
 	on_start()
 
 

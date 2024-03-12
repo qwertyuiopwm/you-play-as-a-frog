@@ -11,7 +11,7 @@ func _process(delta):
 
 func Cure(cured_effect):
 	for effect in get_effects():
-		if effect is cured_effect:
+		if effect is cured_effect.instance().get_script():
 			effect.queue_free()
 
 

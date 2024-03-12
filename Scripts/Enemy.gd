@@ -5,6 +5,8 @@ extends "res://Scripts/Entity.gd"
 export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
 export var SPEED = 50
+export var SLIP_WALL_DAMAGE = 10
+export var SLIP_SPEED_MULT = 	2
 export var health = 10
 
 var STEERING_MULT = 2.5
@@ -35,10 +37,13 @@ func hurt(damage):
 
 
 func _ready():
-	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	var _obj = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 
 
 func set_target():
+	if target_player and !player_in_sight(target_player):
+		target_player = null
+		return
 	if (target_player == null) or \
 	   (global_position.distance_to(target_player.global_position) > TARGET_RANGE):
 		 target_player = get_nearest_player()
@@ -49,7 +54,14 @@ func move(_target, delta):
 		return
 	
 	if sliding and velocity.length_squared() != 0:
-		move_and_slide(velocity)
+		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
+		
+		if body == null:
+			return
+		if body.collider.get_parent().get_children()[0] is TileMap:
+			hurt(SLIP_WALL_DAMAGE)
+			print("slipped into wall, ", health)
+			Cure(Effects.slippy)
 		return
 	
 	var direction = (_target - global_position).normalized()
@@ -84,4 +96,45 @@ func get_nearest_player():
 		nearest_player = player
 		lowest_dist = dist
 	
+	if nearest_player == null:
+		return
+	
+	if !player_in_sight(nearest_player):
+		return
+	
 	return nearest_player
+
+func player_in_sight(player):
+	if player == null:
+		return false
+	
+	var playerCollision = player.get_node("CollisionShape2D")
+	if playerCollision == null:
+		return false
+	
+	var playerPos = player.global_position
+	var collisionRadius = playerCollision.shape.radius
+	var collisionHeight = playerCollision.shape.height
+	
+	var targetPositions = [Vector2(
+			playerPos.x-collisionRadius,
+			playerPos.y-(collisionHeight)
+		),Vector2(
+			playerPos.x+collisionRadius,
+			playerPos.y-(collisionHeight)
+		),Vector2(
+			playerPos.x-collisionRadius,
+			playerPos.y+(collisionHeight)
+		),Vector2(
+			playerPos.x+collisionRadius,
+			playerPos.y+(collisionHeight)
+		)]
+	
+	for p in targetPositions:
+		var rayResult = Main.cast_ray(self.global_position, p, 0b00000000_00000000_00000000_00001001, [self])
+		if not rayResult.has("position"):
+			continue
+		if rayResult.collider == player:
+			return true
+	
+	return false
