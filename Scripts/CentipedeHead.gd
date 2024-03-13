@@ -25,7 +25,7 @@ func _ready():
 	for segment in segments:
 		segment.head = self
 		get_parent().call_deferred("add_child", segment)
-		segment.get_node("HitCollider").connect("body_entered", self, "body_entered")
+		segment.get_node("HitCollider").connect("body_entered", self, "_body_entered")
 
 
 func _physics_process(delta):
