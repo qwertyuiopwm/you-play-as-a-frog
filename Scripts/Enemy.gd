@@ -36,6 +36,7 @@ func hurt(damage):
 	health = max(health - damage, 0)
 	
 	if health == 0:
+		print(self, " is now dead")
 		queue_free()
 
 
@@ -60,7 +61,7 @@ func move(_target, delta):
 		rotation = global_position.angle_to_point(velocity)
 	
 	if sliding and velocity.length_squared() != 0:
-		var body = move_and_collide(velocity * SLIP_SPEED_MULT)
+		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
 		
 		if body == null:
 			return
