@@ -20,7 +20,7 @@ func on_settle():
 
 
 func hit(body, delta):
-	if not body.is_in_group("Enemy"):
+	if not body is Entity:
 		return
 	hurt(body, DAMAGE * delta)
 
