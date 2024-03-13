@@ -42,4 +42,3 @@ position = Vector2( -394, 152 )
 
 [node name="Centipede" parent="." instance=ExtResource( 8 )]
 position = Vector2( 112, -143 )
-NUM_SEGMENTS = 50
