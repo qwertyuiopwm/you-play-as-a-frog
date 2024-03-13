@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Crypt brazier.png-a7d700347b0285d21a881804d34a610e.stex"
+path="res://.import/Crypt brazier-1.png.png-0d1fba9c40c8938ed3124002e75d0aa1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Crypt brazier.png"
-dest_files=[ "res://.import/Crypt brazier.png-a7d700347b0285d21a881804d34a610e.stex" ]
+source_file="res://art/CryptBrazier/Crypt brazier-1.png.png"
+dest_files=[ "res://.import/Crypt brazier-1.png.png-0d1fba9c40c8938ed3124002e75d0aa1.stex" ]
 
 [params]
 
