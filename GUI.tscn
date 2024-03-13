@@ -427,6 +427,57 @@ bbcode_text = "[valign][center]Use [color=#34ebe1][WASD][/color] to move![/cente
 text = "Use [WASD] to move!"
 custom_effects = [ SubResource( 25 ) ]
 
+[node name="wasdtomove2" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -128.0
+margin_top = -32.0
+margin_right = 128.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Use [color=#34ebe1][[color=lime]W[/color]ASD][/color] to move![/center][/valign]"
+text = "Use [WASD] to move!"
+custom_effects = [ SubResource( 25 ) ]
+
+[node name="wasdtomove3" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -128.0
+margin_top = -32.0
+margin_right = 128.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Use [color=#34ebe1][[color=lime]WA[/color]SD][/color] to move![/center][/valign]"
+text = "Use [WASD] to move!"
+custom_effects = [ SubResource( 25 ) ]
+
+[node name="wasdtomove4" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -128.0
+margin_top = -32.0
+margin_right = 128.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Use [color=#34ebe1][[color=lime]WAS[/color]D][/color] to move![/center][/valign]"
+text = "Use [WASD] to move!"
+custom_effects = [ SubResource( 25 ) ]
+
 [node name="qtoselect" type="RichTextLabel" parent="Popups"]
 visible = false
 margin_left = -192.0
