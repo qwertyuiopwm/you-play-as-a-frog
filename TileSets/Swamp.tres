@@ -282,7 +282,7 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 15/z_index = 0
-16/name = "Swamp Tiles (1) (1).png 16"
+16/name = "Swamp Tiles(shake)"
 16/texture = ExtResource( 5 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
