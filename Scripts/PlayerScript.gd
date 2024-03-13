@@ -21,15 +21,19 @@ onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 
+export var melee_damage: float = 5
 export var damage_mult = 1
+
+var melee_distance = 100
+var tongue_speed = 350
+
 export var max_health: float = 100
 export var health: float = 100
-export var melee_damage: float = 5
 var regen_delay = 10
 var health_per_second = 1
 var regen_timer = 0
-var melee_distance = 100
-var tongue_speed = 350
+var no_hit_time = .25
+var no_hit_timer = 0
 
 var max_mana = 100
 var mana = max_mana
@@ -107,7 +111,7 @@ func check_tile():
 	if curr_tile == null: return
 	
 	if "(slide)" in curr_tile:
-		Afflict(Effects.slippy)
+		Afflict(Effects.slippy, 0.1)
 
 
 func Hurt(dmg: float):
@@ -115,6 +119,10 @@ func Hurt(dmg: float):
 		return
 	if health <= 0:
 		return
+	if no_hit_timer > 0:
+		return
+	
+	no_hit_timer = no_hit_time
 	
 	regen_timer = regen_delay
 	
@@ -144,7 +152,8 @@ func get_velocity():
 		return Vector2.ZERO
 	
 	var vel = Vector2.ZERO
-	if sliding and velocity.length_squared() != 0: 
+	if (sliding or $EffectManager.has_effect(Effects.slippy)) and \
+	   velocity.length_squared() != 0: 
 		return velocity
 	if currentFocus != null: return velocity
 	
@@ -159,13 +168,16 @@ func get_velocity():
 
 
 func regen_stats(delta):
+	no_hit_timer = max(no_hit_timer - delta, 0)
+	
+	regen_timer = max(regen_timer - delta, 0)
 	if regen_timer == 0:
 		Heal(health_per_second * delta)
-	else: 
-		regen_timer = max(regen_timer - delta, 0)
+	
 	if beam == null:
 		mana = clamp(mana + (mana_per_second * delta),
 				 0, max_mana)
+	
 	stamina = clamp(stamina + (stamina_per_second * delta),
 					0, max_stamina)
 
