@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.625, 160 )
@@ -37,6 +38,7 @@ collision_layer = 9
 collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -720927, -1610612736, 0, -655405, -1073741824, 0, -655391, -1610612736, 0, -589869, -1073741824, 0, -589855, -1610612736, 0, -524333, -1073741824, 0 )
+script = ExtResource( 5 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
 Triggerables = [ NodePath("../Walls") ]
