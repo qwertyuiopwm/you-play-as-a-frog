@@ -7,9 +7,11 @@ export var ATTACK_RANGE = 50
 export var SPEED = 50
 export var SLIP_WALL_DAMAGE = 10
 export var SLIP_SPEED_MULT = 	2
+export var STEERING_MULT = 2.5
+export var ROTATE_TO_TARGET = false
+
 export var health = 10
 
-var STEERING_MULT = 2.5
 
 onready var Main = get_node("/root/Main")
 onready var rand = RandomNumberGenerator.new()
@@ -22,7 +24,7 @@ var target_pos
 
 
 func animation_finished():
-	assert(false, "Script does not override animation_finished method!")
+	pass
 
 
 func get_state():
@@ -53,8 +55,11 @@ func move(_target, delta):
 	if not Main.GameStarted or not can_move:
 		return
 	
+	if ROTATE_TO_TARGET:
+		rotation = global_position.angle_to_point(velocity)
+	
 	if sliding and velocity.length_squared() != 0:
-		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
+		var body = move_and_collide(velocity * SLIP_SPEED_MULT)
 		
 		if body == null:
 			return
