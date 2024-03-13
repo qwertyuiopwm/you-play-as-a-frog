@@ -39,13 +39,17 @@ Inverted = true
 
 [node name="actiontrigger2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
-Triggerables = [ NodePath("hideq") ]
+Triggerables = [ NodePath("hideq"), NodePath("toggle") ]
 Enabled = false
 Actions = [ "select_spell" ]
 
 [node name="hideq" parent="actiontrigger2" instance=ExtResource( 3 )]
 position = Vector2( 20, 600 )
 PopupName = "qtoselect"
+
+[node name="toggle" parent="actiontrigger2" instance=ExtResource( 5 )]
+Trigger = NodePath("../../actiontrigger3")
+Toggle = true
 
 [node name="actiontrigger3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
@@ -56,7 +60,6 @@ Actions = [ "cast_spell" ]
 [node name="hidee" parent="actiontrigger3" instance=ExtResource( 3 )]
 position = Vector2( 20, 600 )
 PopupName = "etocast"
-Inverted = true
 
 [node name="actionw" parent="." instance=ExtResource( 4 )]
 Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
