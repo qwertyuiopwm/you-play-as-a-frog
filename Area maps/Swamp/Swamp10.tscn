@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25.75, 64 )
 
 [node name="Swamp10" type="Node2D"]
 
@@ -31,4 +37,15 @@ tile_set = ExtResource( 2 )
 collision_layer = 9
 collision_mask = 9
 format = 1
-tile_data = PoolIntArray( -327690, -536870912, 0, -262161, -2147483648, 0, -262154, -536870912, 0, -196625, -2147483648, 0, 65531, -1610612736, 0 )
+tile_data = PoolIntArray( -327690, -536870912, 0, -262161, -2147483648, 0, -262154, -536870912, 0, -196625, -2147483648, 0 )
+
+[node name="Chest" parent="." instance=ExtResource( 5 )]
+position = Vector2( -164, 26 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 4 )]
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( -665.75, -320 )
+shape = SubResource( 1 )

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=2]
 
 [node name="Swamp9" type="Node2D"]
 
@@ -24,3 +25,6 @@ collision_layer = 9
 collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -524304, 15, 0, -524300, 15, 0, -524295, 15, 0, -524292, 15, 0, -458760, 15, 0, -458755, 15, 0, -393235, 15, 0, -393230, 15, 0, -393225, 15, 0, -393218, 15, 0, -327695, 15, 0, -327690, 15, 0, -327681, 15, 0, -196626, 15, 0, -196623, 15, 0, -196614, 15, 0, -131086, 15, 0, -131081, 15, 0, -131080, 15, 0, -131079, 15, 0, -15, 15, 0, -12, 15, 0, -6, 15, 0, 65520, 15, 0, 65525, 15, 0, 131055, 15, 0, 131063, 15, 0, 196589, 15, 0, 196593, 15, 0, 196601, 15, 0, 196603, 15, 0, 262131, 15, 0, 262140, 15, 0, 327662, 15, 0, 327667, 15, 0, 327672, 15, 0, 327675, 15, 0, 327677, 15, 0 )
+
+[node name="Chest" parent="." instance=ExtResource( 2 )]
+position = Vector2( 221, 217 )
