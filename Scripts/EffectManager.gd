@@ -3,8 +3,16 @@ extends Node2D
 
 export var CurrEffects = []
 
+
+class effect_sorter:
+	func sort_effects(a, b): 
+		return a.duration < b.duration
+
+
 func _process(delta):
 	CurrEffects = get_effects()
+	
+	CurrEffects.sort_custom(effect_sorter, "sort_effects")
 	
 	for effect in CurrEffects:
 		effect.affect(get_parent(), delta)
