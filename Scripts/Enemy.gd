@@ -10,7 +10,7 @@ export var SLIP_SPEED_MULT = 	2
 export var STEERING_MULT = 2.5
 export var ROTATE_TO_TARGET = false
 
-export var health = 10
+export var health: float = 10
 
 
 onready var Main = get_node("/root/Main")
@@ -32,12 +32,16 @@ func get_state():
 	assert(false, "Script does not override get_state method!")
 
 
-func hurt(damage):
+func hurt(damage: float):
 	health = max(health - damage, 0)
 	
 	if health == 0:
-		print(self, " is now dead")
+		on_death()
 		queue_free()
+
+
+func on_death():
+	pass
 
 
 func _ready():
@@ -68,11 +72,7 @@ func move(_target, delta):
 			
 		if body.collider.get_parent().get_children()[0] is TileMap:
 			hurt(SLIP_WALL_DAMAGE)
-			print("slipped into wall, ", health)
-			print($EffectManager.get_effects())
 			Cure(Effects.slippy)
-			print("curing slippiness")
-			print($EffectManager.get_effects())
 		return
 	
 	var direction = (_target - global_position).normalized()
