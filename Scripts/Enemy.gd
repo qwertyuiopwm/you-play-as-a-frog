@@ -17,8 +17,9 @@ onready var Main = get_node("/root/Main")
 onready var rand = RandomNumberGenerator.new()
 onready var debug = OS.is_debug_build()
 
+onready var curr_speed = SPEED
+
 var velocity = Vector2(0, 0)
-var curr_speed = SPEED
 var target_player
 var target_pos
 
