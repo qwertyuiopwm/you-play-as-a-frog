@@ -15,3 +15,4 @@ func _on_Area2D_body_entered(body):
 	body.held_big_item = null
 	item.queue_free()
 	$TileMap.set_cell(0, 0, 4)
+	body.get_node("GUI/Popups/ladder").visible = false
