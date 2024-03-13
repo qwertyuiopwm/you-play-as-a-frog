@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemies/Fly.tscn" type="PackedScene" id=2]
@@ -8,9 +8,13 @@
 [ext_resource path="res://Items/Ladder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=7]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 257, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20, 200 )
 
 [node name="Forest3" type="Node2D"]
 position = Vector2( 0, -24 )
@@ -31,11 +35,14 @@ tile_data = PoolIntArray( 720901, -1610612715, 0, 720902, -1610612717, 0, 720903
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 8 )]
 position = Vector2( 610, 989 )
-Triggerables = [ NodePath("../Wall") ]
+Triggerables = [ NodePath("../Wall"), NodePath("popup") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 27, -2 )
 shape = SubResource( 1 )
+
+[node name="popup" parent="PlayerDetector" instance=ExtResource( 9 )]
+PopupName = "flies"
 
 [node name="Wall" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -47,7 +54,7 @@ script = ExtResource( 7 )
 OpenOffset = Vector2( -500, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../Wall") ]
+Triggerables = [ NodePath("../Wall"), NodePath("../popup") ]
 
 [node name="Fly" parent="EnemyManager" instance=ExtResource( 2 )]
 position = Vector2( 383, 1192 )
@@ -60,5 +67,19 @@ position = Vector2( 756, 155 )
 
 [node name="Bridge" parent="." instance=ExtResource( 5 )]
 position = Vector2( 608, 736 )
+
+[node name="PlayerDetector2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 200, 320 )
+Triggerables = [ NodePath("popup") ]
+TriggerVal = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
+shape = SubResource( 2 )
+
+[node name="popup" parent="PlayerDetector2" instance=ExtResource( 9 )]
+PopupName = "ladder"
+
+[node name="popup" parent="." instance=ExtResource( 9 )]
+PopupName = "flies"
 
 [editable path="PlayerDetector"]

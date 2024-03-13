@@ -20,17 +20,13 @@ tile_data = PoolIntArray( -327686, 13, 0, -327685, 13, 0, -327684, 13, 0, -32768
 
 [node name="etocast" parent="." instance=ExtResource( 2 )]
 position = Vector2( 600, 1380 )
-Triggerables = [ NodePath("etocast"), NodePath("toggle"), NodePath("hideq") ]
+Triggerables = [ NodePath("etocast"), NodePath("hideq") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="etocast"]
 shape = SubResource( 2 )
 
 [node name="etocast" parent="etocast" instance=ExtResource( 3 )]
 PopupName = "etocast"
-
-[node name="toggle" parent="etocast" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actiontrigger3")
-Toggle = true
 
 [node name="hideq" parent="etocast" instance=ExtResource( 3 )]
 position = Vector2( -180, -580 )
@@ -113,7 +109,6 @@ position = Vector2( 400, 200 )
 Triggerables = [ NodePath("closewasd"), NodePath("qtoselect"), NodePath("toggle") ]
 Enabled = false
 Actions = [ "move_right" ]
-MaxDistance = 500.0
 
 [node name="closewasd" parent="actiond" instance=ExtResource( 3 )]
 PopupName = "wasdtomove4"
