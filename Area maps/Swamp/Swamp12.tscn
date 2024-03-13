@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
 
 [node name="Swamp12" type="Node2D"]
 
@@ -30,4 +32,10 @@ tile_data = PoolIntArray( -131084, 15, 0, -65551, 15, 0, -65544, 15, 0, -13, 15,
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 format = 1
-tile_data = PoolIntArray( -16, -1073741824, 0, 65520, -1073741824, 0, 131056, -1073741824, 0, 196592, -1073741824, 0, 262128, -1073741824, 0 )
+tile_data = PoolIntArray( -1769473, -1610612736, 0, -1703937, -1610612736, 0, -1638401, -1610612736, 0, -16, -1073741824, 0, 65520, -1073741824, 0, 131056, -1073741824, 0, 196592, -1073741824, 0, 262128, -1073741824, 0 )
+
+[node name="Chest" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1187, 88 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 4 )]
+Triggerables = [ NodePath("../Walls") ]

@@ -13,6 +13,7 @@ onready var Player = Main.get_node("Player")
 func trigger(_trigger: bool):
 	for triggerable_path in Triggerables:
 		var triggerable = get_node(triggerable_path)
+		print("Triggering "+triggerable.get_path())
 		triggerable.trigger(_trigger)
 
 

@@ -12,7 +12,7 @@
 [ext_resource path="res://Area maps/Swamp/Swamp10.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Area maps/Swamp/Swamp11.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Area maps/Swamp/Swamp12.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Area maps/Swamp/Swamp 13.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Area maps/Swamp/Swamp13.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Area maps/Swamp/Swamp14.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Area maps/Swamp/Swamp15.tscn" type="PackedScene" id=15]
 
