@@ -3,6 +3,7 @@ extends "res://Scripts/Enemy.gd"
 
 export var CONTACT_DAMAGE = 20
 export var NUM_SEGMENTS = 3
+export var SEG_SCALE_MULT = 1
 
 var segment_scene = preload("res://Enemies/Centipede/CentipedeSegment.tscn")
 var tail_scene = preload("res://Enemies/Centipede/CentipedeTail.tscn")
@@ -22,8 +23,12 @@ func _ready():
 	segments.push_back(tail)
 	tail.next_segment = next_segment
 	
+	var i = 0
 	for segment in segments:
+		i+=1
 		segment.head = self
+		var seg_scale = pow(SEG_SCALE_MULT, i)
+		segment.scale = Vector2(seg_scale, seg_scale)
 		get_parent().call_deferred("add_child", segment)
 		segment.get_node("HitCollider").connect("body_entered", self, "_body_entered")
 
