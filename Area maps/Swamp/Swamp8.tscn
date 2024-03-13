@@ -32,6 +32,7 @@ collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 65517, -1073741824, 0, 131053, -1073741824, 0, 131071, -1610612736, 0, 196589, -1073741824, 0, 196607, -1610612736, 0 )
 script = ExtResource( 5 )
+OpenOffset = Vector2( 0, -3e+07 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 position = Vector2( 89, 71 )

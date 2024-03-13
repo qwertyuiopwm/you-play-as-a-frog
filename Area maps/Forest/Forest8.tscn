@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=3]
 [ext_resource path="res://Enemies/Weevil.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=6]
 
 [node name="Forest8" type="Node2D"]
 
@@ -28,6 +29,8 @@ collision_layer = 9
 collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 983046, 1610612736, 0, 983047, 1610612736, 0 )
+script = ExtResource( 6 )
+OpenOffset = Vector2( 0, -3e+07 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 1 )]
 Triggerables = [ NodePath("../Walls") ]

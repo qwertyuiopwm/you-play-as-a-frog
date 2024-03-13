@@ -74,7 +74,7 @@ func get_state():
 			return states.DEFAULT
 		return states.SWOOPING
 	
-	if state == states.CIRCLE and global_position.distance_to(target_pos) < 3:
+q	if state == states.CIRCLE and global_position.distance_to(target_pos) < 3:
 		return states.SWOOP
 		
 	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):

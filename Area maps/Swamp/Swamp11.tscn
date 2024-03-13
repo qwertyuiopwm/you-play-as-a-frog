@@ -39,6 +39,7 @@ collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -720927, -1610612736, 0, -655405, -1073741824, 0, -655391, -1610612736, 0, -589869, -1073741824, 0, -589855, -1610612736, 0, -524333, -1073741824, 0 )
 script = ExtResource( 5 )
+OpenOffset = Vector2( 0, -3e+07 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
 Triggerables = [ NodePath("../Walls") ]
