@@ -44,6 +44,11 @@ func _physics_process(delta):
 	move(target_pos, delta)
 
 
+func on_death():
+	for segment in segments:
+		segment.queue_free()
+
+
 func _body_entered(body):
 	if body.is_in_group("Player"):
 		body.Hurt(CONTACT_DAMAGE)
