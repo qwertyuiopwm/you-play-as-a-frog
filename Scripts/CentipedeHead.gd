@@ -41,4 +41,4 @@ func _physics_process(delta):
 
 func _body_entered(body):
 	if body.is_in_group("Player"):
-		body.hurt(CONTACT_DAMAGE)
+		body.Hurt(CONTACT_DAMAGE)
