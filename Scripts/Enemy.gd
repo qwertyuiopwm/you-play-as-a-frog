@@ -62,7 +62,7 @@ func move(_target, delta):
 		return
 	
 	if ROTATE_TO_TARGET:
-		rotation = global_position.angle_to_point(velocity)
+		rotation = Vector2.ZERO.angle_to_point(velocity)
 	
 	if sliding and velocity.length_squared() != 0:
 		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
