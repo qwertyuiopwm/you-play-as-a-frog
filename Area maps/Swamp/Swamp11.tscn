@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.625, 160 )
 
 [node name="Swamp11" type="Node2D"]
 
@@ -24,11 +29,21 @@ tile_set = ExtResource( 1 )
 collision_layer = 9
 collision_mask = 9
 format = 1
-tile_data = PoolIntArray( -1310749, -1073741810, 0, -1310748, -1073741810, 0, -1245213, 16, 0, -1245212, 16, 0, -1179677, 16, 0, -1179676, 16, 0, -1114141, 16, 0, -1114140, 16, 0, -1048605, -1610612722, 0, -1048604, -1610612722, 0 )
+tile_data = PoolIntArray( -1245213, 16, 0, -1245212, 16, 0, -1179677, 16, 0, -1179676, 16, 0, -1114141, 16, 0, -1114140, 16, 0 )
 
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 collision_layer = 9
 collision_mask = 9
 format = 1
-tile_data = PoolIntArray( -2490413, -1610612736, 0, -2424877, -1610612736, 0, -2359341, -1610612736, 0, -720927, -1610612736, 0, -655405, -1073741824, 0, -655391, -1610612736, 0, -589869, -1073741824, 0, -589855, -1610612736, 0, -524333, -1073741824, 0, 65528, -1610612736, 0, 131064, -1610612736, 0, 196600, -1610612736, 0 )
+tile_data = PoolIntArray( -720927, -1610612736, 0, -655405, -1073741824, 0, -655391, -1610612736, 0, -589869, -1073741824, 0, -589855, -1610612736, 0, -524333, -1073741824, 0 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("../Walls") ]
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 4 )]
+Triggerables = [ NodePath("../Walls") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( -2016, -608 )
+shape = SubResource( 1 )
