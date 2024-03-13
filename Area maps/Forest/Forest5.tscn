@@ -24,6 +24,7 @@ format = 1
 tile_data = PoolIntArray( -851951, -1610612736, 0, -786415, -1610612736, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+Triggerables = [ NodePath("../Walls") ]
 
 [node name="Grub" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 822, -978 )
