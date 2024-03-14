@@ -7,7 +7,7 @@ radius = 115.004
 
 [sub_resource type="CircleShape2D" id=2]
 
-[node name="shake" type="KinematicBody2D"]
+[node name="shake" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
