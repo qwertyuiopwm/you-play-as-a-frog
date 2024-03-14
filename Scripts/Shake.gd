@@ -5,9 +5,14 @@ onready var radius = $Area2D/CollisionShape2D.shape.radius
 
 
 func on_cast(caster):
-	global_position = caster.global_position
+	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	$AnimatedSprite.play("default")
+
+
+func animation_finished():
 	
 	for body in $Area2D.get_overlapping_bodies():
+		print(body)
 		if not body is TileMap:
 			continue
 			
@@ -30,3 +35,5 @@ func on_cast(caster):
 				continue
 			
 			body.set_cellv(tile_pos, -1)
+	
+	queue_free()
