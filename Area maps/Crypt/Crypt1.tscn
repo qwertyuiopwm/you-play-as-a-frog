@@ -78,6 +78,8 @@ shape = SubResource( 2 )
 [node name="Row3" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -1835008, 0, 0, -1835000, 0, 0 )
 script = ExtResource( 4 )
@@ -92,6 +94,8 @@ shape = SubResource( 3 )
 [node name="Row4" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -2752510, 0, 0, -2752506, 0, 0 )
 script = ExtResource( 4 )
@@ -106,6 +110,8 @@ shape = SubResource( 4 )
 [node name="Row5" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -2949118, 0, 0, -2949114, 0, 0 )
 script = ExtResource( 4 )
@@ -120,6 +126,8 @@ shape = SubResource( 5 )
 [node name="Row6" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -3145726, 0, 0, -3145722, 0, 0 )
 script = ExtResource( 4 )
@@ -134,6 +142,8 @@ shape = SubResource( 6 )
 [node name="Row7" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -3342334, 0, 0, -3342330, 0, 0 )
 script = ExtResource( 4 )
