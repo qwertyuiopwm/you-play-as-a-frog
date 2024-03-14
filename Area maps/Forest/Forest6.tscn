@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Ant.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=5]
 
 [node name="Forest6" type="Node2D"]
 
@@ -20,6 +21,8 @@ collision_layer = 9
 collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 917509, 1610612736, 0, 917510, 1610612736, 0, 917511, 1610612736, 0 )
+script = ExtResource( 5 )
+OpenOffset = Vector2( -3e+07, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
 Triggerables = [ NodePath("../Wall") ]
