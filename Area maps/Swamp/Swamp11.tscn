@@ -8,7 +8,7 @@
 [ext_resource path="res://Enemies/Swamp/StagBeetle.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.625, 160 )
+extents = Vector2( 31.625, 223 )
 
 [node name="Swamp11" type="Node2D"]
 
@@ -58,5 +58,5 @@ position = Vector2( -2330, -2140 )
 Triggerables = [ NodePath("../Walls") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( -2016, -608 )
+position = Vector2( -2079, -609 )
 shape = SubResource( 1 )
