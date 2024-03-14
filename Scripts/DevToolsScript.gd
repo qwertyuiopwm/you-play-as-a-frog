@@ -13,6 +13,7 @@ onready var enemies = {
 	Fly = preload("res://Enemies/Fly.tscn"),
 	Grub = preload("res://Enemies/Grub.tscn"),
 	Weevil = preload("res://Enemies/Weevil.tscn"),
+	StagBeetle = preload("res://Enemies/StagBeetle.tscn"),
 }
 
 var selectedEnemy:PackedScene

@@ -57,6 +57,7 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
 frames = SubResource( 6 )
+frame = 3
 playing = true
 
 [node name="AttackCollider" type="Area2D" parent="."]
