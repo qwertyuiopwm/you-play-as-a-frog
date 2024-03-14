@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 149, 10 )
+extents = Vector2( 25, 256 )
 
 [node name="Swamp14" type="Node2D"]
 
@@ -44,5 +44,5 @@ OpenOffset = Vector2( 0, -3e+07 )
 Triggerables = [ NodePath("../Walls") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 0, -202 )
+position = Vector2( -188, -448 )
 shape = SubResource( 1 )
