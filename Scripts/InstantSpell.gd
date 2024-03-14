@@ -2,11 +2,11 @@ extends "res://Scripts/Spell.gd"
 
 
 func try_cast(caster):
-	if caster.mana <= MANA_COST:
-		queue_free()
+	if caster.mana >= MANA_COST:
+		on_cast(caster)
 	
-	on_cast()
+	queue_free()
 
 
-func on_cast():
+func on_cast(caster):
 	pass
