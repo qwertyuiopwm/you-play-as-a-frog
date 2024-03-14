@@ -85,8 +85,10 @@ func move(_target, delta):
 	flip_body(velocity.x > 0)
 	velocity = move_and_slide(velocity)
 
+
 func flip_body(flipped):
 	$AnimatedSprite.flip_h = flipped
+
 
 func get_circle_position(random, circle_radius):
 	var circle_center = target_player.global_position

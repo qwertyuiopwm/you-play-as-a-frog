@@ -26,18 +26,10 @@ var state = states.WALK
 	
 func _physics_process(delta):
 	set_target()
-	if target_player == null:
-		return
+	if target_player != null:
+		target_pos = target_player.global_position
 	
-	target_pos = target_player.global_position
 	state = get_state()
-	
-	if state == states.ENRAGED:
-		if moveToPos == null:
-			moveToPos = target_pos
-			var rayResult = Main.cast_ray_towards_point(global_position, target_pos, 900, 0b00000000_00000000_00000000_00001000, [])
-			if rayResult.has("position"):
-				moveToPos = rayResult.position
 	
 	match state:
 		states.STILL:
@@ -50,6 +42,10 @@ func _physics_process(delta):
 			head.play("still")
 			move(Vector2(global_position.x, target_pos.y), delta)
 		states.ENRAGING:
+			moveToPos = target_pos
+			var rayResult = Main.cast_ray_towards_point(global_position, target_pos, 900, 0b00000000_00000000_00000000_00001000, [])
+			if rayResult.has("position"):
+				moveToPos = rayResult.position
 			body.play("still")
 			head.play("enraging")
 		states.ENRAGED:
@@ -85,6 +81,9 @@ func animation_finished():
 
 
 func get_state():
+	if state == states.ENRAGED and len(HitCollider.get_overlapping_bodies()) <= 1:
+		return states.ENRAGED
+		
 	if target_player == null:
 		return states.STILL
 		
@@ -96,9 +95,6 @@ func get_state():
 	
 	if state == states.ENRAGING:
 		return states.ENRAGING
-	
-	if state == states.ENRAGED and len(HitCollider.get_overlapping_bodies()) <= 1:
-		return states.ENRAGED
 	
 	if (global_position.distance_to(target_pos) >= TARGET_RANGE):
 		return states.STILL
