@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Spells",
 "language": "GDScript",
-"path": "res://Scripts/Scripts.gd"
+"path": "res://Scripts/Spells.gd"
 } ]
 _global_script_class_icons={
 "Effects": "",
