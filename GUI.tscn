@@ -167,7 +167,6 @@ texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 3 )
 
 [node name="spellwheel" type="CanvasLayer" parent="IngameUI"]
-visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -208,6 +207,8 @@ margin_top = -16.0
 margin_bottom = 16.0
 rect_pivot_offset = Vector2( 64, 16 )
 texture = ExtResource( 2 )
+
+[node name="WheelParts" type="Control" parent="IngameUI/spellwheel"]
 
 [node name="spellspot" type="CanvasLayer" parent="IngameUI"]
 offset = Vector2( 400, 780 )

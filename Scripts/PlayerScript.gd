@@ -4,8 +4,8 @@ extends "res://Scripts/Entity.gd"
 export var SPEED = 400
 export var HELD_ITEM_POS: Vector2
 export var spells = [
-	preload("res://Spells/ProcureCondiment.tscn"),
-	preload("res://Spells/DevBeam.tscn"),
+	Spells.Procure_Condiment,
+	Spells.Dev_Beam,
 ]
 export var selected_spell: PackedScene
 export var god_enabled: bool

@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "RichTextVAlign",
 "language": "GDScript",
 "path": "res://Assets/VAllign.gd"
+}, {
+"base": "Reference",
+"class": "Spells",
+"language": "GDScript",
+"path": "res://Scripts/Scripts.gd"
 } ]
 _global_script_class_icons={
 "Effects": "",
 "Entity": "",
 "GitAPI": "",
 "Ladder": "",
-"RichTextVAlign": ""
+"RichTextVAlign": "",
+"Spells": ""
 }
 
 [application]
