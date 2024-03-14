@@ -5,7 +5,6 @@ export var TYPE = "BEAM"
 export var MANA_REQUIRED = 15 # Initial mana cost
 
 onready var beamLine:Line2D = get_node("Line2D")
-onready var Main = get_node("/root/Main")
 
 func on_start():
 	pass
