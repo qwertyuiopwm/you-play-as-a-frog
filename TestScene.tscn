@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=7]
-[ext_resource path="res://Enemies/Centipede/CentipedeHead.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Spells/Shake.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -42,9 +41,5 @@ position = Vector2( 182, 167 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -98, 30 )
 
-[node name="Centipede" parent="." instance=ExtResource( 8 )]
-position = Vector2( 112, -143 )
-
 [node name="shake" parent="." instance=ExtResource( 9 )]
 position = Vector2( -48, 2 )
-radius = 120
