@@ -7,6 +7,7 @@ onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
 onready var spellWheel = ingameUI.get_node("spellwheel")
+onready var wheelComponents = spellWheel.get_node("WheelParts")
 onready var wheelArrow = spellWheel.get_node("arrow")
 onready var spellSpot = ingameUI.get_node("spellspot")
 onready var hpDisplay = ingameUI.get_node("top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/HP_bar")
@@ -26,21 +27,14 @@ func _ready():
 			continue
 		node.get_tree().paused = true
 		
-	
-	SpellWheelPositions = generateWheel(len(Player.spells))
-	var i = 0
-	for packedSpell in Player.spells:
-		i+=1
-		var spell = packedSpell.instance()
-		var spellIcon:TextureRect =  ingameUI.get_node("spellwheel/Spell"+String(i)+"Icon")
-		spellIcon.texture = load(spell.SpellIcon)
+	SpellWheelPositions = generateWheel()
 		
 
-func generateWheel(spellSlots: int):
+func generateWheel():
+	var spellSlots = len(Player.spells)
+	for child in wheelComponents.get_children():
+		child.queue_free()
 	var positions = []
-	#if spellSlots <= 1:
-	#	positions.push_back(Vector2(0,0))
-	#	return positions
 	
 	var wheel = spellWheel.get_node("wheel_bg")
 	var baseLine = spellWheel.get_node("line_base")
@@ -55,7 +49,7 @@ func generateWheel(spellSlots: int):
 		var lineAngle = sectorAngle * i
 		newLine.rect_rotation = lineAngle
 		newLine.visible = true
-		spellWheel.add_child(newLine)
+		wheelComponents.add_child(newLine)
 		# Generate spell icon
 		# MAAAATTHHHHHHH RAAAAAAHHHHHHHHHH
 		var newIcon = baseIcon.duplicate()
@@ -67,8 +61,15 @@ func generateWheel(spellSlots: int):
 		newIcon.visible = true
 		newIcon.name = "Spell" + String(i + 1) + "Icon"
 		
-		spellWheel.add_child(newIcon)
+		wheelComponents.add_child(newIcon)
 		positions.push_back(iconPosition)
+		
+	var i = 0
+	for packedSpell in Player.spells:
+		i+=1
+		var spell = packedSpell.instance()
+		var spellIcon:TextureRect = wheelComponents.get_node("Spell"+String(i)+"Icon")
+		spellIcon.texture = load(spell.SpellIcon)
 	return positions
 
 

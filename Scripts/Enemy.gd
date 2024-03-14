@@ -45,7 +45,10 @@ func on_death():
 
 
 func _ready():
-	var _obj = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	for child in get_children():
+		if not child is AnimatedSprite:
+			continue
+		var _obj = child.connect("animation_finished", self, "animation_finished")
 
 
 func set_target():
@@ -79,9 +82,12 @@ func move(_target, delta):
 	var desired_velocity = direction * curr_speed
 	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
 	velocity += steering
-	if velocity.x > 0: $AnimatedSprite.flip_h = true
-	if velocity.x < 0: $AnimatedSprite.flip_h = false
+	flip_body(velocity.x > 0)
 	velocity = move_and_slide(velocity)
+
+
+func flip_body(flipped):
+	$AnimatedSprite.flip_h = flipped
 
 
 func get_circle_position(random, circle_radius):

@@ -2,8 +2,8 @@
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemies/Grub.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/Fly.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Forest/Grub.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Forest/Fly.tscn" type="PackedScene" id=4]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=5]
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Ladder.tscn" type="PackedScene" id=7]
@@ -52,6 +52,7 @@ position = Vector2( 314, 717 )
 
 [node name="Grub" parent="EnemyManager" instance=ExtResource( 3 )]
 position = Vector2( -229, 867 )
+health = 25.0
 
 [node name="bridge" parent="." instance=ExtResource( 6 )]
 position = Vector2( 224, 352 )
