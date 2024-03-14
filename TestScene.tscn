@@ -47,4 +47,4 @@ position = Vector2( 182, 167 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -98, 30 )
-spells = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ]
+PlayerSpells = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ]
