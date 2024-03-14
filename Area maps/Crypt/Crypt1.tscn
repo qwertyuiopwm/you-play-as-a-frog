@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TileSets/CryptTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/LitBrazier.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=4]
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 288, 10 )
@@ -143,3 +144,6 @@ Triggerables = [ NodePath("../Row7") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Candles/PlayerDetector7"]
 position = Vector2( 288.25, -3203 )
 shape = SubResource( 7 )
+
+[node name="Chest" parent="." instance=ExtResource( 5 )]
+position = Vector2( -92, -1184 )
