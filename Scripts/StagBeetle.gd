@@ -6,7 +6,7 @@ export var RUSH_SPEED_MULT = 5
 export var VERT_DISTANCE_TO_RUSH = 10
 
 onready var head = $head
-onready var body = $AnimatedSprite
+onready var body = $body
 onready var HitCollider = $HitCollider
 
 var moveToPos
@@ -38,7 +38,6 @@ func _physics_process(delta):
 			var rayResult = Main.cast_ray_towards_point(global_position, target_pos, 900, 0b00000000_00000000_00000000_00001000, [])
 			if rayResult.has("position"):
 				moveToPos = rayResult.position
-	
 	
 	match state:
 		states.STILL:
@@ -78,14 +77,22 @@ func animation_finished():
 		"enraging":
 			state = states.ENRAGED
 		"stunned":
-			state = states.RECOVERING
+			state = states.STUNNED
+			head.play("recovery")
 		"recovery":
+			head.play("still")
 			state = states.STILL
 
 
 func get_state():
 	if target_player == null:
 		return states.STILL
+		
+	if head.animation == "stunned":
+		return states.STUNNED
+	
+	if head.animation == "recovery":
+		return states.RECOVERING
 	
 	if state == states.ENRAGING:
 		return states.ENRAGING
@@ -108,18 +115,18 @@ func get_state():
 		return states.WALK
 
 
-
-func _on_HitCollider_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+func _on_HitCollider_body_shape_entered(_body_rid, hitBody, _body_shape_index, _local_shape_index):
 	if state != states.ENRAGED:
 		return
 	moveToPos = null
-	if body.is_in_group("Player"):
+	head.play("stunned")
+	body.play("still")
+	if hitBody.is_in_group("Player"):
 		print("hit player!")
 		return
-	if body.is_in_group("Enemy"):
+	if hitBody.is_in_group("Enemy"):
 		print("Hit another enemy :(")
 		return
-	if body.is_in_group("ground"):
-		print("Hit a wall :(")
+	if hitBody.is_in_group("ground"):
 		return
 	
