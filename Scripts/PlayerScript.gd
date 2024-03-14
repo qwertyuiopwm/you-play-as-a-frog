@@ -3,7 +3,7 @@ extends "res://Scripts/Entity.gd"
 
 export var SPEED = 400
 export var HELD_ITEM_POS: Vector2
-export(Array, NodePath) var PlayerSpells = [
+export(Array, PackedScene) var PlayerSpells = [
 	Spells.Procure_Condiment,
 	Spells.Dev_Beam,
 ]
