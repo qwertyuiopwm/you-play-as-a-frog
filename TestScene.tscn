@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=7]
+[ext_resource path="res://Spells/ProcureCondiment.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Spells/Shake.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Spells/DevBeam.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,6 +21,11 @@ tile_set = ExtResource( 1 )
 show_collision = true
 format = 1
 tile_data = PoolIntArray( -262146, 12, 0, -262145, 12, 0, -196612, 1, 0, -196611, 11, 0, -196610, 12, 0, -196609, 12, 0, -196604, 1, 0, -131072, 10, 3, -131068, 1, 0, -2, 1, 0, -1, 10, 0, -65536, 10, 327681, -65532, 11, 0, 65533, 10, 196608, 65534, 10, 196609, 65535, 10, 327683, 0, 10, 327682, 1, 10, 196610, 4, 1, 0, 65540, 1, 0, 327677, 2, 0, 327678, 2, 0, 327679, 2, 0, 262144, 2, 0, 393214, 10, 196611 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( -131072, 8, 0, -131071, 8, 0, -65536, 8, 0 )
 
 [node name="Chest" parent="." instance=ExtResource( 6 )]
 position = Vector2( 115, -230 )
@@ -40,6 +47,4 @@ position = Vector2( 182, 167 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -98, 30 )
-
-[node name="shake" parent="." instance=ExtResource( 9 )]
-position = Vector2( -48, 2 )
+spells = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ]
