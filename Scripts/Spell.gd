@@ -6,6 +6,7 @@ export var COOLDOWN = 1
 export var MANA_COST = 15
 export var SpellIcon: String
 
+onready var Main = get_node("/root/Main")
 onready var Player = get_parent().get_node("Player")
 
 # 2 to the power of layer - 1

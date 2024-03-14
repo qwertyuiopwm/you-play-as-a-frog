@@ -22,6 +22,7 @@ func _ready():
 
 
 func _process(delta):
+	if not target_pos: return
 	var dist_to = global_position.distance_to(target_pos)
 	if (OpenSpeed <= 0) or (0 < dist_to and dist_to < TARGET_COMFORT_RANGE):
 		global_position = target_pos
