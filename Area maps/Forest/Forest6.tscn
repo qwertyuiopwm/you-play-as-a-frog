@@ -29,12 +29,16 @@ Triggerables = [ NodePath("../Wall") ]
 
 [node name="Ant" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 195, 534 )
+SPEED = 75
 
 [node name="Ant2" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 270, 618 )
+SPEED = 75
 
 [node name="Ant3" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 434, 575 )
+SPEED = 75
 
 [node name="Ant4" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 550, 507 )
+SPEED = 75

@@ -52,6 +52,7 @@ position = Vector2( 314, 717 )
 
 [node name="Grub" parent="EnemyManager" instance=ExtResource( 3 )]
 position = Vector2( -229, 867 )
+health = 25.0
 
 [node name="bridge" parent="." instance=ExtResource( 6 )]
 position = Vector2( 224, 352 )

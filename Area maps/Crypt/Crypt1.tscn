@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TileSets/CryptTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/LitBrazier.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=4]
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 288, 10 )
@@ -77,6 +78,8 @@ shape = SubResource( 2 )
 [node name="Row3" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -1835008, 0, 0, -1835000, 0, 0 )
 script = ExtResource( 4 )
@@ -91,6 +94,8 @@ shape = SubResource( 3 )
 [node name="Row4" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -2752510, 0, 0, -2752506, 0, 0 )
 script = ExtResource( 4 )
@@ -105,6 +110,8 @@ shape = SubResource( 4 )
 [node name="Row5" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -2949118, 0, 0, -2949114, 0, 0 )
 script = ExtResource( 4 )
@@ -119,6 +126,8 @@ shape = SubResource( 5 )
 [node name="Row6" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -3145726, 0, 0, -3145722, 0, 0 )
 script = ExtResource( 4 )
@@ -133,6 +142,8 @@ shape = SubResource( 6 )
 [node name="Row7" type="TileMap" parent="Candles"]
 visible = false
 tile_set = ExtResource( 2 )
+collision_layer = 9
+collision_mask = 9
 format = 1
 tile_data = PoolIntArray( -3342334, 0, 0, -3342330, 0, 0 )
 script = ExtResource( 4 )
@@ -143,3 +154,6 @@ Triggerables = [ NodePath("../Row7") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Candles/PlayerDetector7"]
 position = Vector2( 288.25, -3203 )
 shape = SubResource( 7 )
+
+[node name="Chest" parent="." instance=ExtResource( 5 )]
+position = Vector2( -92, -1184 )

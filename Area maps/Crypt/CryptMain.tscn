@@ -12,4 +12,4 @@
 position = Vector2( 128, -3264 )
 
 [node name="Crypt3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 192, -5248 )
+position = Vector2( 192, -4864 )
