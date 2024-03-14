@@ -26,6 +26,8 @@ export var damage_mult = 1
 
 var melee_distance = 100
 var tongue_speed = 350
+var melee_delay = 2
+var melee_counter = 0
 
 export var max_health: float = 100
 export var health: float = 100
@@ -170,6 +172,8 @@ func get_velocity():
 func regen_stats(delta):
 	no_hit_timer = max(no_hit_timer - delta, 0)
 	
+	melee_counter = max(melee_counter - delta, 0)
+	
 	regen_timer = max(regen_timer - delta, 0)
 	if regen_timer == 0:
 		Heal(health_per_second * delta)
@@ -211,6 +215,10 @@ func cast_spell_if_pressed(delta):
 
 func melee_if_pressed(_delta):
 	TongueLine.points[1] = TonguePosition.position
+	
+	if melee_counter > 0:
+		return
+	
 	if not Input.is_action_just_pressed("melee"):
 		return
 	
