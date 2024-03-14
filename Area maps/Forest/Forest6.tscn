@@ -45,7 +45,7 @@ SPEED = 75
 
 [node name="Ant4" parent="EnemyManager" instance=ExtResource( 4 )]
 position = Vector2( 550, 507 )
-<<<<<<< HEAD
+SPEED = 75
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 6 )]
 Triggerables = [ NodePath("../Wall") ]
@@ -53,6 +53,3 @@ Triggerables = [ NodePath("../Wall") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 256, 54 )
 shape = SubResource( 1 )
-=======
-SPEED = 75
->>>>>>> e30ea5ea459be52236b540409cd192d1078acffa
