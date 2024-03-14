@@ -7,7 +7,7 @@
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 69.5 )
+extents = Vector2( 10, 95.75 )
 
 [node name="Swamp8" type="Node2D"]
 
@@ -39,7 +39,7 @@ position = Vector2( 89, 71 )
 Triggerables = [ NodePath("../TileMap/Walls") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( -163, 51.5 )
+position = Vector2( -205, 24.75 )
 shape = SubResource( 1 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]

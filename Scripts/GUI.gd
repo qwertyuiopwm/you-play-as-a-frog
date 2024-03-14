@@ -31,7 +31,7 @@ func _ready():
 		
 
 func generateWheel():
-	var spellSlots = len(Player.spells)
+	var spellSlots = len(Player.PlayerSpells)
 	for child in wheelComponents.get_children():
 		child.queue_free()
 	var positions = []
@@ -65,7 +65,7 @@ func generateWheel():
 		positions.push_back(iconPosition)
 		
 	var i = 0
-	for packedSpell in Player.spells:
+	for packedSpell in Player.PlayerSpells:
 		i+=1
 		var spell = packedSpell.instance()
 		var spellIcon:TextureRect = wheelComponents.get_node("Spell"+String(i)+"Icon")
@@ -96,7 +96,7 @@ func _process(_delta):
 			if newMag < lowestMag:
 				selectedIndex = i
 				lowestMag = newMag
-		var selectedSpell = Player.spells[(selectedIndex-1)]
+		var selectedSpell = Player.PlayerSpells[(selectedIndex-1)]
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
 			
