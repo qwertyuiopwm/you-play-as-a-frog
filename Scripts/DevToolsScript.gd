@@ -9,11 +9,11 @@ onready var devToolsLabels = devTools.get_node("HBoxContainer/Labels")
 onready var devToolsValues = devTools.get_node("HBoxContainer/Values")
 
 onready var enemies = {
-	Ant = preload("res://Enemies/Ant.tscn"),
-	Fly = preload("res://Enemies/Fly.tscn"),
-	Grub = preload("res://Enemies/Grub.tscn"),
-	Weevil = preload("res://Enemies/Weevil.tscn"),
-	StagBeetle = preload("res://Enemies/StagBeetle.tscn"),
+	Ant = preload("res://Enemies/Forest/Ant.tscn"),
+	Fly = preload("res://Enemies/Forest/Fly.tscn"),
+	Grub = preload("res://Enemies/Forest/Grub.tscn"),
+	Weevil = preload("res://Enemies/Forest/Weevil.tscn"),
+	StagBeetle = preload("res://Enemies/Swamp/StagBeetle.tscn"),
 }
 
 var selectedEnemy:PackedScene
