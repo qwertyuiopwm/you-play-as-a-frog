@@ -27,7 +27,7 @@ func _ready():
 			continue
 		node.get_tree().paused = true
 		
-	SpellWheelPositions = generateWheel()
+	generateWheel()
 		
 
 func generateWheel():
@@ -70,7 +70,7 @@ func generateWheel():
 		var spell = packedSpell.instance()
 		var spellIcon:TextureRect = wheelComponents.get_node("Spell"+String(i)+"Icon")
 		spellIcon.texture = load(spell.SpellIcon)
-	return positions
+	SpellWheelPositions = positions
 
 
 func _process(_delta):
