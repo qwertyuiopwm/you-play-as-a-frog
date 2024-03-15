@@ -10,6 +10,12 @@ class effect_sorter:
 
 
 func _process(delta):
+	
+	get_parent().modulate = Color(1, 1, 1)
+	
+	if has_effect(Effects.slippy):
+		get_parent().modulate = Color(1, 1, .8)
+	
 	CurrEffects = get_effects()
 	
 	CurrEffects.sort_custom(effect_sorter, "sort_effects")
