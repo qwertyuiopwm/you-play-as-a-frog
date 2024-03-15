@@ -2,6 +2,7 @@ extends "res://Scripts/Entity.gd"
 
 
 export var SPEED = 400
+export var SELF_CAST_RANGE = 20
 export var HELD_ITEM_POS: Vector2
 export(Array, PackedScene) var PlayerSpells = [
 	Spells.Procure_Condiment,
@@ -226,7 +227,11 @@ func cast_spell_if_pressed(delta):
 	
 	var spell = selected_spell.instance()
 	
-	spell.try_cast(self)
+	if global_position.distance_to(get_global_mouse_position()) <= SELF_CAST_RANGE \
+	   and spell.CAN_SELF_CAST:
+		spell.try_self_cast(self)
+	else:
+		spell.try_cast(self)
 
 
 func melee_if_pressed(_delta):

@@ -4,6 +4,7 @@ extends RigidBody2D
 export var DAMAGE = 10
 export var COOLDOWN = 1
 export var MANA_COST = 15
+export var CAN_SELF_CAST = false
 export var SpellIcon: String
 
 onready var Main = get_node("/root/Main")
@@ -20,5 +21,9 @@ func wait(seconds):
 	yield(get_tree().create_timer(seconds), "timeout")
 
 
-func try_cast(_player):
+func try_cast(_caster):
 	assert(false, "OVERRIDE METHOD 'try_cast' ON %s" % self)
+
+
+func try_self_cast(_caster):
+	pass
