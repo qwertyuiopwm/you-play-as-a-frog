@@ -2,6 +2,7 @@ extends "res://Scripts/BouncingSpell.gd"
 
 
 export var SLIPPY_DURATION = 2
+export var SELF_SLIPPY_DURATION = 1.5
 
 
 var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn")
@@ -28,3 +29,12 @@ func animation_finished():
 func on_start():
 	var _obj = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	$AnimatedSprite.play("start")
+
+
+func try_self_cast(player):
+	if player.mana < MANA_COST: 
+		queue_free()
+		return
+	
+	player.mana -= MANA_COST
+	player.Afflict(Effects.slippy, SELF_SLIPPY_DURATION)
