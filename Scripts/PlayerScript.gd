@@ -2,6 +2,7 @@ extends "res://Scripts/Entity.gd"
 
 
 export var SPEED = 400
+export var SELF_CAST_RANGE = 20
 export var HELD_ITEM_POS: Vector2
 export(Array, PackedScene) var PlayerSpells = [
 	Spells.Procure_Condiment,
@@ -24,6 +25,12 @@ onready var half_height = height / 2
 
 export var melee_damage: float = 5
 export var damage_mult = 1
+
+var dashing = false
+var dash_stamina_cost = 20
+var dash_speed_mult = 2
+var dash_duration = .2
+var dash_counter = 0
 
 var melee_distance = 100
 var tongue_speed = 350
@@ -88,8 +95,10 @@ func _physics_process(delta):
 		PlayerSprite.stop()
 		return
 	
+	dash_if_pressed()
+	
 	set_animation()
-	var _v = move_and_slide(velocity)
+	var _v = move_and_slide(velocity * (1 + (int(dashing) * dash_speed_mult)))
 	
 	if held_big_item != null:
 		held_big_item.global_position = $ItemHolder.global_position
@@ -155,9 +164,14 @@ func get_velocity():
 		return Vector2.ZERO
 	
 	var vel = Vector2.ZERO
-	if (sliding or $EffectManager.has_effect(Effects.slippy)) and \
-	   velocity.length_squared() != 0: 
+	
+	if (sliding or $EffectManager.has_effect(Effects.slippy))\
+	   and velocity.length_squared() != 0: 
 		return velocity
+	
+	if dashing:
+		return velocity
+		
 	if currentFocus != null: return velocity
 	
 	vel.y = int(Input.is_action_pressed("move_down")) - \
@@ -174,6 +188,8 @@ func regen_stats(delta):
 	no_hit_timer = max(no_hit_timer - delta, 0)
 	
 	melee_counter = max(melee_counter - delta, 0)
+	
+	dash_counter = max(dash_counter - delta, 0)
 	
 	regen_timer = max(regen_timer - delta, 0)
 	if regen_timer == 0:
@@ -211,7 +227,11 @@ func cast_spell_if_pressed(delta):
 	
 	var spell = selected_spell.instance()
 	
-	spell.try_cast(self)
+	if global_position.distance_to(get_global_mouse_position()) <= SELF_CAST_RANGE \
+	   and spell.CAN_SELF_CAST:
+		spell.try_self_cast(self)
+	else:
+		spell.try_cast(self)
 
 
 func melee_if_pressed(_delta):
@@ -252,6 +272,21 @@ func melee_if_pressed(_delta):
 		tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 	)
 	TongueTween.start()
+
+
+func dash_if_pressed():
+	if dash_counter == 0:
+		dashing = false
+		
+	if dashing == true:
+		return
+	
+	if not Input.is_action_just_pressed("dash"):
+		return
+		
+	dash_counter = dash_duration
+	dashing = true
+	stamina -= dash_stamina_cost
 
 
 func set_animation():
