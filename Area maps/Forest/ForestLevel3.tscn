@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Area maps/Forest/Forest13.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Area maps/Forest/Forest14.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Area maps/Forest/Forest10.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Area maps/Forest/Forest11.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Area maps/Forest/Forest12.tscn" type="PackedScene" id=5]
+
+[node name="ForestLevel3" type="Node2D"]
+
+[node name="Forest10" parent="." instance=ExtResource( 3 )]
+
+[node name="Forest11" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1216, 1214 )
+
+[node name="Forest12" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1537, 2814 )
+
+[node name="Forest13" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1538, 3966 )
+
+[node name="Forest14" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1539, 5182 )
