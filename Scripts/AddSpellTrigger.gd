@@ -9,3 +9,4 @@ func onTriggerAny(_trigger):
 	if not Spells.AllSpells.has(Spell):
 		return
 	PlayerNode.PlayerSpells.push_back(Spells.AllSpells[Spell])
+	PlayerNode.get_node("GUI").generateWheel()
