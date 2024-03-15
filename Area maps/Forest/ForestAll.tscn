@@ -15,7 +15,7 @@
 [ext_resource path="res://Area maps/Forest/Forest6.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Area maps/Forest/Forest1.tscn" type="PackedScene" id=14]
 
-[node name="Node2D" type="Node2D"]
+[node name="ForestAll" type="Node2D"]
 
 [node name="Forest1" parent="." instance=ExtResource( 14 )]
 
