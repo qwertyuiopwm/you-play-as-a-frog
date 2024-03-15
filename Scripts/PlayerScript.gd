@@ -27,7 +27,7 @@ export var damage_mult = 1
 
 var melee_distance = 100
 var tongue_speed = 350
-var melee_delay = 2
+var melee_delay = 1
 var melee_counter = 0
 
 export var max_health: float = 100
@@ -222,6 +222,8 @@ func melee_if_pressed(_delta):
 	
 	if not Input.is_action_just_pressed("melee"):
 		return
+	
+	melee_counter = melee_delay
 	
 	var rootPos = TongueLine.global_position
 	var mousePos = get_global_mouse_position()
