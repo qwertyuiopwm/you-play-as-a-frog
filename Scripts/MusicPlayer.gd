@@ -7,6 +7,11 @@ func _ready():
 	for node in self.get_children():
 		Songs[String(node.name)] = node
 
+func PauseSong(paused: bool):
+	if CurrentlyPlaying == "NONE":
+		return
+	Songs[CurrentlyPlaying].get_tree().paused = paused
+
 func PlaySong(song: String):
 	if not Songs.has(song):
 		return

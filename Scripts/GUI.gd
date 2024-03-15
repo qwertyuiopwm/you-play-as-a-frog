@@ -22,10 +22,7 @@ func magnitude(vec: Vector2):
 
 func _ready():
 	MainMenu.visible = true
-	for node in Main.get_children():
-		if node == Player:
-			continue
-		node.get_tree().paused = true
+	Main.pause(true, [Player])
 		
 	generateWheel()
 		
@@ -109,11 +106,6 @@ func _process(_delta):
 
 
 func _on_Button_pressed():
-	Main.GameStarted = true
 	MainMenu.visible = false
 	MusicPlayer.PlaySong("ForestMusic")
-	
-	for node in Main.get_children():
-		if node == Player:
-			continue
-		node.get_tree().paused = false
+	Main.pause(false, [])

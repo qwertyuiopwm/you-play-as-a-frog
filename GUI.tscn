@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Assets/vcr_osd_mono.tres" type="DynamicFont" id=16]
 [ext_resource path="res://Assets/popup_style.tres" type="StyleBox" id=17]
 [ext_resource path="res://Assets/VAllign.gd" type="Script" id=18]
+[ext_resource path="res://Assets/vcr_osd_mono_large.tres" type="DynamicFont" id=19]
 
 [sub_resource type="StyleBoxFlat" id=11]
 corner_radius_top_left = 1024
@@ -106,6 +107,9 @@ script = ExtResource( 18 )
 
 [sub_resource type="RichTextEffect" id=26]
 script = ExtResource( 18 )
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="GUI" type="Control"]
 pause_mode = 2
@@ -566,6 +570,39 @@ bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee the 
 text = "[Left Click] to melee the [Flies]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
+
+[node name="LevelTransition" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="LevelTransition"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 27 )
+
+[node name="TopText" type="Label" parent="LevelTransition"]
+margin_left = -400.0
+margin_top = -64.0
+margin_right = 400.0
+custom_colors/font_color = Color( 0.219608, 0.376471, 0.223529, 1 )
+custom_fonts/font = ExtResource( 19 )
+text = "The Forest"
+align = 1
+valign = 1
+
+[node name="BottomText" type="Label" parent="LevelTransition"]
+margin_left = -400.0
+margin_right = 400.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 19 )
+text = "Level One"
+align = 1
+valign = 1
 
 [connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]
 [connection signal="pressed" from="MainMenu/Button" to="." method="_on_Button_pressed"]

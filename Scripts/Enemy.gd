@@ -61,7 +61,7 @@ func set_target():
 
 
 func move(_target, delta):
-	if not Main.GameStarted or not can_move:
+	if Main.Paused or not can_move:
 		return
 	
 	if ROTATE_TO_TARGET:

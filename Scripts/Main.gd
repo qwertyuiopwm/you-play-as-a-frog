@@ -1,7 +1,17 @@
 extends Node2D
 
 
-export var GameStarted = false
+export var Paused = true
+
+func wait(seconds):
+	yield(get_tree().create_timer(seconds), "timeout")
+	
+func pause(paused:bool, exclude:Array):
+	Paused = paused
+	for node in get_children():
+		if exclude.has(node):
+			continue
+		node.get_tree().paused = paused
 
 func cast_ray(root, target, layer, ignore):
 	var space_rid = get_world_2d().space

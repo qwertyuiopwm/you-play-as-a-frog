@@ -14,6 +14,8 @@ func trigger(_trigger: bool):
 	for triggerable_path in Triggerables:
 		var triggerable = get_node(triggerable_path)
 		triggerable.trigger(_trigger)
+	if DeleteOnTrigger:
+		queue_free()
 
 
 func condition():
@@ -26,5 +28,4 @@ func _process(_delta):
 	if !condition():
 		return
 	trigger(TriggerVal)
-	if DeleteOnTrigger:
-		queue_free()
+	

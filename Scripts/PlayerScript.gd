@@ -68,7 +68,7 @@ func _on_focus_changed(node):
 	var _obj = currentFocus.connect("focus_exited", self, "_remove_focus")
 
 func _physics_process(delta):
-	if not Main.GameStarted:
+	if Main.Paused:
 		return
 	if health <= 0:
 		return
