@@ -12,5 +12,6 @@ func Afflict(effect, duration: float=-1):
 	if effect in IMMUNITIES: return
 	$EffectManager.Afflict(effect, duration)
 
+
 func Cure(effect):
 	$EffectManager.Cure(effect)
