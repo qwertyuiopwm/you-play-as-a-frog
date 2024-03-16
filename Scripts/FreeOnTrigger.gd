@@ -1,5 +1,5 @@
 extends "res://Scripts/Triggerable.gd"
 
 
-func onTriggerAny(trigger):
+func onTriggerAny(_trigger):
 	queue_free()
