@@ -21,7 +21,7 @@ onready var BottomLabel:Label = TransferContainer.get_node("BottomText")
 
 var running = false
 
-func onTriggerAny(trigger):
+func onTriggerAny(_trigger):
 	running = true
 	TopLabel.text = TopText
 	TopLabel.add_color_override("font_color", TopColor)

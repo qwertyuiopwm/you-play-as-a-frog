@@ -4,9 +4,9 @@ extends "res://Scripts/InstantSpell.gd"
 onready var radius = $Area2D/CollisionShape2D.shape.radius
 
 
-func on_cast(caster):
-	$AnimatedSprite.connect("animation_finished", self, "animation_finished")
-	$AnimatedSprite.play("default")
+func on_cast(_caster):
+	var _c = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
+	var __c = $AnimatedSprite.play("default")
 
 
 func animation_finished():
