@@ -6,7 +6,8 @@ export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
 export var SPEED = 50
 export var SLIP_WALL_DAMAGE = 10
-export var SLIP_SPEED_MULT = 	2
+export var SLIP_SPEED_MULT = 2
+export var SLIP_STUN_DUR = 1
 export var STEERING_MULT = 2.5
 export var ROTATE_TO_TARGET = false
 
@@ -61,13 +62,13 @@ func set_target():
 
 
 func move(_target, delta):
-	if Main.Paused or not can_move:
+	if Main.Paused or has_effect(Effects.stunned):
 		return
 	
 	if ROTATE_TO_TARGET:
 		rotation = Vector2.ZERO.angle_to_point(velocity)
 	
-	if sliding and velocity.length_squared() != 0:
+	if is_sliding() and velocity.length_squared() != 0:
 		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
 		
 		if body == null:
@@ -76,6 +77,7 @@ func move(_target, delta):
 		if body.collider.get_parent().get_children()[0] is TileMap:
 			hurt(SLIP_WALL_DAMAGE)
 			Cure(Effects.slippy)
+			Afflict(Effects.stunned, SLIP_STUN_DUR)
 		return
 	
 	var direction = (_target - global_position).normalized()
