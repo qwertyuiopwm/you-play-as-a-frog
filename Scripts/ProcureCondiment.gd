@@ -16,7 +16,7 @@ func on_settle(body):
 	if not body is TileMap: return
 	
 	var residue = condiment_residue.instance()
-	get_parent().set_deferred("add_child", residue)
+	get_parent().call_deferred("add_child", residue)
 	residue.global_position = global_position
 
 
