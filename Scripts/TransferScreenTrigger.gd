@@ -6,9 +6,9 @@ export var TopText: String
 export var TopColor: Color
 export var BottomText: String
 export var BottomColor: Color
-export var DisplayLengthSeconds: float
-export var TweenLengthSeconds: float
-export var SetPlayerPosition: Vector2 # Set to 0,0 to keep current position
+export var DisplayLengthSeconds: float = 3
+export var TweenLengthSeconds: float = .75
+export var SetPlayerPosition: NodePath # Set to 0,0 to keep current position
 
 onready var PlayerNode = get_node("/root/Main/Player")
 onready var GUI = PlayerNode.get_node("GUI")
@@ -43,6 +43,8 @@ func onTriggerAny(_trigger):
 		TweenLengthSeconds,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 	)
+	if SetPlayerPosition:
+		PlayerNode.global_position = get_node(SetPlayerPosition).global_position
 	# Unpause game
 	TransitionTween.start()
 	yield(Main.wait(TweenLengthSeconds), "completed")
