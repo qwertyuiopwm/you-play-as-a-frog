@@ -548,8 +548,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Grab the [color=#967757][Bridge][/color] and place it on the [color=blue][water].[/color][/center][/valign]"
-text = "Grab the [Bridge] and place it on the [water]."
+bbcode_text = "[valign][center]Grab the [color=#967757][Ladder][/color] and place it on the [color=#4bb7e5][water].[/color][/center][/valign]"
+text = "Grab the [Ladder] and place it on the [water]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
