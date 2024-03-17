@@ -61,6 +61,10 @@ func set_target():
 		 target_player = get_nearest_player()
 
 
+func on_slip_into_wall():
+	pass
+
+
 func move(_target, delta):
 	if Main.Paused or has_effect(Effects.stunned):
 		return
@@ -75,6 +79,7 @@ func move(_target, delta):
 			return
 			
 		if body.collider.get_parent().get_children()[0] is TileMap:
+			on_slip_into_wall()
 			hurt(SLIP_WALL_DAMAGE)
 			Cure(Effects.slippy)
 			Afflict(Effects.stunned, SLIP_STUN_DUR)
