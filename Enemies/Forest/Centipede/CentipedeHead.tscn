@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://art/centipede head.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/CentipedeHead.gd" type="Script" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.0
@@ -28,9 +29,10 @@ animations = [ {
 radius = 37.0
 
 [node name="Centipede" type="KinematicBody2D"]
-collision_layer = 256
+collision_layer = 257
 collision_mask = 2
 script = ExtResource( 2 )
+IMMUNITIES = [ ExtResource( 4 ) ]
 SPEED = 1000
 SLIP_SPEED_MULT = 1
 STEERING_MULT = 0.5
