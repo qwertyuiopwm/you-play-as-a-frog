@@ -3,6 +3,7 @@ class_name Entity
 
 
 export(Array, PackedScene) var IMMUNITIES = []
+export(Array, PackedScene) var PERMANENT_EFFECTS = []
 
 var sliding = false
 var can_move = true
