@@ -5,8 +5,8 @@ export var CONTACT_DAMAGE = 20
 export var NUM_SEGMENTS = 3
 export var SEG_SCALE_MULT = 1
 
-var segment_scene = preload("res://Enemies/Centipede/CentipedeSegment.tscn")
-var tail_scene = preload("res://Enemies/Centipede/CentipedeTail.tscn")
+var segment_scene = preload("res://Enemies/Forest/Centipede/CentipedeSegment.tscn")
+var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
 
 var segments = []
 

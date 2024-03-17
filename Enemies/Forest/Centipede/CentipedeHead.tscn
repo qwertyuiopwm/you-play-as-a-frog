@@ -35,7 +35,7 @@ SPEED = 1000
 SLIP_SPEED_MULT = 1
 STEERING_MULT = 0.5
 ROTATE_TO_TARGET = true
-health = 50
+health = 50.0
 NUM_SEGMENTS = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
