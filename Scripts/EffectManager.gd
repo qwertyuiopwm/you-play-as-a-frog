@@ -30,7 +30,7 @@ func Cure(cured_effect):
 			effect.queue_free()
 
 
-func Afflict(effect, duration: float):
+func Afflict(effect, duration: float, override_immunities := false):
 	var new_effect = effect.instance()
 	if effect in get_parent().PERMANENT_EFFECTS:
 		new_effect.Permanent = true
