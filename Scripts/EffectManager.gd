@@ -32,6 +32,8 @@ func Cure(cured_effect):
 
 func Afflict(effect, duration: float):
 	var new_effect = effect.instance()
+	if effect in get_parent().PERMANENT_EFFECTS:
+		new_effect.Permanent = true
 	
 	if not new_effect.CAN_STACK and has_effect(effect):
 		if new_effect.STACK_TIME: 
