@@ -53,3 +53,5 @@ Triggerables = [ NodePath("../Wall") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 256, 54 )
 shape = SubResource( 1 )
+
+[editable path="EnemyManager/Ant"]
