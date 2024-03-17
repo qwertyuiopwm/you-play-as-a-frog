@@ -4,6 +4,7 @@ extends "res://Scripts/Enemy.gd"
 export var CONTACT_DAMAGE = 20
 export var NUM_SEGMENTS = 3
 export var SEG_SCALE_MULT = 1
+export var SLIPPY_SEGMENTS_TO_SLIP = 5
 
 var segment_scene = preload("res://Enemies/Forest/Centipede/CentipedeSegment.tscn")
 var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
@@ -36,12 +37,31 @@ func _ready():
 func _physics_process(delta):
 	var players = get_tree().get_nodes_in_group("Player")
 	
-	#if not players: return
 	var target = players[0]
-	
-	
 	var target_pos = target.global_position
+	
+	if get_num_slippy_segments() >= SLIPPY_SEGMENTS_TO_SLIP \
+	   and not has_effect(Effects.slippy):
+		Afflict(Effects.slippy, 10, true)
+	
 	move(target_pos, delta)
+
+
+func on_slip_into_wall():
+	for segment in get_slippy_segments():
+		segment.Cure(Effects.slippy)
+
+
+func get_slippy_segments():
+	var slippy_segments = []
+	for segment in segments:
+		if segment.has_effect(Effects.slippy):
+			slippy_segments.append(segment)
+	return slippy_segments
+
+
+func get_num_slippy_segments():
+	return len(get_slippy_segments())
 
 
 func on_death():
