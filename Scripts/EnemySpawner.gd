@@ -2,6 +2,7 @@ extends "res://Scripts/Triggerable.gd"
 
 
 export(Array, PackedScene) var Enemies
+export(NodePath) var EnemyManager
 export(NodePath) var SpawnPos
 export var SpawnRadius := 0.0
 
@@ -16,6 +17,6 @@ func onTriggerAny(trigger):
 			pos_offset.x = ((randf() * 2) - 1) * SpawnRadius
 			pos_offset.y = ((randf() * 2) - 1) * SpawnRadius
 		
-		get_parent().call_deferred("add_child", enemy)
+		get_node(EnemyManager).call_deferred("add_child", enemy)
 		
 		enemy.global_position = enemy_pos + pos_offset
