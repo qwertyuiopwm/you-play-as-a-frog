@@ -35,10 +35,12 @@ script = ExtResource( 2 )
 IMMUNITIES = [ ExtResource( 4 ) ]
 SPEED = 1000
 SLIP_SPEED_MULT = 1
-STEERING_MULT = 0.5
+SLIP_STUN_DUR = 5
+STEERING_MULT = 0.3
 ROTATE_TO_TARGET = true
 health = 50.0
 NUM_SEGMENTS = 10
+SLIPPY_SEGMENTS_TO_SLIP = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
