@@ -40,7 +40,12 @@ func generateWheel():
 	var distanceFromCenter = 0.65
 	var sectorAngle: float = (360.0 / spellSlots)
 	
-	for i in spellSlots:
+	var i = 0
+	for packedSpell in Player.PlayerSpells:
+		i+=1
+		# Temporarily load spell into memory
+		var spell = packedSpell.instance()
+		
 		# Generate seperator line
 		var newLine = baseLine.duplicate()
 		var lineAngle = sectorAngle * i
@@ -56,17 +61,15 @@ func generateWheel():
 		
 		newIcon.rect_position = iconPosition
 		newIcon.visible = true
-		newIcon.name = "Spell" + String(i + 1) + "Icon"
+		newIcon.name = spell.name + "Icon"
+		newIcon.texture = load(spell.SpellIcon)
 		
 		wheelComponents.add_child(newIcon)
 		positions.push_back(iconPosition)
 		
-	var i = 0
-	for packedSpell in Player.PlayerSpells:
-		i+=1
-		var spell = packedSpell.instance()
-		var spellIcon:TextureRect = wheelComponents.get_node("Spell"+String(i)+"Icon")
-		spellIcon.texture = load(spell.SpellIcon)
+		# Remove temporary spell from memory
+		spell.queue_free()
+		
 	SpellWheelPositions = positions
 
 
