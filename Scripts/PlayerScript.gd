@@ -272,6 +272,9 @@ func melee_if_pressed(_delta):
 		tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 	)
 	TongueTween.start()
+	
+	if rayResult.has("collider"):
+		rayResult.collider.hurt(melee_damage*damage_mult)
 
 
 func dash_if_pressed():
@@ -327,11 +330,11 @@ func _on_TongueTween_tween_completed(object, _key):
 	TongueTween.start()
 	
 	# Damage enemy if exists
-	var rayResult = Main.cast_ray(
-		TongueLine.to_global(Vector2.ZERO), 
-		TongueLine.to_global(TongueLine.points[1]), 
-		0b00000000_00000000_00000001_00000000, []
-	)
-	
-	if rayResult.has("collider"):
-		rayResult.collider.hurt(melee_damage*damage_mult)
+#	var rayResult = Main.cast_ray(
+#		TongueLine.to_global(Vector2.ZERO), 
+#		TongueLine.to_global(TongueLine.points[1]), 
+#		0b00000000_00000000_00000001_00000000, []
+#	)
+#
+#	if rayResult.has("collider"):
+#		rayResult.collider.hurt(melee_damage*damage_mult)
