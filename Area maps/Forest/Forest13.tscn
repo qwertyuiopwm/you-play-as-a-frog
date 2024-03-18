@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=5]
 [ext_resource path="res://Triggerables/EnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Forest/Centipede/CentipedeHead.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 216, 10 )
@@ -32,6 +33,12 @@ OpenOffset = Vector2( 0, -3e+07 )
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 position = Vector2( 78, 88 )
 Triggerables = [ NodePath("../Walls") ]
+Enabled = false
+DeleteOnTrigger = false
+
+[node name="ToggleTrigger" parent="." instance=ExtResource( 8 )]
+Trigger = NodePath("../EnemyManager")
+Toggle = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 6 )]
 position = Vector2( 78, 88 )
@@ -44,7 +51,7 @@ position = Vector2( 18, 456 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 position = Vector2( 73, 87 )
-Triggerables = [ NodePath("../Walls"), NodePath("../EnemySpawner") ]
+Triggerables = [ NodePath("../Walls"), NodePath("../EnemySpawner"), NodePath("../ToggleTrigger") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 25, -19 )
