@@ -25,6 +25,7 @@ func onTrigger(trigger):
 
 func _process(delta):
 	if state != states.OPENING: return
+	if len(DroppedItems) <= 0: return
 	
 	if dropping_item == null or global_position.distance_to(dropping_item.global_position) > DROP_DIST:
 		if not DroppedItems:
