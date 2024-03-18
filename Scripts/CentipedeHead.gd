@@ -47,11 +47,6 @@ func _physics_process(delta):
 	move(target_pos, delta)
 
 
-func on_slip_into_wall():
-	for segment in get_slippy_segments():
-		segment.Cure(Effects.slippy)
-
-
 func get_slippy_segments():
 	var slippy_segments = []
 	for segment in segments:
@@ -62,6 +57,13 @@ func get_slippy_segments():
 
 func get_num_slippy_segments():
 	return len(get_slippy_segments())
+
+
+func Cure(effect):
+	if effect == Effects.slippy:
+		for segment in segments:
+			segment.Cure(Effects.slippy)
+	.Cure(effect)
 
 
 func on_death():
