@@ -14,8 +14,9 @@ func onTriggerAny(trigger):
 		
 		var enemy_pos = get_node(SpawnPos.global_position)
 		var pos_offset = Vector2.ZERO
-		pos_offset.x = ((randf() * 2) - 1) * SpawnRadius
-		pos_offset.y = ((randf() * 2) - 1) * SpawnRadius
+		if SpawnRadius > 0:
+			pos_offset.x = ((randf() * 2) - 1) * SpawnRadius
+			pos_offset.y = ((randf() * 2) - 1) * SpawnRadius
 		
 		main.call_deferred("add_child", enemy)
 		
