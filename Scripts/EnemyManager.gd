@@ -9,7 +9,7 @@ func _ready():
 		waiting_until_enemy = true
 
 
-func _process(delta):
+func _process(_delta):
 	if waiting_until_enemy and len(get_children()) > 0:
 		waiting_until_enemy = false
 
