@@ -535,7 +535,7 @@ text = "Trip the [Grub] into a wall using [Conjure Condiment]"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="ladder" type="RichTextLabel" parent="Popups"]
+[node name="bridge" type="RichTextLabel" parent="Popups"]
 visible = false
 margin_left = -288.0
 margin_top = -32.0
@@ -548,8 +548,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Grab the [color=#967757][Ladder][/color] and place it on the [color=#4bb7e5][water].[/color][/center][/valign]"
-text = "Grab the [Ladder] and place it on the [water]."
+bbcode_text = "[valign][center]Grab the [color=#967757][Bridge][/color] and place it on the [color=#4bb7e5][water].[/color][/center][/valign]"
+text = "Grab the [Bridge] and place it on the [water]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
@@ -568,6 +568,24 @@ custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee the [color=red][Flies][/color].[/center][/valign]"
 text = "[Left Click] to melee the [Flies]."
+fit_content_height = true
+custom_effects = [ SubResource( 26 ) ]
+
+[node name="bridgepuzzle" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -288.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Complete the [color=#967757][Bridge Puzzle][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
+text = "Complete the [Bridge Puzzle] to unlock [Shake]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 

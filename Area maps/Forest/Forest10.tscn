@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Enemies/Forest/Weevil.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=7]
-[ext_resource path="res://Triggers/AddShake.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -42,7 +41,6 @@ OpenOffset = Vector2( 0, -3e+07 )
 
 [node name="Chest" parent="." instance=ExtResource( 6 )]
 position = Vector2( -967, 506 )
-DroppedItems = [ ExtResource( 8 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 9 )]
 Triggerables = [ NodePath("..") ]
