@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/CentipedeSegment.gd" type="Script" id=1]
 [ext_resource path="res://art/centipede body.png" type="Texture" id=2]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://EffectManager.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 22 )
@@ -34,11 +35,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 16, 22 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="CentipedeSegment" type="KinematicBody2D"]
 collision_layer = 257
 collision_mask = 2
 script = ExtResource( 1 )
-IMMUNITIES = [ ExtResource( 3 ) ]
+PERMANENT_EFFECTS = [ ExtResource( 3 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -60,3 +61,6 @@ position = Vector2( -16, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
 shape = SubResource( 7 )
+
+[node name="EffectManager" parent="." instance=ExtResource( 4 )]
+SLIPPY_COLOR_MODULATE = Color( 0.458824, 1, 0, 1 )

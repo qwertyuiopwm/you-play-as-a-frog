@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/CentipedeSegment.gd" type="Script" id=1]
 [ext_resource path="res://art/centipede tail.png" type="Texture" id=2]
+[ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14, 20 )
@@ -21,7 +22,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 29, 20 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="CentipedeTail" type="KinematicBody2D"]
 collision_layer = 256
 collision_mask = 2
 script = ExtResource( 1 )
@@ -34,11 +35,13 @@ shape = SubResource( 1 )
 rotation = -1.5708
 frames = SubResource( 2 )
 
-[node name="Front" type="Node2D" parent="."]
-position = Vector2( -16, 0 )
-
 [node name="HitCollider" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
 position = Vector2( 1, 0 )
 shape = SubResource( 4 )
+
+[node name="Front" type="Node2D" parent="."]
+position = Vector2( -28, 0 )
+
+[node name="EffectManager" parent="." instance=ExtResource( 3 )]
