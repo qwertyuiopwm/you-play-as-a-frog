@@ -7,7 +7,7 @@ export(NodePath) var SpawnPos
 export var SpawnRadius := 0.0
 
 
-func onTriggerAny(trigger):
+func onTriggerAny(_trigger):
 	for enemy in Enemies:
 		enemy.instance()
 		
