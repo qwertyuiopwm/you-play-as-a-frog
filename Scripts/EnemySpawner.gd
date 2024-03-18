@@ -11,7 +11,7 @@ func onTriggerAny(_trigger):
 	for enemy in Enemies:
 		enemy.instance()
 		
-		var enemy_pos = get_node(SpawnPos.global_position)
+		var enemy_pos = get_node(SpawnPos).global_position
 		var pos_offset = Vector2.ZERO
 		if SpawnRadius > 0:
 			pos_offset.x = ((randf() * 2) - 1) * SpawnRadius
