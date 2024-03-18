@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Entity
 
 
 onready var next_segment_back = next_segment.get_node("Back")

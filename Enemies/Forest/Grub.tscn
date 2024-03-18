@@ -71,7 +71,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -4 )
 frames = SubResource( 2 )
-animation = "raise"
+animation = "still"
 playing = true
 
 [node name="SlamCollider" type="Area2D" parent="."]
