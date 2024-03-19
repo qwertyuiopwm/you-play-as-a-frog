@@ -90,7 +90,7 @@ position = Vector2( -390, 145 )
 shape = SubResource( 2 )
 
 [node name="popup" parent="PlayerDetector" instance=ExtResource( 10 )]
-PopupName = "bridgepuzzle"
+PopupName = "thenextspell"
 
 [node name="PlayerDetector2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 980, -350 )
@@ -103,5 +103,5 @@ shape = SubResource( 3 )
 
 [node name="popup" parent="PlayerDetector2" instance=ExtResource( 10 )]
 position = Vector2( -749, 335 )
-PopupName = "bridgepuzzle"
+PopupName = "thenextspell"
 Inverted = true

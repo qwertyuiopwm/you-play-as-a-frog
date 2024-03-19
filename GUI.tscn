@@ -417,6 +417,7 @@ offset = Vector2( 400, 600 )
 transform = Transform2D( 1, 0, 0, 1, 400, 600 )
 
 [node name="wasdtomove" type="RichTextLabel" parent="Popups"]
+visible = false
 margin_left = -128.0
 margin_top = -32.0
 margin_right = 128.0
@@ -566,8 +567,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee the [color=red][Flies][/color].[/center][/valign]"
-text = "[Left Click] to melee the [Flies]."
+bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee  [color=red][Hostiles][/color].[/center][/valign]"
+text = "[Left Click] to melee  [Hostiles]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
@@ -584,8 +585,25 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Complete the [color=#967757][Bridge Puzzle][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
-text = "Complete the [Bridge Puzzle] to unlock [Shake]."
+bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
+text = "Defeat the [Enemies] to unlock [Shake]."
+fit_content_height = true
+custom_effects = [ SubResource( 26 ) ]
+
+[node name="learntodash" type="RichTextLabel" parent="Popups"]
+margin_left = -288.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
+text = "Defeat the [Enemies] to unlock [Shake]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
