@@ -47,18 +47,20 @@ CIRCLE_RADIUS = 85
 SWOOP_SPEED = 175
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+physics_interpolation_mode = 1
 rotation = 1.5708
+z_index = 2
 shape = SubResource( 1 )
 
 [node name="fly_vis" type="Sprite" parent="."]
+light_mask = 0
 position = Vector2( -1, 3 )
-scale = Vector2( 0.05, 0.05 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
 frames = SubResource( 6 )
-frame = 3
 playing = true
 
 [node name="AttackCollider" type="Area2D" parent="."]

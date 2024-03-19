@@ -77,9 +77,13 @@ animations = [ {
 radius = 20.0
 
 [node name="Ant" type="KinematicBody2D" groups=["Enemy"]]
+scale = Vector2( 1.5, 1.5 )
 collision_layer = 259
 collision_mask = 259
 script = ExtResource( 1 )
+TARGET_RANGE = 400
+SPEED = 75
+SLIP_SPEED_MULT = 3
 CIRCLE_RADIUS = 80
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -99,3 +103,4 @@ rotation = 1.5708
 shape = SubResource( 20 )
 
 [node name="EffectManager" parent="." instance=ExtResource( 3 )]
+SLIPPY_COLOR_MODULATE = Color( 1, 1, 0.392157, 1 )
