@@ -288,7 +288,10 @@ func dash_if_pressed():
 	
 	if not Input.is_action_just_pressed("dash"):
 		return
-		
+	
+	if stamina < dash_stamina_cost:
+		return
+	
 	dash_counter = dash_duration
 	dashing = true
 	stamina -= dash_stamina_cost
