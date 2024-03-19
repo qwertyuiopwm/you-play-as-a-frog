@@ -172,6 +172,7 @@ position = Vector2( 0, -50 )
 
 [node name="Tongue" type="Line2D" parent="."]
 position = Vector2( 0, -18 )
+scale = Vector2( 1.2, 1.2 )
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 2.0
 default_color = Color( 1, 0.25098, 0.356863, 1 )
