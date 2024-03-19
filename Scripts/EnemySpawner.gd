@@ -20,7 +20,7 @@ func onTriggerAny(_trigger):
 			pos_offset.x = ((randf() * 2) - 1) * SpawnRadius
 			pos_offset.y = ((randf() * 2) - 1) * SpawnRadius
 		
-		#enemy_manager.call_deferred("add_child", enemy)
-		enemy_manager.add_child(enemy)
+		enemy_manager.call_deferred("add_child", enemy)
+		yield(enemy_manager, "child_entered_tree")
 		
 		enemy.global_position = enemy_pos + pos_offset
