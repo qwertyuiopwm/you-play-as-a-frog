@@ -66,7 +66,7 @@ func _ready():
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 	
 	if debug:
-		PlayerSpells.push_back(Spells.Dev_Beam)
+		AddSpell("Dev_Beam")
 		
 
 func _remove_focus():
