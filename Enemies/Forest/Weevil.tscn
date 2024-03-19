@@ -71,11 +71,14 @@ animations = [ {
 radius = 38.0132
 
 [node name="Weevil" type="KinematicBody2D" groups=["Enemy"]]
+scale = Vector2( 2, 2 )
 collision_layer = 259
 collision_mask = 259
 script = ExtResource( 2 )
+TARGET_RANGE = 400
 SPEED = 60
-health = 30
+SLIP_SPEED_MULT = 3
+health = 35.0
 SLAM_DAMAGE = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -96,3 +99,4 @@ playing = true
 shape = SubResource( 11 )
 
 [node name="EffectManager" parent="." instance=ExtResource( 1 )]
+SLIPPY_COLOR_MODULATE = Color( 1, 1, 0.392157, 1 )
