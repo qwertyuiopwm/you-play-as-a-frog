@@ -18,7 +18,7 @@ extents = Vector2( 74.25, 73.75 )
 extents = Vector2( 286, 16.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 20, 120 )
+extents = Vector2( 20, 136.5 )
 
 [node name="Forest10" type="Node2D"]
 
@@ -98,7 +98,7 @@ Triggerables = [ NodePath("popup") ]
 TriggerVal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
-position = Vector2( -1844, 858 )
+position = Vector2( -1830, 858.5 )
 shape = SubResource( 3 )
 
 [node name="popup" parent="PlayerDetector2" instance=ExtResource( 10 )]
