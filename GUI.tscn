@@ -617,8 +617,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
-text = "Defeat the [Enemies] to unlock [Shake]."
+bbcode_text = "[valign][center]Press [color=#34ebe1][Space][/color] to Dash![/center][/valign]"
+text = "Press [Space] to Dash!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
