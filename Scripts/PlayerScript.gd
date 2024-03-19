@@ -274,7 +274,9 @@ func melee_if_pressed(_delta):
 	TongueTween.start()
 	
 	if rayResult.has("collider"):
-		rayResult.collider.hurt(melee_damage*damage_mult)
+		var collider = rayResult.collider
+		if collider.has_method("hurt"):
+			collider.hurt(melee_damage*damage_mult)
 
 
 func dash_if_pressed():
