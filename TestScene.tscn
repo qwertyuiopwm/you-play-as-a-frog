@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=2]
@@ -8,7 +8,10 @@
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=7]
 [ext_resource path="res://Triggerables/TransferScreenTrigger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Spells/DevBeam.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Spells/Shake.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Triggers/AddShake.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Spells/ProcureCondiment.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -49,6 +52,7 @@ position = Vector2( 182, 167 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -98, 30 )
+PlayerSpells = [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ) ]
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 5 )]
 position = Vector2( -250, 200 )
