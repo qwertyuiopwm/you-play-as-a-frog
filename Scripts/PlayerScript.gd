@@ -22,6 +22,7 @@ onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
+onready var debug = OS.is_debug_build()
 
 export var melee_damage: float = 5
 export var damage_mult = 1
@@ -63,6 +64,10 @@ var held_big_item: Node2D
 
 func _ready():
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
+	
+	if debug:
+		PlayerSpells.push_back(Spells.Dev_Beam)
+		
 
 func _remove_focus():
 	currentFocus.disconnect("focus_exited", self, "_remove_focus")
@@ -288,7 +293,10 @@ func dash_if_pressed():
 	
 	if not Input.is_action_just_pressed("dash"):
 		return
-		
+	
+	if stamina < dash_stamina_cost:
+		return
+	
 	dash_counter = dash_duration
 	dashing = true
 	stamina -= dash_stamina_cost
