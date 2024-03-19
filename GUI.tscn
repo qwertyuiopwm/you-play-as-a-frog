@@ -591,7 +591,6 @@ fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
 [node name="learntodash" type="RichTextLabel" parent="Popups"]
-visible = false
 margin_left = -288.0
 margin_top = -32.0
 margin_right = 288.0
@@ -603,8 +602,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Press [color=#34ebe1][Enemies][/color] to Dash![/center][/valign]"
-text = "Press [Enemies] to Dash!"
+bbcode_text = "[valign][center]Press [color=#34ebe1][Space][/color] to Dash![/center][/valign]"
+text = "Press [Space] to Dash!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
