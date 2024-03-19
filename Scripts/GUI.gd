@@ -13,6 +13,7 @@ onready var spellSpot = ingameUI.get_node("spellspot")
 onready var hpDisplay = ingameUI.get_node("top_bar/stats_bg/VBoxContainer/stats/HP_Canvas/HP_bar")
 onready var stamDisplay = ingameUI.get_node("top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas/stam_bar")
 onready var manaDisplay = ingameUI.get_node("spellspot/mana_display")
+onready var potionCount = ingameUI.get_node("potions")
 onready var vp = get_viewport() 
 
 var SpellWheelPositions = []
@@ -82,6 +83,8 @@ func _process(_delta):
 	
 	manaDisplay.max_value = Player.max_mana
 	manaDisplay.value = Player.mana
+	
+	potionCount.text = String(Player.restoration_postions)+"x"
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
