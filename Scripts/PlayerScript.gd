@@ -164,6 +164,13 @@ func Heal(hp: float):
 	health = newHp
 
 
+func AddSpell(spell):
+	if not Spells.AllSpells.has(spell):
+		return
+	PlayerSpells.push_back(Spells.AllSpells[spell])
+	get_node("GUI").generateWheel()
+
+
 func get_velocity():
 	if not can_move:
 		return Vector2.ZERO
