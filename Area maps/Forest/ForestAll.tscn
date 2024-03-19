@@ -7,7 +7,7 @@
 [ext_resource path="res://Triggerables/TransferScreenTrigger.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24.375, 89.575 )
+extents = Vector2( 24.375, 109.75 )
 
 [node name="ForestAll" type="Node2D"]
 
@@ -75,7 +75,7 @@ Triggerables = [ NodePath("..") ]
 DeleteOnTrigger = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2-3/PlayerDetector"]
-position = Vector2( 7982, 6943 )
+position = Vector2( 7982, 6939.75 )
 shape = SubResource( 1 )
 
 [node name="3-2" parent="." instance=ExtResource( 5 )]
@@ -94,5 +94,5 @@ Triggerables = [ NodePath("..") ]
 DeleteOnTrigger = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="3-2/PlayerDetector"]
-position = Vector2( 6834, 6928 )
+position = Vector2( 6834, 6944.5 )
 shape = SubResource( 1 )

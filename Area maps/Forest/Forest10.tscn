@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -7,10 +7,18 @@
 [ext_resource path="res://Enemies/Forest/Weevil.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=7]
+[ext_resource path="res://Triggers/AddShake.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 286, 16.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20, 120 )
 
 [node name="Forest10" type="Node2D"]
 
@@ -41,6 +49,7 @@ OpenOffset = Vector2( 0, -3e+07 )
 
 [node name="Chest" parent="." instance=ExtResource( 6 )]
 position = Vector2( -967, 506 )
+DroppedItems = [ ExtResource( 8 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 9 )]
 Triggerables = [ NodePath("..") ]
@@ -70,3 +79,29 @@ position = Vector2( -518, 548 )
 
 [node name="Grub" parent="EnemyManager" instance=ExtResource( 5 )]
 position = Vector2( -376, 445 )
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 9 )]
+position = Vector2( 100, 100 )
+Triggerables = [ NodePath("popup") ]
+TriggerVal = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( -390, 145 )
+shape = SubResource( 2 )
+
+[node name="popup" parent="PlayerDetector" instance=ExtResource( 10 )]
+PopupName = "bridgepuzzle"
+
+[node name="PlayerDetector2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 980, -350 )
+Triggerables = [ NodePath("popup") ]
+TriggerVal = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
+position = Vector2( -1844, 858 )
+shape = SubResource( 3 )
+
+[node name="popup" parent="PlayerDetector2" instance=ExtResource( 10 )]
+position = Vector2( -749, 335 )
+PopupName = "bridgepuzzle"
+Inverted = true
