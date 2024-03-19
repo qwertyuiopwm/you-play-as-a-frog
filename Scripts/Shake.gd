@@ -12,7 +12,6 @@ func on_cast(_caster):
 func animation_finished():
 	
 	for body in $Area2D.get_overlapping_bodies():
-		print(body)
 		if not body is TileMap:
 			continue
 			
@@ -31,7 +30,8 @@ func animation_finished():
 				continue
 				
 			var tile_global_pos = body.map_to_world(tile_pos)
-			if global_position.distance_to(tile_global_pos) > radius:
+			var dist_to_tile = global_position.distance_to(tile_global_pos + body.global_position)
+			if dist_to_tile > radius:
 				continue
 			
 			body.set_cellv(tile_pos, -1)
