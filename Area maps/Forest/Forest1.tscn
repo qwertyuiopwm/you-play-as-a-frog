@@ -136,3 +136,4 @@ shape = SubResource( 3 )
 
 [node name="popup" parent="PlayerDetector" instance=ExtResource( 3 )]
 PopupName = "learntodash"
+Inverted = true
