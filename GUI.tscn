@@ -432,7 +432,6 @@ offset = Vector2( 400, 600 )
 transform = Transform2D( 1, 0, 0, 1, 400, 600 )
 
 [node name="wasdtomove" type="RichTextLabel" parent="Popups"]
-visible = false
 margin_left = -128.0
 margin_top = -32.0
 margin_right = 128.0
@@ -606,9 +605,10 @@ fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
 [node name="learntodash" type="RichTextLabel" parent="Popups"]
-margin_left = -288.0
+visible = false
+margin_left = -192.0
 margin_top = -32.0
-margin_right = 288.0
+margin_right = 192.0
 margin_bottom = 32.0
 custom_fonts/mono_font = ExtResource( 16 )
 custom_fonts/bold_italics_font = ExtResource( 16 )
@@ -619,7 +619,6 @@ custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[valign][center]Press [color=#34ebe1][Space][/color] to Dash![/center][/valign]"
 text = "Press [Space] to Dash!"
-fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
 [node name="LevelTransition" type="CanvasLayer" parent="."]

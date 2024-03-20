@@ -41,20 +41,20 @@ health = 20.0
 [node name="PlayerDetector" parent="." instance=ExtResource( 5 )]
 position = Vector2( 250, 415 )
 scale = Vector2( 3, 29 )
-Triggerables = [ NodePath("../Wall"), NodePath("../BossMusicTrigger"), NodePath("closecast"), NodePath("fightgrub"), NodePath("hidee") ]
+Triggerables = [ NodePath("../Wall"), NodePath("../BossMusicTrigger"), NodePath("closedash"), NodePath("fightgrub"), NodePath("hidedash") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource( 1 )
 
-[node name="closecast" parent="PlayerDetector" instance=ExtResource( 8 )]
-PopupName = "etocast"
+[node name="closedash" parent="PlayerDetector" instance=ExtResource( 8 )]
+PopupName = "learntodash"
 
 [node name="fightgrub" parent="PlayerDetector" instance=ExtResource( 8 )]
 PopupName = "fightgrub"
 
-[node name="hidee" parent="PlayerDetector" instance=ExtResource( 8 )]
+[node name="hidedash" parent="PlayerDetector" instance=ExtResource( 8 )]
 position = Vector2( 20, 600 )
-PopupName = "etocast"
+PopupName = "learntodash"
 Inverted = true
 
 [node name="ForestMusicTrigger" parent="." instance=ExtResource( 7 )]

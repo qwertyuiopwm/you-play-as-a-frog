@@ -129,6 +129,7 @@ Toggle = true
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 2 )]
 position = Vector2( 587, 1331 )
+Triggerables = [ NodePath("popup") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 140, 46 )
@@ -136,4 +137,3 @@ shape = SubResource( 3 )
 
 [node name="popup" parent="PlayerDetector" instance=ExtResource( 3 )]
 PopupName = "learntodash"
-Inverted = true
