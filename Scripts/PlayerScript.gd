@@ -35,7 +35,7 @@ var dash_speed_mult = 2
 var dash_duration = .2
 var dash_counter = 0
 
-var melee_distance = 100
+var melee_distance = 130
 var tongue_speed = 350
 var melee_delay = 1
 var melee_counter = 0
