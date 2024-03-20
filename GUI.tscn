@@ -586,7 +586,7 @@ text = "[Left Click] to melee  [Hostiles]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="bridgepuzzle" type="RichTextLabel" parent="Popups"]
+[node name="thenextspell" type="RichTextLabel" parent="Popups"]
 visible = false
 margin_left = -288.0
 margin_top = -32.0
