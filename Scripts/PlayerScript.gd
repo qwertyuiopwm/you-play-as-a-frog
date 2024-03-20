@@ -223,7 +223,7 @@ func regen_stats(delta):
 					0, max_stamina)
 
 
-func heal_if_pressed(delta):
+func heal_if_pressed(_delta):
 	if restoration_postions <= 0:
 		return
 	if not Input.is_action_just_pressed("restore"):
@@ -231,8 +231,7 @@ func heal_if_pressed(delta):
 	regen_timer = 0
 	health = clamp(health + health_per_potion,
 					0, max_health)
-	restoration_postions = clamp(restoration_postions - 1,
-					0, restoration_postions)
+	restoration_postions -= 1
 
 func cast_spell_if_pressed(delta):
 	if selected_spell == null:
