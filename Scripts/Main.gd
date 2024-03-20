@@ -6,6 +6,12 @@ export var Paused = true
 func wait(seconds):
 	yield(get_tree().create_timer(seconds), "timeout")
 	
+func get_all_children(node, children=[]):
+	children.push_back(node)
+	for child in children:
+		children = get_all_children(child, children)
+	return children
+	
 func pause(paused:bool, exclude:Array):
 	Paused = paused
 	for node in get_children():

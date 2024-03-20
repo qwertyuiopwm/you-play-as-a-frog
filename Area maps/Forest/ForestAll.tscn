@@ -26,9 +26,10 @@ TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
 BottomText = "Level 2"
 BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
 SetPlayerPosition = NodePath("TPpos")
+CreateSavePoint = true
 
 [node name="TPpos" type="Node2D" parent="1-2"]
-position = Vector2( 6604, 2810.66 )
+position = Vector2( 6750, 2810.66 )
 
 [node name="PlayerDetector" parent="1-2" instance=ExtResource( 4 )]
 Triggerables = [ NodePath("..") ]
