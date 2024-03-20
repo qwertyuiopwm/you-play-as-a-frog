@@ -10,3 +10,6 @@ export.cfg
 data_*/
 Build/HTML/*
 Build/MacOS/*
+
+# Other ignores
+.DS_Store
