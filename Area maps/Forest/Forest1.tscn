@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Triggers/ActionTrigger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Triggers/CounterTrigger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Triggerables/AddCounter.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 172, 20 )
@@ -63,69 +65,55 @@ position = Vector2( 20, 600 )
 PopupName = "etocast"
 
 [node name="actionw" parent="." instance=ExtResource( 4 )]
-Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
+Triggerables = [ NodePath("show"), NodePath("addcount") ]
 Actions = [ "move_up" ]
 
-[node name="toggle" parent="actionw" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actiona")
-Toggle = true
-
-[node name="hide" parent="actionw" instance=ExtResource( 3 )]
-PopupName = "wasdtomove"
-
 [node name="show" parent="actionw" instance=ExtResource( 3 )]
-PopupName = "wasdtomove2"
+PopupName = "wasdtomoveW"
 Inverted = true
+
+[node name="addcount" parent="actionw" instance=ExtResource( 7 )]
+Counter = NodePath("../../CountTrigger")
+AdditionOrSubtraction = 1
 
 [node name="actiona" parent="." instance=ExtResource( 4 )]
-Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
-Enabled = false
+Triggerables = [ NodePath("show"), NodePath("addcount") ]
 Actions = [ "move_left" ]
 
-[node name="toggle" parent="actiona" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actions")
-Toggle = true
-
-[node name="hide" parent="actiona" instance=ExtResource( 3 )]
-PopupName = "wasdtomove2"
-
 [node name="show" parent="actiona" instance=ExtResource( 3 )]
-PopupName = "wasdtomove3"
+PopupName = "wasdtomoveA"
 Inverted = true
+
+[node name="addcount" parent="actiona" instance=ExtResource( 7 )]
+Counter = NodePath("../../CountTrigger")
+AdditionOrSubtraction = 1
 
 [node name="actions" parent="." instance=ExtResource( 4 )]
-Triggerables = [ NodePath("toggle"), NodePath("hide"), NodePath("show") ]
-Enabled = false
+Triggerables = [ NodePath("show"), NodePath("addcount") ]
 Actions = [ "move_down" ]
 
-[node name="toggle" parent="actions" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actiond")
-Toggle = true
-
-[node name="hide" parent="actions" instance=ExtResource( 3 )]
-PopupName = "wasdtomove3"
-
 [node name="show" parent="actions" instance=ExtResource( 3 )]
-PopupName = "wasdtomove4"
+PopupName = "wasdtomoveS"
 Inverted = true
+
+[node name="addcount" parent="actions" instance=ExtResource( 7 )]
+Counter = NodePath("../../CountTrigger")
+AdditionOrSubtraction = 1
 
 [node name="actiond" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
-Triggerables = [ NodePath("closewasd"), NodePath("qtoselect"), NodePath("toggle") ]
-Enabled = false
+Triggerables = [ NodePath("show"), NodePath("addcount") ]
 Actions = [ "move_right" ]
 
-[node name="closewasd" parent="actiond" instance=ExtResource( 3 )]
-PopupName = "wasdtomove4"
-
-[node name="qtoselect" parent="actiond" instance=ExtResource( 3 )]
-position = Vector2( 20, 600 )
-PopupName = "qtoselect"
+[node name="show" parent="actiond" instance=ExtResource( 3 )]
+position = Vector2( -400, -200 )
+PopupName = "wasdtomoveD"
 Inverted = true
 
-[node name="toggle" parent="actiond" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actiontrigger2")
-Toggle = true
+[node name="addcount" parent="actiond" instance=ExtResource( 7 )]
+position = Vector2( -400, -200 )
+Counter = NodePath("../../CountTrigger")
+AdditionOrSubtraction = 1
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 2 )]
 position = Vector2( 587, 1331 )
@@ -137,3 +125,27 @@ shape = SubResource( 3 )
 
 [node name="popup" parent="PlayerDetector" instance=ExtResource( 3 )]
 PopupName = "learntodash"
+
+[node name="CountTrigger" parent="." instance=ExtResource( 6 )]
+Triggerables = [ NodePath("hidewasd"), NodePath("hidewasdw"), NodePath("hidewasda"), NodePath("hidewasds"), NodePath("hidewasdd") ]
+CountNeeded = 4
+
+[node name="hidewasd" parent="CountTrigger" instance=ExtResource( 3 )]
+State = true
+PopupName = "wasdtomove"
+
+[node name="hidewasdw" parent="CountTrigger" instance=ExtResource( 3 )]
+State = true
+PopupName = "wasdtomoveW"
+
+[node name="hidewasda" parent="CountTrigger" instance=ExtResource( 3 )]
+State = true
+PopupName = "wasdtomoveA"
+
+[node name="hidewasds" parent="CountTrigger" instance=ExtResource( 3 )]
+State = true
+PopupName = "wasdtomoveS"
+
+[node name="hidewasdd" parent="CountTrigger" instance=ExtResource( 3 )]
+State = true
+PopupName = "wasdtomoveD"
