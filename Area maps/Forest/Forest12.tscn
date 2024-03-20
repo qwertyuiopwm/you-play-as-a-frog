@@ -27,7 +27,6 @@ tile_set = ExtResource( 2 )
 collision_layer = 9
 collision_mask = 9
 format = 1
-tile_data = PoolIntArray( 524293, 536870935, 0 )
 
 [node name="Ladder" parent="." instance=ExtResource( 5 )]
 position = Vector2( 94, 535 )
