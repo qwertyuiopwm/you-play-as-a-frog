@@ -107,7 +107,11 @@ func _physics_process(delta):
 	dash_if_pressed()
 	
 	set_animation()
-	var _v = move_and_slide(velocity * (1 + (int(dashing) * dash_speed_mult)))
+	
+	var velocity_mult = 1
+	velocity_mult += (int(dashing) * dash_speed_mult)
+	
+	var _v = move_and_slide(velocity * velocity_mult)
 	
 	if held_big_item != null:
 		held_big_item.global_position = $ItemHolder.global_position
