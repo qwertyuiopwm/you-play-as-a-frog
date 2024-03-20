@@ -35,7 +35,7 @@ var dash_speed_mult = 2
 var dash_duration = .2
 var dash_counter = 0
 
-var melee_distance = 130
+var melee_distance = 100
 var tongue_speed = 350
 var melee_delay = 1
 var melee_counter = 0
@@ -284,8 +284,10 @@ func melee_if_pressed(_delta):
 	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
 	
 	var hitPos = targetPos
-	if rayResult.has("position"):
-		hitPos = rayResult.position
+	if rayResult.has("collider"):
+		var hit = rayResult.collider
+		hitPos = hit.get_node("CollisionShape2D").global_position
+		#hitPos = rayResult.position
 	var localHitPos = TongueLine.to_local(hitPos)
 	
 	var angleToHit = abs(rad2deg(rootPos.angle_to_point(hitPos)))
@@ -304,7 +306,7 @@ func melee_if_pressed(_delta):
 		tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 	)
 	TongueTween.start()
-	
+	# yield(TongueTween, "tween_completed")
 	if rayResult.has("collider"):
 		var collider = rayResult.collider
 		if collider.has_method("hurt"):
