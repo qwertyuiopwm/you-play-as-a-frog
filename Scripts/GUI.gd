@@ -40,19 +40,21 @@ func generateWheel():
 	var wheelRadius = wheel.rect_size.x / 2
 	var distanceFromCenter = 0.65
 	var sectorAngle: float = (360.0 / spellSlots)
+	var spellCount = len(Player.PlayerSpells)
 	
 	var i = 0
 	for packedSpell in Player.PlayerSpells:
 		i+=1
 		# Temporarily load spell into memory
 		var spell = packedSpell.instance()
+		var lineAngle = sectorAngle * i
 		
 		# Generate seperator line
-		var newLine = baseLine.duplicate()
-		var lineAngle = sectorAngle * i
-		newLine.rect_rotation = lineAngle
-		newLine.visible = true
-		wheelComponents.add_child(newLine)
+		if spellCount > 1:
+			var newLine = baseLine.duplicate()
+			newLine.rect_rotation = lineAngle
+			newLine.visible = true
+			wheelComponents.add_child(newLine)
 		# Generate spell icon
 		# MAAAATTHHHHHHH RAAAAAAHHHHHHHHHH
 		var newIcon = baseIcon.duplicate()

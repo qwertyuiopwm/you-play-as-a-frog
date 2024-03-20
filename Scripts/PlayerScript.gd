@@ -13,6 +13,7 @@ export var selected_spell: PackedScene
 export var god_enabled: bool
 export var restoration_postions:int = 0
 export var health_per_potion:float = 30
+export var respawn_position: Vector2
 
 onready var Main = get_node("/root/Main")
 onready var MusicPlayer = $MusicPlayer
@@ -65,6 +66,7 @@ var held_big_item: Node2D
 
 
 func _ready():
+	respawn_position = global_position
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 	
 	if debug:
@@ -285,9 +287,11 @@ func melee_if_pressed(_delta):
 	
 	var hitPos = targetPos
 	if rayResult.has("collider"):
-		var hit = rayResult.collider
-		hitPos = hit.get_node("CollisionShape2D").global_position
-		#hitPos = rayResult.position
+		var hit:Node2D = rayResult.collider
+		if hit.is_in_group("Enemy"):
+			hitPos = hit.get_node("CollisionShape2D").global_position
+		else:
+			hitPos = rayResult.position
 	var localHitPos = TongueLine.to_local(hitPos)
 	
 	var angleToHit = abs(rad2deg(rootPos.angle_to_point(hitPos)))
