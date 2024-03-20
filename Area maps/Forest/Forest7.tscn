@@ -34,7 +34,7 @@ tile_set = ExtResource( 1 )
 collision_layer = 9
 collision_mask = 9
 format = 1
-tile_data = PoolIntArray( -327666, 23, 0, -131060, -1073741806, 0, -131058, -1610612718, 0, -131057, 18, 0, 8, 1610612754, 0, 9, 18, 0, 327689, 23, 0, 327692, 23, 0, 327695, 23, 0 )
+tile_data = PoolIntArray( -131060, -1073741806, 0, -131058, -1610612718, 0, -131057, 18, 0, 8, 1610612754, 0, 9, 18, 0 )
 
 [node name="TileMap" type="TileMap" parent="TileMap/TileMap2"]
 tile_set = ExtResource( 1 )
@@ -76,6 +76,7 @@ rotation = 1.5708
 
 [node name="bridge3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 928, -288 )
+rotation = 1.5708
 
 [node name="bridge4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 992, 352 )
