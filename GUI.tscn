@@ -609,8 +609,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee  [color=red][Hostiles][/color].[/center][/valign]"
-text = "[Left Click] to melee  [Hostiles]."
+bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee the [color=red][Enemies][/color].[/center][/valign]"
+text = "[Left Click] to melee the [Enemies]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
