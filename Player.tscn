@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 [gd_scene load_steps=37 format=2]
+=======
+[gd_scene load_steps=47 format=2]
+>>>>>>> 343bdf6ef029a7b24e13191e4d03316c8e442cb3
 
 [ext_resource path="res://MusicPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=2]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/forg_walkin.png" type="Texture" id=4]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=24]
+<<<<<<< HEAD
 [ext_resource path="res://art/base_explosion.png" type="Texture" id=25]
+=======
+[ext_resource path="res://art/forg on raft.png" type="Texture" id=25]
+>>>>>>> 343bdf6ef029a7b24e13191e4d03316c8e442cb3
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.0
@@ -150,6 +158,14 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=26]
 radius = 42.0
 
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 pause_mode = 2
 physics_interpolation_mode = 2
@@ -200,9 +216,17 @@ default_color = Color( 1, 0.25098, 0.356863, 1 )
 
 [node name="TonguePosition" type="Position2D" parent="."]
 
+<<<<<<< HEAD
 [node name="DeathTween" type="Tween" parent="."]
 
 [node name="DeathTransparencyHolder" type="Position2D" parent="."]
 
+=======
+[node name="BoatSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 27 )
+
+[connection signal="animation_finished" from="DEATH" to="." method="_on_DEATH_animation_finished"]
+>>>>>>> 343bdf6ef029a7b24e13191e4d03316c8e442cb3
 [connection signal="body_shape_entered" from="PickupArea" to="." method="_on_PickupArea_body_shape_entered"]
 [connection signal="tween_completed" from="TongueTween" to="." method="_on_TongueTween_tween_completed"]
