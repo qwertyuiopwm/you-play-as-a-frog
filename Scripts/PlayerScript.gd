@@ -165,6 +165,7 @@ func Hurt(dmg: float):
 func Heal(hp: float):
 	if health <= 0:
 		return
+		
 	var newHp = health + hp
 	if newHp > max_health:
 		newHp = max_health
@@ -226,11 +227,12 @@ func regen_stats(delta):
 func heal_if_pressed(_delta):
 	if restoration_postions <= 0:
 		return
+		
 	if not Input.is_action_just_pressed("restore"):
 		return
+		
 	regen_timer = 0
-	health = clamp(health + health_per_potion,
-					0, max_health)
+	Heal(health_per_potion)
 	restoration_postions -= 1
 
 func cast_spell_if_pressed(delta):
