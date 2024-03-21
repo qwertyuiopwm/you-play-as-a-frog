@@ -13,7 +13,7 @@ func PauseSong(paused: bool):
 	Songs[CurrentlyPlaying].get_tree().paused = paused
 
 func PlaySong(song: String):
-	if song == "":
+	if song == "NONE":
 		Songs[CurrentlyPlaying].stop()
 		CurrentlyPlaying = "NONE"
 		return
