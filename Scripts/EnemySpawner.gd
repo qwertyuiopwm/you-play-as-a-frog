@@ -6,8 +6,8 @@ export(NodePath) var EnemyManager
 export(NodePath) var SpawnPos
 export var SpawnRadius := 0.0
 
-onready var enemy_manager = get_node(EnemyManager)
-onready var spawn_pos = get_node(SpawnPos)
+onready var enemy_manager = get_node(EnemyManager) if EnemyManager else Main
+onready var spawn_pos = get_node(SpawnPos) if SpawnPos else self
 
 
 func onTriggerAny(_trigger):
