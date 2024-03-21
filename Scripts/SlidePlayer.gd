@@ -8,10 +8,10 @@ onready var Player = get_node("/root/Main/Player")
 
 
 func _ready():
-	$Tween.connect("tween_completed", self, "tween_done")
+	var _c = $Tween.connect("tween_completed", self, "tween_done")
 
 
-func onTriggerAny(trigger):
+func onTriggerAny(_trigger):
 	Player.can_move = false
 	$Tween.interpolate_property(Player, "position", 
 		Player.global_position, 
