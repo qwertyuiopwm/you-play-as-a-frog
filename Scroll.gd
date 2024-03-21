@@ -12,4 +12,4 @@ func _process(delta):
 	if not visible: return
 	scroll += PIXEL_PER_SECOND * delta
 	print(scroll_vertical, " ", scroll)
-	scroll_vertical = scroll
+	scroll_vertical = int(scroll)
