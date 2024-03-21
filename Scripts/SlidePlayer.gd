@@ -2,7 +2,7 @@ extends "res://Scripts/Triggerable.gd"
 
 
 export(float) var SlideTime
-export(NodePath) var TargetPos
+export(NodePath) onready var TargetPos = get_node(TargetPos)
 
 onready var Player = get_node("/root/Main/Player")
 
