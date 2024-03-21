@@ -16,8 +16,5 @@ func _process(_delta):
 
 func condition():
 	var cond = (len(get_children()) <= 0) \
-		   and (not waiting_until_enemy)
-	if cond:
-		print(cond)
-		print(get_children())
+			   and (not waiting_until_enemy)
 	return cond
