@@ -1,0 +1,12 @@
+extends "res://Scripts/Triggerable.gd"
+
+
+onready var Player = get_parent().get_node("Player")
+
+
+func onTriggerAny(_trigger):
+	Player.god_enabled = true
+	Player.PlayerSpells = []
+	Player.AddSpell("Dev_Beam")
+	Player.selected_spell = Player.PlayerSpells[0]
+	print("player stats updated")
