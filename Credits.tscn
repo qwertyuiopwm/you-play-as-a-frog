@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/CreditFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scroll.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+font_data = SubResource( 1 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+Label/fonts/font = SubResource( 2 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ScrollContainer"]
+margin_right = 800.0
+margin_bottom = 1439.0
+rect_min_size = Vector2( 800, 0 )
+theme = SubResource( 3 )
+custom_constants/line_separation = 10
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]
+
+[font=res://Fonts/CreditTitle.tres]
+You Play As A Frog
+[/font]
+ TSA Video Game Design
+2024-2025
+
+
+
+
+Made using Godot Engine 3.5
+Version controlled using GitHub
+Sprites made with Piskel (piskelapp.com)
+Music made on BeepBox (beepbox.co)
+
+
+
+[/center]"
+meta_underlined = false
+text = "
+
+
+You Play As A Frog
+
+ TSA Video Game Design
+2024-2025
+
+
+
+
+Made using Godot Engine 3.5
+Version controlled using GitHub
+Sprites made with Piskel (piskelapp.com)
+Music made on BeepBox (beepbox.co)
+
+
+
+"
+fit_content_height = true
+scroll_active = false
