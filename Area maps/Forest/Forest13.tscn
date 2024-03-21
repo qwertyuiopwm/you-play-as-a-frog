@@ -33,7 +33,7 @@ OpenOffset = Vector2( 250, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 position = Vector2( 78, 88 )
-Triggerables = [ NodePath("../Walls") ]
+Triggerables = [ NodePath("../Walls"), NodePath("../NoMusic") ]
 Enabled = false
 DeleteOnTrigger = false
 
@@ -52,11 +52,13 @@ position = Vector2( 18, 456 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 position = Vector2( 73, 87 )
-Triggerables = [ NodePath("../Walls"), NodePath("../EnemySpawner"), NodePath("../ToggleTrigger"), NodePath("../Music") ]
+Triggerables = [ NodePath("../Walls"), NodePath("../EnemySpawner"), NodePath("../ToggleTrigger"), NodePath("../CentipedeMusic") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 25, 0.5 )
 shape = SubResource( 1 )
 
-[node name="Music" parent="." instance=ExtResource( 9 )]
+[node name="CentipedeMusic" parent="." instance=ExtResource( 9 )]
 Song = "Centipede"
+
+[node name="NoMusic" parent="." instance=ExtResource( 9 )]
