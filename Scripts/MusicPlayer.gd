@@ -13,8 +13,13 @@ func PauseSong(paused: bool):
 	Songs[CurrentlyPlaying].get_tree().paused = paused
 
 func PlaySong(song: String):
+	if song == "":
+		Songs[CurrentlyPlaying].stop()
+		return
+	
 	if not Songs.has(song):
 		return
+		
 	print("Switching music from "+CurrentlyPlaying+" to "+song)
 	if CurrentlyPlaying != "NONE":
 		Songs[CurrentlyPlaying].stop()
