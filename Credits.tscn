@@ -50,7 +50,7 @@ anchor_bottom = 1.0
 theme = SubResource( 10 )
 scroll_horizontal_enabled = false
 script = ExtResource( 2 )
-PIXEL_PER_SECOND = 30
+PIXEL_PER_SECOND = 40
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ScrollContainer"]
 margin_right = 800.0
