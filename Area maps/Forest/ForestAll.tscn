@@ -67,6 +67,7 @@ TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
 BottomText = "Level 3"
 BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
 SetPlayerPosition = NodePath("TPpos")
+CreateSavePoint = true
 
 [node name="TPpos" type="Node2D" parent="2-3"]
 position = Vector2( 6615, 6937 )
