@@ -1,6 +1,5 @@
 extends "res://Scripts/Triggerable.gd"
 
-
 export var BackgroundColor: Color
 export var TopText: String
 export var TopColor: Color
@@ -9,6 +8,7 @@ export var BottomColor: Color
 export var DisplayLengthSeconds: float = 3
 export var TweenLengthSeconds: float = .75
 export var SetPlayerPosition: NodePath # Set to 0,0 to keep current position
+export var CreateSavePoint: bool
 
 onready var PlayerNode = get_node("/root/Main/Player")
 onready var GUI = PlayerNode.get_node("GUI")
@@ -21,12 +21,26 @@ onready var BottomLabel:Label = TransferContainer.get_node("BottomText")
 
 var running = false
 
+func save():
+	if not CreateSavePoint:
+		return
+	var savedPosition = PlayerNode.global_position
+	if SetPlayerPosition:
+		savedPosition = get_node(SetPlayerPosition).position
+	
+	
+	PlayerNode.respawn_position = savedPosition
+	PlayerNode.respawn_health = PlayerNode.health
+	PlayerNode.respawn_mana = PlayerNode.mana
+	PlayerNode.respawn_stamina = PlayerNode.stamina
+
 func onTriggerAny(_trigger):
 	running = true
+	if CreateSavePoint: 
+		save()
+		print("Saved")
 	TopLabel.text = TopText
-	TopLabel.add_color_override("font_color", TopColor)
 	BottomLabel.text = BottomText
-	BottomLabel.add_color_override("font_color", BottomColor)
 	TransitionTween.interpolate_property(TransparencyHolder, "position", 
 		Vector2(0,0), Vector2(1, 1),
 		TweenLengthSeconds,

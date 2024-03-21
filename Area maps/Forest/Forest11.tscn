@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -10,9 +10,10 @@
 [ext_resource path="res://Interactables/bridge.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=9]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 74.25, 73.75 )
+extents = Vector2( 81.5, 83.5 )
 
 [node name="Forest11" type="Node2D"]
 
@@ -77,10 +78,11 @@ position = Vector2( -608, 992 )
 
 [node name="Chest" parent="." instance=ExtResource( 7 )]
 position = Vector2( -224, 862 )
+DroppedItems = [ ExtResource( 11 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 10 )]
 Triggerables = [ NodePath("..") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
-position = Vector2( 0.75, 0.25 )
+position = Vector2( -0.5, 3.5 )
 shape = SubResource( 1 )

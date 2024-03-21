@@ -1,5 +1,7 @@
 extends "res://Scripts/Entity.gd"
 
+signal death_scene_finished
+signal death_scene_popup_finished
 
 export var SPEED = 400
 export var SELF_CAST_RANGE = 20
@@ -13,9 +15,16 @@ export var selected_spell: PackedScene
 export var god_enabled: bool
 export var restoration_postions:int = 0
 export var health_per_potion:float = 30
+# Respawn info
 export var respawn_position: Vector2
+export var respawn_health: float
+export var respawn_stamina: float
+export var respawn_mana: float
+export var respawn_potions: int
+export var respawn_scenes = {}
 
 onready var Main = get_node("/root/Main")
+onready var GUI = get_node("GUI")
 onready var MusicPlayer = $MusicPlayer
 onready var TongueLine = $Tongue
 onready var TonguePosition = $TonguePosition
@@ -26,6 +35,15 @@ onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
 onready var half_height = height / 2
 onready var debug = OS.is_debug_build()
+
+# Death scene variables
+onready var TransitionTween = get_node("DeathTween")
+onready var TransparencyHolder = get_node("DeathTransparencyHolder")
+onready var TransferContainer:CanvasLayer = GUI.get_node("LevelTransition")
+onready var Background:Panel = TransferContainer.get_node("bg")
+onready var TopLabel:Label = TransferContainer.get_node("TopText")
+onready var BottomLabel:Label = TransferContainer.get_node("BottomText")
+var deathRunning = false
 
 export var melee_damage: float = 5
 export var damage_mult = 1
@@ -67,6 +85,12 @@ var held_big_item: Node2D
 
 func _ready():
 	respawn_position = global_position
+	respawn_health = health
+	respawn_stamina = stamina
+	respawn_mana = mana
+	respawn_potions = restoration_postions
+	
+	PlayerSprite.connect("animation_finished", self, "sprite_animation_finished")
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 	
 	if debug:
@@ -84,6 +108,7 @@ func _on_focus_changed(node):
 	var _obj = currentFocus.connect("focus_exited", self, "_remove_focus")
 
 func _physics_process(delta):
+	death_animation()
 	if Main.Paused:
 		return
 	if health <= 0:
@@ -119,9 +144,68 @@ func _physics_process(delta):
 		held_big_item.global_position = $ItemHolder.global_position
 
 
-func _on_DEATH_animation_finished():
-	$DEATH.visible = false
+func death_animation():
+	if not deathRunning:
+		return
+	var newBGColor = Color.black
+	var newTopColor = Color.white
+	var newBottomColor = Color.white
+	newBGColor.a*=TransparencyHolder.position.x
+	newTopColor.a*=TransparencyHolder.position.x
+	newBottomColor.a*=TransparencyHolder.position.x
+	
+	Background.modulate = newBGColor
+	TopLabel.add_color_override("font_color", newTopColor)
+	BottomLabel.add_color_override("font_color", newBottomColor)
+
+func death_scene():
+	deathRunning = true
+	TopLabel.text = "You Died!"
+	BottomLabel.text = "Bottom Text" #:clueless:
+	TransitionTween.interpolate_property(TransparencyHolder, "position", 
+		Vector2(0,0), Vector2(1, 1),
+		0.5,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+	)
+	
+	# Pause game
+	Main.pause(true, [])
+	TransferContainer.visible = true
+	TransitionTween.start()
+	yield(Main.wait(2), "completed")
+	emit_signal("death_scene_popup_finished")
+	TransitionTween.interpolate_property(TransparencyHolder, "position", 
+		Vector2(1,0), Vector2(0, 0),
+		0.5,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+	)
+	
+	global_position = respawn_position
+	# Unpause game
+	TransitionTween.start()
+	yield(Main.wait(0.5), "completed")
+	Main.pause(false, [])
+	TransferContainer.visible = false
+	deathRunning = false
+	emit_signal("death_scene_finished")
+
+func sprite_animation_finished():
+	if PlayerSprite.animation != "death":
+		return
 	$CollisionShape2D.disabled = true
+	
+	death_scene()
+	yield(self, "death_scene_popup_finished")
+	# Reset player to saved state
+	health = respawn_health
+	stamina = respawn_stamina
+	mana = respawn_mana
+	restoration_postions = respawn_potions
+	global_position = respawn_position
+	PlayerSprite.play("down")
+	$CollisionShape2D.disabled = false
+	
+	yield(self, "death_scene_finished")
 
 
 func get_curr_tile():
@@ -159,9 +243,7 @@ func Hurt(dmg: float):
 	
 	var newHp = health - dmg
 	if newHp <= 0:
-		PlayerSprite.visible = false
-		$DEATH.visible = true
-		$DEATH.play("explosion")
+		PlayerSprite.play("death")
 		pass
 	
 	MusicPlayer.PlayOnNode("PlayerHurt", self)
