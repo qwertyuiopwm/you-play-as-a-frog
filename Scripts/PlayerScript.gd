@@ -438,13 +438,11 @@ func set_animation():
 func _on_PickupArea_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	var obj = body.get_parent()
 	
-	if held_big_item != null: return
-	
 	if not obj.Pickupable: return
 	
 	obj.on_pickup(self)
 	
-	if obj.is_queued_for_deletion():
+	if obj.is_queued_for_deletion() or held_big_item != null:
 		return
 	
 	obj.get_parent().remove_child(obj)
