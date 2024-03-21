@@ -20,6 +20,10 @@ var SpellWheelPositions = []
 
 
 func hide():
+	$IngameUI/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas.visible = false
+	$IngameUI/top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas.visible = false
+	$IngameUI/spellspot.visible = false
+	
 	for canvas in get_children():
 		canvas.visible = false
 
