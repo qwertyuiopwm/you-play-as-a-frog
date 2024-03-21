@@ -62,7 +62,7 @@ position = Vector2( 96, 305 )
 shape = SubResource( 1 )
 
 [node name="PlayerDetector2" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../land_wall") ]
+Triggerables = [ NodePath("../land_wall"), NodePath("../SlidePlayer") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
 position = Vector2( 96, 305 )
@@ -95,7 +95,7 @@ position = Vector2( 222, 274 )
 shape = SubResource( 2 )
 
 [node name="PlayerDetector3" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI"), NodePath("../Spawners/EnemySpawner/ToggleTrigger"), NodePath("../Spawners/EnemySpawner2/ToggleTrigger"), NodePath("../Spawners/EnemySpawner3/ToggleTrigger"), NodePath("../Spawners/EnemySpawner4/ToggleTrigger"), NodePath("../Spawners/EnemySpawner5/ToggleTrigger"), NodePath("../Spawners/EnemySpawner6/ToggleTrigger"), NodePath("../Spawners/EnemySpawner7/ToggleTrigger"), NodePath("../Spawners/EnemySpawner8/ToggleTrigger"), NodePath("../Spawners/EnemySpawner9/ToggleTrigger"), NodePath("../Spawners/EnemySpawner10/ToggleTrigger"), NodePath("../Spawners/EnemySpawner11/ToggleTrigger"), NodePath("../Spawners/EnemySpawner12/ToggleTrigger"), NodePath("../SetCreditsStats"), NodePath("../CreditsMusic"), NodePath("../SlidePlayer") ]
+Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI"), NodePath("../Spawners/EnemySpawner/ToggleTrigger"), NodePath("../Spawners/EnemySpawner2/ToggleTrigger"), NodePath("../Spawners/EnemySpawner3/ToggleTrigger"), NodePath("../Spawners/EnemySpawner4/ToggleTrigger"), NodePath("../Spawners/EnemySpawner5/ToggleTrigger"), NodePath("../Spawners/EnemySpawner6/ToggleTrigger"), NodePath("../Spawners/EnemySpawner7/ToggleTrigger"), NodePath("../Spawners/EnemySpawner8/ToggleTrigger"), NodePath("../Spawners/EnemySpawner9/ToggleTrigger"), NodePath("../Spawners/EnemySpawner10/ToggleTrigger"), NodePath("../Spawners/EnemySpawner11/ToggleTrigger"), NodePath("../Spawners/EnemySpawner12/ToggleTrigger"), NodePath("../SetCreditsStats"), NodePath("../CreditsMusic") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector3"]
 position = Vector2( 96, 777.5 )
