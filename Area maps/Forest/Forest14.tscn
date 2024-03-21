@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Enemies/Forest/Weevil.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Triggerables/SetPlayerCreditStats.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.75, 18 )
@@ -93,7 +94,7 @@ shape = SubResource( 3 )
 position = Vector2( 95, 284 )
 
 [node name="PlayerDetector3" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI"), NodePath("../Spawners/EnemySpawner/ToggleTrigger"), NodePath("../Spawners/EnemySpawner2/ToggleTrigger"), NodePath("../Spawners/EnemySpawner3/ToggleTrigger"), NodePath("../Spawners/EnemySpawner4/ToggleTrigger"), NodePath("../Spawners/EnemySpawner5/ToggleTrigger"), NodePath("../Spawners/EnemySpawner6/ToggleTrigger"), NodePath("../Spawners/EnemySpawner7/ToggleTrigger"), NodePath("../Spawners/EnemySpawner8/ToggleTrigger"), NodePath("../Spawners/EnemySpawner9/ToggleTrigger"), NodePath("../Spawners/EnemySpawner10/ToggleTrigger"), NodePath("../Spawners/EnemySpawner11/ToggleTrigger"), NodePath("../Spawners/EnemySpawner12/ToggleTrigger"), NodePath("../SetCreditsStats") ]
+Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI"), NodePath("../Spawners/EnemySpawner/ToggleTrigger"), NodePath("../Spawners/EnemySpawner2/ToggleTrigger"), NodePath("../Spawners/EnemySpawner3/ToggleTrigger"), NodePath("../Spawners/EnemySpawner4/ToggleTrigger"), NodePath("../Spawners/EnemySpawner5/ToggleTrigger"), NodePath("../Spawners/EnemySpawner6/ToggleTrigger"), NodePath("../Spawners/EnemySpawner7/ToggleTrigger"), NodePath("../Spawners/EnemySpawner8/ToggleTrigger"), NodePath("../Spawners/EnemySpawner9/ToggleTrigger"), NodePath("../Spawners/EnemySpawner10/ToggleTrigger"), NodePath("../Spawners/EnemySpawner11/ToggleTrigger"), NodePath("../Spawners/EnemySpawner12/ToggleTrigger"), NodePath("../SetCreditsStats"), NodePath("../CreditsMusic") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector3"]
 position = Vector2( 96, 777.5 )
@@ -345,3 +346,6 @@ Trigger = NodePath("../RandTrigger")
 Toggle = true
 
 [node name="SetCreditsStats" parent="." instance=ExtResource( 17 )]
+
+[node name="CreditsMusic" parent="." instance=ExtResource( 18 )]
+Song = "CreditsMusic"
