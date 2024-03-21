@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Triggerables/SetPlayerCreditStats.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Triggerables/SlidePlayer.tscn" type="PackedScene" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.75, 18 )
@@ -75,14 +76,6 @@ OpenOffset = Vector2( -500, 0 )
 position = Vector2( -29, 274 )
 shape = SubResource( 2 )
 
-[node name="water_wall2" parent="." instance=ExtResource( 4 )]
-State = true
-OpenOffset = Vector2( 500, 0 )
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="water_wall2"]
-position = Vector2( 222, 274 )
-shape = SubResource( 2 )
-
 [node name="land_wall" parent="." instance=ExtResource( 4 )]
 OpenOffset = Vector2( 750, 0 )
 
@@ -93,8 +86,16 @@ shape = SubResource( 3 )
 [node name="Boat" parent="." instance=ExtResource( 5 )]
 position = Vector2( 95, 284 )
 
+[node name="water_wall2" parent="." instance=ExtResource( 4 )]
+State = true
+OpenOffset = Vector2( 500, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="water_wall2"]
+position = Vector2( 222, 274 )
+shape = SubResource( 2 )
+
 [node name="PlayerDetector3" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI"), NodePath("../Spawners/EnemySpawner/ToggleTrigger"), NodePath("../Spawners/EnemySpawner2/ToggleTrigger"), NodePath("../Spawners/EnemySpawner3/ToggleTrigger"), NodePath("../Spawners/EnemySpawner4/ToggleTrigger"), NodePath("../Spawners/EnemySpawner5/ToggleTrigger"), NodePath("../Spawners/EnemySpawner6/ToggleTrigger"), NodePath("../Spawners/EnemySpawner7/ToggleTrigger"), NodePath("../Spawners/EnemySpawner8/ToggleTrigger"), NodePath("../Spawners/EnemySpawner9/ToggleTrigger"), NodePath("../Spawners/EnemySpawner10/ToggleTrigger"), NodePath("../Spawners/EnemySpawner11/ToggleTrigger"), NodePath("../Spawners/EnemySpawner12/ToggleTrigger"), NodePath("../SetCreditsStats"), NodePath("../CreditsMusic") ]
+Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI"), NodePath("../Spawners/EnemySpawner/ToggleTrigger"), NodePath("../Spawners/EnemySpawner2/ToggleTrigger"), NodePath("../Spawners/EnemySpawner3/ToggleTrigger"), NodePath("../Spawners/EnemySpawner4/ToggleTrigger"), NodePath("../Spawners/EnemySpawner5/ToggleTrigger"), NodePath("../Spawners/EnemySpawner6/ToggleTrigger"), NodePath("../Spawners/EnemySpawner7/ToggleTrigger"), NodePath("../Spawners/EnemySpawner8/ToggleTrigger"), NodePath("../Spawners/EnemySpawner9/ToggleTrigger"), NodePath("../Spawners/EnemySpawner10/ToggleTrigger"), NodePath("../Spawners/EnemySpawner11/ToggleTrigger"), NodePath("../Spawners/EnemySpawner12/ToggleTrigger"), NodePath("../SetCreditsStats"), NodePath("../CreditsMusic"), NodePath("../SlidePlayer") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector3"]
 position = Vector2( 96, 777.5 )
@@ -349,3 +350,10 @@ Toggle = true
 
 [node name="CreditsMusic" parent="." instance=ExtResource( 18 )]
 Song = "CreditsMusic"
+
+[node name="SlidePlayer" parent="." instance=ExtResource( 19 )]
+SlideTime = 5.0
+TargetPos = NodePath("Position2D")
+
+[node name="Position2D" type="Position2D" parent="SlidePlayer"]
+position = Vector2( 96, 778 )
