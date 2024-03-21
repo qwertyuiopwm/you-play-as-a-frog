@@ -62,3 +62,4 @@ shape = SubResource( 1 )
 Song = "Centipede"
 
 [node name="NoMusic" parent="." instance=ExtResource( 9 )]
+Song = "NONE"
