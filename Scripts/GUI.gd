@@ -18,6 +18,12 @@ onready var vp = get_viewport()
 
 var SpellWheelPositions = []
 
+
+func hide():
+	for canvas in get_children():
+		canvas.visible = false
+
+
 func magnitude(vec: Vector2):
 	return sqrt(pow(vec.x, 2)+pow(vec.y, 2))
 
