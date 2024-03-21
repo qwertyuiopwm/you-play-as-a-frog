@@ -15,6 +15,7 @@ func PauseSong(paused: bool):
 func PlaySong(song: String):
 	if song == "":
 		Songs[CurrentlyPlaying].stop()
+		CurrentlyPlaying = "NONE"
 		return
 	
 	if not Songs.has(song):
