@@ -128,8 +128,12 @@ func get_curr_tile():
 	for tile_map in get_tree().get_nodes_in_group("ground"):
 		var pos = tile_map.world_to_map(global_position) - tile_map.world_to_map(tile_map.global_position)
 		var tile_id = tile_map.get_cellv(pos)
-		if tile_id != -1:
-			return tile_map.tile_set.tile_get_name(tile_id)
+		if tile_id > 0:
+			var tmn = tile_map.tile_set.tile_get_name(tile_id)
+#			if len(tmn) <= 0:
+#				print(global_position)
+#				print(tile_map.get_path())
+			return tmn
 	return null
 
 
