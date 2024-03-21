@@ -10,7 +10,7 @@
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 216, 10 )
+extents = Vector2( 216, 29.5 )
 
 [node name="Forest13" type="Node2D"]
 
@@ -28,7 +28,7 @@ collision_mask = 11
 format = 1
 tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, 1114112, 1073741824, 0, 1114113, 1073741824, 0, 1114114, 1073741824, 0 )
 script = ExtResource( 5 )
-OpenOffset = Vector2( 0, -3e+07 )
+OpenOffset = Vector2( 250, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 position = Vector2( 78, 88 )
@@ -54,5 +54,5 @@ position = Vector2( 73, 87 )
 Triggerables = [ NodePath("../Walls"), NodePath("../EnemySpawner"), NodePath("../ToggleTrigger") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 25, -19 )
+position = Vector2( 25, 0.5 )
 shape = SubResource( 1 )
