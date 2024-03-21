@@ -23,10 +23,11 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+PIXEL_PER_SECOND = 30
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ScrollContainer"]
 margin_right = 800.0
-margin_bottom = 1439.0
+margin_bottom = 5496.0
 rect_min_size = Vector2( 800, 0 )
 theme = SubResource( 3 )
 custom_constants/line_separation = 10
@@ -50,6 +51,59 @@ Music made on BeepBox (beepbox.co)
 
 
 
+Programming:
+Alan Dall
+Wyatt McIntosh
+
+
+Sprites:
+Jace Rushing
+Soren
+
+
+Music:
+Sean Harris
+
+
+Other things:
+Mario Madera
+
+
+Playtesters:
+Leo
+Payten
+Yared
+John
+
+
+
+
+
+
+Stats in the making of this game:
+Git Commits: 792 (and counting)
+WebGL Builds: ~30
+Lines of Code Written: >2200
+Merge Commits Pushed: ~120
+Grubs Slipped: 634
+Mustard Wasted: 4892 bottles
+Trees Shook: 439
+Trees Refusing to Shake: 773
+Games Crashed: {error: number too large}
+Heads Scratched: 1
+
+
+
+
+
+
+
+
+
+[font=res://Fonts/CreditTitle.tres]
+Thanks for Playing!
+[/font]
+
 [/center]"
 meta_underlined = false
 text = "
@@ -68,6 +122,59 @@ Version controlled using GitHub
 Sprites made with Piskel (piskelapp.com)
 Music made on BeepBox (beepbox.co)
 
+
+
+Programming:
+Alan Dall
+Wyatt McIntosh
+
+
+Sprites:
+Jace Rushing
+Soren
+
+
+Music:
+Sean Harris
+
+
+Other things:
+Mario Madera
+
+
+Playtesters:
+Leo
+Payten
+Yared
+John
+
+
+
+
+
+
+Stats in the making of this game:
+Git Commits: 792 (and counting)
+WebGL Builds: ~30
+Lines of Code Written: >2200
+Merge Commits Pushed: ~120
+Grubs Slipped: 634
+Mustard Wasted: 4892 bottles
+Trees Shook: 439
+Trees Refusing to Shake: 773
+Games Crashed: {error: number too large}
+Heads Scratched: 1
+
+
+
+
+
+
+
+
+
+
+Thanks for Playing!
 
 
 "
