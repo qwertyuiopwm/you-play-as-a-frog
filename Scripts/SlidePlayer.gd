@@ -8,7 +8,7 @@ onready var Player = get_node("/root/Main/Player")
 
 
 func _ready():
-	var _c = $Tween.connect("tween_completed", self, "tween_done")
+	var _c = $Tween.connect("tween_completed", self, "tween_complete")
 
 
 func onTriggerAny(_trigger):
