@@ -61,7 +61,7 @@ Inverted = true
 Song = "ForestMusic"
 
 [node name="BossMusicTrigger" parent="." instance=ExtResource( 7 )]
-Song = "Boss1Music"
+Song = "FightMusic"
 
 [node name="closegrub" parent="." instance=ExtResource( 8 )]
 PopupName = "fightgrub"
