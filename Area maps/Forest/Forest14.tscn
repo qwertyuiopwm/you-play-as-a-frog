@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Triggerables/InvisibleWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Triggerables/Boat.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Triggerables/CameraOverride.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Credits.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Triggerables/ToggleVisible.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Triggerables/HidePlayerGUI.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.75, 18 )
@@ -82,7 +85,7 @@ shape = SubResource( 3 )
 position = Vector2( 95, 284 )
 
 [node name="PlayerDetector3" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2") ]
+Triggerables = [ NodePath("../CameraOverride"), NodePath("../end_wall1"), NodePath("../end_wall2"), NodePath("../ToggleVisible"), NodePath("../HideGUI") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector3"]
 position = Vector2( 96, 777.5 )
@@ -90,6 +93,16 @@ shape = SubResource( 4 )
 
 [node name="CameraOverride" parent="." instance=ExtResource( 6 )]
 position = Vector2( 96, 778 )
+
+[node name="Credits" parent="CameraOverride" instance=ExtResource( 7 )]
+visible = false
+
+[node name="HideGUI" parent="." instance=ExtResource( 9 )]
+position = Vector2( 96, 778 )
+
+[node name="ToggleVisible" parent="." instance=ExtResource( 8 )]
+Trigger = NodePath("../CameraOverride/Credits")
+Toggle = true
 
 [node name="end_wall1" parent="." instance=ExtResource( 4 )]
 OpenOffset = Vector2( 750, 0 )
