@@ -43,6 +43,7 @@ collision_mask = 264
 script = ExtResource( 1 )
 IMMUNITIES = [ ExtResource( 2 ) ]
 SPEED = 75
+health = 9.0
 CIRCLE_RADIUS = 85
 SWOOP_SPEED = 175
 
@@ -61,7 +62,7 @@ texture = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
 frames = SubResource( 6 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="AttackCollider" type="Area2D" parent="."]
