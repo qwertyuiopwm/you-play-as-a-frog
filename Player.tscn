@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://MusicPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=2]
@@ -158,6 +158,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 300, 300 )
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 pause_mode = 2
 physics_interpolation_mode = 2
@@ -215,6 +218,11 @@ default_color = Color( 1, 0.25098, 0.356863, 1 )
 [node name="BoatSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 38 )
+
+[node name="TargetArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource( 39 )
 
 [connection signal="body_shape_entered" from="PickupArea" to="." method="_on_PickupArea_body_shape_entered"]
 [connection signal="tween_completed" from="TongueTween" to="." method="_on_TongueTween_tween_completed"]
