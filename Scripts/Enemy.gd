@@ -46,6 +46,7 @@ func on_death():
 
 
 func _ready():
+	add_to_group("Enemy")
 	for child in get_children():
 		if not child is AnimatedSprite:
 			continue
