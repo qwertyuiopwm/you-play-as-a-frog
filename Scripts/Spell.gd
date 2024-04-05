@@ -6,6 +6,7 @@ export var COOLDOWN = 1
 export var MANA_COST = 15
 export var CAN_SELF_CAST = false
 export var SpellIcon: String
+export(Array, PackedScene) var BlockedEffects
 
 onready var Main = get_node("/root/Main")
 onready var Player = get_parent().get_node("Player")
@@ -14,8 +15,10 @@ onready var Player = get_parent().get_node("Player")
 var EnemyCollision = int(pow(2,8))
 var WallCollision = int(pow(2,3))
 
+
 func hurt(body, dmg):
 	body.hurt(dmg * Player.damage_mult)
+
 
 func wait(seconds):
 	yield(get_tree().create_timer(seconds), "timeout")
