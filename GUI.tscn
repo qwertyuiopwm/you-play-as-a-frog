@@ -598,9 +598,9 @@ custom_effects = [ SubResource( 26 ) ]
 
 [node name="flies" type="RichTextLabel" parent="Popups"]
 visible = false
-margin_left = -256.0
+margin_left = -320.0
 margin_top = -32.0
-margin_right = 256.0
+margin_right = 320.0
 margin_bottom = 32.0
 custom_fonts/mono_font = ExtResource( 16 )
 custom_fonts/bold_italics_font = ExtResource( 16 )
@@ -609,8 +609,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center][color=#34ebe1][Left Click][/color] to melee the [color=red][Enemies][/color].[/center][/valign]"
-text = "[Left Click] to melee the [Enemies]."
+bbcode_text = "[valign][center][color=red][Flies][/color] cannot slip, [color=#34ebe1][Left Click][/color] to melee instead![/center][/valign]"
+text = "[Flies] cannot slip, [Left Click] to melee instead!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
@@ -629,6 +629,24 @@ custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
 text = "Defeat the [Enemies] to unlock [Shake]."
+fit_content_height = true
+custom_effects = [ SubResource( 26 ) ]
+
+[node name="useshake" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -300.0
+margin_top = -32.0
+margin_right = 300.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Select the [color=#c8c8c8][Shake][/color] spell to get past the trees![/center][/valign]"
+text = "Select the [Shake] spell to get past the trees!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
