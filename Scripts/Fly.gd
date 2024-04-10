@@ -21,6 +21,7 @@ enum states {
 
 
 func _ready():
+	$AnimatedSprite.play("default")
 	var _obj = $AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
 	$fly_vis.visible = debug
 
