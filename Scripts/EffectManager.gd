@@ -51,12 +51,16 @@ func get_effects():
 	return get_children()
 
 
-func has_effect(effect):
-	for _effect in get_effects():
-		if _effect is effect.instance().get_script():
-			return true
-	
-	return false
+func has_effect(effects):
+	if not effects is Array:
+		effects = [effects]
+		
+	for effect in effects:
+		for _effect in get_effects():
+			if _effect is effect.instance().get_script():
+				return true
+		
+		return false
 
 
 func add_time(effect, time):

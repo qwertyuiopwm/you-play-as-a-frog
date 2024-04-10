@@ -12,9 +12,10 @@ export(Array, PackedScene) var PlayerSpells = [
 ]
 
 export var selected_spell: PackedScene
+export var auto_aim_enabled: bool = true
 export var god_enabled: bool
-export var restoration_postions:int = 0
-export var health_per_potion:float = 30
+export var restoration_postions: int = 0
+export var health_per_potion: float = 30
 # Respawn info
 export var respawn_position: Vector2
 export var respawn_health: float
@@ -30,6 +31,7 @@ onready var TongueLine = $Tongue
 onready var TonguePosition = $TonguePosition
 onready var TongueTween = $TongueTween
 onready var PlayerSprite = $PlayerSprite
+
 onready var screen_size = get_viewport_rect().size
 onready var radius = $CollisionShape2D.shape.radius
 onready var height = $CollisionShape2D.shape.height + radius * 2
@@ -495,9 +497,8 @@ func get_nearest_enemy(blocked_effects = []):
 #		if !target_in_sight(enemy):
 #			continue
 		
-		for effect in blocked_effects:
-			if enemy.has_effect(effect):
-				continue
+		if enemy.has_effect(blocked_effects):
+			continue
 		
 		nearest_enemy = enemy
 		lowest_dist = dist
