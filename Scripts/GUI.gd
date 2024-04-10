@@ -96,6 +96,8 @@ func _process(_delta):
 	manaDisplay.max_value = Player.max_mana
 	manaDisplay.value = Player.mana
 	
+	$IngameUI/autoaim.visible = Player.auto_aim_enabled
+	
 	potionCount.text = String(Player.restoration_postions)+"x"
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
