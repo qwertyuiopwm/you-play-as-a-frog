@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Assets/VAllign.gd" type="Script" id=18]
 [ext_resource path="res://Assets/vcr_osd_mono_large.tres" type="DynamicFont" id=19]
 [ext_resource path="res://art/Restorative elixer-1.png.png" type="Texture" id=20]
+[ext_resource path="res://art/autoaim_indicator.png" type="Texture" id=21]
 
 [sub_resource type="StyleBoxFlat" id=11]
 corner_radius_top_left = 1024
@@ -260,6 +261,32 @@ margin_left = 736.0
 margin_right = 800.0
 margin_bottom = 64.0
 texture = ExtResource( 20 )
+
+[node name="autoaim" type="CanvasLayer" parent="IngameUI"]
+
+[node name="ColorRect" type="ColorRect" parent="IngameUI/autoaim"]
+margin_left = 466.0
+margin_top = 697.0
+margin_right = 506.0
+margin_bottom = 737.0
+rect_scale = Vector2( 1.5, 1.5 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="IngameUI/autoaim"]
+margin_left = 468.0
+margin_top = 699.0
+margin_right = 505.0
+margin_bottom = 736.0
+rect_scale = Vector2( 1.5, 1.5 )
+color = Color( 0.443137, 0.443137, 0.443137, 1 )
+
+[node name="AutoAim" type="TextureRect" parent="IngameUI/autoaim"]
+margin_left = 472.0
+margin_top = 702.0
+margin_right = 504.0
+margin_bottom = 734.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
 
 [node name="devtools" type="CanvasLayer" parent="."]
 layer = 5
