@@ -21,5 +21,5 @@ func onTriggerAny(_trigger):
 	$Tween.start()
 
 
-func tween_complete(var1, var2):
+func tween_complete(_var1, _var2):
 	Player.can_move = true

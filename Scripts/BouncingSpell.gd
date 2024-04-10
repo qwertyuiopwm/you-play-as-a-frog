@@ -8,6 +8,8 @@ export var BOUNCES = 0
 
 var remaining_duration = DURATION
 var remaining_bounces = BOUNCES
+var target
+var dir
 
 
 func on_start():
@@ -42,13 +44,6 @@ func bounce(body):
 		queue_free()
 
 
-func _ready():
-	var mouse_pos = get_global_mouse_position()
-	var dir = global_position.direction_to(mouse_pos)
-	linear_velocity = dir * VELOCITY
-	var _obj = connect("body_shape_entered", self, "collide")
-	on_start()
-
 
 func _process(delta):
 	remaining_duration -= delta
@@ -63,6 +58,20 @@ func try_cast(player):
 		queue_free()
 		return
 	
-	player.mana -= MANA_COST
-	global_position = player.global_position
 	player.get_parent().add_child(self)
+	
+	target = player.get_nearest_enemy()
+	
+	var target_pos = get_global_mouse_position()
+	
+	if target:
+		target_pos = target.global_position
+	
+	player.mana -= MANA_COST
+	
+	global_position = player.global_position
+	dir = global_position.direction_to(target_pos)
+	linear_velocity = dir * VELOCITY
+	
+	var _obj = connect("body_shape_entered", self, "collide")
+	on_start()

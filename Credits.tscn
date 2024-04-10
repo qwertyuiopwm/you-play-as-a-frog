@@ -54,13 +54,22 @@ PIXEL_PER_SECOND = 40
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ScrollContainer"]
 margin_right = 800.0
-margin_bottom = 5496.0
+margin_bottom = 5525.0
 rect_min_size = Vector2( 800, 0 )
 theme = SubResource( 3 )
 custom_constants/line_separation = 10
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]
+
+
+
+
+
+
+
+
+
 
 [font=res://Fonts/CreditTitle.tres]
 You Play As A Frog
@@ -134,6 +143,15 @@ Thanks for Playing!
 [/center]"
 meta_underlined = false
 text = "
+
+
+
+
+
+
+
+
+
 
 
 You Play As A Frog

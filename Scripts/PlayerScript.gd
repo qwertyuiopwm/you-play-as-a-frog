@@ -366,8 +366,14 @@ func melee_if_pressed(_delta):
 	melee_counter = melee_delay
 	
 	var rootPos = TongueLine.global_position
-	var mousePos = get_global_mouse_position()
-	var targetPos = rootPos + (rootPos.direction_to(mousePos)*melee_distance)
+	var target = get_nearest_enemy()
+	
+	var targets_pos = get_global_mouse_position()
+	
+	if target:
+		targets_pos = target.global_position
+	
+	var targetPos = rootPos + (rootPos.direction_to(targets_pos)*melee_distance)
 	
 	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
 	
@@ -474,3 +480,36 @@ func _on_TongueTween_tween_completed(object, _key):
 #
 #	if rayResult.has("collider"):
 #		rayResult.collider.hurt(melee_damage*damage_mult)
+
+
+func get_nearest_enemy(blocked_effects = []):
+	var enemies = get_targetable_enemies()
+	var nearest_enemy
+	var lowest_dist = INF
+	
+	for enemy in enemies:
+		var dist = global_position.distance_to(enemy.global_position)
+		if dist >= lowest_dist:
+			continue
+		
+#		if !target_in_sight(enemy):
+#			continue
+		
+		for effect in blocked_effects:
+			if enemy.has_effect(effect):
+				continue
+		
+		nearest_enemy = enemy
+		lowest_dist = dist
+	
+	return nearest_enemy
+
+
+func get_targetable_enemies():
+	
+	var colliding_target_bodies = $TargetArea.get_overlapping_bodies()
+	var enemies = []
+	for body in colliding_target_bodies:
+		if body.is_in_group("Enemy"):
+			enemies.push_back(body)
+	return enemies
