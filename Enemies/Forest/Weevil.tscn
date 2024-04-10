@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Grub.gd" type="Script" id=2]
 [ext_resource path="res://art/weevil.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -100,3 +101,9 @@ shape = SubResource( 11 )
 
 [node name="EffectManager" parent="." instance=ExtResource( 1 )]
 SLIPPY_COLOR_MODULATE = Color( 1, 1, 0.392157, 1 )
+
+[node name="HPBar" parent="." instance=ExtResource( 4 )]
+margin_left = -16.0
+margin_top = -38.0
+margin_right = -16.0
+margin_bottom = -38.0

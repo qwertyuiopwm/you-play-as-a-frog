@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Ant.gd" type="Script" id=1]
 [ext_resource path="res://art/ant (1).png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -92,8 +93,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
-animation = "hit"
-frame = 1
+animation = "still"
 playing = true
 
 [node name="HitCollider" type="Area2D" parent="."]
@@ -104,3 +104,9 @@ shape = SubResource( 20 )
 
 [node name="EffectManager" parent="." instance=ExtResource( 3 )]
 SLIPPY_COLOR_MODULATE = Color( 1, 1, 0.392157, 1 )
+
+[node name="HPBar" parent="." instance=ExtResource( 4 )]
+margin_left = -16.0
+margin_top = -32.0
+margin_right = -16.0
+margin_bottom = -32.0
