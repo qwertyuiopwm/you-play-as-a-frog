@@ -12,7 +12,7 @@ export var STEERING_MULT = 2.5
 export var ROTATE_TO_TARGET = false
 
 export var health: float = 10
-
+onready var maxHealth = health
 
 onready var Main = get_node("/root/Main")
 onready var rand = RandomNumberGenerator.new()
@@ -36,6 +36,8 @@ func get_state():
 func hurt(damage: float):
 	health = max(health - damage, 0)
 	
+	$HPBar.visible = true
+	
 	if health == 0:
 		on_death()
 		queue_free()
@@ -46,6 +48,8 @@ func on_death():
 
 
 func _ready():
+	$HPBar.visible = false
+	
 	add_to_group("Enemy")
 	for child in get_children():
 		if not child is AnimatedSprite:
