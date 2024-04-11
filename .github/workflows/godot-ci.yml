@@ -72,6 +72,7 @@ jobs:
     permissions:
       contents: write
       deployments: write
+    needs: export
     outputs:
       build-url: ${{ steps.pages_deploy.outputs.url }}
     
@@ -100,6 +101,7 @@ jobs:
     permissions:
       contents: write
       deployments: write
+    needs: export
     
     steps:
       - name: "Checkout"
@@ -127,7 +129,9 @@ jobs:
     permissions:
       contents: write
       deployments: write
-    needs: deploy-to-github-pages
+    needs: 
+    - export
+    - deploy-to-github-pages
     
     steps:
       - name: "Checkout"
