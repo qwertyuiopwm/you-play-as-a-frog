@@ -116,6 +116,9 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 	
+	if Input.is_action_just_pressed("toggle_auto_aim"):
+		auto_aim_enabled = !auto_aim_enabled
+	
 	check_tile()
 	
 	regen_stats(delta)
