@@ -75,7 +75,7 @@ jobs:
         with:
           folder: ./build/web
           repository-name: ypaaf/ypaaf.github.io
-          token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           git-config-name: 'ypaaf-builder[bot]'
           git-config-email: 'github-actions[bot]@users.noreply.github.com'
           commit-message: ${{ github.ref_name }}
