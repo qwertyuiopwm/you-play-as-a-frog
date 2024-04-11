@@ -60,7 +60,7 @@ func try_cast(player):
 	
 	player.get_parent().add_child(self)
 	
-	target = player.get_nearest_enemy(BlockedEffects)
+	target = player.get_nearest_enemy(BlockedEffects, BlockedImmunities)
 	
 	var target_pos = get_global_mouse_position()
 	
