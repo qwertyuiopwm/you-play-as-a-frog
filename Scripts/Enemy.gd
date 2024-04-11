@@ -36,7 +36,8 @@ func get_state():
 func hurt(damage: float):
 	health = max(health - damage, 0)
 	
-	$HPBar.visible = true
+	if has_node("HPBar"):
+		$HPBar.visible = true
 	
 	if health == 0:
 		on_death()
@@ -48,7 +49,8 @@ func on_death():
 
 
 func _ready():
-	$HPBar.visible = false
+	if has_node("HPBar"):
+		$HPBar.visible = false
 	
 	add_to_group("Enemy")
 	for child in get_children():
