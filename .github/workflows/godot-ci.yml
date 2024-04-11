@@ -69,6 +69,9 @@ jobs:
           directory: ./
           workingDirectory: ./build/web
 
+      - name: "Close SSH agent"
+        run: kill $SSH_AGENT_PID
+
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
         uses: JamesIves/github-pages-deploy-action@v4
