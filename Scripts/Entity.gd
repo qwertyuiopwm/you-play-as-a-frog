@@ -13,7 +13,7 @@ func is_sliding():
 	return sliding or has_effect(Effects.slippy)
 
 
-func Afflict(effect, duration: float=-1, override_immunities := false):
+func Afflict(effect, duration: float =-1, override_immunities := false):
 	if effect in IMMUNITIES and not override_immunities: return
 	$EffectManager.Afflict(effect, duration)
 
@@ -22,3 +22,12 @@ func Cure(effect):
 
 func has_effect(effect):
 	return $EffectManager.has_effect(effect)
+
+func has_immunity(immunities):
+	if not immunities is Array:
+		immunities = [immunities]
+	
+	for immunity in immunities:
+		if immunity in IMMUNITIES:
+			return true
+	return false
