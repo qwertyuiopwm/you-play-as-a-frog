@@ -70,7 +70,7 @@ jobs:
           workingDirectory: ./build/web
 
       - name: "Close SSH agent"
-        run: kill $SSH_AGENT_PID
+        run: eval "$(ssh-agent -k)"
 
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
