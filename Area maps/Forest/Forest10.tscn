@@ -101,7 +101,7 @@ PopupName = "thenextspell"
 
 [node name="PlayerDetector2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 980, -350 )
-Triggerables = [ NodePath("popup"), NodePath("../PlayerDetector3") ]
+Triggerables = [ NodePath("popup") ]
 TriggerVal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
