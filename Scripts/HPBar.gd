@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 
 onready var parent = get_parent()
