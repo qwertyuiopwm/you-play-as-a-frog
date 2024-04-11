@@ -484,7 +484,7 @@ func _on_TongueTween_tween_completed(object, _key):
 #		rayResult.collider.hurt(melee_damage*damage_mult)
 
 
-func get_nearest_enemy(blocked_effects = []):
+func get_nearest_enemy(blocked_effects = [], blocked_immunities = []):
 	var enemies = get_targetable_enemies()
 	var nearest_enemy
 	var lowest_dist = INF
@@ -498,6 +498,9 @@ func get_nearest_enemy(blocked_effects = []):
 #			continue
 		
 		if enemy.has_effect(blocked_effects):
+			continue
+		
+		if enemy.has_immunity(blocked_immunities):
 			continue
 		
 		nearest_enemy = enemy
