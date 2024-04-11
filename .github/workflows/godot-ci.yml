@@ -132,6 +132,7 @@ jobs:
     needs: 
     - export
     - deploy-to-github-pages
+    - deploy-to-cloudflare
     
     steps:
       - name: "Checkout"
