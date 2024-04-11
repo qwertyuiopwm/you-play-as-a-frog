@@ -7,6 +7,9 @@ export var MANA_COST = 15
 export var CAN_SELF_CAST = false
 export var SpellIcon: String
 export(Array, PackedScene) var BlockedEffects
+export(Array, PackedScene) var BlockedImmunities
+export(Array, PackedScene) var BlockedTargets
+
 
 onready var Main = get_node("/root/Main")
 onready var Player = get_parent().get_node("Player")
