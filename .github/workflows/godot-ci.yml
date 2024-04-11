@@ -32,6 +32,7 @@ jobs:
       - name: "Install Requirements"
         run: |
           apt-get update -y && apt-get install -y unzip && apt-get install -y wget && apt-get install -y cpio
+          apt install -y psmisc
           apt install -y npm
           npm i --save wrangler
           mkdir -p $HOME/.local/share/godot/templates/3.5.2.stable.mono
