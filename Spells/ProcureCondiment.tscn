@@ -56,6 +56,7 @@ COOLDOWN = 0
 CAN_SELF_CAST = true
 SpellIcon = "res://art/mustard_spell_icon.png"
 BlockedEffects = [ ExtResource( 3 ) ]
+BlockedImmunities = [ ExtResource( 3 ) ]
 VELOCITY = 500
 DURATION = 1
 
