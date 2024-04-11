@@ -6,17 +6,19 @@ on:
     tags:
       - '*'
 
+env:
+  WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: "$WORKFLOW_NAME"
   cancel-in-progress: true
 
 jobs:
-  export-deploy:
+  export:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       deployments: write
-
     container:
       image: barichello/godot-ci:mono-3.5.2
     
@@ -58,8 +60,33 @@ jobs:
         run: |
           mkdir -v -p ./build/linux
           godot -v --export "Linux/X11" ./build/linux/linux.x86_64
-
-      - name: "Deploy to CF Pages"
+      
+      - name: "Upload Artifacts"
+        uses: actions/upload-artifact@master
+        with:
+          name: "$WORKFLOW_NAME"
+          path: ./build
+    
+  deploy-to-cloudflare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      deployments: write
+    needs: export
+    outputs:
+      build-url: ${{ steps.pages_deploy.outputs.url }}
+    
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+    
+      - name: "Download artifact"
+        uses: actions/download-artifact@master
+        with:
+          name: "$WORKFLOW_NAME"
+          path: ./build
+      
+      - name: "Deploy"
         id: pages_deploy
         uses: cloudflare/pages-action@v1
         with:
@@ -68,21 +95,55 @@ jobs:
           projectName: ypaaf
           directory: ./
           workingDirectory: ./build/web
-      
-      - name: "Kill previous SSH agent"
-        run: killall ssh-agent
 
+  deploy-to-github-pages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      deployments: write
+    needs: export
+    
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+    
+      - name: "Download artifact"
+        uses: actions/download-artifact@master
+        with:
+          name: "$WORKFLOW_NAME"
+          path: ./build
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          external_repository: ypaaf/ypaaf.github.io
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./build/web
-          force_orphan: true
-          user_name: 'ypaaf-builder[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: ${{ github.ref_name }}
+          folder: ./build/web
+          repository-name: ypaaf/ypaaf.github.io
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          branch: main
+          git-config-name: 'ypaaf-builder[bot]'
+          git-config-email: 'github-actions[bot]@users.noreply.github.com'
+          commit-message: ${{ github.ref_name }}
+          clean: true
+      
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      deployments: write
+    needs: 
+    - export
+    - deploy-to-github-pages
+    - deploy-to-cloudflare
+    
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+    
+      - name: "Download artifact"
+        uses: actions/download-artifact@master
+        with:
+          name: "$WORKFLOW_NAME"
+          path: ./build
       
       - name: "Create release"
         uses: softprops/action-gh-release@v1
@@ -93,6 +154,6 @@ jobs:
             ./build/mac/macos.zip
             ./build/windows/windows.exe
             ./build/linux/linux.x86_64
-          body: "Web build: ${{ steps.pages_deploy.outputs.url }}"
+          body: "Web build: ${{ needs.deploy-to-cloudflare.outputs.build-url }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
