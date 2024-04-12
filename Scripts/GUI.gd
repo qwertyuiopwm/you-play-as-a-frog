@@ -33,7 +33,7 @@ var shownkeys = {
 	"cast_spell": "Cast Spell",
 	"melee": "Melee",
 	"restore": "Use Potion",
-	"pause_game": "Pause",
+	"toggle_auto_aim": "Toggle Auto Aim"
 }
 
 
@@ -57,6 +57,9 @@ func _ready():
 	generateControls()
 	
 func onKeyClick(inputMenu, actionName):
+	for action in InputMap.get_action_list("pause_game"):
+		InputMap.action_erase_event("pause_game", action)
+	
 	inputMenu.get_node("Key").text = "Click a key to set input!"
 	for action in InputMap.get_action_list(actionName):
 		InputMap.action_erase_event(actionName, action)
@@ -87,8 +90,14 @@ func _input(event):
 		return
 	if event is InputEventMouseMotion:
 		return
-	waitingInputMenu.get_node("Key").text = eventToString(event)
-	InputMap.action_add_event(waitingInputName, event)
+	var keyButton = waitingInputMenu.get_node("Key")
+	keyButton.text = "No input selected"
+	if event.as_text() != "Escape":
+		keyButton.text = eventToString(event)
+		InputMap.action_add_event(waitingInputName, event)
+	var pause_key = InputEventKey.new	()
+	pause_key.scancode = KEY_ESCAPE
+	InputMap.action_add_event("pause_game", pause_key)
 	waitingForInput = false
 
 func generateControls():
