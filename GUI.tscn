@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Assets/vcr_osd_mono_large.tres" type="DynamicFont" id=19]
 [ext_resource path="res://art/Restorative elixer-1.png.png" type="Texture" id=20]
 [ext_resource path="res://art/autoaim_indicator.png" type="Texture" id=21]
+[ext_resource path="res://Assets/keybutton_style.tres" type="StyleBox" id=22]
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.337255, 0.337255, 0.337255, 1 )
@@ -129,6 +130,38 @@ script = ExtResource( 18 )
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 0.501961 )
+
+[sub_resource type="DynamicFontData" id=31]
+font_path = "res://Assets/VCR_OSD_MONO.ttf"
+
+[sub_resource type="DynamicFont" id=32]
+size = 40
+font_data = SubResource( 31 )
+
+[sub_resource type="DynamicFontData" id=33]
+font_path = "res://Assets/VCR_OSD_MONO.ttf"
+
+[sub_resource type="DynamicFont" id=34]
+size = 20
+font_data = SubResource( 33 )
+
+[sub_resource type="DynamicFontData" id=35]
+font_path = "res://Assets/VCR_OSD_MONO.ttf"
+
+[sub_resource type="DynamicFont" id=36]
+size = 20
+font_data = SubResource( 35 )
+
+[sub_resource type="DynamicFontData" id=37]
+font_path = "res://Assets/VCR_OSD_MONO.ttf"
+
+[sub_resource type="DynamicFont" id=38]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 37 )
 
 [node name="GUI" type="Control"]
 pause_mode = 2
@@ -732,6 +765,74 @@ custom_fonts/font = ExtResource( 19 )
 text = "Level One"
 align = 1
 valign = 1
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="PauseMenu"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 30 )
+
+[node name="Button" type="Button" parent="PauseMenu"]
+margin_left = -128.0
+margin_top = -340.0
+margin_right = 128.0
+margin_bottom = -276.0
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 22 )
+text = "Play Game"
+icon_align = 1
+
+[node name="playtime" type="Label" parent="PauseMenu"]
+margin_left = -380.0
+margin_top = -290.0
+margin_right = -260.0
+margin_bottom = -270.0
+custom_fonts/font = SubResource( 34 )
+text = "Playtime: "
+valign = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu"]
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/ScrollContainer"]
+
+[node name="base" type="HBoxContainer" parent="PauseMenu/ScrollContainer/VBoxContainer"]
+visible = false
+margin_right = 148.0
+margin_bottom = 20.0
+custom_constants/separation = 50
+
+[node name="Name" type="Label" parent="PauseMenu/ScrollContainer/VBoxContainer/base"]
+margin_top = 1.0
+margin_right = 84.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 36 )
+text = "move_up"
+
+[node name="Key" type="Button" parent="PauseMenu/ScrollContainer/VBoxContainer/base"]
+margin_left = 134.0
+margin_right = 148.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 38 )
+custom_styles/hover = ExtResource( 22 )
+custom_styles/pressed = ExtResource( 22 )
+custom_styles/focus = ExtResource( 22 )
+custom_styles/normal = ExtResource( 22 )
+shortcut_in_tooltip = false
+text = "W"
+icon_align = 1
 
 [connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]
 [connection signal="pressed" from="MainMenu/Button" to="." method="_on_Button_pressed"]

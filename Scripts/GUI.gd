@@ -6,6 +6,10 @@ onready var Player = get_parent()
 onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
+onready var PauseMenu = $PauseMenu
+onready var PlaytimeLabel = PauseMenu.get_node("playtime")
+onready var ControlsContainer = PauseMenu.get_node("ScrollContainer/VBoxContainer")
+onready var BaseControl = ControlsContainer.get_node("base")
 onready var spellWheel = ingameUI.get_node("spellwheel")
 onready var wheelComponents = spellWheel.get_node("WheelParts")
 onready var wheelArrow = spellWheel.get_node("arrow")
@@ -15,8 +19,20 @@ onready var stamDisplay = ingameUI.get_node("top_bar/stats_bg/VBoxContainer/stat
 onready var manaDisplay = ingameUI.get_node("spellspot/mana_display")
 onready var potionCount = ingameUI.get_node("potions")
 onready var vp = get_viewport() 
+onready var waitingForInput = false
+onready var waitingInputMenu
+onready var waitingInputName
 
 var SpellWheelPositions = []
+var shownkeys = [
+	"move_up",
+	"move_down",
+	"move_left",
+	"move_right",
+	"select_spell",
+	"cast_spell",
+	
+]
 
 
 func hide():
@@ -36,7 +52,58 @@ func _ready():
 	Main.pause(true, [Player])
 		
 	generateWheel()
-		
+	generateControls()
+	
+func onKeyClick(inputMenu, actionName):
+	inputMenu.get_node("Key").text = "Click a key to set input!"
+	for action in InputMap.get_action_list(actionName):
+		InputMap.action_erase_event(actionName, action)
+	waitingInputMenu = inputMenu
+	waitingInputName = actionName
+	waitingForInput = true
+
+func eventToString(event: InputEvent):
+	var inputStr = event.as_text()
+	if event is InputEventMouseButton:
+		inputStr = "Mouse Button %s" % event.button_index
+	if event is InputEventJoypadButton:
+		inputStr = "Joypad Button %s" % event.button_index
+	if event is InputEventJoypadMotion:
+		match event.axis:
+			event.JoyAxis.JOY_AXIS_LEFT_X:
+				inputStr = "Left Joystick"
+			event.JoyAxis.JOY_AXIS_RIGHT_X:
+				inputStr = "Right Joystick"
+			event.JoyAxis.JOY_AXIS_RIGHT_Y:
+				inputStr = "Right Joystick"
+			event.JoyAxis.JOY_AXIS_LEFT_Y:
+				inputStr = "Left Joystick"
+	return inputStr
+
+func _input(event):
+	if !waitingForInput:
+		return
+	if event is InputEventMouseMotion:
+		return
+	waitingInputMenu.get_node("Key").text = eventToString(event)
+	InputMap.action_add_event(waitingInputName, event)
+	waitingForInput = false
+
+func generateControls():
+	for actionName in shownkeys:
+		var keys = InputMap.get_action_list(actionName)
+		if len(keys) <= 0:
+			continue
+		for action in keys:
+			var inputStr = eventToString(action)
+			var newInput = BaseControl.duplicate()
+			newInput.get_node("Name").text = actionName
+			newInput.get_node("Key").text = inputStr
+			newInput.name = actionName
+			newInput.visible = true
+			ControlsContainer.add_child(newInput)
+			newInput.get_node("Key").connect("pressed", self, "onKeyClick", [newInput, actionName])
+
 
 func generateWheel():
 	var spellSlots = len(Player.PlayerSpells)
@@ -87,6 +154,12 @@ func generateWheel():
 
 
 func _process(_delta):
+	if waitingForInput:
+		return
+	if Input.is_action_just_pressed("pause_game") and !MainMenu.visible:
+		PlaytimeLabel.text = "Playtime: %s" % Main.time_convert(Main.PlaytimeSeconds)
+		PauseMenu.visible = not Main.Paused
+		Main.pause(not Main.Paused, [])
 	hpDisplay.max_value = Player.max_health
 	hpDisplay.value = Player.health
 	

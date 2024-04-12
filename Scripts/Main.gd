@@ -2,6 +2,20 @@ extends Node2D
 
 
 export var Paused = true
+export var PlaytimeSeconds = 0
+
+func _process(delta):
+	if Paused:
+		return
+	PlaytimeSeconds+=delta
+
+func time_convert(time_in_sec):
+	var seconds_ = int(time_in_sec)
+	var seconds = seconds_%60
+	var minutes = (seconds_/60)%60
+	var hours = (seconds_/60)/60
+	
+	return "%02d:%02d:%02d" % [hours, minutes, seconds]
 
 func wait(seconds):
 	yield(get_tree().create_timer(seconds), "timeout")
