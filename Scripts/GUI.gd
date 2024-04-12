@@ -24,15 +24,17 @@ onready var waitingInputMenu
 onready var waitingInputName
 
 var SpellWheelPositions = []
-var shownkeys = [
-	"move_up",
-	"move_down",
-	"move_left",
-	"move_right",
-	"select_spell",
-	"cast_spell",
-	
-]
+var shownkeys = {
+	"move_up": "Move Up",
+	"move_down": "Move Down",
+	"move_left": "Move Left",
+	"move_right": "Move Right",
+	"select_spell": "Select Spell",
+	"cast_spell": "Cast Spell",
+	"melee": "Melee",
+	"restore": "Use Potion",
+	"pause_game": "Pause",
+}
 
 
 func hide():
@@ -97,7 +99,7 @@ func generateControls():
 		for action in keys:
 			var inputStr = eventToString(action)
 			var newInput = BaseControl.duplicate()
-			newInput.get_node("Name").text = actionName
+			newInput.get_node("Name").text = shownkeys[actionName]
 			newInput.get_node("Key").text = inputStr
 			newInput.name = actionName
 			newInput.visible = true
