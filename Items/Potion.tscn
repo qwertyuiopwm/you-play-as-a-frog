@@ -14,6 +14,7 @@ animations = [ {
 
 [node name="potion" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+Type = 1
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = SubResource( 1 )
