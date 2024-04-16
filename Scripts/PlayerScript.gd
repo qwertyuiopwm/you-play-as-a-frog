@@ -50,6 +50,9 @@ var deathRunning = false
 export var melee_damage: float = 5
 export var damage_mult = 1
 
+var drop_time: float = 1
+var drop_dist: int = 100
+
 var dashing = false
 var dash_stamina_cost = 20
 var dash_speed_mult = 2
@@ -266,6 +269,36 @@ func Heal(hp: float):
 	health = newHp
 
 
+func drop_big_item(dropAngle = -1):
+	if not held_big_item:
+		return
+	
+	dropAngle %= 360
+	if dropAngle > 0:
+		dropAngle = rand_range(0, 360)
+	
+	var item = held_big_item
+	
+	var itemPos = item.global_position
+	var targetPos = global_position + Vector2(0, 1).rotated(deg2rad(-dropAngle)) * drop_dist
+	
+	item.Pickupable = false
+	item.set_pickupable(drop_time + .5)
+	
+	held_big_item = null
+	remove_child(item)
+	Main.add_child(item)
+	
+	item.global_position = itemPos
+	
+	$DropTween.interpolate_property(item, "global_position", 
+		item.global_position, 
+		targetPos, 
+		drop_time, Tween.TRANS_CUBIC, Tween.EASE_OUT
+	)
+	$DropTween.start()
+
+
 func AddSpell(spell):
 	if not Spells.AllSpells.has(spell):
 		return
@@ -453,7 +486,11 @@ func _on_PickupArea_body_shape_entered(_body_rid, body, _body_shape_index, _loca
 	
 	obj.on_pickup(self)
 	
-	if obj.is_queued_for_deletion() or held_big_item != null:
+	if obj.Type == 1:
+		obj.queue_free()
+		return
+	
+	if held_big_item != null:
 		return
 	
 	obj.get_parent().remove_child(obj)
@@ -475,16 +512,6 @@ func _on_TongueTween_tween_completed(object, _key):
 		tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 	)
 	TongueTween.start()
-	
-	# Damage enemy if exists
-#	var rayResult = Main.cast_ray(
-#		TongueLine.to_global(Vector2.ZERO), 
-#		TongueLine.to_global(TongueLine.points[1]), 
-#		0b00000000_00000000_00000001_00000000, []
-#	)
-#
-#	if rayResult.has("collider"):
-#		rayResult.collider.hurt(melee_damage*damage_mult)
 
 
 func get_nearest_enemy(blocked_effects = [], blocked_immunities = []):
