@@ -10,7 +10,7 @@ env:
   WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
 concurrency:
-  group: "$WORKFLOW_NAME"
+  group: $WORKFLOW_NAME
   cancel-in-progress: true
 
 jobs:
@@ -64,8 +64,9 @@ jobs:
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@master
         with:
-          name: "$WORKFLOW_NAME"
+          name: $WORKFLOW_NAME
           path: ./build
+          retention-days: 2
     
   deploy-to-cloudflare:
     runs-on: ubuntu-latest
@@ -83,7 +84,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: "$WORKFLOW_NAME"
+          name: $WORKFLOW_NAME
           path: ./build
       
       - name: "Deploy"
@@ -110,7 +111,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: "$WORKFLOW_NAME"
+          name: $WORKFLOW_NAME
           path: ./build
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
@@ -142,7 +143,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: "$WORKFLOW_NAME"
+          name: $WORKFLOW_NAME
           path: ./build
       
       - name: "Create release"

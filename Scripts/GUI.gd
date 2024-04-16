@@ -7,6 +7,7 @@ onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
 onready var PauseMenu = $PauseMenu
+onready var ContinueButton = PauseMenu.get_node("Button")
 onready var PlaytimeLabel = PauseMenu.get_node("playtime")
 onready var ControlsContainer = PauseMenu.get_node("ScrollContainer/VBoxContainer")
 onready var BaseControl = ControlsContainer.get_node("base")
@@ -53,9 +54,16 @@ func magnitude(vec: Vector2):
 func _ready():
 	MainMenu.visible = true
 	Main.pause(true, [Player])
+	ContinueButton.connect("pressed", self, "unpauseButton")
 		
 	generateWheel()
 	generateControls()
+
+func unpauseButton():
+	if waitingForInput:
+		return
+	PauseMenu.visible = false
+	Main.pause(false, [])
 	
 func onKeyClick(inputMenu, actionName):
 	for action in InputMap.get_action_list("pause_game"):
