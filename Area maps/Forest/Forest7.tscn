@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -10,9 +10,13 @@
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=8]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Triggerables/PlayerDropItem.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 37.5, 61.5 )
 
 [node name="Forest7" type="Node2D"]
 
@@ -105,3 +109,14 @@ Triggerables = [ NodePath("..") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
 position = Vector2( 0.75, 0.25 )
 shape = SubResource( 1 )
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 9 )]
+Triggerables = [ NodePath("DropItem") ]
+DeleteOnTrigger = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( 1271.5, 381.5 )
+shape = SubResource( 2 )
+
+[node name="DropItem" parent="PlayerDetector" instance=ExtResource( 11 )]
+DropAngle = -90
