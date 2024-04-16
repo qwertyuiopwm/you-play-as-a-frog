@@ -15,7 +15,10 @@ var target_pos
 
 
 func _ready():
-	yield(Main.wait(1), "completed")
+	call_deferred("setup")
+
+
+func setup():
 	start_pos = global_position
 	open_pos = global_position + OpenOffset
 	if not TRIGGER_ON_START: return
