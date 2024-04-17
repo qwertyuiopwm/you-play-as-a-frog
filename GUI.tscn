@@ -714,6 +714,23 @@ bbcode_text = "[valign][center]Defeat [color=lime]all[/color] the [color=red][en
 text = "Defeat all the [enemies] to open the [Barrier]"
 custom_effects = [ SubResource( 25 ) ]
 
+[node name="ctopotion" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -192.0
+margin_top = -32.0
+margin_right = 192.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Click [color=#34ebe1][C][/color] to use a potion[/center][/valign]"
+text = "Click [C] to use a potion"
+custom_effects = [ SubResource( 25 ) ]
+
 [node name="thenextspell" type="RichTextLabel" parent="Popups"]
 visible = false
 margin_left = -288.0

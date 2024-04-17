@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -11,12 +11,17 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Triggerables/PlayerDropItem.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Triggers/PassTrigger.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 37.5, 61.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 60, 62.5 )
 
 [node name="Forest7" type="Node2D"]
 
@@ -120,3 +125,25 @@ shape = SubResource( 2 )
 
 [node name="DropItem" parent="PlayerDetector" instance=ExtResource( 11 )]
 DropAngle = -90
+
+[node name="Chest2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 403, 219 )
+DroppedItems = [ ExtResource( 10 ), ExtResource( 10 ) ]
+
+[node name="PlayerDetector" parent="Chest2" instance=ExtResource( 9 )]
+Triggerables = [ NodePath(".."), NodePath("../PassTrigger"), NodePath("../ctopotion") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest2/PlayerDetector"]
+position = Vector2( 0, -1 )
+shape = SubResource( 3 )
+
+[node name="ctopotion" parent="Chest2" instance=ExtResource( 12 )]
+PopupName = "ctopotion"
+
+[node name="PassTrigger" parent="Chest2" instance=ExtResource( 13 )]
+Triggerables = [ NodePath("../hidepopup") ]
+delay = 5.0
+
+[node name="hidepopup" parent="Chest2" instance=ExtResource( 12 )]
+PopupName = "ctopotion"
+Inverted = true
