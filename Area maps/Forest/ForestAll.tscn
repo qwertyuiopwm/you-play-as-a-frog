@@ -116,7 +116,7 @@ Triggerables = [ NodePath("..") ]
 DeleteOnTrigger = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="3-4/PlayerDetector"]
-position = Vector2( 5154, 10559 )
+position = Vector2( 5139, 10689 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
@@ -129,7 +129,7 @@ BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
 SetPlayerPosition = NodePath("TPpos")
 
 [node name="TPpos" type="Node2D" parent="4-3"]
-position = Vector2( 5147, 10334 )
+position = Vector2( 5135, 10531 )
 
 [node name="PlayerDetector" parent="4-3" instance=ExtResource( 4 )]
 Triggerables = [ NodePath("..") ]
