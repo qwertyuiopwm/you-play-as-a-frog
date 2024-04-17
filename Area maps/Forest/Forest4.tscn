@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 93.75, 36.9375 )
 
 [node name="Forest4" type="Node2D"]
 
@@ -35,3 +39,24 @@ Triggerables = [ NodePath("..") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
 position = Vector2( 0.75, 0.25 )
 shape = SubResource( 1 )
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("cantopenpopup") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( 287, 52 )
+shape = SubResource( 2 )
+
+[node name="cantopenpopup" parent="PlayerDetector" instance=ExtResource( 5 )]
+PopupName = "cantopenyet"
+
+[node name="PlayerDetector2" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("closepopup") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
+position = Vector2( 288, 295 )
+shape = SubResource( 2 )
+
+[node name="closepopup" parent="PlayerDetector2" instance=ExtResource( 5 )]
+PopupName = "cantopenyet"
+Inverted = true
