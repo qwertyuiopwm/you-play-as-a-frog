@@ -680,6 +680,40 @@ text = "[Flies] cannot slip, [Left Click] to melee instead!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
+[node name="cantopenyet" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -200.0
+margin_top = -32.0
+margin_right = 184.0
+margin_bottom = 48.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]I can't get past these trees, maybe I'll find a way later[/center][/valign]"
+text = "I can't get past these trees, maybe I'll find a way later"
+custom_effects = [ SubResource( 25 ) ]
+
+[node name="defeatallenemies" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -200.0
+margin_top = -32.0
+margin_right = 184.0
+margin_bottom = 48.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Defeat [color=lime]all[/color] the [color=red][enemies][/color] to open the [color=#ff60ff][Barrier][/color][/center][/valign]"
+text = "Defeat all the [enemies] to open the [Barrier]"
+custom_effects = [ SubResource( 25 ) ]
+
 [node name="thenextspell" type="RichTextLabel" parent="Popups"]
 visible = false
 margin_left = -288.0
