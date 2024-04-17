@@ -19,10 +19,10 @@ position = Vector2( -1216, 1214 )
 position = Vector2( -1537, 2814 )
 
 [node name="Forest13" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1538, 3966 )
+position = Vector2( -1537, 4734 )
 
 [node name="Forest14" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1539, 5182 )
+position = Vector2( -1537, 5950 )
 
 [node name="RoomReset" parent="." instance=ExtResource( 6 )]
 PACKED_SCENE = ExtResource( 1 )
