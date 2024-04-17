@@ -54,7 +54,7 @@ PIXEL_PER_SECOND = 40
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ScrollContainer"]
 margin_right = 800.0
-margin_bottom = 5525.0
+margin_bottom = 5663.0
 rect_min_size = Vector2( 800, 0 )
 theme = SubResource( 3 )
 custom_constants/line_separation = 10
@@ -110,6 +110,9 @@ Leo
 Payten
 Yared
 John
+Tucker
+Beth
+Elijah
 
 
 
@@ -117,9 +120,9 @@ John
 
 
 Stats in the making of this game:
-Git Commits: 792 (and counting)
-WebGL Builds: ~30
-Lines of Code Written: >2200
+Git Commits: 938 (and counting)
+WebGL Builds: ~40
+Lines of Code Written: >3000
 Merge Commits Pushed: ~120
 Grubs Slipped: 634
 Mustard Wasted: 4892 bottles
@@ -127,7 +130,6 @@ Trees Shook: 439
 Trees Refusing to Shake: 773
 Games Crashed: {error: number too large}
 Heads Scratched: 1
-
 
 
 
@@ -192,6 +194,9 @@ Leo
 Payten
 Yared
 John
+Tucker
+Beth
+Elijah
 
 
 
@@ -199,9 +204,9 @@ John
 
 
 Stats in the making of this game:
-Git Commits: 792 (and counting)
-WebGL Builds: ~30
-Lines of Code Written: >2200
+Git Commits: 938 (and counting)
+WebGL Builds: ~40
+Lines of Code Written: >3000
 Merge Commits Pushed: ~120
 Grubs Slipped: 634
 Mustard Wasted: 4892 bottles
@@ -209,7 +214,6 @@ Trees Shook: 439
 Trees Refusing to Shake: 773
 Games Crashed: {error: number too large}
 Heads Scratched: 1
-
 
 
 
