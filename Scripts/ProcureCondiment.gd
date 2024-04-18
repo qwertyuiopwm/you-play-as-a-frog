@@ -36,5 +36,7 @@ func try_self_cast(player):
 		queue_free()
 		return
 	
+	
+	player.MusicPlayer.PlayOnNode("Mustard", player)
 	player.mana -= MANA_COST
 	player.Afflict(Effects.slippy, SELF_SLIPPY_DURATION)
