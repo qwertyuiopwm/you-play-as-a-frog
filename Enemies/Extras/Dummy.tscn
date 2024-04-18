@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Dummy.gd" type="Script" id=1]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/dummy.png" type="Texture" id=3]
+[ext_resource path="res://Triggers/PassTrigger.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 22.0
@@ -39,3 +40,13 @@ frames = SubResource( 2 )
 frame = 1
 
 [node name="EffectManager" parent="." instance=ExtResource( 2 )]
+
+[node name="PassTrigger" parent="." instance=ExtResource( 4 )]
+
+[node name="DamageLabel" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -39.0
+margin_right = 20.0
+margin_bottom = -25.0
+text = "1"
+align = 1
