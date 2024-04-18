@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/CentipedeSegment.gd" type="Script" id=1]
 [ext_resource path="res://art/centipede tail.png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14, 20 )
@@ -23,9 +24,10 @@ animations = [ {
 extents = Vector2( 29, 20 )
 
 [node name="CentipedeTail" type="KinematicBody2D" groups=["Enemy"]]
-collision_layer = 256
+collision_layer = 257
 collision_mask = 2
 script = ExtResource( 1 )
+PERMANENT_EFFECTS = [ ExtResource( 4 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -14, 0 )
