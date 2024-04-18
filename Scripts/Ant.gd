@@ -23,6 +23,11 @@ func _physics_process(delta):
 	set_target()
 	state = get_state()
 	
+	if is_sliding():
+		move(0, delta)
+		return
+	
+	
 	match state:
 		states.STILL:
 			$AnimatedSprite.play("still")

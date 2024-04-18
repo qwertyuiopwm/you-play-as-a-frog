@@ -31,6 +31,11 @@ func _physics_process(delta):
 	
 	state = get_state()
 	
+	if is_sliding():
+		move(0, delta)
+		return
+		
+	
 	match state:
 		states.STILL:
 			body.play("still")
