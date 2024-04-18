@@ -80,16 +80,7 @@ func move(_target, delta):
 		rotation = Vector2.ZERO.angle_to_point(velocity)
 	
 	if is_sliding() and velocity.length_squared() != 0:
-		var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
-		
-		if body == null:
-			return
-			
-		if body.collider.get_parent().get_children()[0] is TileMap:
-			on_slip_into_wall()
-			hurt(SLIP_WALL_DAMAGE)
-			Cure(Effects.slippy)
-			Afflict(Effects.stunned, SLIP_STUN_DUR)
+		slip(delta)
 		return
 	
 	var direction = (_target - global_position).normalized()
@@ -98,6 +89,19 @@ func move(_target, delta):
 	velocity += steering
 	flip_body(velocity.x > 0)
 	velocity = move_and_slide(velocity)
+
+
+func slip(delta):
+	var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
+	
+	if body == null:
+		return
+	
+	if body.collider.get_parent().get_children()[0] is TileMap:
+		on_slip_into_wall()
+		hurt(SLIP_WALL_DAMAGE)
+		Cure(Effects.slippy)
+		Afflict(Effects.stunned, SLIP_STUN_DUR)
 
 
 func flip_body(flipped):
