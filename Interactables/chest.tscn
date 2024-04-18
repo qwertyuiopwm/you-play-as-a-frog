@@ -19,7 +19,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Chest" type="Node2D"]
+[node name="Chest" type="Node2D" groups=["Interactable"]]
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
