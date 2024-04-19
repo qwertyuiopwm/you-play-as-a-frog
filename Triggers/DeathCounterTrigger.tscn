@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/DeathCounterTrigger.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Triggerables/DeathCounterTrigger.gd" type="Script" id=1]
 [ext_resource path="res://Triggers/DeathTrigger.tscn" type="PackedScene" id=2]
 
 [node name="ManyDeathTrigger" type="Node2D"]
