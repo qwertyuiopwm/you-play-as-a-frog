@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Musard-fx.mp3-b4638fb137ae539862ad786173aa5f58.mp3st
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
