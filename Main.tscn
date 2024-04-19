@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Forest/ForestAll.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Triggerables/TransferScreenTrigger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/SaveSystem.gd" type="Script" id=9]
+[ext_resource path="res://Area maps/Cave/CaveMain.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 227, 27.9556 )
@@ -22,8 +23,11 @@ script = ExtResource( 4 )
 [node name="Swamp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 5112, 15614.3 )
 
+[node name="Cave" parent="." instance=ExtResource( 10 )]
+position = Vector2( -14406, 13512.3 )
+
 [node name="Crypt" parent="." instance=ExtResource( 5 )]
-position = Vector2( -15549, 16039.5 )
+position = Vector2( -15954, 4649.17 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 413, 450.145 )
