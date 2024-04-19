@@ -1,4 +1,4 @@
-extends "res://Scripts/Triggerable.gd"
+extends "res://Scripts/BaseScripts/Triggerable.gd"
 
 
 export var DropAngle: int
