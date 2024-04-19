@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/Dummy.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Entities/Enemies/Dummy.gd" type="Script" id=1]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/dummy.png" type="Texture" id=3]
 

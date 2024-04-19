@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://Scripts/Entity.gd"
+"path": "res://Scripts/BaseScripts/Entity.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Ladder",
 "language": "GDScript",
-"path": "res://Scripts/Ladder.gd"
+"path": "res://Scripts/Items/Ladder.gd"
 }, {
 "base": "RichTextEffect",
 "class": "RichTextVAlign",
