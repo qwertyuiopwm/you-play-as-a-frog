@@ -60,12 +60,9 @@ func try_cast(player):
 	
 	player.get_parent().add_child(self)
 	
-	target = player.get_nearest_enemy(BlockedEffects, BlockedImmunities)
+	target = player.target
 	
-	var target_pos = get_global_mouse_position()
-	
-	if target and player.auto_aim_enabled:
-		target_pos = target.global_position
+	var target_pos = target.global_position
 	
 	player.mana -= MANA_COST
 	
