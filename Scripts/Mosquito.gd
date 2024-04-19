@@ -1,4 +1,4 @@
-extends "res://Scripts/Enemy.gd"
+extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
 export var CIRCLE_RADIUS = 50
