@@ -60,7 +60,7 @@ func try_cast(player):
 	
 	player.get_parent().add_child(self)
 	
-	target = player.target
+	target = player.get_target(BlockedEffects, BlockedImmunities)
 	
 	var target_pos = target.global_position
 	
