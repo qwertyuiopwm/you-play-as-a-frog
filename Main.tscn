@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Forest/ForestAll.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Spells/ProcureCondiment.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Triggerables/TransferScreenTrigger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/SaveSystem.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 227, 27.9556 )
@@ -69,3 +70,6 @@ DeleteOnTrigger = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="swamp-forest/PlayerDetector"]
 position = Vector2( 5554, 4261.9 )
 shape = SubResource( 1 )
+
+[node name="Save" type="Node" parent="."]
+script = ExtResource( 9 )
