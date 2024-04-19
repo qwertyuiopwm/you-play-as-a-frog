@@ -1,13 +1,26 @@
 extends "res://Scripts/Trigger.gd"
 
 
+enum actionType {
+	pressed,
+	released,
+}
+
 export(Array, String) var Actions
-export var MaxDistance:float
+export(actionType) var ActionType = actionType.pressed
+export var MaxDistance: float
+
+
+var typeToMethod = {
+	actionType.pressed: 'is_action_just_pressed',
+	actionType.released: 'is_action_just_released',
+}
+
 
 func condition():
 	var actionReached = false
 	for action in Actions:
-		if Input.is_action_just_pressed(action):
+		if Input.call(typeToMethod[actionType], action):
 			actionReached = true
 			break
 	if not actionReached:
