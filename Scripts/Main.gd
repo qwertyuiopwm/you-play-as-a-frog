@@ -4,6 +4,7 @@ extends Node2D
 export var Paused = true
 export var PlaytimeSeconds = 0
 
+
 func _process(delta):
 	if Paused:
 		return

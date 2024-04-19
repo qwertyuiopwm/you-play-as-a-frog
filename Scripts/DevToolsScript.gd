@@ -56,17 +56,17 @@ func _process(_delta):
 	var godmodeCheckbox = devToolsValues.get_node("GodmodeCheckbox")
 	var noclipCheckbox = devToolsValues.get_node("NoclipCheckbox")
 	
-	if healthText.get_focus_owner() == null:
+	if healthText.get_focus_owner() == null or not devTools.visible:
 		healthText.text = String(Player.health)
 	else:
 		Player.health = float(healthText.text)
 	
-	if maxHealthText.get_focus_owner() == null:
+	if maxHealthText.get_focus_owner() == null or not devTools.visible:
 		maxHealthText.text = String(Player.max_health)
 	else:
 		Player.max_health = float(maxHealthText.text)
 	
-	if damageMultText.get_focus_owner() == null:
+	if damageMultText.get_focus_owner() == null or not devTools.visible:
 		damageMultText.text = String(Player.damage_mult)
 	else:
 		Player.damage_mult = float(damageMultText.text)
@@ -78,7 +78,11 @@ func _process(_delta):
 		Player.collision_layer = 0b00000000_00000000_00000000_00000001
 		Player.collision_mask = 0b00000000_00000000_00000000_00000001
 	
-	Player.SPEED = float(speedText.text)
+	if speedText.get_focus_owner() == null or not devTools.visible:
+		speedText.text = String(Player.SPEED)
+	else:
+		Player.SPEED = float(speedText.text)
+	
 	Player.god_enabled = godmodeCheckbox.pressed
 	
 func _is_pos_in(checkpos:Vector2):

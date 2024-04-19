@@ -847,8 +847,18 @@ margin_right = 400.0
 margin_bottom = 400.0
 custom_styles/panel = SubResource( 30 )
 
-[node name="Button" type="Button" parent="PauseMenu"]
+[node name="Load" type="Button" parent="PauseMenu"]
 margin_left = -128.0
+margin_top = -340.0
+margin_bottom = -276.0
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 22 )
+text = "Load"
+icon_align = 1
+
+[node name="Save" type="Button" parent="PauseMenu"]
 margin_top = -340.0
 margin_right = 128.0
 margin_bottom = -276.0
@@ -856,7 +866,7 @@ custom_fonts/font = SubResource( 32 )
 custom_styles/hover = SubResource( 24 )
 custom_styles/pressed = SubResource( 23 )
 custom_styles/normal = SubResource( 22 )
-text = "Play Game"
+text = "Save"
 icon_align = 1
 
 [node name="playtime" type="Label" parent="PauseMenu"]
