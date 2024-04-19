@@ -1,5 +1,5 @@
 extends "res://Scripts/Triggerable.gd"
-
+tool
 
 export var TRIGGER_ON_START = true
 
@@ -26,6 +26,9 @@ func setup():
 
 
 func _process(delta):
+	if Engine.editor_hint:
+		add_to_group("Door")
+		return
 	if not target_pos: return
 	var dist_to = global_position.distance_to(target_pos)
 	if (OpenSpeed <= 0) or (0 < dist_to and dist_to < TARGET_COMFORT_RANGE):

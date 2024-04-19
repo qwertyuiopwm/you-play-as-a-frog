@@ -53,7 +53,7 @@ collision_mask = 11
 format = 1
 tile_data = PoolIntArray( -131058, 1610612754, 0 )
 
-[node name="Walls" type="TileMap" parent="."]
+[node name="Walls" type="TileMap" parent="." groups=["Doors"]]
 tile_set = ExtResource( 2 )
 collision_layer = 11
 collision_mask = 11
