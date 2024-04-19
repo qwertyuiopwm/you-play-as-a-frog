@@ -25,6 +25,10 @@ onready var vp = get_viewport()
 onready var waitingForInput = false
 onready var waitingInputMenu
 onready var waitingInputName
+var configFileName = "user://ypaaf.userconfig"
+# Not intended to be secure, it's just not safe to manually modify config.
+var configPW = "configuration"
+onready var configFile = ConfigFile.new()
 
 var SpellWheelPositions = []
 var shownkeys = {
@@ -58,7 +62,9 @@ func _ready():
 	Main.pause(true, [Player])
 	var _loadbuttonconnection = LoadSaveButton.connect("pressed", SaveSys, "loadSave")
 	var _savebuttonconnection = SaveButton.connect("pressed", SaveSys, "save")
-		
+	configFile.load_encrypted_pass(configFileName, configPW)
+	
+	
 	generateWheel()
 	generateControls()
 	
@@ -101,7 +107,10 @@ func _input(event):
 	if event.as_text() != "Escape":
 		keyButton.text = eventToString(event)
 		InputMap.action_add_event(waitingInputName, event)
-	var pause_key = InputEventKey.new	()
+		var serializedInput = SaveSys.serialize(event)
+		configFile.set_value("controls", waitingInputName, serializedInput)
+		configFile.save_encrypted_pass(configFileName, configPW)
+	var pause_key = InputEventKey.new()
 	pause_key.scancode = KEY_ESCAPE
 	InputMap.action_add_event("pause_game", pause_key)
 	waitingForInput = false
@@ -111,15 +120,23 @@ func generateControls():
 		var keys = InputMap.get_action_list(actionName)
 		if len(keys) <= 0:
 			continue
-		for action in keys:
-			var inputStr = eventToString(action)
-			var newInput = BaseControl.duplicate()
-			newInput.get_node("Name").text = shownkeys[actionName]
-			newInput.get_node("Key").text = inputStr
-			newInput.name = actionName
-			newInput.visible = true
-			ControlsContainer.add_child(newInput)
-			newInput.get_node("Key").connect("pressed", self, "onKeyClick", [newInput, actionName])
+		var action = keys[0]
+		
+		var serializedAction = configFile.get_value("controls", actionName, {})
+		if len(serializedAction) > 0:
+			action = SaveSys.unserialize(serializedAction)
+			for action_ in InputMap.get_action_list(actionName):
+				InputMap.action_erase_event(actionName, action_)
+			InputMap.action_add_event(actionName, action)
+		
+		var inputStr = eventToString(action)
+		var newInput = BaseControl.duplicate()
+		newInput.get_node("Name").text = shownkeys[actionName]
+		newInput.get_node("Key").text = inputStr
+		newInput.name = actionName
+		newInput.visible = true
+		ControlsContainer.add_child(newInput)
+		newInput.get_node("Key").connect("pressed", self, "onKeyClick", [newInput, actionName])
 
 
 func generateWheel():

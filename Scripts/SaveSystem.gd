@@ -78,11 +78,9 @@ func loadSave():
 		var path = String(Main.get_path_to(_node))
 		var node = Main.get_node(path)
 		if not node:
-			print("no node")
 			continue
 		if not data.has(path):
 			node.queue_free()
-			print("%s not in data" % path)
 			continue
 		unserialize(data[path], node)
 		pass
@@ -228,13 +226,23 @@ func unserialize_array(input):
 	for elem in input.data:
 		data.push_back(unserialize(elem))
 	return data
-func unserialize_object(input, _obj:Node = null):
+func unserialize_object(input, _obj:Object = null):
 	if input.has("classname") and input.classname == "PackedScene":
 		return load(input.data.path)
-		pass
-	if not _obj:
-		return null
-	var obj = Main.get_node(Main.get_path_to(_obj))
+	
+	var obj = _obj
+	if input.has("classname") and input.classname.begins_with("InputEvent"):
+		match input.classname:
+			"InputEventKey":
+				obj = InputEventKey.new()
+			"InputEventMouseButton":
+				obj = InputEventMouseButton.new()
+			"InputEventJoypadMotion":
+				obj = InputEventJoypadMotion.new()
+	
+	if _obj and not _obj is InputEvent:
+		obj = Main.get_node(Main.get_path_to(_obj))
+	
 	for property in obj.get_property_list():
 		if not input.data.has(property.name):
 			continue
@@ -242,8 +250,6 @@ func unserialize_object(input, _obj:Node = null):
 			continue
 		if property.type == TYPE_NIL:
 			continue
-			
-		#print("unserializing %s" % property.name)
 		
 		var data = input.data[property.name]
 		var unserializedProperty
@@ -255,6 +261,8 @@ func unserialize_object(input, _obj:Node = null):
 			unserializedProperty = unserialize(data)
 			
 		obj[property.name] = unserializedProperty
+	
+	return obj
 func unserialize(input, obj: Node = null):
 	if typeof(input) != TYPE_DICTIONARY:
 		return
@@ -285,8 +293,14 @@ func unserialize(input, obj: Node = null):
 		TYPE_OBJECT:
 			if obj:
 				return unserialize_object(input, obj)
-			if input.has("classname") and input.classname == "PackedScene":
+				
+			if not input.has("classname"):
+				return null
+			if input.classname == "PackedScene":
 				return unserialize_object(input)
+			if input.classname.begins_with("InputEvent"):
+				return unserialize_object(input)
+			
 		TYPE_DICTIONARY:
 			if not input:
 				return
