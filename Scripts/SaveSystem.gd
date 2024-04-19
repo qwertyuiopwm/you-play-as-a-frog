@@ -34,6 +34,7 @@ var IgnoredProperties = [
 	"Main",
 	"transform",
 	"rand",
+	"Node",
 	"global_position",
 	"global_rotation",
 	"global_rotation_degrees",
@@ -238,6 +239,8 @@ func unserialize_object(input, _obj:Node = null):
 		if not input.data.has(property.name):
 			continue
 		if obj.get(property.name) == null:
+			continue
+		if property.type == TYPE_NIL:
 			continue
 			
 		#print("unserializing %s" % property.name)

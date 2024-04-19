@@ -56,8 +56,8 @@ func magnitude(vec: Vector2):
 func _ready():
 	MainMenu.visible = true
 	Main.pause(true, [Player])
-	LoadSaveButton.connect("pressed", SaveSys, "loadSave")
-	SaveButton.connect("pressed", SaveSys, "save")
+	var _loadbuttonconnection = LoadSaveButton.connect("pressed", SaveSys, "loadSave")
+	var _savebuttonconnection = SaveButton.connect("pressed", SaveSys, "save")
 		
 	generateWheel()
 	generateControls()
