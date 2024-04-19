@@ -235,6 +235,10 @@ func unserialize_object(input, _obj:Object = null):
 		match input.classname:
 			"InputEventKey":
 				obj = InputEventKey.new()
+			"InputEventMouseButton":
+				obj = InputEventMouseButton.new()
+			"InputEventJoypadMotion":
+				obj = InputEventJoypadMotion.new()
 	
 	if _obj and not _obj is InputEvent:
 		obj = Main.get_node(Main.get_path_to(_obj))
