@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Forest/ForestAll.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=4]
 [ext_resource path="res://Area maps/Crypt/CryptMain.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Spells/ProcureCondiment.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/SaveSystem.gd" type="Script" id=7]
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 1, 1.0019 )
@@ -20,5 +21,8 @@ position = Vector2( 5187, 16807.5 )
 position = Vector2( -15549, 16039.5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 415, 463.12 )
+position = Vector2( 1209, 1366.4 )
 PlayerSpells = [ ExtResource( 6 ) ]
+
+[node name="Save" type="Node" parent="."]
+script = ExtResource( 7 )

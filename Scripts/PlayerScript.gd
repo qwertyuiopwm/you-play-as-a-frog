@@ -14,7 +14,7 @@ export(Array, PackedScene) var PlayerSpells = [
 export var selected_spell: PackedScene
 export var auto_aim_enabled: bool = true
 export var god_enabled: bool
-export var restoration_postions: int = 0
+export var restoration_potions: int = 0
 export var health_per_potion: float = 30
 # Respawn info
 export var respawn_position: Vector2
@@ -93,7 +93,7 @@ func _ready():
 	respawn_health = health
 	respawn_stamina = stamina
 	respawn_mana = mana
-	respawn_potions = restoration_postions
+	respawn_potions = restoration_potions
 	
 	PlayerSprite.connect("animation_finished", self, "sprite_animation_finished")
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
@@ -208,7 +208,7 @@ func sprite_animation_finished():
 	health = respawn_health
 	stamina = respawn_stamina
 	mana = respawn_mana
-	restoration_postions = respawn_potions
+	restoration_potions = respawn_potions
 	global_position = respawn_position
 	PlayerSprite.play("down")
 	$CollisionShape2D.disabled = false
@@ -351,7 +351,7 @@ func regen_stats(delta):
 
 
 func heal_if_pressed(_delta):
-	if restoration_postions <= 0:
+	if restoration_potions <= 0:
 		return
 		
 	if not Input.is_action_just_pressed("restore"):
@@ -359,7 +359,7 @@ func heal_if_pressed(_delta):
 		
 	regen_timer = 0
 	Heal(health_per_potion)
-	restoration_postions -= 1
+	restoration_potions -= 1
 
 func cast_spell_if_pressed(delta):
 	if selected_spell == null:

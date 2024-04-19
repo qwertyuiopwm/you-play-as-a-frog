@@ -2,12 +2,14 @@ extends Control
 
 
 onready var Main = get_node("/root/Main")
+onready var SaveSys = Main.get_node("Save")
 onready var Player = get_parent()
 onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
 onready var PauseMenu = $PauseMenu
-onready var ContinueButton = PauseMenu.get_node("Button")
+onready var LoadSaveButton:Button = PauseMenu.get_node("Load")
+onready var SaveButton:Button = PauseMenu.get_node("Save")
 onready var PlaytimeLabel = PauseMenu.get_node("playtime")
 onready var ControlsContainer = PauseMenu.get_node("ScrollContainer/VBoxContainer")
 onready var BaseControl = ControlsContainer.get_node("base")
@@ -54,16 +56,11 @@ func magnitude(vec: Vector2):
 func _ready():
 	MainMenu.visible = true
 	Main.pause(true, [Player])
-	ContinueButton.connect("pressed", self, "unpauseButton")
+	LoadSaveButton.connect("pressed", SaveSys, "loadSave")
+	SaveButton.connect("pressed", SaveSys, "save")
 		
 	generateWheel()
 	generateControls()
-
-func unpauseButton():
-	if waitingForInput:
-		return
-	PauseMenu.visible = false
-	Main.pause(false, [])
 	
 func onKeyClick(inputMenu, actionName):
 	for action in InputMap.get_action_list("pause_game"):
@@ -179,7 +176,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("pause_game") and !MainMenu.visible:
 		PlaytimeLabel.text = "Playtime: %s" % Main.time_convert(Main.PlaytimeSeconds)
 		PauseMenu.visible = not Main.Paused
-		Main.pause(not Main.Paused, [])
+		Main.pause(not Main.Paused, [Player])
 	hpDisplay.max_value = Player.max_health
 	hpDisplay.value = Player.health
 	
@@ -191,7 +188,7 @@ func _process(_delta):
 	
 	$IngameUI/autoaim.visible = Player.auto_aim_enabled
 	
-	potionCount.text = String(Player.restoration_postions)+"x"
+	potionCount.text = String(Player.restoration_potions)+"x"
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
