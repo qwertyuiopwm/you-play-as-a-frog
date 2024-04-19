@@ -177,7 +177,7 @@ position = Vector2( 743, 1356 )
 Triggerables = [ NodePath("../../wall") ]
 InvertSignal = true
 
-[node name="wall" type="TileMap" parent="."]
+[node name="wall" type="TileMap" parent="." groups=["Doors"]]
 tile_set = ExtResource( 8 )
 format = 1
 tile_data = PoolIntArray( 1245198, -1610612736, 0, 1310734, -1610612736, 0, 1376270, -1610612736, 0, 1441806, -1610612736, 0, 1507342, -1610612736, 0 )
