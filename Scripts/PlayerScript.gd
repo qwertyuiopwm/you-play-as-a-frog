@@ -232,9 +232,10 @@ func get_curr_tile():
 func check_tile():
 	var curr_tile = get_curr_tile()
 	if curr_tile == null: return
+	print(curr_tile)
 	
-	if "(slide)" in curr_tile:
-		Afflict(Effects.slippy, 0.1)
+	sliding = "(slide)" in get_curr_tile()
+		
 
 
 func Hurt(dmg: float):
@@ -312,8 +313,7 @@ func get_velocity():
 	
 	var vel = Vector2.ZERO
 	
-	if (sliding or $EffectManager.has_effect(Effects.slippy))\
-	   and velocity.length_squared() != 0: 
+	if is_sliding() and velocity.length_squared() != 0: 
 		return velocity
 	
 	if dashing:
