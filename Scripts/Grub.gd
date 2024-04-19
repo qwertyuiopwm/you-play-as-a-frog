@@ -21,6 +21,10 @@ func _physics_process(delta):
 		target_pos = target_player.global_position
 	state = get_state()
 	
+	if is_sliding():
+		move(0, delta)
+		return
+	
 	
 	match state:
 		states.STILL:

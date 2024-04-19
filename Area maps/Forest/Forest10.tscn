@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Triggers/ActionTrigger.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
@@ -58,7 +57,11 @@ position = Vector2( -967, 506 )
 DroppedItems = [ ExtResource( 8 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 9 )]
-Triggerables = [ NodePath("..") ]
+Triggerables = [ NodePath(".."), NodePath("popup") ]
+
+[node name="popup" parent="Chest/PlayerDetector" instance=ExtResource( 10 )]
+position = Vector2( 617, 144 )
+PopupName = "useshake"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
 position = Vector2( 0.75, 0.25 )
@@ -119,22 +122,14 @@ Toggle = true
 
 [node name="PlayerDetector3" parent="." instance=ExtResource( 9 )]
 position = Vector2( -350, 650 )
-Triggerables = [ NodePath("popup"), NodePath("ToggleTrigger") ]
+Triggerables = [ NodePath("popup") ]
 TriggerVal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector3"]
+position = Vector2( -2, 152 )
 shape = SubResource( 4 )
 
 [node name="popup" parent="PlayerDetector3" instance=ExtResource( 10 )]
+position = Vector2( 617, 144 )
 PopupName = "useshake"
-
-[node name="ToggleTrigger" parent="PlayerDetector3" instance=ExtResource( 12 )]
-Trigger = NodePath("../../hide")
-
-[node name="hide" parent="." instance=ExtResource( 13 )]
-Enabled = false
-Actions = [ "cast_spell" ]
-
-[node name="Node" parent="hide" instance=ExtResource( 10 )]
-State = true
-PopupName = "useshake"
+Inverted = true

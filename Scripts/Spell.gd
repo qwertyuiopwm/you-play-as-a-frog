@@ -6,6 +6,7 @@ export var COOLDOWN = 1
 export var MANA_COST = 15
 export var CAN_SELF_CAST = false
 export var SpellIcon: String
+export var Sound: String
 export(Array, PackedScene) var BlockedEffects
 export(Array, PackedScene) var BlockedImmunities
 export(Array, PackedScene) var BlockedTargets
@@ -25,6 +26,10 @@ func hurt(body, dmg):
 
 func wait(seconds):
 	yield(get_tree().create_timer(seconds), "timeout")
+
+
+func _ready():
+	Player.MusicPlayer.PlayOnNode(Sound, Player)
 
 
 func try_cast(_caster):

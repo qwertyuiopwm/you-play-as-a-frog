@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Enemies/Extras/Dummy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Triggers/ActionTrigger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Triggers/CounterTrigger.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Triggerables/AddCounter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=8]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=9]
+[ext_resource path="res://Triggers/PassTrigger.tscn" type="PackedScene" id=10]
 
 [node name="Forest1" type="Node2D"]
 
@@ -111,10 +115,30 @@ State = true
 PopupName = "qtoselect"
 
 [node name="toggle" parent="hideq" instance=ExtResource( 5 )]
-Trigger = NodePath("../../hidee")
+Trigger = NodePath("../../hideq2")
 Toggle = true
 
 [node name="showe" parent="hideq" instance=ExtResource( 3 )]
+PopupName = "qtoselect2"
+Inverted = true
+
+[node name="hideq2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 200 )
+Triggerables = [ NodePath("hideq"), NodePath("toggle"), NodePath("showe") ]
+Enabled = false
+Actions = [ "select_spell" ]
+ActionType = 1
+
+[node name="hideq" parent="hideq2" instance=ExtResource( 3 )]
+position = Vector2( 20, 600 )
+State = true
+PopupName = "qtoselect2"
+
+[node name="toggle" parent="hideq2" instance=ExtResource( 5 )]
+Trigger = NodePath("../../hidee")
+Toggle = true
+
+[node name="showe" parent="hideq2" instance=ExtResource( 3 )]
 PopupName = "etocast"
 Inverted = true
 
@@ -145,3 +169,18 @@ Actions = [ "dash" ]
 [node name="hidedash" parent="actiondash" instance=ExtResource( 3 )]
 State = true
 PopupName = "learntodash"
+
+[node name="Dummy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 743, 1356 )
+
+[node name="PassTrigger" parent="Dummy" instance=ExtResource( 10 )]
+Triggerables = [ NodePath("../../wall") ]
+InvertSignal = true
+
+[node name="wall" type="TileMap" parent="."]
+tile_set = ExtResource( 8 )
+format = 1
+tile_data = PoolIntArray( 1245198, -1610612736, 0, 1310734, -1610612736, 0, 1376270, -1610612736, 0, 1441806, -1610612736, 0, 1507342, -1610612736, 0 )
+script = ExtResource( 9 )
+State = true
+OpenOffset = Vector2( 0, 400 )

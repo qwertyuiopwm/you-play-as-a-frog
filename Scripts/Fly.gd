@@ -38,6 +38,11 @@ func _physics_process(delta):
 	if state == states.SWOOPING: modulate = Color(1, .9, .9)
 	else: modulate = Color(1, 1, 1)
 	
+	if is_sliding():
+		move(0, delta)
+		return
+		
+	
 	match state:
 		states.DEFAULT:
 			var target_offset = randf() / 10 + .05

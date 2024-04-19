@@ -6,7 +6,11 @@
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=4]
 [ext_resource path="res://Area maps/Crypt/CryptMain.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Spells/ProcureCondiment.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/SaveSystem.gd" type="Script" id=7]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Triggerables/TransferScreenTrigger.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 227, 27.9556 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 1, 1.0019 )
@@ -15,14 +19,53 @@ script = ExtResource( 4 )
 [node name="ForestAll" parent="." instance=ExtResource( 2 )]
 
 [node name="Swamp" parent="." instance=ExtResource( 3 )]
-position = Vector2( 5187, 16807.5 )
+position = Vector2( 5112, 15614.3 )
 
 [node name="Crypt" parent="." instance=ExtResource( 5 )]
 position = Vector2( -15549, 16039.5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1209, 1366.4 )
+position = Vector2( 413, 450.145 )
 PlayerSpells = [ ExtResource( 6 ) ]
 
-[node name="Save" type="Node" parent="."]
-script = ExtResource( 7 )
+[node name="forest-swamp" parent="." instance=ExtResource( 8 )]
+BackgroundColor = Color( 0.203922, 0.168627, 0.137255, 1 )
+TopText = "Swamp"
+TopColor = Color( 0.0784314, 0.435294, 0.0352941, 1 )
+BottomText = "Level 1"
+BottomColor = Color( 0.462745, 0.164706, 0.584314, 1 )
+SetPlayerPosition = NodePath("TPpos")
+CreateSavePoint = true
+
+[node name="TPpos" type="Node2D" parent="forest-swamp"]
+position = Vector2( 5145, 14974.5 )
+
+[node name="PlayerDetector" parent="forest-swamp" instance=ExtResource( 7 )]
+position = Vector2( -412, 10562.9 )
+Triggerables = [ NodePath("..") ]
+DeleteOnTrigger = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="forest-swamp/PlayerDetector"]
+position = Vector2( 5554, 3167.98 )
+shape = SubResource( 1 )
+
+[node name="swamp-forest" parent="." instance=ExtResource( 8 )]
+BackgroundColor = Color( 0.137255, 0.266667, 0, 1 )
+TopText = "Forest"
+TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
+BottomText = "Boss Level"
+BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
+SetPlayerPosition = NodePath("TPpos")
+CreateSavePoint = true
+
+[node name="TPpos" type="Node2D" parent="swamp-forest"]
+position = Vector2( 5136, 13500.3 )
+
+[node name="PlayerDetector" parent="swamp-forest" instance=ExtResource( 7 )]
+position = Vector2( -412, 10562.9 )
+Triggerables = [ NodePath("..") ]
+DeleteOnTrigger = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="swamp-forest/PlayerDetector"]
+position = Vector2( 5554, 4261.9 )
+shape = SubResource( 1 )

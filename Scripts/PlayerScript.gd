@@ -404,14 +404,12 @@ func melee_if_pressed(_delta):
 	melee_counter = melee_delay
 	
 	var rootPos = TongueLine.global_position
+	
 	var target = get_nearest_enemy()
+	if not target:
+		target = $Mouse
 	
-	var targets_pos = get_global_mouse_position()
-	
-	if target:
-		targets_pos = target.global_position
-	
-	var targetPos = rootPos + (rootPos.direction_to(targets_pos)*melee_distance)
+	var targetPos = rootPos + (rootPos.direction_to(target.global_position)*melee_distance)
 	
 	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
 	
@@ -547,3 +545,11 @@ func get_targetable_enemies():
 		if body.is_in_group("Enemy"):
 			enemies.push_back(body)
 	return enemies
+
+
+func get_target(blocked_effects = [], blocked_immunities = []):
+	var target = get_nearest_enemy(blocked_effects, blocked_immunities)
+	if not target:
+		target = $Mouse
+	
+	return target

@@ -5,7 +5,7 @@ export var CurrEffects = []
 
 
 class effect_sorter:
-	func sort_effects(a, b): 
+	static func sort_effects(a, b): 
 		return a.duration < b.duration
 
 
