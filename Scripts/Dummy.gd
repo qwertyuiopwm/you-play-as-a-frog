@@ -21,6 +21,8 @@ func hurt(damage):
 	$DamageLabel.text = "%s" % damage
 	label_timer = DMG_DISPLAY_TIME
 	
-	$PassTrigger.trigger(true)
+	for child in get_children():
+		if child.has_method("trigger"):
+			child.trigger(true)
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.flip_h = global_position.direction_to(Player.global_position).x < 0
