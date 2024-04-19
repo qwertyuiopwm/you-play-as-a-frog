@@ -142,7 +142,7 @@ PopupName = "ctopotion"
 
 [node name="PassTrigger" parent="Chest2" instance=ExtResource( 13 )]
 Triggerables = [ NodePath("../hidepopup") ]
-delay = 5.0
+Delay = 3.0
 
 [node name="hidepopup" parent="Chest2" instance=ExtResource( 12 )]
 PopupName = "ctopotion"
