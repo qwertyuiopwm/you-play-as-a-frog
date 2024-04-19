@@ -20,7 +20,7 @@ var typeToMethod = {
 func condition():
 	var actionReached = false
 	for action in Actions:
-		if Input.call(typeToMethod[actionType], action):
+		if Input.call(typeToMethod[ActionType], action):
 			actionReached = true
 			break
 	if not actionReached:

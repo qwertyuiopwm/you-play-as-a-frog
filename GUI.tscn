@@ -594,9 +594,9 @@ custom_effects = [ SubResource( 29 ) ]
 
 [node name="qtoselect" type="RichTextLabel" parent="Popups"]
 visible = false
-margin_left = -192.0
+margin_left = -202.0
 margin_top = -32.0
-margin_right = 192.0
+margin_right = 202.0
 margin_bottom = 32.0
 custom_fonts/mono_font = ExtResource( 16 )
 custom_fonts/bold_italics_font = ExtResource( 16 )
@@ -605,8 +605,25 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Hold [color=#34ebe1][Q][/color] to select a spell![/center][/valign]"
-text = "Hold [Q] to select a spell!"
+bbcode_text = "[valign][center][color=lime]Hold[/color] [color=#34ebe1][Q][/color] to open the spell wheel![/center][/valign]"
+text = "Hold [Q] to open the spell wheel!"
+custom_effects = [ SubResource( 25 ) ]
+
+[node name="qtoselect2" type="RichTextLabel" parent="Popups"]
+visible = false
+margin_left = -192.0
+margin_top = -32.0
+margin_right = 192.0
+margin_bottom = 48.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center][color=lime]Release[/color] [color=#34ebe1][Q][/color] to select the spell closest to the mouse![/center][/valign]"
+text = "Release [Q] to select the spell closest to the mouse!"
 custom_effects = [ SubResource( 25 ) ]
 
 [node name="etocast" type="RichTextLabel" parent="Popups"]
