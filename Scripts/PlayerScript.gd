@@ -50,6 +50,9 @@ var deathRunning = false
 export var melee_damage: float = 5
 export var damage_mult = 1
 
+var target = null
+var targetPosition = null
+
 var drop_time: float = 1
 var drop_dist: int = 100
 
@@ -118,6 +121,10 @@ func _physics_process(delta):
 		return
 	if health <= 0:
 		return
+	
+	target = get_nearest_enemy()
+	if not target:
+		target = $Mouse
 	
 	if Input.is_action_just_pressed("toggle_auto_aim"):
 		auto_aim_enabled = !auto_aim_enabled
@@ -404,14 +411,8 @@ func melee_if_pressed(_delta):
 	melee_counter = melee_delay
 	
 	var rootPos = TongueLine.global_position
-	var target = get_nearest_enemy()
 	
-	var targets_pos = get_global_mouse_position()
-	
-	if target:
-		targets_pos = target.global_position
-	
-	var targetPos = rootPos + (rootPos.direction_to(targets_pos)*melee_distance)
+	var targetPos = rootPos + (rootPos.direction_to(target.global_position)*melee_distance)
 	
 	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
 	
