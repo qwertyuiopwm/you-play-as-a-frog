@@ -5,7 +5,10 @@ onready var Player = Main.get_node("Player")
 
 var fileName = "user://ypaaf.save"
 var GroupsToSave = [
-	"Enemy"
+	"Enemy",
+	"Item",
+	"Interactable",
+	"Doors",
 ]
 var IgnoredProperties = [
 	"owner",
