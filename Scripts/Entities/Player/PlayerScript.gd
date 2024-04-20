@@ -146,7 +146,9 @@ func _physics_process(delta):
 	var velocity_mult = 1
 	velocity_mult += (int(dashing) * dash_speed_mult)
 	
-	var _v = move_and_slide(velocity * velocity_mult)
+	var vel = move_and_slide(velocity * velocity_mult)
+	if vel.length_squared() == 0:
+		velocity = Vector2.ZERO
 	
 	if held_big_item != null:
 		held_big_item.global_position = $ItemHolder.global_position
@@ -231,11 +233,13 @@ func get_curr_tile():
 
 func check_tile():
 	var curr_tile = get_curr_tile()
-	if curr_tile == null: return
+	if curr_tile == null:
+		curr_tile = ""
+	if not curr_tile: 
+		pass
 	print(curr_tile)
 	
-	sliding = "(slide)" in get_curr_tile()
-		
+	sliding = "(slide)" in curr_tile
 
 
 func Hurt(dmg: float):
