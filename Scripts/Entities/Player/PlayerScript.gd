@@ -238,7 +238,6 @@ func check_tile():
 		curr_tile = ""
 	if not curr_tile: 
 		pass
-	print(curr_tile)
 	
 	sliding = "(slide)" in curr_tile
 
