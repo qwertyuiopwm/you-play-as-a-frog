@@ -257,6 +257,9 @@ func unserialize_object(input, _obj:Object = null):
 		var data = input.data[property.name]
 		var unserializedProperty
 		
+		if not data:
+			continue
+		
 		if data.has("classname") and data.classname == "PackedScene":
 			unserializedProperty = load(data.path)
 		
