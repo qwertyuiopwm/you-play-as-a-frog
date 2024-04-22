@@ -19,6 +19,8 @@ func _ready():
 
 
 func setup():
+	if not (start_pos == 0 and open_pos == 0):
+		return
 	start_pos = global_position
 	open_pos = global_position + OpenOffset
 	if not TRIGGER_ON_START: return
