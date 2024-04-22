@@ -42,7 +42,8 @@ var IgnoredProperties = [
 	"global_rotation",
 	"global_rotation_degrees",
 	"global_scale",
-	"global_transform"
+	"global_transform",
+	"tile_set"
 ]
 
 func getSavedNodes(addPlayer: bool = false):
@@ -212,6 +213,17 @@ func serialize_object(input):
 		return {
 			path = input.get_path()
 		}
+	if input.has_method("get_class") and input.get_class() == "TileMap":
+		var tiles = []
+		for tilePosition in input.get_used_cells():
+			var tileID = input.get_cellv(tilePosition)
+			tiles.append({
+				position = serialize(tilePosition),
+				x_flipped = input.is_cell_x_flipped(tilePosition.x, tilePosition.y),
+				y_flipped = input.is_cell_y_flipped(tilePosition.x, tilePosition.y),
+				tileID = tileID
+			})
+		data.cells = tiles
 	for property in input.get_property_list():
 		var propName = property.name
 		if propName in IgnoredProperties:
@@ -233,6 +245,11 @@ func unserialize_object(input, _obj:Object = null):
 	if input.has("classname") and input.classname == "PackedScene":
 		return load(input.data.path)
 	
+	if input.has("classname") and input.classname == "TileMap":
+		print("tilemap gotten")
+		for tile in input.data.cells:
+			_obj.set_cellv(unserialize(tile.position), tile.tileID, tile.x_flipped, tile.y_flipped)
+	
 	var obj = _obj
 	if input.has("classname") and input.classname.begins_with("InputEvent"):
 		match input.classname:
@@ -245,6 +262,9 @@ func unserialize_object(input, _obj:Object = null):
 	
 	if _obj and not _obj is InputEvent:
 		obj = Main.get_node(Main.get_path_to(_obj))
+	
+	if not obj:
+		return null
 	
 	for property in obj.get_property_list():
 		if not input.data.has(property.name):
@@ -302,9 +322,10 @@ func unserialize(input, obj: Node = null):
 				
 			if not input.has("classname"):
 				return null
-			if input.classname == "PackedScene":
+			var classname = input.classname
+			if classname == "PackedScene":
 				return unserialize_object(input)
-			if input.classname.begins_with("InputEvent"):
+			if classname.begins_with("InputEvent"):
 				return unserialize_object(input)
 			
 		TYPE_DICTIONARY:
