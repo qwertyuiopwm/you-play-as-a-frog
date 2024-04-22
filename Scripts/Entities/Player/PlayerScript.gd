@@ -341,17 +341,17 @@ func regen_stats(delta):
 	melee_counter = max(melee_counter - delta, 0)
 	
 	dash_counter = max(dash_counter - delta, 0)
+	if dash_counter == 0:
+		dashing = false
 	
 	regen_timer = max(regen_timer - delta, 0)
 	if regen_timer == 0:
 		Heal(health_per_second * delta)
 	
 	if beam == null:
-		mana = clamp(mana + (mana_per_second * delta),
-				 0, max_mana)
+		mana = min(mana + (mana_per_second * delta), max_mana)
 	
-	stamina = clamp(stamina + (stamina_per_second * delta),
-					0, max_stamina)
+	stamina = min(stamina + (stamina_per_second * delta), max_stamina)
 
 
 func heal_if_pressed(_delta):
@@ -450,9 +450,6 @@ func melee_if_pressed(_delta):
 
 
 func dash_if_pressed():
-	if dash_counter == 0:
-		dashing = false
-		
 	if dashing == true:
 		return
 	
