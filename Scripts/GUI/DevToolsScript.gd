@@ -14,12 +14,14 @@ onready var enemies = {
 	Grub = preload("res://Enemies/Forest/Grub.tscn"),
 	Weevil = preload("res://Enemies/Forest/Weevil.tscn"),
 	StagBeetle = preload("res://Enemies/Swamp/StagBeetle.tscn"),
+	Mosquito = preload("res://Enemies/Swamp/Mosquito.tscn"),
+	Centipede = preload("res://Enemies/Forest/Centipede/CentipedeHead.tscn"),
 }
 
-var selectedEnemy:PackedScene
+var selectedEnemy: PackedScene
 
 func _ready():
-	var EnemyDropdown:OptionButton = devToolsValues.get_node("EnemyOption")
+	var EnemyDropdown: OptionButton = devToolsValues.get_node("EnemyOption")
 	var i = 1
 	for name in enemies:
 		
