@@ -2,12 +2,15 @@ name: "Publish Project"
 
 on:
   workflow_dispatch:
+    inputs:
+      dev-deploy:
+        required: true
   push:
     tags:
       - '*'
 
 env:
-  WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || inputs.dev-deploy != null && 'dev-build' || github.ref }}
 
 concurrency:
   group: $WORKFLOW_NAME
@@ -75,7 +78,7 @@ jobs:
       deployments: write
     needs: export
     outputs:
-      build-url: ${{ steps.pages_deploy.outputs.url }}
+      build-url: ${{ steps.pages_deploy && steps.pages_deploy.outputs.url || steps.dev_pages_deploy }}
     
     steps:
       - name: "Checkout"
@@ -89,12 +92,24 @@ jobs:
       
       - name: "Deploy"
         id: pages_deploy
+        if: ${{ ! endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
           directory: ./
+          workingDirectory: ./build/web
+      
+      - name: "Dev Deploy"
+        id: dev_pages_deploy
+        if: ${{ endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ypaaf
+          directory: ./dev/
           workingDirectory: ./build/web
 
   deploy-to-github-pages:
@@ -113,12 +128,28 @@ jobs:
         with:
           name: $WORKFLOW_NAME
           path: ./build
+      
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
+        if: ${{ ! endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./build/web
           repository-name: ypaaf/ypaaf.github.io
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          branch: main
+          git-config-name: 'ypaaf-builder[bot]'
+          git-config-email: 'github-actions[bot]@users.noreply.github.com'
+          commit-message: ${{ github.ref_name }}
+          clean: true
+
+      - name: "Dev Deploy to GitHub Pages"
+        id: github_pages_dev_deploy
+        if: ${{ endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./build/web
+          repository-name: ypaaf-dev/ypaaf.github.io
           ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           branch: main
           git-config-name: 'ypaaf-builder[bot]'
