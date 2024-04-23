@@ -116,7 +116,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: ${{ env.WORKFLOW_NAME }}
-          path: ./build
+          path: ${{ env.BUILD_PATH }}
       
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
@@ -164,7 +164,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: ${{ env.WORKFLOW_NAME }}
-          path: ./build
+          path: ${{ env.BUILD_PATH }}
       
       - name: "Create release"
         uses: softprops/action-gh-release@v1
