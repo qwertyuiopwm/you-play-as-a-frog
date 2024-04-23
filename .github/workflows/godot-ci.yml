@@ -92,7 +92,7 @@ jobs:
       
       - name: "Deploy"
         id: pages_deploy
-        if: ${{ ! endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -103,7 +103,7 @@ jobs:
       
       - name: "Dev Deploy"
         id: dev_pages_deploy
-        if: ${{ endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+        if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -131,7 +131,7 @@ jobs:
       
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
-        if: ${{ ! endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./build/web
@@ -145,7 +145,7 @@ jobs:
 
       - name: "Dev Deploy to GitHub Pages"
         id: github_pages_dev_deploy
-        if: ${{ endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+        if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./build/web
@@ -182,7 +182,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.ref_name }}
-          prerelease: ${{ endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
+          prerelease: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
           files: |
             ./build/mac/macos.zip
             ./build/windows/windows.exe
