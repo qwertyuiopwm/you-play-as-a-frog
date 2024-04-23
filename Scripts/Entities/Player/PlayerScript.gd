@@ -16,15 +16,9 @@ export var auto_aim_enabled: bool = true
 export var god_enabled: bool
 export var restoration_potions: int = 0
 export var health_per_potion: float = 30
-# Respawn info
-export var respawn_position: Vector2
-export var respawn_health: float
-export var respawn_stamina: float
-export var respawn_mana: float
-export var respawn_potions: int
-export var respawn_scenes = {}
 
 onready var Main = get_node("/root/Main")
+onready var SaveSys = Main.get_node("Save")
 onready var GUI = get_node("GUI")
 onready var MusicPlayer = $MusicPlayer
 onready var TongueLine = $Tongue
@@ -89,12 +83,6 @@ var held_big_item: Node2D
 
 
 func _ready():
-	respawn_position = global_position
-	respawn_health = health
-	respawn_stamina = stamina
-	respawn_mana = mana
-	respawn_potions = restoration_potions
-	
 	PlayerSprite.connect("animation_finished", self, "sprite_animation_finished")
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
 	
@@ -190,7 +178,11 @@ func death_scene():
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 	)
 	
-	global_position = respawn_position
+	yield(Main.wait(0.5), "completed")
+	SaveSys.loadSave()
+	$CollisionShape2D.disabled = false
+	PlayerSprite.play("down")
+	
 	# Unpause game
 	TransitionTween.start()
 	yield(Main.wait(0.5), "completed")
@@ -205,17 +197,6 @@ func sprite_animation_finished():
 	$CollisionShape2D.disabled = true
 	
 	death_scene()
-	yield(self, "death_scene_popup_finished")
-	# Reset player to saved state
-	health = respawn_health
-	stamina = respawn_stamina
-	mana = respawn_mana
-	restoration_potions = respawn_potions
-	global_position = respawn_position
-	PlayerSprite.play("down")
-	$CollisionShape2D.disabled = false
-	
-	yield(self, "death_scene_finished")
 
 
 func get_curr_tile():

@@ -43,7 +43,9 @@ var IgnoredProperties = [
 	"global_rotation_degrees",
 	"global_scale",
 	"global_transform",
-	"tile_set"
+	"tile_set",
+	"target_player",
+	"target_pos"
 ]
 
 func getSavedNodes(addPlayer: bool = false):
