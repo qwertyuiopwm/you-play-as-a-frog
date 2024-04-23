@@ -10,7 +10,8 @@ export var TweenLengthSeconds: float = .75
 export var SetPlayerPosition: NodePath # Set to 0,0 to keep current position
 export var CreateSavePoint: bool
 
-onready var PlayerNode = get_node("/root/Main/Player")
+onready var PlayerNode = Main.get_node("Player")
+onready var SaveSys = Main.get_node("Save")
 onready var GUI = PlayerNode.get_node("GUI")
 onready var TransitionTween = get_node("Tween")
 onready var TransparencyHolder = get_node("TransparencyHolder")
@@ -28,17 +29,11 @@ func save():
 	if SetPlayerPosition:
 		savedPosition = get_node(SetPlayerPosition).position
 	
+	SaveSys.save()
 	
-	PlayerNode.respawn_position = savedPosition
-	PlayerNode.respawn_health = PlayerNode.health
-	PlayerNode.respawn_mana = PlayerNode.mana
-	PlayerNode.respawn_stamina = PlayerNode.stamina
 
 func onTriggerAny(_trigger):
 	running = true
-	if CreateSavePoint: 
-		save()
-		print("Saved")
 	TopLabel.text = TopText
 	BottomLabel.text = BottomText
 	TransitionTween.interpolate_property(TransparencyHolder, "position", 
@@ -62,6 +57,9 @@ func onTriggerAny(_trigger):
 	# Unpause game
 	TransitionTween.start()
 	yield(Main.wait(TweenLengthSeconds), "completed")
+	if CreateSavePoint: 
+		save()
+		print("Saved")
 	Main.pause(false, [])
 	TransferContainer.visible = false
 	running = false
