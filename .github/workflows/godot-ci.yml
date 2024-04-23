@@ -47,7 +47,7 @@ jobs:
           
       - name: "Export to HTML5"
         run: | 
-          mkdir -v -p ./build/web
+          mkdir -v -p ${{ format( '{0}/index.html', env.WEB_PATH ) }}
           godot -v --export "HTML5" ${{ format( '{0}/index.html', env.WEB_PATH ) }}
       
       - name: "Export to OSX"
