@@ -93,7 +93,6 @@ jobs:
       
       - name: "Deploy"
         id: pages_deploy
-        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -116,7 +115,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: $WORKFLOW_NAME
+          name: ${{ env.WORKFLOW_NAME }}
           path: ./build
       
       - name: "Deploy to GitHub Pages"
@@ -164,7 +163,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: $WORKFLOW_NAME
+          name: ${{ env.WORKFLOW_NAME }}
           path: ./build
       
       - name: "Create release"
