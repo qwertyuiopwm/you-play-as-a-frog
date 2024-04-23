@@ -11,6 +11,7 @@ on:
 
 env:
   WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || inputs.dev-deploy != null && 'dev-build' || github.ref }}
+  WEB_PATH : ${{ inputs.dev-deploy != null && './devbuild/web' || './build/web' }}
 
 concurrency:
   group: $WORKFLOW_NAME
@@ -47,7 +48,7 @@ jobs:
       - name: "Export to HTML5"
         run: | 
           mkdir -v -p ./build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          godot -v --export "HTML5" ${{ format( '{0}/index.html', env.WEB_PATH ) }}
       
       - name: "Export to OSX"
         run: |
@@ -68,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: $WORKFLOW_NAME
-          path: ./build
+          path: $WEB_PATH
           retention-days: 2
     
   deploy-to-cloudflare:
@@ -78,7 +79,7 @@ jobs:
       deployments: write
     needs: export
     outputs:
-      build-url: ${{ steps.pages_deploy && steps.pages_deploy.outputs.url || steps.dev_pages_deploy }}
+      build-url: ${{ steps.pages_deploy && steps.pages_deploy.outputs.url }}
     
     steps:
       - name: "Checkout"
@@ -99,18 +100,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
           directory: ./
-          workingDirectory: ./build/web
-      
-      - name: "Dev Deploy"
-        id: dev_pages_deploy
-        if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ypaaf
-          directory: ./dev/
-          workingDirectory: ./build/web
+          workingDirectory: $WEB_PATH
 
   deploy-to-github-pages:
     runs-on: ubuntu-latest
@@ -134,7 +124,7 @@ jobs:
         if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./build/web
+          folder: $WEB_PATH
           repository-name: ypaaf/ypaaf.github.io
           ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           branch: main
@@ -148,8 +138,8 @@ jobs:
         if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./build/web
-          repository-name: ypaaf-dev/ypaaf.github.io
+          folder: $WEB_PATH
+          repository-name: ypaaf/ypaaf-dev.github.io
           ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           branch: main
           git-config-name: 'ypaaf-builder[bot]'
