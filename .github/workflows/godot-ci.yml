@@ -182,6 +182,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.ref_name }}
+          prerelease: ${{ endsWith( '${WORKFLOW_NAME}', 'dev-build' ) }}
           files: |
             ./build/mac/macos.zip
             ./build/windows/windows.exe
