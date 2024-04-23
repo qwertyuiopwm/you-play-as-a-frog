@@ -25,9 +25,6 @@ var running = false
 func save():
 	if not CreateSavePoint:
 		return
-	var savedPosition = PlayerNode.global_position
-	if SetPlayerPosition:
-		savedPosition = get_node(SetPlayerPosition).position
 	
 	SaveSys.save()
 	
