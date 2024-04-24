@@ -105,7 +105,7 @@ Toggle = true
 
 [node name="hideq" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
-Triggerables = [ NodePath("hideq"), NodePath("toggle"), NodePath("showe") ]
+Triggerables = [ NodePath("hideq"), NodePath("toggle"), NodePath("showq2") ]
 Enabled = false
 Actions = [ "select_spell" ]
 
@@ -118,7 +118,7 @@ PopupName = "qtoselect"
 Trigger = NodePath("../../hideq2")
 Toggle = true
 
-[node name="showe" parent="hideq" instance=ExtResource( 3 )]
+[node name="showq2" parent="hideq" instance=ExtResource( 3 )]
 PopupName = "qtoselect2"
 Inverted = true
 
