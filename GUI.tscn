@@ -490,6 +490,7 @@ margin_bottom = 184.0
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
+visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
