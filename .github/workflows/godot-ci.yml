@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       dev-deploy:
-        type: boolean
+        type: string
         required: true
   push:
     tags:
@@ -167,18 +167,11 @@ jobs:
           name: ${{ env.WORKFLOW_NAME }}
           path: ${{ env.BUILD_PATH }}
       
-      - id: ref-hash
-        if: endsWith( env.WORKFLOW_NAME, 'dev-build' )
-        run: |
-          fullhash="${{ github.event.after }}"
-          hash=$(echo "${fullhash:0:8}")
-          echo "hash=$hash" >> $GITHUB_OUTPUT
-      
       - name: "Create release"
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) && format( 'dev-{0}', steps.ref-hash.outputs.hash ) || github.ref_name }}
+          tag_name: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) && format( 'dev-{0}', inputs.dev-deploy ) || github.ref_name }}
           prerelease: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
           files: |
             ${{ format( '{0}/mac/macos.zip', env.BUILD_PATH ) }}
