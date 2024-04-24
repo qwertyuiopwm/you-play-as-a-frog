@@ -32,10 +32,12 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	var dist = 0
+	if target_pos != null:
+		dist = global_position.distance_to(target_pos)
+	var speed = min(SPEED + dist, SPEED * 2)
 	curr_speed = SWOOP_SPEED if state == states.SWOOPING \
-		else SPEED
-	
-	print(state)
+		else speed
 	
 	if target_pos: $targ_vis.global_position = target_pos
 	if state == states.SWOOPING: modulate = Color(1, .9, .9)
@@ -47,11 +49,12 @@ func _physics_process(delta):
 	
 	match state:
 		states.DEFAULT:
-			if not target_player:
-				return
+			pass
 		
 		states.SWOOPING:
-			move(target_pos, delta)
+			var vel: Vector2 = move(target_pos, delta)
+			if vel.length() < 5:
+				state = states.DEFAULT
 		
 		states.SWOOP:
 			target_pos = global_position + global_position.direction_to(target_player.global_position) * SWOOP_DIST
@@ -74,14 +77,16 @@ func get_state():
 			return states.DEFAULT
 		return states.SWOOPING
 	
-	if target_player == null or target_pos == null:
+	if target_player == null:
 		return states.DEFAULT
 	
-	if global_position.x < target_pos.x:
+	if target_pos != null and global_position.y < target_player.global_position.y + TARGET_OFFSET.y:
 		return states.SWOOP
 		
-	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
+	if state == states.DEFAULT and (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
 		return states.ALIGN
+	
+	return states.DEFAULT
 
 
 func _on_AttackCollider_body_entered(body):
