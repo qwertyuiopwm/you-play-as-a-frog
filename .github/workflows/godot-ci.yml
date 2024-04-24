@@ -80,7 +80,7 @@ jobs:
       deployments: write
     needs: export
     outputs:
-      build-url: ${{ steps.pages_deploy && steps.pages_deploy.outputs.url }}
+      build-url: ${{ steps.pages_deploy && steps.pages_deploy.outputs.url || steps.pages_dev_deploy && steps.pages_dev_deploy.outputs.url }}
     
     steps:
       - name: "Checkout"
