@@ -1,6 +1,8 @@
 extends Node2D
 
+
 export(Color) var SLIPPY_COLOR_MODULATE = Color(1, 1, 0.8)
+
 export var CurrEffects = []
 
 
@@ -10,7 +12,6 @@ class effect_sorter:
 
 
 func _process(delta):
-	
 	get_parent().modulate = Color(1, 1, 1)
 	
 	if has_effect(Effects.slippy):
