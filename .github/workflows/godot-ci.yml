@@ -2,12 +2,17 @@ name: "Publish Project"
 
 on:
   workflow_dispatch:
+    inputs:
+      dev-deploy:
+        type: string
+        required: true
   push:
     tags:
       - '*'
 
 env:
-  WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || inputs.dev-deploy != null && 'dev-build' || github.ref }}
+  BUILD_PATH: './build'
 
 concurrency:
   group: $WORKFLOW_NAME
@@ -43,29 +48,29 @@ jobs:
           
       - name: "Export to HTML5"
         run: | 
-          mkdir -v -p ./build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          mkdir -v -p ${{ format( '{0}/web', env.BUILD_PATH ) }}
+          godot -v --export "HTML5" ${{ format( '{0}/web/index.html', env.BUILD_PATH ) }}
       
       - name: "Export to OSX"
         run: |
-          mkdir -v -p ./build/mac
-          godot -v --export "Mac OSX" ./build/mac/macos.zip
+          mkdir -v -p ${{ format( '{0}/mac', env.BUILD_PATH ) }}
+          godot -v --export "Mac OSX" ${{ format( '{0}/mac/macos.zip', env.BUILD_PATH ) }}
 
       - name: "Export to Windows"
         run: |
-          mkdir -v -p ./build/windows
-          godot -v --export "Windows Desktop" ./build/windows/windows.exe
+          mkdir -v -p ${{ format( '{0}/windows', env.BUILD_PATH ) }}
+          godot -v --export "Windows Desktop" ${{ format( '{0}/windows/windows.exe', env.BUILD_PATH ) }}
 
       - name: "Export to X11"
         run: |
-          mkdir -v -p ./build/linux
-          godot -v --export "Linux/X11" ./build/linux/linux.x86_64
+          mkdir -v -p ${{ format( '{0}/linux', env.BUILD_PATH ) }}
+          godot -v --export "Linux/X11" ${{ format( '{0}/linux/linux.x86_64', env.BUILD_PATH ) }}
       
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@master
         with:
-          name: $WORKFLOW_NAME
-          path: ./build
+          name: ${{ env.WORKFLOW_NAME }}
+          path: ${{ env.BUILD_PATH }}
           retention-days: 2
     
   deploy-to-cloudflare:
@@ -75,7 +80,7 @@ jobs:
       deployments: write
     needs: export
     outputs:
-      build-url: ${{ steps.pages_deploy.outputs.url }}
+      build-url: ${{ steps.pages_deploy && steps.pages_deploy.outputs.url }}
     
     steps:
       - name: "Checkout"
@@ -84,18 +89,30 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: $WORKFLOW_NAME
-          path: ./build
+          name: ${{ env.WORKFLOW_NAME }}
+          path: ${{ env.BUILD_PATH }}
       
       - name: "Deploy"
         id: pages_deploy
+        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
           directory: ./
-          workingDirectory: ./build/web
+          workingDirectory: ${{ format( '{0}/web', env.BUILD_PATH ) }}
+      
+      - name: "Dev Deploy"
+        id: pages_dev_deploy
+        if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ypaaf-dev
+          directory: ./
+          workingDirectory: ${{ format( '{0}/web', env.BUILD_PATH ) }}
 
   deploy-to-github-pages:
     runs-on: ubuntu-latest
@@ -111,15 +128,31 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: $WORKFLOW_NAME
-          path: ./build
+          name: ${{ env.WORKFLOW_NAME }}
+          path: ${{ env.BUILD_PATH }}
+      
       - name: "Deploy to GitHub Pages"
         id: github_pages_deploy
+        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./build/web
+          folder: ${{ format( '{0}/web', env.BUILD_PATH ) }}
           repository-name: ypaaf/ypaaf.github.io
           ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          branch: main
+          git-config-name: 'ypaaf-builder[bot]'
+          git-config-email: 'github-actions[bot]@users.noreply.github.com'
+          commit-message: ${{ github.ref_name }}
+          clean: true
+
+      - name: "Dev Deploy to GitHub Pages"
+        id: github_pages_dev_deploy
+        if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ format( '{0}/web', env.BUILD_PATH ) }}
+          repository-name: ypaaf/ypaaf-dev
+          ssh-key: ${{ secrets.ACTIONS_DEV_DEPLOY_KEY }}
           branch: main
           git-config-name: 'ypaaf-builder[bot]'
           git-config-email: 'github-actions[bot]@users.noreply.github.com'
@@ -143,18 +176,19 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@master
         with:
-          name: $WORKFLOW_NAME
-          path: ./build
+          name: ${{ env.WORKFLOW_NAME }}
+          path: ${{ env.BUILD_PATH }}
       
       - name: "Create release"
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) && format( 'dev-{0}', inputs.dev-deploy ) || github.ref_name }}
+          prerelease: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
           files: |
-            ./build/mac/macos.zip
-            ./build/windows/windows.exe
-            ./build/linux/linux.x86_64
+            ${{ format( '{0}/mac/macos.zip', env.BUILD_PATH ) }}
+            ${{ format( '{0}/windows/windows.exe', env.BUILD_PATH ) }}
+            ${{ format( '{0}/linux/linux.x86_64', env.BUILD_PATH ) }}
           body: "Web build: ${{ needs.deploy-to-cloudflare.outputs.build-url }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

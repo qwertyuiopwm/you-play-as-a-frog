@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Area maps/Cave/Cave 1.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Area maps/Cave/Cave 2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Area maps/Cave/Cave 3.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Area maps/Cave/Cave 4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Area maps/Cave/Cave1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Area maps/Cave/Cave2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Area maps/Cave/Cave3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Area maps/Cave/Cave4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Area maps/Cave/Cave5.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Area maps/Cave/Cave6.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Area maps/Cave/Cave7.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Area maps/Cave/Cave8.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Area maps/Cave/Cave9.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Area maps/Cave/Cave10.tscn" type="PackedScene" id=10]
 
 [node name="CaveMain" type="Node2D"]
 
@@ -12,8 +18,26 @@
 [node name="Cave2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -384, -1088 )
 
-[node name="Cave 3" parent="." instance=ExtResource( 3 )]
+[node name="Cave3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -1088, -2432 )
 
-[node name="Cave 4" parent="." instance=ExtResource( 4 )]
+[node name="Cave4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 512, -3904 )
+
+[node name="Cave5" parent="." instance=ExtResource( 5 )]
+position = Vector2( -512, -5888 )
+
+[node name="Cave6" parent="." instance=ExtResource( 6 )]
+position = Vector2( -576, -7104 )
+
+[node name="Cave7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 320, -8640 )
+
+[node name="Cave8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1920, -9792 )
+
+[node name="Cave9" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2048, -11200 )
+
+[node name="Cave10" parent="." instance=ExtResource( 10 )]
+position = Vector2( 4032, -12288 )
