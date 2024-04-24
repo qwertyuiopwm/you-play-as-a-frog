@@ -54,17 +54,17 @@ jobs:
       - name: "Export to OSX"
         run: |
           mkdir -v -p ${{ format( '{0}/mac', env.BUILD_PATH ) }}
-          godot -v --export "Mac OSX" ${{ format( '{0}/mac', env.BUILD_PATH ) }}
+          godot -v --export "Mac OSX" ${{ format( '{0}/mac/macos.zip', env.BUILD_PATH ) }}
 
       - name: "Export to Windows"
         run: |
           mkdir -v -p ${{ format( '{0}/windows', env.BUILD_PATH ) }}
-          godot -v --export "Windows Desktop" ${{ format( '{0}/windows', env.BUILD_PATH ) }}
+          godot -v --export "Windows Desktop" ${{ format( '{0}/windows/windows.exe', env.BUILD_PATH ) }}
 
       - name: "Export to X11"
         run: |
           mkdir -v -p ${{ format( '{0}/linux', env.BUILD_PATH ) }}
-          godot -v --export "Linux/X11" ${{ format( '{0}/linux', env.BUILD_PATH ) }}
+          godot -v --export "Linux/X11" ${{ format( '{0}/linux/linux.x86_64', env.BUILD_PATH ) }}
       
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@master
