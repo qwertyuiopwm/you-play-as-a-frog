@@ -139,7 +139,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ${{ format( '{0}/web', env.BUILD_PATH ) }}
-          repository-name: ypaaf/ypaaf-dev.github.io
+          repository-name: ypaaf/ypaaf-dev
           ssh-key: ${{ secrets.ACTIONS_DEV_DEPLOY_KEY }}
           branch: main
           git-config-name: 'ypaaf-builder[bot]'
