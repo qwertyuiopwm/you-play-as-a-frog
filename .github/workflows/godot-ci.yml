@@ -53,17 +53,17 @@ jobs:
       - name: "Export to OSX"
         run: |
           mkdir -v -p ./build/mac
-          godot -v --export "Mac OSX" ./build/mac/macos.zip
+          godot -v --export "Mac OSX" ${{ format( '{0}/mac/macos/macos.zip', env.BUILD_PATH ) }}
 
       - name: "Export to Windows"
         run: |
           mkdir -v -p ./build/windows
-          godot -v --export "Windows Desktop" ./build/windows/windows.exe
+          godot -v --export "Windows Desktop" ${{ format( '{0}/mac/windows/windows.exe', env.BUILD_PATH ) }}
 
       - name: "Export to X11"
         run: |
           mkdir -v -p ./build/linux
-          godot -v --export "Linux/X11" ./build/linux/linux.x86_64
+          godot -v --export "Linux/X11" ${{ format( '{0}/mac/linux/linux.x86_64', env.BUILD_PATH ) }}
       
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@master
@@ -166,16 +166,23 @@ jobs:
           name: ${{ env.WORKFLOW_NAME }}
           path: ${{ env.BUILD_PATH }}
       
+      - id: ref-hash
+        if: endsWith( env.WORKFLOW_NAME, 'dev-build' )
+        run: |
+          fullhash="${{ github.event.after }}"
+          hash=$(echo "${fullhash:0:8}")
+          echo "hash=$hash" >> $GITHUB_OUTPUT
+      
       - name: "Create release"
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) && format( 'dev-{0}', steps.ref-hash.outputs.hash ) || github.ref_name }}
           prerelease: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
           files: |
-            ./build/mac/macos.zip
-            ./build/windows/windows.exe
-            ./build/linux/linux.x86_64
+            ${{ format( '{0}/mac/macos/macos.zip', env.BUILD_PATH ) }}
+            ${{ format( '{0}/mac/windows/windows.exe', env.BUILD_PATH ) }}
+            ${{ format( '{0}/mac/linux/linux.x86_64', env.BUILD_PATH ) }}
           body: "Web build: ${{ needs.deploy-to-cloudflare.outputs.build-url }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
