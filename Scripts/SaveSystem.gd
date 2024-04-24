@@ -63,6 +63,12 @@ func getSavedNodes(addPlayer: bool = false):
 	return nodes
 	
 
+func saveExists():
+	var save_game = File.new()
+	if not save_game.file_exists(fileName):
+		return false
+	return true
+
 func loadSave():
 	var save_game = File.new()
 	if not save_game.file_exists(fileName):
