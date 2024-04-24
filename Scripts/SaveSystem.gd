@@ -45,7 +45,9 @@ var IgnoredProperties = [
 	"global_transform",
 	"tile_set",
 	"target_player",
-	"target_pos"
+	"target_pos",
+	"friction",
+	"bounce"
 ]
 
 func getSavedNodes(addPlayer: bool = false):
@@ -60,6 +62,12 @@ func getSavedNodes(addPlayer: bool = false):
 		nodes.append(Player)
 	return nodes
 	
+
+func saveExists():
+	var save_game = File.new()
+	if not save_game.file_exists(fileName):
+		return false
+	return true
 
 func loadSave():
 	var save_game = File.new()
@@ -90,8 +98,6 @@ func loadSave():
 			continue
 		unserialize(data[path], node)
 		pass
-	
-	#Player.get_node("GUI").generateWheel()
 
 func save():
 	var save_game = File.new()
@@ -175,6 +181,8 @@ func serialize(input):
 			pass
 		TYPE_OBJECT:
 			if not input:
+				return
+			if !weakref(input).get_ref():
 				return
 			object.classname = input.get_class()
 			object.data = serialize_object(input)

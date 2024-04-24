@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -105,6 +105,30 @@ corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.313726, 0.835294, 0.356863, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -466,7 +490,6 @@ margin_bottom = 184.0
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
-visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -494,14 +517,25 @@ text = "You Play as a Frog"
 
 [node name="Button" type="Button" parent="MainMenu"]
 margin_left = -256.0
-margin_top = -64.0
+margin_top = -128.0
 margin_right = 256.0
-margin_bottom = 64.0
 custom_fonts/font = SubResource( 21 )
 custom_styles/hover = SubResource( 24 )
 custom_styles/pressed = SubResource( 23 )
 custom_styles/normal = SubResource( 22 )
 text = "Start Game"
+icon_align = 1
+
+[node name="Button2" type="Button" parent="MainMenu"]
+margin_left = -256.0
+margin_top = 64.0
+margin_right = 256.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 21 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 40 )
+custom_styles/normal = SubResource( 41 )
+text = "Load Game"
 icon_align = 1
 
 [node name="Popups" type="CanvasLayer" parent="."]
@@ -914,4 +948,3 @@ text = "W"
 icon_align = 1
 
 [connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]
-[connection signal="pressed" from="MainMenu/Button" to="." method="_on_Button_pressed"]

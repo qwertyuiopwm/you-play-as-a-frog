@@ -1,12 +1,12 @@
 extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
-export var CIRCLE_RADIUS = 50
+export var TARGET_OFFSET = Vector2(50, -50)
 export var SWOOP_SPEED = 150
+export var SWOOP_DIST = 150
 export var DAMAGE = 5
 
 var TARGET_COMFORT_RADIUS = 20
-
 
 var randomnum = randf()
 var state
@@ -14,7 +14,7 @@ var state
 
 enum states {
 	DEFAULT,
-	CIRCLE,
+	ALIGN,
 	SWOOP,
 	SWOOPING,
 }
@@ -23,7 +23,7 @@ enum states {
 func _ready():
 	$AnimatedSprite.play("default")
 	var _obj = $AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
-	$fly_vis.visible = debug
+	$targ_vis.visible = debug
 
 
 func _process(_delta):
@@ -32,59 +32,61 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	STEERING_MULT = 5
+	var dist = 0
+	if target_pos != null:
+		dist = global_position.distance_to(target_pos)
+	var speed = min(SPEED + dist, SPEED * 2)
+	curr_speed = SWOOP_SPEED if state == states.SWOOPING \
+		else speed
 	
-	if target_pos: $fly_vis.global_position = target_pos
+	if target_pos: $targ_vis.global_position = target_pos
 	if state == states.SWOOPING: modulate = Color(1, .9, .9)
 	else: modulate = Color(1, 1, 1)
 	
 	if is_sliding():
 		move(0, delta)
 		return
-		
 	
 	match state:
 		states.DEFAULT:
-			var target_offset = randf() / 10 + .05
-			if randf() >= .5:
-				target_offset = -target_offset
-				
-			randomnum += target_offset
-			
-		
-		states.CIRCLE:
-			curr_speed = SPEED
-			target_pos = get_circle_position(randomnum, CIRCLE_RADIUS)
-			move(target_pos, delta)
-		
-		states.SWOOP:
-			randomnum = fmod((randomnum + .5), 1)
-			state = states.SWOOPING
+			pass
 		
 		states.SWOOPING:
-			curr_speed = SWOOP_SPEED
-			target_pos = get_circle_position(randomnum, CIRCLE_RADIUS)
+			var vel: Vector2 = move(target_pos, delta)
+			if vel.length() < 5:
+				state = states.DEFAULT
+		
+		states.SWOOP:
+			target_pos = global_position + global_position.direction_to(target_player.global_position) * SWOOP_DIST
+			state = states.SWOOPING
+		
+		states.ALIGN:
+			var player_pos = target_player.global_position
+			var dir_to_player = global_position.direction_to(player_pos)
+			var x_dir = dir_to_player.x
+			x_dir /= abs(x_dir)
+			var offset = Vector2(-x_dir, 1) * TARGET_OFFSET
+			
+			target_pos = player_pos + offset
 			move(target_pos, delta)
-
-
-func animation_finished():
-	pass
 
 
 func get_state():
-	if target_player == null:
-		return states.DEFAULT
-	
 	if state == states.SWOOPING:
-		if global_position.distance_to(target_pos) < 1:
+		if global_position.distance_to(target_pos) < TARGET_COMFORT_RADIUS:
 			return states.DEFAULT
 		return states.SWOOPING
 	
-	if state == states.CIRCLE and global_position.distance_to(target_pos) < 3:
+	if target_player == null:
+		return states.DEFAULT
+	
+	if target_pos != null and global_position.y < target_player.global_position.y + TARGET_OFFSET.y:
 		return states.SWOOP
 		
-	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
-		return states.CIRCLE
+	if state == states.DEFAULT and (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
+		return states.ALIGN
+	
+	return states.DEFAULT
 
 
 func _on_AttackCollider_body_entered(body):

@@ -89,6 +89,7 @@ func move(_target, delta):
 	velocity += steering
 	flip_body(velocity.x > 0)
 	velocity = move_and_slide(velocity)
+	return velocity
 
 
 func slip(delta):
