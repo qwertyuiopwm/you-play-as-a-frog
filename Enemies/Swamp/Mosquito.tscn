@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Mosquito.gd" type="Script" id=1]
 [ext_resource path="res://art/Mosquito.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/Extras/StateChecker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/image-removebg-preview.png" type="Texture" id=5]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 14.0
@@ -42,8 +43,12 @@ z_index = 2
 collision_layer = 264
 collision_mask = 264
 script = ExtResource( 1 )
+IMMUNITIES = [ ExtResource( 7 ) ]
 SPEED = 200
+STEERING_MULT = 5.0
+health = 9.0
 SWOOP_SPEED = 300
+DAMAGE = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 physics_interpolation_mode = 1
