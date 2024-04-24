@@ -12,7 +12,7 @@ on:
 
 env:
   WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || inputs.dev-deploy != null && 'dev-build' || github.ref }}
-  BUILD_PATH: ${{ inputs.dev-deploy != null && './devbuild' || './build' }}
+  BUILD_PATH: './build'
 
 concurrency:
   group: $WORKFLOW_NAME
