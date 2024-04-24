@@ -94,11 +94,23 @@ jobs:
       
       - name: "Deploy"
         id: pages_deploy
+        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ypaaf
+          directory: ./
+          workingDirectory: ${{ format( '{0}/web', env.BUILD_PATH ) }}
+      
+      - name: "Dev Deploy"
+        id: pages_dev_deploy
+        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ypaaf-dev
           directory: ./
           workingDirectory: ${{ format( '{0}/web', env.BUILD_PATH ) }}
 
