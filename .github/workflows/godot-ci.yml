@@ -105,7 +105,7 @@ jobs:
       
       - name: "Dev Deploy"
         id: pages_dev_deploy
-        if: ${{ ! endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
+        if: ${{ endsWith( env.WORKFLOW_NAME, 'dev-build' ) }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
