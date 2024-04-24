@@ -243,6 +243,9 @@ func _on_play_pressed():
 
 func _on_load_pressed():
 	if not SaveSys.saveExists():
+		MainMenu.get_node("NoSaveFile").visible = true
+		yield(Main.wait(2), "completed")
+		MainMenu.get_node("NoSaveFile").visible = false
 		return
 	SaveSys.loadSave()
 	MainMenu.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -134,6 +134,14 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.894118, 0.168627, 0.168627, 0.705882 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.411765, 0, 0, 1 )
 
 [sub_resource type="RichTextEffect" id=25]
 script = ExtResource( 18 )
@@ -490,7 +498,6 @@ margin_bottom = 184.0
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
-visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -538,6 +545,23 @@ custom_styles/pressed = SubResource( 40 )
 custom_styles/normal = SubResource( 41 )
 text = "Load Game"
 icon_align = 1
+
+[node name="NoSaveFile" type="RichTextLabel" parent="MainMenu"]
+visible = false
+margin_left = -340.0
+margin_top = -64.0
+margin_right = 340.0
+margin_bottom = 64.0
+custom_fonts/mono_font = ExtResource( 19 )
+custom_fonts/bold_italics_font = ExtResource( 19 )
+custom_fonts/italics_font = ExtResource( 19 )
+custom_fonts/bold_font = ExtResource( 19 )
+custom_fonts/normal_font = ExtResource( 19 )
+custom_styles/normal = SubResource( 42 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]No save file could be found.[/center][/valign]"
+text = "No save file could be found."
+custom_effects = [ SubResource( 25 ) ]
 
 [node name="Popups" type="CanvasLayer" parent="."]
 offset = Vector2( 400, 600 )
