@@ -139,7 +139,7 @@ jobs:
         with:
           folder: ${{ format( '{0}/web', env.BUILD_PATH ) }}
           repository-name: ypaaf/ypaaf-dev.github.io
-          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          ssh-key: ${{ secrets.ACTIONS_DEV_DEPLOY_KEY }}
           branch: main
           git-config-name: 'ypaaf-builder[bot]'
           git-config-email: 'github-actions[bot]@users.noreply.github.com'
