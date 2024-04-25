@@ -2,6 +2,7 @@ extends Node2D
 
 
 export(Color) var SLIPPY_COLOR_MODULATE = Color(1, 1, 0.8)
+export(Color) var POISON_COLOR_MODULATE = Color(1, 0.8, 1)
 
 export var CurrEffects = []
 
@@ -12,10 +13,7 @@ class effect_sorter:
 
 
 func _process(delta):
-	get_parent().modulate = Color(1, 1, 1)
-	
-	if has_effect(Effects.slippy):
-		get_parent().modulate = SLIPPY_COLOR_MODULATE
+	get_parent().modulate = get_parent_modulate()
 	
 	CurrEffects = get_effects()
 	
@@ -23,6 +21,7 @@ func _process(delta):
 	
 	for effect in CurrEffects:
 		effect.affect(get_parent(), delta)
+
 
 func Cure(cured_effect):
 	for effect in get_effects():
@@ -67,3 +66,14 @@ func add_time(effect, time):
 	for _effect in get_effects():
 		if _effect is effect.instance().get_script():
 			_effect.duration += time
+
+
+func get_parent_modulate():
+	var mod = Color(1, 1, 1)
+	
+	if has_effect(Effects.slippy):
+		mod *= SLIPPY_COLOR_MODULATE
+	if has_effect(Effects.poison):
+		mod *= POISON_COLOR_MODULATE
+	
+	return mod
