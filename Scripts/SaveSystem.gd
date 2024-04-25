@@ -2,6 +2,7 @@ extends Node
 
 onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node("Player")
+onready var GUI = Player.get_node("GUI")
 
 var fileName = "user://ypaaf.save"
 var GroupsToSave = [
@@ -98,6 +99,7 @@ func loadSave():
 			continue
 		unserialize(data[path], node)
 		pass
+	GUI.generateWheel()
 
 func save():
 	var save_game = File.new()
