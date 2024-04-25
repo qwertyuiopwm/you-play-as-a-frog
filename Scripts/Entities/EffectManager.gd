@@ -31,16 +31,15 @@ func Cure(cured_effect):
 			effect.queue_free()
 
 
-func Afflict(effect, duration: float):
+func Afflict(effect: PackedScene, duration: float):
+	if has_effect(effect):
+		var _effect = get_node("%s" % effect.instance().name)
+		_effect.stack(duration)
+		return
+	
 	var new_effect = effect.instance()
 	if effect in get_parent().PERMANENT_EFFECTS:
 		new_effect.Permanent = true
-	
-	if not new_effect.CAN_STACK and has_effect(effect):
-		if new_effect.STACK_TIME: 
-			add_time(effect, effect.duration if duration <= 0 else duration)
-		new_effect.queue_free()
-		return
 	
 	add_child(new_effect)
 	
