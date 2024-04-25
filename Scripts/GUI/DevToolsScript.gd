@@ -2,6 +2,7 @@ extends CanvasLayer
 
 
 onready var Player = get_parent().get_parent()
+onready var GUI = Player.get_node("GUI")
 onready var Main = Player.get_parent()
 onready var devTools = self
 onready var bg = devTools.get_node("bg")
@@ -22,11 +23,19 @@ var selectedEnemy: PackedScene
 
 func _ready():
 	var EnemyDropdown: OptionButton = devToolsValues.get_node("EnemyOption")
+	var enemyConn = EnemyDropdown.connect("item_selected", self, "_on_EnemyOption_item_selected")
 	var i = 1
 	for name in enemies:
 		
 		EnemyDropdown.add_item(name, i)
 		i+=1
+	
+	var SpellDropdown: OptionButton = devToolsValues.get_node("SpellOption")
+	var spellConn = SpellDropdown.connect("item_selected", self, "_on_SpellOption_item_selected")
+	var i2 = 1
+	for name in Spells.AllSpells:
+		SpellDropdown.add_item(name, i2)
+		i2+=1
 
 func _input(event):
 	if not event is InputEventMouseButton:
@@ -46,6 +55,12 @@ func _input(event):
 func _on_EnemyOption_item_selected(_index: int):
 	var EnemyOption = devToolsValues.get_node("EnemyOption")
 	selectedEnemy = enemies.get(EnemyOption.text)
+
+func _on_SpellOption_item_selected(_index: int):
+	var SpellOption = devToolsValues.get_node("SpellOption")
+	Player.PlayerSpells.append(Spells.AllSpells.get(SpellOption.text))
+	GUI.generateWheel()
+	SpellOption.release_focus()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_devtools"):

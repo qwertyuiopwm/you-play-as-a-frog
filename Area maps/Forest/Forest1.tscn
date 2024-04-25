@@ -105,7 +105,7 @@ Toggle = true
 
 [node name="hideq" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
-Triggerables = [ NodePath("hideq"), NodePath("toggle"), NodePath("showe") ]
+Triggerables = [ NodePath("hideq"), NodePath("toggle"), NodePath("showq2") ]
 Enabled = false
 Actions = [ "select_spell" ]
 
@@ -118,13 +118,13 @@ PopupName = "qtoselect"
 Trigger = NodePath("../../hideq2")
 Toggle = true
 
-[node name="showe" parent="hideq" instance=ExtResource( 3 )]
+[node name="showq2" parent="hideq" instance=ExtResource( 3 )]
 PopupName = "qtoselect2"
 Inverted = true
 
 [node name="hideq2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 200 )
-Triggerables = [ NodePath("hideq"), NodePath("toggle"), NodePath("showe") ]
+Triggerables = [ NodePath("hideq"), NodePath("showe") ]
 Enabled = false
 Actions = [ "select_spell" ]
 ActionType = 1
@@ -134,47 +134,19 @@ position = Vector2( 20, 600 )
 State = true
 PopupName = "qtoselect2"
 
-[node name="toggle" parent="hideq2" instance=ExtResource( 5 )]
-Trigger = NodePath("../../hidee")
-Toggle = true
-
 [node name="showe" parent="hideq2" instance=ExtResource( 3 )]
 PopupName = "etocast"
 Inverted = true
 
-[node name="hidee" parent="." instance=ExtResource( 4 )]
-position = Vector2( 400, 200 )
-Triggerables = [ NodePath("hidee"), NodePath("showdash"), NodePath("toggledash") ]
-Enabled = false
-Actions = [ "cast_spell" ]
-
-[node name="hidee" parent="hidee" instance=ExtResource( 3 )]
-position = Vector2( 20, 600 )
+[node name="hidee" parent="." instance=ExtResource( 3 )]
+position = Vector2( 420, 800 )
 PopupName = "etocast"
-
-[node name="showdash" parent="hidee" instance=ExtResource( 3 )]
-position = Vector2( 187, 1131 )
-PopupName = "learntodash"
-Inverted = true
-
-[node name="toggledash" parent="hidee" instance=ExtResource( 5 )]
-Trigger = NodePath("../../actiondash")
-Toggle = true
-
-[node name="actiondash" parent="." instance=ExtResource( 4 )]
-Triggerables = [ NodePath("hidedash") ]
-Enabled = false
-Actions = [ "dash" ]
-
-[node name="hidedash" parent="actiondash" instance=ExtResource( 3 )]
-State = true
-PopupName = "learntodash"
 
 [node name="Dummy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 743, 1356 )
 
 [node name="PassTrigger" parent="Dummy" instance=ExtResource( 10 )]
-Triggerables = [ NodePath("../../wall") ]
+Triggerables = [ NodePath("../../wall"), NodePath("../../hidee") ]
 InvertSignal = true
 
 [node name="wall" type="TileMap" parent="." groups=["Doors"]]
