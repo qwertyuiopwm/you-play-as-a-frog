@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/arrow.png" type="Texture" id=2]
@@ -110,6 +110,38 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.894118, 0.168627, 0.168627, 0.705882 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.411765, 0, 0, 1 )
 
 [sub_resource type="RichTextEffect" id=25]
 script = ExtResource( 18 )
@@ -343,13 +375,13 @@ custom_styles/panel = SubResource( 15 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="devtools"]
 margin_left = -129.0
-margin_top = -92.5
+margin_top = -106.0
 margin_right = 129.0
-margin_bottom = 92.5
+margin_bottom = 106.0
 
 [node name="Labels" type="VBoxContainer" parent="devtools/HBoxContainer"]
 margin_right = 182.0
-margin_bottom = 185.0
+margin_bottom = 212.0
 
 [node name="GodmodeLabel" type="Label" parent="devtools/HBoxContainer/Labels"]
 margin_right = 182.0
@@ -399,10 +431,17 @@ margin_bottom = 185.0
 custom_fonts/font = ExtResource( 5 )
 text = "Spawn Enemy"
 
+[node name="AddSoellLabel" type="Label" parent="devtools/HBoxContainer/Labels"]
+margin_top = 189.0
+margin_right = 182.0
+margin_bottom = 212.0
+custom_fonts/font = ExtResource( 5 )
+text = "Give Spell"
+
 [node name="Values" type="VBoxContainer" parent="devtools/HBoxContainer"]
 margin_left = 186.0
 margin_right = 258.0
-margin_bottom = 185.0
+margin_bottom = 212.0
 
 [node name="GodmodeCheckbox" type="CheckBox" parent="devtools/HBoxContainer/Values"]
 margin_right = 72.0
@@ -464,6 +503,11 @@ margin_top = 164.0
 margin_right = 72.0
 margin_bottom = 184.0
 
+[node name="SpellOption" type="OptionButton" parent="devtools/HBoxContainer/Values"]
+margin_top = 188.0
+margin_right = 72.0
+margin_bottom = 208.0
+
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
 visible = false
@@ -494,15 +538,43 @@ text = "You Play as a Frog"
 
 [node name="Button" type="Button" parent="MainMenu"]
 margin_left = -256.0
-margin_top = -64.0
+margin_top = -128.0
 margin_right = 256.0
-margin_bottom = 64.0
 custom_fonts/font = SubResource( 21 )
 custom_styles/hover = SubResource( 24 )
 custom_styles/pressed = SubResource( 23 )
 custom_styles/normal = SubResource( 22 )
 text = "Start Game"
 icon_align = 1
+
+[node name="Button2" type="Button" parent="MainMenu"]
+margin_left = -256.0
+margin_top = 64.0
+margin_right = 256.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 21 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 40 )
+custom_styles/normal = SubResource( 41 )
+text = "Load Game"
+icon_align = 1
+
+[node name="NoSaveFile" type="RichTextLabel" parent="MainMenu"]
+visible = false
+margin_left = -340.0
+margin_top = -64.0
+margin_right = 340.0
+margin_bottom = 64.0
+custom_fonts/mono_font = ExtResource( 19 )
+custom_fonts/bold_italics_font = ExtResource( 19 )
+custom_fonts/italics_font = ExtResource( 19 )
+custom_fonts/bold_font = ExtResource( 19 )
+custom_fonts/normal_font = ExtResource( 19 )
+custom_styles/normal = SubResource( 42 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]No save file could be found.[/center][/valign]"
+text = "No save file could be found."
+custom_effects = [ SubResource( 25 ) ]
 
 [node name="Popups" type="CanvasLayer" parent="."]
 offset = Vector2( 400, 600 )
@@ -912,6 +984,3 @@ custom_styles/normal = ExtResource( 22 )
 shortcut_in_tooltip = false
 text = "W"
 icon_align = 1
-
-[connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]
-[connection signal="pressed" from="MainMenu/Button" to="." method="_on_Button_pressed"]

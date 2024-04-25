@@ -60,6 +60,8 @@ func magnitude(vec: Vector2):
 func _ready():
 	MainMenu.visible = true
 	Main.pause(true, [Player])
+	var _playbuttoncon = MainMenu.get_node("Button").connect("pressed", self, "_on_play_pressed")
+	var _loadbuttoncon = MainMenu.get_node("Button2").connect("pressed", self, "_on_load_pressed")
 	var _loadbuttonconnection = LoadSaveButton.connect("pressed", SaveSys, "loadSave")
 	var _savebuttonconnection = SaveButton.connect("pressed", SaveSys, "save")
 	configFile.load_encrypted_pass(configFileName, configPW)
@@ -232,7 +234,20 @@ func _process(_delta):
 		spellSpot.get_node("spellicon").texture = load(Player.selected_spell.instance().SpellIcon)
 
 
-func _on_Button_pressed():
+func _on_play_pressed():
+	MainMenu.visible = false
+	MusicPlayer.PlaySong("ForestMusic")
+	if not SaveSys.saveExists():
+		SaveSys.save()
+	Main.pause(false, [])
+
+func _on_load_pressed():
+	if not SaveSys.saveExists():
+		MainMenu.get_node("NoSaveFile").visible = true
+		yield(Main.wait(2), "completed")
+		MainMenu.get_node("NoSaveFile").visible = false
+		return
+	SaveSys.loadSave()
 	MainMenu.visible = false
 	MusicPlayer.PlaySong("ForestMusic")
 	Main.pause(false, [])
