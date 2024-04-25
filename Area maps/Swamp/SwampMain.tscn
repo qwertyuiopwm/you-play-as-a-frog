@@ -57,7 +57,7 @@ position = Vector2( -10624, 4543 )
 position = Vector2( -10304, 2496 )
 
 [node name="Swamp14" parent="." instance=ExtResource( 14 )]
-position = Vector2( -10624, 640 )
+position = Vector2( -10624, 641 )
 
 [node name="Swamp15" parent="." instance=ExtResource( 15 )]
 position = Vector2( -20736, -256 )
