@@ -255,13 +255,13 @@ func Heal(hp: float):
 	health = newHp
 
 
-func drop_big_item(dropAngle = -1):
+func drop_big_item(dropAngle: int = -1):
 	if not held_big_item:
 		return
 	
 	dropAngle %= 360
-	if dropAngle > 0:
-		dropAngle = rand_range(0, 360)
+	if dropAngle == -1:
+		dropAngle = int(rand_range(0, 360))
 	
 	var item = held_big_item
 	
