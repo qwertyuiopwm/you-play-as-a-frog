@@ -40,9 +40,9 @@ SLIP_SPEED_MULT = 3
 SLIP_STUN_DUR = 4
 STEERING_MULT = 0.25
 ROTATE_TO_TARGET = true
-health = 100.0
+health = 90.0
 NUM_SEGMENTS = 15
-SLIPPY_SEGMENTS_TO_SLIP = 7
+SLIPPY_SEGMENTS_TO_SLIP = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
