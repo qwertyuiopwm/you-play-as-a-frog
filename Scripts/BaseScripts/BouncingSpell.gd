@@ -1,5 +1,6 @@
 extends "res://Scripts/BaseScripts/Spell.gd"
 
+signal settled
 
 export var TYPE = "BOUNCING"
 export var VELOCITY = 50
@@ -40,7 +41,8 @@ func hit(body):
 func bounce(body):
 	BOUNCES -= 1
 	if BOUNCES < 0:
-		on_settle(body)
+		on_settle(null)
+		yield(self, "settled")
 		queue_free()
 
 
@@ -49,6 +51,7 @@ func _process(delta):
 	remaining_duration -= delta
 	if remaining_duration <= 0:
 		on_settle(null)
+		yield(self, "settled")
 		queue_free()
 	on_process()
 
