@@ -24,6 +24,3 @@ func on_start():
 	var _obj = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	$AnimatedSprite.play("start")
 
-
-func try_self_cast(player):
-	pass

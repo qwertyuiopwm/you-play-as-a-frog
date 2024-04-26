@@ -24,7 +24,7 @@ var selectedEnemy: PackedScene
 
 func _ready():
 	var EnemyDropdown: OptionButton = devToolsValues.get_node("EnemyOption")
-	var enemyConn = EnemyDropdown.connect("item_selected", self, "_on_EnemyOption_item_selected")
+	var _enemyConn = EnemyDropdown.connect("item_selected", self, "_on_EnemyOption_item_selected")
 	var i = 1
 	for name in enemies:
 		
@@ -32,7 +32,7 @@ func _ready():
 		i+=1
 	
 	var SpellDropdown: OptionButton = devToolsValues.get_node("SpellOption")
-	var spellConn = SpellDropdown.connect("item_selected", self, "_on_SpellOption_item_selected")
+	var _spellConn = SpellDropdown.connect("item_selected", self, "_on_SpellOption_item_selected")
 	var i2 = 1
 	for name in Spells.AllSpells:
 		SpellDropdown.add_item(name, i2)
