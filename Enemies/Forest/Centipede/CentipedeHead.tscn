@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Entities/Enemies/CentipedeHead.gd" type="Script" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/Extras/BossBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/Extras/CentipedeBossBar.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.0
