@@ -809,6 +809,7 @@ text = "Defeat all the [enemies] to open the [Barrier]"
 custom_effects = [ SubResource( 25 ) ]
 
 [node name="ctopotion" type="RichTextLabel" parent="Popups"]
+visible = false
 margin_left = -165.0
 margin_top = -45.0
 margin_right = 164.0
