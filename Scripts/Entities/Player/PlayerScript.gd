@@ -11,6 +11,7 @@ export(Array, PackedScene) var PlayerSpells = [
 	Spells.Dev_Beam,
 ]
 
+
 export var selected_spell: PackedScene
 export var auto_aim_enabled: bool = true
 export var god_enabled: bool
@@ -520,7 +521,6 @@ func get_nearest_enemy(blocked_effects = [], blocked_immunities = []):
 
 
 func get_targetable_enemies():
-	
 	var colliding_target_bodies = $TargetArea.get_overlapping_bodies()
 	var enemies = []
 	for body in colliding_target_bodies:
