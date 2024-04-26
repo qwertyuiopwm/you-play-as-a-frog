@@ -11,13 +11,18 @@ var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn
 func on_settle(body):
 	if body is Entity:
 		body.Afflict(Effects.slippy, SLIPPY_DURATION)
+		emit_signal("settled")
 		return
 	
-	if not body is TileMap: return
+	if not body is TileMap: 
+		emit_signal("settled")
+		return
 	
+	emit_signal("settled")
 	var residue = condiment_residue.instance()
 	get_parent().call_deferred("add_child", residue)
 	residue.global_position = global_position
+	return
 
 
 func animation_finished():

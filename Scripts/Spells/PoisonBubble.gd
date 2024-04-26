@@ -5,8 +5,6 @@ export var POISON_DURATION = 2
 
 func on_settle(body):
 	$AnimatedSprite.play("hit")
-	$CollisionShape2D.set_deferred("disabled", true)
-	set_deferred("sleeping", true)
 	
 	yield($AnimatedSprite, "animation_finished")
 	emit_signal("settled")

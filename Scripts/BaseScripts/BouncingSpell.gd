@@ -40,8 +40,10 @@ func hit(body):
 
 func bounce(body):
 	BOUNCES -= 1
-	if BOUNCES < 0:
-		on_settle(null)
+	if BOUNCES <= 0:
+		on_settle(body)
+		$CollisionShape2D.set_deferred("disabled", true)
+		set_deferred("sleeping", true)
 		yield(self, "settled")
 		queue_free()
 
@@ -51,6 +53,8 @@ func _process(delta):
 	remaining_duration -= delta
 	if remaining_duration <= 0:
 		on_settle(null)
+		$CollisionShape2D.set_deferred("disabled", true)
+		set_deferred("sleeping", true)
 		yield(self, "settled")
 		queue_free()
 	on_process()
