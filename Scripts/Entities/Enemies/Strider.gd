@@ -49,7 +49,7 @@ func _physics_process(delta):
 				if not body.is_in_group("Player"):
 					return
 				
-				body.Hurt(CHARGE_DAMAGE)
+				body.hurt(CHARGE_DAMAGE)
 				state = states.RECOVERING
 				continue
 		

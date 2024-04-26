@@ -87,7 +87,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Poison" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 0
 physics_material_override = SubResource( 18 )
@@ -95,6 +95,7 @@ gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
+DAMAGE = 0
 SpellIcon = "res://art/deathicon.png"
 VELOCITY = 100
 
