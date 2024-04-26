@@ -207,7 +207,7 @@ func _process(_delta):
 	
 	$IngameUI/autoaim.visible = Player.auto_aim_enabled
 	
-	potionCount.text = String(Player.restoration_potions)+"x"
+	potionCount.text = String(Player.restoration_potions)+"x pots"
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	

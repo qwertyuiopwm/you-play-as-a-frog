@@ -320,17 +320,22 @@ margin_bottom = -80.0
 rect_scale = Vector2( 3, 3 )
 
 [node name="potions" type="Label" parent="IngameUI"]
-margin_right = 736.0
-margin_bottom = 64.0
+margin_left = 429.0
+margin_top = 50.0
+margin_right = 1165.0
+margin_bottom = 114.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 19 )
-text = "0x"
+text = "0x pots"
 align = 2
 valign = 1
 
 [node name="potionicon" type="TextureRect" parent="IngameUI"]
-margin_left = 736.0
-margin_right = 800.0
-margin_bottom = 64.0
+margin_left = 709.0
+margin_top = -16.0
+margin_right = 773.0
+margin_bottom = 48.0
+rect_scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 20 )
 
 [node name="autoaim" type="CanvasLayer" parent="IngameUI"]
@@ -804,11 +809,10 @@ text = "Defeat all the [enemies] to open the [Barrier]"
 custom_effects = [ SubResource( 25 ) ]
 
 [node name="ctopotion" type="RichTextLabel" parent="Popups"]
-visible = false
-margin_left = -192.0
-margin_top = -32.0
-margin_right = 192.0
-margin_bottom = 32.0
+margin_left = -165.0
+margin_top = -45.0
+margin_right = 164.0
+margin_bottom = 38.0
 custom_fonts/mono_font = ExtResource( 16 )
 custom_fonts/bold_italics_font = ExtResource( 16 )
 custom_fonts/italics_font = ExtResource( 16 )
@@ -816,8 +820,12 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Click [color=#34ebe1][C][/color] to use a potion[/center][/valign]"
-text = "Click [C] to use a potion"
+bbcode_text = "[valign][center]Click [color=#34ebe1][C][/color] to use a [color=#FFE000][Potion][/color]
+Potions give you [color=lime]Hp[/color], [color=#00CCFF]Mana[/color],
+and [color=#FF9933]Stamina[/color][/center][/valign]"
+text = "Click [C] to use a [Potion]
+Potions give you Hp, Mana,
+and Stamina"
 custom_effects = [ SubResource( 25 ) ]
 
 [node name="thenextspell" type="RichTextLabel" parent="Popups"]
