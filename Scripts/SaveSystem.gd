@@ -102,6 +102,9 @@ func loadSave():
 	GUI.generateWheel()
 
 func save():
+	var pauseGame = not Main.Paused
+	if pauseGame:
+		Main.pause(true, [self])
 	var save_game = File.new()
 	
 	save_game.open(fileName, File.WRITE)
@@ -118,6 +121,9 @@ func save():
 	var b64Encoded = Marshalls.utf8_to_base64(saveJSON)
 	save_game.store_string(b64Encoded)
 	save_game.close()
+	
+	if pauseGame:
+		Main.pause(false, [self])
 
 # Pain. Only pain.
 
