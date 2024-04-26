@@ -73,4 +73,4 @@ func on_death():
 
 func _body_entered(body):
 	if body.is_in_group("Player"):
-		body.Hurt(CONTACT_DAMAGE)
+		body.hurt(CONTACT_DAMAGE)

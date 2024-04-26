@@ -226,7 +226,7 @@ func check_tile():
 	sliding = "(slide)" in curr_tile
 
 
-func Hurt(dmg: float):
+func hurt(dmg: float):
 	if god_enabled:
 		return
 	if health <= 0:
@@ -243,7 +243,7 @@ func Hurt(dmg: float):
 		PlayerSprite.play("death")
 		pass
 	
-	MusicPlayer.PlayOnNode("PlayerHurt", self)
+	MusicPlayer.PlayOnNode("Playerhurt", self)
 	health = newHp
 
 
