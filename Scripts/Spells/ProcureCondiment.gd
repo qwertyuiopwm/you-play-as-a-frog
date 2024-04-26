@@ -12,17 +12,17 @@ func on_settle(body):
 	if body is Entity:
 		body.Afflict(Effects.slippy, SLIPPY_DURATION)
 		emit_signal("settled")
-		return
+		return false
 	
 	if not body is TileMap: 
 		emit_signal("settled")
-		return
+		return false
 	
 	emit_signal("settled")
 	var residue = condiment_residue.instance()
 	get_parent().call_deferred("add_child", residue)
 	residue.global_position = global_position
-	return
+	return false
 
 
 func animation_finished():

@@ -11,7 +11,7 @@ func on_settle(body):
 	
 	if body is Entity:
 		body.Afflict(Effects.poison, POISON_DURATION)
-		return
+		return true
 
 
 func animation_finished():
