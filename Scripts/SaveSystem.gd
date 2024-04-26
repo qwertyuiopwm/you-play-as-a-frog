@@ -102,6 +102,7 @@ func loadSave():
 	GUI.generateWheel()
 
 func save():
+	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
 		Main.pause(true, [self])
@@ -124,6 +125,7 @@ func save():
 	
 	if pauseGame:
 		Main.pause(false, [self])
+	print("Saved game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
 
 # Pain. Only pain.
 
