@@ -17,6 +17,8 @@ export var auto_aim_enabled: bool = true
 export var god_enabled: bool
 export var restoration_potions: int = 0
 export var health_per_potion: float = 30
+export var mana_per_potion: float = 50
+export var stamina_per_potion: float = 80
 
 onready var Main = get_node("/root/Main")
 onready var SaveSys = Main.get_node("Save")
@@ -345,6 +347,8 @@ func heal_if_pressed(_delta):
 		
 	regen_timer = 0
 	Heal(health_per_potion)
+	mana += mana_per_potion
+	stamina += stamina_per_potion
 	restoration_potions -= 1
 
 func cast_spell_if_pressed(delta):
