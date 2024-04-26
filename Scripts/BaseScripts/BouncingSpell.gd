@@ -1,5 +1,6 @@
 extends "res://Scripts/BaseScripts/Spell.gd"
 
+signal settled
 
 export var TYPE = "BOUNCING"
 export var VELOCITY = 50
@@ -39,8 +40,11 @@ func hit(body):
 
 func bounce(body):
 	BOUNCES -= 1
-	if BOUNCES < 0:
-		on_settle(body)
+	if BOUNCES <= 0:
+		$CollisionShape2D.set_deferred("disabled", true)
+		set_deferred("sleeping", true)
+		if on_settle(body):
+			yield(self, "settled")
 		queue_free()
 
 
@@ -48,7 +52,10 @@ func bounce(body):
 func _process(delta):
 	remaining_duration -= delta
 	if remaining_duration <= 0:
-		on_settle(null)
+		$CollisionShape2D.set_deferred("disabled", true)
+		set_deferred("sleeping", true)
+		if on_settle(null):
+			yield(self, "settled")
 		queue_free()
 	on_process()
 
