@@ -48,7 +48,7 @@ func hide():
 	$IngameUI/top_bar/stats_bg/VBoxContainer/stats/HP_Canvas.visible = false
 	$IngameUI/top_bar/stats_bg/VBoxContainer/stats/Stamina_Canvas.visible = false
 	$IngameUI/spellspot.visible = false
-	$IngameUI/autoaim.visible = false
+	Player.auto_aim_enabled = false
 	
 	for canvas in get_children():
 		canvas.visible = false
