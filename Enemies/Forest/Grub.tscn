@@ -2,7 +2,7 @@
 
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/Grub.gd" type="Script" id=2]
-[ext_resource path="res://art/gwub.png" type="Texture" id=3]
+[ext_resource path="res://art/Enemies/gwub.png" type="Texture" id=3]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
