@@ -4,7 +4,7 @@
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/Enemies/New_Piskel.png" type="Texture" id=4]
-[ext_resource path="res://art/image-removebg-preview.png" type="Texture" id=5]
+[ext_resource path="res://art/debug-ball.png" type="Texture" id=5]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
