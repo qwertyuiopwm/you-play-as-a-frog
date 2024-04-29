@@ -1,10 +1,15 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Mosquito.gd" type="Script" id=1]
-[ext_resource path="res://art/Mosquito.png" type="Texture" id=2]
+[ext_resource path="res://art/Enemies/Mosquito.png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
+<<<<<<< ours
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/image-removebg-preview.png" type="Texture" id=5]
+=======
+[ext_resource path="res://Enemies/Extras/StateChecker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/debug-ball.png" type="Texture" id=5]
+>>>>>>> theirs
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=7]
 

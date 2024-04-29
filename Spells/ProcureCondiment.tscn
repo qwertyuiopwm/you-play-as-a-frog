@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Spells/ProcureCondiment.gd" type="Script" id=1]
-[ext_resource path="res://art/mustard_spell.png" type="Texture" id=2]
+[ext_resource path="res://art/Spells/mustard_spell.png" type="Texture" id=2]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PhysicsMaterial" id=4]
@@ -54,7 +54,7 @@ script = ExtResource( 1 )
 DAMAGE = 0
 COOLDOWN = 0
 CAN_SELF_CAST = true
-SpellIcon = "res://art/mustard_spell_icon.png"
+SpellIcon = "res://art/Spells/Icons/mustard_spell_icon.png"
 Sound = "Mustard"
 BlockedEffects = [ ExtResource( 3 ) ]
 BlockedImmunities = [ ExtResource( 3 ) ]

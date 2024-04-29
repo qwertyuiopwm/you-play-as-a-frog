@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://art/centipede bossbar empty (1).png" type="Texture" id=1]
-[ext_resource path="res://art/centipede bossbar full (1).png" type="Texture" id=2]
+[ext_resource path="res://art/Enemies/Extras/centipede bossbar empty (1).png" type="Texture" id=1]
+[ext_resource path="res://art/Enemies/Extras/centipede bossbar full (1).png" type="Texture" id=2]
 [ext_resource path="res://Scripts/GUI/HPBar.gd" type="Script" id=3]
 
 [node name="BossBar" type="CanvasLayer"]

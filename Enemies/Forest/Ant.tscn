@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Ant.gd" type="Script" id=1]
-[ext_resource path="res://art/ant (1).png" type="Texture" id=2]
+[ext_resource path="res://art/Enemies/ant (1).png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
 

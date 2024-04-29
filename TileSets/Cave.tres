@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=11 format=2]
 
-[ext_resource path="res://art/Cave Part one.png" type="Texture" id=1]
-[ext_resource path="res://art/Cave Part two.png" type="Texture" id=2]
-[ext_resource path="res://art/Cave Dragon.png" type="Texture" id=3]
+[ext_resource path="res://art/Areas/Cave/Cave Part one.png" type="Texture" id=1]
+[ext_resource path="res://art/Areas/Cave/Cave Part two.png" type="Texture" id=2]
+[ext_resource path="res://art/Areas/Cave/Cave Dragon.png" type="Texture" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
