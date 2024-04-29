@@ -54,6 +54,8 @@ config/name="You play as a frog"
 run/main_scene="res://Main.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://art/icon.png"
+config/macos_native_icon="res://icon.icns"
+config/windows_native_icon="res://icon.ico"
 
 [debug]
 
