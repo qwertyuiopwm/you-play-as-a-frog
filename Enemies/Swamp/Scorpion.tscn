@@ -145,13 +145,6 @@ margin_right = -1.0
 margin_bottom = -26.0
 Property = "target_radius"
 
-[node name="PropertyChecker2" parent="." instance=ExtResource( 7 )]
-margin_left = 44.5
-margin_top = -17.0
-margin_right = 44.5
-margin_bottom = -3.0
-Property = "target_pos"
-
 [node name="TailLeft" type="Position2D" parent="."]
 position = Vector2( -12, -7 )
 
