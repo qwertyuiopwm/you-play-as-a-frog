@@ -1,6 +1,8 @@
 extends Label
 
 
+export var Property: String = "state"
+
 onready var parent = get_parent()
 
 
@@ -9,4 +11,4 @@ func _ready():
 
 
 func _process(_delta):
-	text = str(parent.state)
+	text = str(parent.get(Property))
