@@ -18,6 +18,7 @@ onready var enemies = {
 	Mosquito = preload("res://Enemies/Swamp/Mosquito.tscn"),
 	Centipede = preload("res://Enemies/Forest/Centipede/CentipedeHead.tscn"),
 	Strider = preload("res://Enemies/Swamp/Strider.tscn"),
+	Dummy = preload("res://Enemies/Extras/Dummy.tscn")
 }
 
 var selectedEnemy: PackedScene
@@ -101,7 +102,9 @@ func _process(_delta):
 	else:
 		Player.SPEED = float(speedText.text)
 	
-	Player.god_enabled = godmodeCheckbox.pressed
+	if devTools.visible:
+		Player.god_enabled = godmodeCheckbox.pressed
+	godmodeCheckbox.pressed = Player.god_enabled
 	
 func _is_pos_in(checkpos:Vector2):
 	if Rect2(Vector2(), bg.rect_size).has_point(checkpos):

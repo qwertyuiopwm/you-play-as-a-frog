@@ -31,7 +31,7 @@ func _ready():
 func _physics_process(delta):
 	var rootPos = Player.global_position
 	var mousePos = get_global_mouse_position()
-	var targetPos = rootPos + (rootPos.direction_to(mousePos)*900)
+	var targetPos = rootPos + (rootPos.direction_to(mousePos)*2000)
 	
 	var rayResult = Main.cast_ray(rootPos, targetPos, 0b00000000_00000000_00000001_00001000, [])
 
