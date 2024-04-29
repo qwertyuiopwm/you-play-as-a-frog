@@ -14,7 +14,7 @@ collision_mask = 0
 script = ExtResource( 1 )
 DAMAGE = 500
 MANA_COST = 0
-SpellIcon = "res://art/deathicon.png"
+SpellIcon = "res://art/Spells/Icons/deathicon.png"
 MANA_REQUIRED = 0
 
 [node name="Line2D" type="Line2D" parent="."]
