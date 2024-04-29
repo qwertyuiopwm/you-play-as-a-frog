@@ -1,10 +1,8 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/Scorpion.gd" type="Script" id=2]
-[ext_resource path="res://art/scorpion_tail.png" type="Texture" id=3]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://art/scorpion body (1).png" type="Texture" id=5]
 [ext_resource path="res://art/Enemies/scorpion body (1) (1).png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
 
@@ -13,51 +11,39 @@ radius = 7.0
 height = 19.0
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 3 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 3 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 3 )
 region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 3 )
 region = Rect2( 128, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 3 )
 region = Rect2( 0, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 3 )
 region = Rect2( 64, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 3 )
 region = Rect2( 128, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 3 )
 region = Rect2( 0, 192, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 3 )
 region = Rect2( 64, 192, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 3 )
 region = Rect2( 128, 192, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=13]
@@ -74,7 +60,6 @@ animations = [ {
 } ]
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
