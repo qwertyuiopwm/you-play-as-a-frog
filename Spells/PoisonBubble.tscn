@@ -96,7 +96,7 @@ contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 DAMAGE = 0
-SpellIcon = "res://art/Spells/Icons/deathicon.png"
+SpellIcon = "res://art/Spells/Icons/poison_bubble_icon.png"
 VELOCITY = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
