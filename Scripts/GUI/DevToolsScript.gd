@@ -18,6 +18,7 @@ onready var enemies = {
 	Mosquito = preload("res://Enemies/Swamp/Mosquito.tscn"),
 	Centipede = preload("res://Enemies/Forest/Centipede/CentipedeHead.tscn"),
 	Strider = preload("res://Enemies/Swamp/Strider.tscn"),
+	Dummy = preload("res://Enemies/Extras/Dummy.tscn")
 }
 
 var selectedEnemy: PackedScene
