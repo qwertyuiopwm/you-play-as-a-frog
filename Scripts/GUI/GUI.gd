@@ -15,6 +15,7 @@ onready var PlaytimeLabel = PauseMenu.get_node("playtime")
 onready var ControlsContainer = PauseMenu.get_node("ScrollContainer/VBoxContainer")
 onready var BaseControl = ControlsContainer.get_node("base")
 onready var spellWheel = ingameUI.get_node("spellwheel")
+onready var spellName = spellWheel.get_node("spellname")
 onready var wheelComponents = spellWheel.get_node("WheelParts")
 onready var wheelArrow = spellWheel.get_node("arrow")
 onready var spellSpot = ingameUI.get_node("spellspot")
@@ -230,13 +231,19 @@ func _process(_delta):
 		var selectedSpell = Player.PlayerSpells[(selectedIndex-1)]
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
+			var tempSpell = selectedSpell.instance()
+			spellName.text = tempSpell.name
 			
 			var iconPos = SpellWheelPositions[selectedIndex-1] + Vector2(16,16)
 			var mouseAngle = rad2deg(iconPos.angle())
 			wheelArrow.rect_rotation = mouseAngle + 180#round(mouseAngle / degPerSpell) * degPerSpell + 180
+			
+			tempSpell.queue_free()
 	
 	if Input.is_action_just_released("select_spell"):
-		spellSpot.get_node("spellicon").texture = load(Player.selected_spell.instance().SpellIcon)
+		var tempSpell = Player.selected_spell.instance()
+		spellSpot.get_node("spellicon").texture = load(tempSpell.SpellIcon)
+		tempSpell.queue_free()
 
 
 func _on_play_pressed():
