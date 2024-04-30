@@ -8,6 +8,7 @@ onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
 onready var PauseMenu = $PauseMenu
+onready var EffectsUI = ingameUI.get_node("effects")
 onready var LoadSaveButton:Button = PauseMenu.get_node("Load")
 onready var SaveButton:Button = PauseMenu.get_node("Save")
 onready var PlaytimeLabel = PauseMenu.get_node("playtime")
@@ -190,6 +191,10 @@ func generateWheel():
 
 
 func _process(_delta):
+	EffectsUI.get_node("slipped").visible = Player.has_effect(Effects.slippy)
+	EffectsUI.get_node("slowed").visible = Player.has_effect(Effects.slowed)
+	EffectsUI.get_node("poisoned").visible = Player.has_effect(Effects.poison)
+	
 	if waitingForInput:
 		return
 	if Input.is_action_just_pressed("pause_game") and !MainMenu.visible:
