@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Swamp/Mosquito.tscn" type="PackedScene" id=3]
 
 [node name="Swamp6" type="Node2D"]
+
+[node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+
+[node name="Mosquito" parent="EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( 758, 924 )
 
 [node name="TileMap" type="TileMap" parent="." groups=["ground"]]
 tile_set = ExtResource( 1 )

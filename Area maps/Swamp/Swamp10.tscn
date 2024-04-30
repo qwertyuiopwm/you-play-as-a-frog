@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=6]
+[ext_resource path="res://Enemies/Swamp/Strider.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.75, 96.5 )
@@ -46,6 +47,12 @@ OpenOffset = Vector2( 0, -3e+07 )
 position = Vector2( -164, 26 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
+
+[node name="Strider" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -911, -292 )
+
+[node name="Strider2" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -755, -291 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 

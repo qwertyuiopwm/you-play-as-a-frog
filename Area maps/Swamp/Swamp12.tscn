@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=5]
 [ext_resource path="res://Enemies/Swamp/StagBeetle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Swamp/Strider.tscn" type="PackedScene" id=7]
 
 [node name="Swamp12" type="Node2D"]
 
@@ -50,3 +51,24 @@ position = Vector2( -1226, -1038 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 Triggerables = [ NodePath("../Walls") ]
+
+[node name="Strider" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -729, -34 )
+
+[node name="Strider2" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -730, 224 )
+
+[node name="Strider3" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -537, 160 )
+
+[node name="Strider4" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -539, 38 )
+
+[node name="Strider5" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -600, 347 )
+
+[node name="Strider6" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -591, -155 )
+
+[node name="Strider7" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( -874, 99 )

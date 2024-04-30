@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Swamp/Mosquito.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Swamp/Strider.tscn" type="PackedScene" id=5]
 
 [node name="Swamp7" type="Node2D"]
 
@@ -31,3 +34,23 @@ position = Vector2( 1316, 611 )
 
 [node name="Chest2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 301, 605 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 3 )]
+
+[node name="Mosquito" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 310, 976 )
+
+[node name="Mosquito2" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 500, 882 )
+
+[node name="Mosquito3" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 861, 984 )
+
+[node name="Mosquito4" parent="EnemyManager" instance=ExtResource( 4 )]
+position = Vector2( 1094, 885 )
+
+[node name="Strider" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( 550, 271 )
+
+[node name="Strider2" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( 934, 310 )
