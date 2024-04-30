@@ -4,7 +4,7 @@ extends "res://Scripts/BaseScripts/Effect.gd"
 export var speed_multiplier = 0.5
 
 var oldSpeed: int
-func on_affect(entity, delta):
+func on_affect(entity, _delta):
 	oldSpeed = entity.SPEED
 	entity.SPEED = oldSpeed*speed_multiplier
 	
