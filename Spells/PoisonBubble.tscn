@@ -87,7 +87,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="Poison" type="RigidBody2D"]
+[node name="Poison Bubble" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 0
 physics_material_override = SubResource( 18 )

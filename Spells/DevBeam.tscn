@@ -8,7 +8,7 @@ colors = PoolColorArray( 0.188235, 0, 0, 1, 1, 0, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Developer Beam" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )

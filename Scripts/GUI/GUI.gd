@@ -8,12 +8,14 @@ onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
 onready var PauseMenu = $PauseMenu
+onready var EffectsUI = ingameUI.get_node("effects")
 onready var LoadSaveButton:Button = PauseMenu.get_node("Load")
 onready var SaveButton:Button = PauseMenu.get_node("Save")
 onready var PlaytimeLabel = PauseMenu.get_node("playtime")
 onready var ControlsContainer = PauseMenu.get_node("ScrollContainer/VBoxContainer")
 onready var BaseControl = ControlsContainer.get_node("base")
 onready var spellWheel = ingameUI.get_node("spellwheel")
+onready var spellName = spellWheel.get_node("spellname")
 onready var wheelComponents = spellWheel.get_node("WheelParts")
 onready var wheelArrow = spellWheel.get_node("arrow")
 onready var spellSpot = ingameUI.get_node("spellspot")
@@ -190,6 +192,10 @@ func generateWheel():
 
 
 func _process(_delta):
+	EffectsUI.get_node("slipped").visible = Player.has_effect(Effects.slippy)
+	EffectsUI.get_node("slowed").visible = Player.has_effect(Effects.slowed)
+	EffectsUI.get_node("poisoned").visible = Player.has_effect(Effects.poison)
+	
 	if waitingForInput:
 		return
 	if Input.is_action_just_pressed("pause_game") and !MainMenu.visible:
@@ -225,13 +231,19 @@ func _process(_delta):
 		var selectedSpell = Player.PlayerSpells[(selectedIndex-1)]
 		if selectedSpell:
 			Player.selected_spell = selectedSpell
+			var tempSpell = selectedSpell.instance()
+			spellName.text = tempSpell.name
 			
 			var iconPos = SpellWheelPositions[selectedIndex-1] + Vector2(16,16)
 			var mouseAngle = rad2deg(iconPos.angle())
 			wheelArrow.rect_rotation = mouseAngle + 180#round(mouseAngle / degPerSpell) * degPerSpell + 180
+			
+			tempSpell.queue_free()
 	
 	if Input.is_action_just_released("select_spell"):
-		spellSpot.get_node("spellicon").texture = load(Player.selected_spell.instance().SpellIcon)
+		var tempSpell = Player.selected_spell.instance()
+		spellSpot.get_node("spellicon").texture = load(tempSpell.SpellIcon)
+		tempSpell.queue_free()
 
 
 func _on_play_pressed():
