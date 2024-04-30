@@ -2,15 +2,16 @@ extends Node2D
 
 
 enum stackBehaviour {
-	DONT_OVERRIDE_TIME,
-	OVERRIDE_TIME,
-	STACK_TIME,
+	DONT_OVERRIDE,
+	OVERRIDE,
+	STACK,
 }
 
 
 export var duration := 5.0
 export(int) var MAX_STACKS = 0
-export(stackBehaviour) var StackBehaviour = stackBehaviour.DONT_OVERRIDE_TIME
+export(stackBehaviour) var StackTimeBehaviour = stackBehaviour.DONT_OVERRIDE
+export(stackBehaviour) var StackStacksBehaviour = stackBehaviour.DONT_OVERRIDE
 export var Permanent = false
 
 var stacks: int = 0
@@ -24,13 +25,21 @@ func affect(entity, delta):
 	on_affect(entity, delta)
 
 
-func stack(_duration):
+func stack(_duration, _stacks):
 	stacks = int(min(stacks + 1, MAX_STACKS))
-	match StackBehaviour:
+	
+	match StackStacksBehaviour:
 		stackBehaviour.OVERRIDE_TIME:
 			duration = _duration
 		stackBehaviour.STACK_TIME:
 			duration += _duration
+	
+	match StackTimeBehaviour:
+		stackBehaviour.OVERRIDE_TIME:
+			stacks = _stacks
+		stackBehaviour.STACK_TIME:
+			stacks += _stacks
+	
 	on_stack()
 
 
