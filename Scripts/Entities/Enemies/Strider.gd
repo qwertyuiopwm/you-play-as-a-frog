@@ -35,6 +35,9 @@ func _physics_process(delta):
 			state = states.CHARGE
 		
 		states.CHARGE:
+			if not target_player:
+				state = states.STILL
+				return
 			$AnimatedSprite.play("ready_charge")
 			
 			var dir_to_player = global_position.direction_to(target_player.global_position)
