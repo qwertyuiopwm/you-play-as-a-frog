@@ -7,6 +7,7 @@ onready var Player = get_parent()
 onready var MusicPlayer = Player.get_node("MusicPlayer")
 onready var MainMenu = $MainMenu
 onready var ingameUI = $IngameUI
+onready var SaveMenu = $SaveMenu
 onready var PauseMenu = $PauseMenu
 onready var EffectsUI = ingameUI.get_node("effects")
 onready var LoadSaveButton:Button = PauseMenu.get_node("Load")
@@ -63,15 +64,13 @@ func _ready():
 	MainMenu.visible = true
 	Main.pause(true, [Player])
 	var _playbuttoncon = MainMenu.get_node("Button").connect("pressed", self, "_on_play_pressed")
-	var _loadbuttoncon = MainMenu.get_node("Button2").connect("pressed", self, "_on_load_pressed")
 	var _loadbuttonconnection = LoadSaveButton.connect("pressed", SaveSys, "loadSave")
 	var _savebuttonconnection = SaveButton.connect("pressed", SaveSys, "save")
 	configFile.load_encrypted_pass(configFileName, configPW)
 	
-	
 	generateWheel()
 	generateControls()
-	
+
 func onKeyClick(inputMenu, actionName):
 	for action in InputMap.get_action_list("pause_game"):
 		InputMap.action_erase_event("pause_game", action)
@@ -247,19 +246,7 @@ func _process(_delta):
 
 
 func _on_play_pressed():
-	MainMenu.visible = false
 	MusicPlayer.PlaySong("ForestMusic")
 	if not SaveSys.saveExists():
 		SaveSys.save()
-	Main.pause(false, [])
-
-func _on_load_pressed():
-	if not SaveSys.saveExists():
-		MainMenu.get_node("NoSaveFile").visible = true
-		yield(Main.wait(2), "completed")
-		MainMenu.get_node("NoSaveFile").visible = false
-		return
-	SaveSys.loadSave()
-	MainMenu.visible = false
-	MusicPlayer.PlaySong("ForestMusic")
 	Main.pause(false, [])

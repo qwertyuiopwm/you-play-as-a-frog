@@ -12,7 +12,11 @@ onready var Player = Main.get_node("Player")
 
 func trigger(_trigger: bool):
 	for triggerable_path in Triggerables:
-		var triggerable = get_node(triggerable_path)
+		if not triggerable_path:
+			triggerable_path = ''
+		var triggerable = get_node_or_null(triggerable_path)
+		if not triggerable:
+			continue
 		triggerable.trigger(_trigger)
 	if DeleteOnTrigger:
 		queue_free()

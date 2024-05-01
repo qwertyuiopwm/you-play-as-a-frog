@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Scripts/Triggerables/ToggleVisible.gd" type="Script" id=1]
 
-[node name="ToggleVisible" type="Node2D"]
+[node name="ToggleVisible" type="Node2D" groups=["Triggerable"]]
 script = ExtResource( 1 )

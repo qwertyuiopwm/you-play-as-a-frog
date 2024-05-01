@@ -16,7 +16,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14.625, 16 )
 
-[node name="AddShake" type="Node2D"]
+[node name="AddShake" type="Node2D" groups=["Trigger"]]
 script = ExtResource( 4 )
 
 [node name="AddSpell" parent="." instance=ExtResource( 3 )]
