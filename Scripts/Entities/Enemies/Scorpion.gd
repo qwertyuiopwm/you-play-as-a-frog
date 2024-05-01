@@ -71,7 +71,7 @@ func TailSprite_animation_finished():
 	
 	for body in $HitCollider.get_overlapping_bodies():
 		if body.is_in_group("Player"):
-			body.hurt(STING_DAMAGE)
+			body.hurt(STING_DAMAGE, true)
 			body.Afflict(Effects.poison, 5, 8)
 	
 	$TailSprite.play("still")

@@ -5,4 +5,5 @@ export var DamagePerStack = .5
 
 
 func on_affect(entity, delta):
-	entity.hurt(DamagePerStack * stacks * delta)
+	var damage = DamagePerStack * stacks * delta
+	entity.hurt(damage, true)

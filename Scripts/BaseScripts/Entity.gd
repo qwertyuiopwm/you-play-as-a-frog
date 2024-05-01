@@ -13,9 +13,9 @@ func is_sliding():
 	return sliding or has_effect(Effects.slippy)
 
 
-func Afflict(effect, duration: float =-1, override_immunities := false):
+func Afflict(effect, duration: float=-1, stacks=1, override_immunities:=false):
 	if effect in IMMUNITIES and not override_immunities: return
-	$EffectManager.Afflict(effect, duration)
+	$EffectManager.Afflict(effect, duration, stacks)
 
 func Cure(effect):
 	$EffectManager.Cure(effect)
