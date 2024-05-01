@@ -6,6 +6,7 @@ export var NUM_SEGMENTS = 3
 export var SEG_SCALE_MULT = 1
 export var SLIPPY_SEGMENTS_TO_SLIP = 5
 export var ALWAYS_SEE_TARGET: bool = true
+export var SCALE: float = 1
 
 var segment_scene = preload("res://Enemies/Forest/Centipede/CentipedeSegment.tscn")
 var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
@@ -13,6 +14,7 @@ var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
 var segments = []
 
 func _ready():
+	scale *= SCALE
 	var next_segment = self
 	for x in NUM_SEGMENTS:
 		var segment = segment_scene.instance()
@@ -29,6 +31,7 @@ func _ready():
 	for segment in segments:
 		i+=1
 		segment.head = self
+		segment.scale *= SCALE
 		var seg_scale = pow(SEG_SCALE_MULT, i)
 		segment.scale = Vector2(seg_scale, seg_scale)
 		get_parent().call_deferred("add_child", segment)
