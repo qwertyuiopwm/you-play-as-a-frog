@@ -17,7 +17,7 @@ func _process(delta):
 	$DamageLabel.visible = label_timer
 
 
-func hurt(damage):
+func hurt(damage, _ignore_hit_delay=false):
 	$DamageLabel.text = "%s" % damage
 	label_timer = DMG_DISPLAY_TIME
 	

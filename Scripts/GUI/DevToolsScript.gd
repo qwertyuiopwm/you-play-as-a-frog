@@ -20,6 +20,8 @@ onready var enemies = {
 	Strider = preload("res://Enemies/Swamp/Strider.tscn"),
 	Dummy = preload("res://Enemies/Extras/Dummy.tscn"),
 	Scorpion = preload("res://Enemies/Swamp/Scorpion.tscn"),
+	CobaltBeetle = preload("res://Enemies/CaveCrypt/CobaltBeetle.tscn"),
+	BabyCentipede = preload("res://Enemies/CaveCrypt/BabyCentipedeHead.tscn"),
 }
 
 var selectedEnemy: PackedScene

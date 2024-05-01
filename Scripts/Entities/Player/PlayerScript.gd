@@ -226,19 +226,20 @@ func check_tile():
 	sliding = "(slide)" in curr_tile
 
 
-func hurt(dmg: float):
+func hurt(dmg: float, ignore_hit_delay:=false):
 	if god_enabled:
 		return
 	if health <= 0:
 		return
-	if no_hit_timer > 0:
-		return
 	
-	no_hit_timer = no_hit_time
+	if not ignore_hit_delay:
+		if no_hit_timer > 0:
+			return
+		no_hit_timer = no_hit_time
 	
 	regen_timer = regen_delay
 	
-	var newHp = health - dmg
+	var newHp: float = health - dmg
 	if newHp <= 0:
 		PlayerSprite.play("death")
 		pass

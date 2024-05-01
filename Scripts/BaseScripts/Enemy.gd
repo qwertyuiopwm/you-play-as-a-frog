@@ -33,7 +33,8 @@ func get_state():
 	assert(false, "Script does not override get_state method!")
 
 
-func hurt(damage: float):
+func hurt(damage: float, _ignore_hit_delay=false
+):
 	health = max(health - damage, 0)
 	
 	if has_node("HPBar"):

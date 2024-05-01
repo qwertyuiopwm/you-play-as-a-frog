@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
+[ext_resource path="res://TileSets/DecorativeCrystals.tres" type="TileSet" id=2]
 
 [node name="Cave 4" type="Node2D"]
 
@@ -13,3 +14,8 @@ tile_data = PoolIntArray( -1966104, 4, 0, -1966103, 4, 0, -1966102, 4, 0, -19661
 tile_set = ExtResource( 1 )
 format = 1
 tile_data = PoolIntArray( -983062, 5, 0, -917526, 5, 0, -851990, 5, 0, -786454, 5, 0, -720918, 5, 0 )
+
+[node name="TileMap" type="TileMap" parent="TileMap"]
+tile_set = ExtResource( 2 )
+format = 1
+tile_data = PoolIntArray( -1835023, 0, 0, -1572868, 2, 0, -1376275, 0, 0, -1310755, 1, 0, -1245221, 2, 0, -1245219, 2, 0, -1245215, 1, 0, -1179684, 1, 0, -1179683, 0, 0, -1179682, 2, 0, -1179678, 0, 0, -1179676, 0, 0, -1114152, 0, 0, -1114143, 0, 0, -1114141, 1, 0, -1048617, 2, 0, -1048606, 2, 0, -983080, 1, 0, -917542, 1, 0, -852007, 2, 0, -852005, 1, 0, -852004, 2, 0, -786470, 0, 0, -786466, 0, 0, -786459, 2, 0, -720931, 2, 0, -720926, 1, 0, -720925, 2, 0, -720924, 0, 0, -655388, 1, 0, -655387, 1, 0, -720892, 0, 0, -589838, 1, 0, -65535, 1, 0 )

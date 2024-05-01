@@ -1,10 +1,12 @@
 extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
-export var CONTACT_DAMAGE = 20
-export var NUM_SEGMENTS = 3
-export var SEG_SCALE_MULT = 1
-export var SLIPPY_SEGMENTS_TO_SLIP = 5
+export var CONTACT_DAMAGE: int = 20
+export var NUM_SEGMENTS: int = 3
+export var SEG_SCALE_MULT: float = 1
+export var SLIPPY_SEGMENTS_TO_SLIP: int = 5
+export var ALWAYS_SEE_TARGET: bool = true
+export var SCALE: float = 1
 
 var segment_scene = preload("res://Enemies/Forest/Centipede/CentipedeSegment.tscn")
 var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
@@ -12,6 +14,7 @@ var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
 var segments = []
 
 func _ready():
+	scale *= SCALE
 	var next_segment = self
 	for x in NUM_SEGMENTS:
 		var segment = segment_scene.instance()
@@ -30,19 +33,23 @@ func _ready():
 		segment.head = self
 		var seg_scale = pow(SEG_SCALE_MULT, i)
 		segment.scale = Vector2(seg_scale, seg_scale)
+		segment.scale *= SCALE
+		for child in segment.get_children():
+			child.position *= scale
 		get_parent().call_deferred("add_child", segment)
 		segment.get_node("HitCollider").connect("body_entered", self, "_body_entered")
 
 
 func _physics_process(delta):
-	var players = get_tree().get_nodes_in_group("Player")
+	var target = get_nearest_player()
+	if ALWAYS_SEE_TARGET:
+		target = Main.get_node("Player")
 	
-	var target = players[0]
 	var target_pos = target.global_position
 	
 	if get_num_slippy_segments() >= SLIPPY_SEGMENTS_TO_SLIP \
 	   and not has_effect(Effects.slippy):
-		Afflict(Effects.slippy, 10, true)
+		Afflict(Effects.slippy, 10, 1, true)
 	
 	move(target_pos, delta)
 

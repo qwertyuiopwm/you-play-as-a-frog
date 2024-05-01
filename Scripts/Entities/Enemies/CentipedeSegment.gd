@@ -17,13 +17,13 @@ func _physics_process(_delta):
 	global_position = next_segment_back.global_position - $Front.position.rotated(rotation)
 
 
-func hurt(damage: float):
-	head.hurt(damage)
+func hurt(damage: float, ignore_hit_delay=false):
+	head.hurt(damage, ignore_hit_delay)
 
 
-func Afflict(effect, duration: float = -1, override_immunities := false):
+func Afflict(effect, duration: float=-1, stacks=1, override_immunities:=false):
 	if has_effect(effect) and not next_segment.has_effect(effect):
-		next_segment.Afflict(effect, duration, override_immunities)
+		next_segment.Afflict(effect, duration, stacks, override_immunities)
 		return
 		
 	.Afflict(effect, duration, override_immunities)

@@ -2,7 +2,7 @@ extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
 export var MIN_CIRCLE_RADIUS = -30
-export var STING_DAMAGE = 10
+export var STING_DAMAGE = 20
 export var TARGET_COMFORT_RADIUS = 10
 
 enum states {
@@ -18,7 +18,7 @@ var randomnum = randf()
 
 
 func _ready():
-	var _c = $StingCollider.connect("body_entered", self, "StingCollider_body_entered")
+	var _c = $DetectorCollider.connect("body_entered", self, "StingCollider_body_entered")
 	var __c = $TailSprite.connect("animation_finished", self, "TailSprite_animation_finished")
 
 
@@ -62,17 +62,18 @@ func StingCollider_body_entered(body):
 		return
 	
 	$TailSprite.play("sting")
-	$StingCollider/CollisionShape2D.set_deferred("disabled", true)
+	$DetectorCollider/CollisionShape2D.set_deferred("disabled", true)
 
 
 func TailSprite_animation_finished():
 	if $TailSprite.animation != "sting":
 		return
 	
-	for body in $StingCollider.get_overlapping_bodies():
+	for body in $HitCollider.get_overlapping_bodies():
 		if body.is_in_group("Player"):
-			body.hurt(STING_DAMAGE)
+			body.hurt(STING_DAMAGE, true)
+			body.Afflict(Effects.poison, 5, 8)
 	
 	$TailSprite.play("still")
 	yield(Main.wait(1.5), "completed")
-	$StingCollider/CollisionShape2D.set_deferred("disabled", false)
+	$DetectorCollider/CollisionShape2D.set_deferred("disabled", false)

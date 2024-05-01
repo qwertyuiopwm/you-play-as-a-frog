@@ -37,7 +37,7 @@ extents = Vector2( 16, 22 )
 
 [node name="CentipedeSegment" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 256
-collision_mask = 259
+collision_mask = 3
 script = ExtResource( 1 )
 PERMANENT_EFFECTS = [ ExtResource( 3 ) ]
 
@@ -54,7 +54,7 @@ frames = SubResource( 2 )
 position = Vector2( 16, 0 )
 
 [node name="Front" type="Node2D" parent="."]
-position = Vector2( -16, 0 )
+position = Vector2( -17, 0 )
 
 [node name="HitCollider" type="Area2D" parent="."]
 
