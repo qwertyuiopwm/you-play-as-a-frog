@@ -10,5 +10,9 @@ func onTriggerAny(trigger):
 	if Delay > 0:
 		yield(Main.wait(Delay), "completed")
 	for _triggerable in Triggerables:
-		var triggerable = get_node(_triggerable)
+		if not _triggerable:
+			continue
+		var triggerable = get_node_or_null(_triggerable)
+		if not triggerable:
+			continue
 		triggerable.trigger((!trigger) if InvertSignal else trigger)

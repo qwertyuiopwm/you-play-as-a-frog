@@ -57,7 +57,9 @@ var IgnoredProperties = [
 	"target_player",
 	"target_pos",
 	"friction",
-	"bounce"
+	"bounce",
+	"Player",
+	"layers"
 ]
 
 func playtimeFromSave(num: int):
@@ -138,6 +140,8 @@ func saveExists():
 
 
 func loadSave():
+	var startTime = Time.get_ticks_msec()
+	
 	var save_game = File.new()
 	if not save_game.file_exists(fileName % selectedSave):
 		print("Save file not found")
@@ -167,6 +171,8 @@ func loadSave():
 		unserialize(data[path], node)
 		pass
 	GUI.generateWheel()
+	
+	print("Loaded game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
 
 
 func save():
@@ -262,6 +268,9 @@ func serialize(input):
 		TYPE_COLOR:
 			object.data = input.to_html()
 		TYPE_NODE_PATH:
+			if input.is_empty():
+				object.data = serialize(null)
+			
 			object.data = String(input)
 		TYPE_OBJECT:
 			if not input:
@@ -324,25 +333,37 @@ func serialize_object(input):
 		var propName = property.name
 		if propName in IgnoredProperties:
 			continue
+		
 		var propValue = input.get(propName)
 		if typeof(propValue) == typeof(input) and propValue == input:
 			continue
-		if input.has_method("get_children") and propValue in input.get_children():
+		#if input.has_method("get_children") and propValue in input.get_children():
+		#	continue
+		
+		if property.name == "collision_mask":
+			data[propName] = {}
+			for layer in range(32):
+				data[propName][layer] = input.get_collision_mask_bit(layer)
 			continue
+		if property.name == "collision_layer":
+			data[propName] = {}
+			for layer in range(32):
+				data[propName][layer] = input.get_collision_layer_bit(layer)
+			continue
+		
 		data[propName] = serialize(input.get(propName))
 	return data
 	
-func unserialize_array(input):
+func unserialize_array(input, _obj:Object = null):
 	var data = []
 	for elem in input.data:
-		data.push_back(unserialize(elem))
+		data.push_back(unserialize(elem, _obj))
 	return data
 func unserialize_object(input, _obj:Object = null):
 	if input.has("classname") and input.classname == "PackedScene":
 		return load(input.data.path)
 	
 	if input.has("classname") and input.classname == "TileMap":
-		print("tilemap gotten")
 		for tile in input.data.cells:
 			_obj.set_cellv(unserialize(tile.position), tile.tileID, tile.x_flipped, tile.y_flipped)
 	
@@ -363,6 +384,8 @@ func unserialize_object(input, _obj:Object = null):
 		return null
 	
 	for property in obj.get_property_list():
+		if property.name in IgnoredProperties:
+			continue
 		if not input.data.has(property.name):
 			continue
 		if obj.get(property.name) == null:
@@ -376,8 +399,24 @@ func unserialize_object(input, _obj:Object = null):
 		if not data:
 			continue
 		
+		if property.name == "collision_layer":
+			for key in data:
+				var layer = int(key)
+				obj.set_collision_layer_bit(layer, data[key])
+			continue
+		
+		
+		if property.name == "collision_mask":
+			for key in data:
+				var layer = int(key)
+				obj.set_collision_mask_bit(layer, data[key])
+			continue
+		
 		if data.has("classname") and data.classname == "PackedScene":
 			unserializedProperty = load(data.path)
+		
+		if not unserializedProperty and data.type == TYPE_NODE_PATH:
+			unserializedProperty = unserialize(data, obj)
 		
 		if not unserializedProperty:
 			unserializedProperty = unserialize(data)
@@ -390,6 +429,7 @@ func unserialize_object(input, _obj:Object = null):
 		obj[property.name] = unserializedProperty
 	
 	return obj
+
 func unserialize(input, obj: Node = null):
 	if typeof(input) != TYPE_DICTIONARY:
 		return
@@ -437,19 +477,16 @@ func unserialize(input, obj: Node = null):
 				data[i] = unserialize(input[i])
 			return data
 		TYPE_ARRAY:
-			return unserialize_array(input)
+			return unserialize_array(input, obj)
 		TYPE_INT_ARRAY:
-			return unserialize_array(input)
+			return unserialize_array(input, obj)
 		TYPE_STRING_ARRAY:
-			return unserialize_array(input)
+			return unserialize_array(input, obj)
 		TYPE_RAW_ARRAY:
-			return unserialize_array(input)
+			return unserialize_array(input, obj)
 		TYPE_COLOR:
 			return Color(input.data)
 		TYPE_NODE_PATH:
-			var node = get_node_or_null(input.data)
-			if not input.data or !weakref(node).get_ref():
-				return null
-			return get_node(input.data).get_path()
+			return NodePath(input.data)
 		_:
 			print("Could not parse type %d" % type)

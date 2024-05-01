@@ -618,6 +618,7 @@ margin_bottom = 208.0
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
+visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -677,6 +678,7 @@ offset = Vector2( 400, 600 )
 transform = Transform2D( 1, 0, 0, 1, 400, 600 )
 
 [node name="wasdtomove" type="RichTextLabel" parent="Popups"]
+visible = false
 margin_left = -128.0
 margin_top = -32.0
 margin_right = 128.0
