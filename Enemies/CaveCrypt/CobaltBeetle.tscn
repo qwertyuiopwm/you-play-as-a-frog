@@ -1,0 +1,219 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://art/Enemies/Cobaltbeetle Body.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Entities/Enemies/StagBeetle.gd" type="Script" id=2]
+[ext_resource path="res://art/Enemies/stagbeetle head.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EffectManager.tscn" type="PackedScene" id=5]
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 35 ) ],
+"loop": true,
+"name": "still",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "walk_horo",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": true,
+"name": "walk_vert",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": false,
+"name": "enraging",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": false,
+"name": "recovery",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "rushing",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "still",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": false,
+"name": "stunned",
+"speed": 2.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=31]
+radius = 25.0
+height = 30.0
+
+[sub_resource type="CapsuleShape2D" id=32]
+radius = 15.0
+
+[node name="Entity" type="KinematicBody2D" groups=["Enemy"]]
+collision_layer = 256
+collision_mask = 259
+script = ExtResource( 2 )
+
+[node name="body" type="AnimatedSprite" parent="."]
+frames = SubResource( 10 )
+animation = "still"
+playing = true
+
+[node name="head" type="AnimatedSprite" parent="."]
+frames = SubResource( 30 )
+animation = "still"
+playing = true
+offset = Vector2( -30, -13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -8, 4 )
+rotation = 1.5708
+shape = SubResource( 31 )
+
+[node name="HitCollider" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2( -35, 4 )
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
+shape = SubResource( 32 )
+
+[node name="HPBar" parent="." instance=ExtResource( 4 )]
+margin_left = -16.0
+margin_top = -38.0
+margin_right = -16.0
+margin_bottom = -38.0
+
+[node name="EffectManager" parent="." instance=ExtResource( 5 )]
+
+[connection signal="body_shape_entered" from="HitCollider" to="." method="_on_HitCollider_body_shape_entered"]
