@@ -273,6 +273,7 @@ transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 margin_top = 5.0
 margin_right = 128.0
 margin_bottom = 21.0
+step = 0.01
 value = 40.0
 texture_under = ExtResource( 14 )
 texture_progress = ExtResource( 4 )
