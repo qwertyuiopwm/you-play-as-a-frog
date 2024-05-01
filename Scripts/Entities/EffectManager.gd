@@ -41,8 +41,6 @@ func Afflict(effect: PackedScene, duration: float, stacks=1):
 		new_effect.Permanent = true
 	
 	new_effect.stacks = stacks
-	print(stacks)
-	print(new_effect.stacks)
 	
 	add_child(new_effect)
 	
