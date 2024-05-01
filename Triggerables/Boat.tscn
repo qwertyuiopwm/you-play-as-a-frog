@@ -15,6 +15,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Boat" type="AnimatedSprite"]
+[node name="Boat" type="AnimatedSprite" groups=["Triggerable"]]
 frames = SubResource( 2 )
 script = ExtResource( 1 )

@@ -171,6 +171,8 @@ __meta__ = {
 "_edit_group_": true
 }
 SPEED = 200
+restoration_potions = 1
+stamina_per_potion = 900000.0
 melee_damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Scripts/Triggerables/SaveGameTriggerable.gd" type="Script" id=1]
 
-[node name="SaveTriggerable" type="Node2D"]
+[node name="SaveTriggerable" type="Node2D" groups=["Triggerable"]]
 script = ExtResource( 1 )

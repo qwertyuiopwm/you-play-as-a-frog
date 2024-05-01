@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Scripts/Triggers/CounterTrigger.gd" type="Script" id=1]
 
-[node name="CounterTrigger" type="Node2D"]
+[node name="CounterTrigger" type="Node2D" groups=["Trigger"]]
 script = ExtResource( 1 )

@@ -3,13 +3,22 @@ extends Node
 onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node("Player")
 onready var GUI = Player.get_node("GUI")
+onready var SaveMenu = GUI.get_node("SaveMenu")
 
-var fileName = "user://ypaaf.save"
+var fileName = "user://ypaaf-%d.save"
+var selectedSave = 0
+
 var GroupsToSave = [
 	"Enemy",
 	"Item",
 	"Interactable",
 	"Doors",
+	"Triggerable",
+	"Trigger"
+]
+var IgnoredTypes = [
+	AudioStreamMP3,
+	AudioStreamOGGVorbis,
 ]
 var IgnoredProperties = [
 	"owner",
@@ -51,10 +60,67 @@ var IgnoredProperties = [
 	"bounce"
 ]
 
+func playtimeFromSave(num: int):
+	var file = File.new()
+	if file.file_exists(fileName % num):
+		file.open(fileName % num, File.READ)
+		var b64 = file.get_as_text()
+		var json = Marshalls.base64_to_utf8(b64)
+		var result = JSON.parse(json)
+		if result.result.has("PlaytimeSeconds"):
+			return unserialize(result.result["PlaytimeSeconds"])
+	
+	return null
+
+func onSaveSelect(num: int):
+	selectedSave = num
+	SaveMenu.visible = false
+	if GUI.get_node("MainMenu").visible:
+		GUI.get_node("MainMenu").visible = false
+		loadSave()
+
+func onSaveDelete(num: int):
+	var file = File.new()
+	if not file.file_exists(fileName % num):
+		return
+	
+	var d = Directory.new()
+	d.remove(fileName % num)
+	
+	render_save(num)
+
+func render_save(i):
+	var button = SaveMenu.get_node("s%dButton" % i)
+	var playtime = SaveMenu.get_node("s%dPlaytime" % i)
+	var delete = SaveMenu.get_node("s%dDelete" % i)
+	
+	var savetime = playtimeFromSave(i)
+	if savetime == null:
+		playtime.text = "No save found"
+		delete.visible = false
+		return
+	
+	playtime.text = "Playtime: %s" % Main.time_convert(savetime)
+	delete.visible = true
+
+func _ready():
+	for i in range(3):
+		i+=1
+		var button = SaveMenu.get_node("s%dButton" % i)
+		var delete = SaveMenu.get_node("s%dDelete" % i)
+		
+		button.connect("pressed", self, "onSaveSelect", [i])
+		delete.connect("pressed", self, "onSaveDelete", [i])
+		
+		render_save(i)
+
+
 func getSavedNodes(addPlayer: bool = false):
 	var nodes = []
+	var tree = get_tree()
+	
 	for group in GroupsToSave:
-		var groupNodes = get_tree().get_nodes_in_group(group)
+		var groupNodes = tree.get_nodes_in_group(group)
 		for node in groupNodes:
 			if nodes.has(node):
 				continue
@@ -66,17 +132,18 @@ func getSavedNodes(addPlayer: bool = false):
 
 func saveExists():
 	var save_game = File.new()
-	if not save_game.file_exists(fileName):
+	if not save_game.file_exists(fileName % selectedSave):
 		return false
 	return true
 
+
 func loadSave():
 	var save_game = File.new()
-	if not save_game.file_exists(fileName):
+	if not save_game.file_exists(fileName % selectedSave):
 		print("Save file not found")
 		return
 	
-	save_game.open(fileName, File.READ)
+	save_game.open(fileName % selectedSave, File.READ)
 	var b64 = save_game.get_as_text()
 	var json = Marshalls.base64_to_utf8(b64)
 	var result = JSON.parse(json)
@@ -101,14 +168,18 @@ func loadSave():
 		pass
 	GUI.generateWheel()
 
+
 func save():
+	if selectedSave == 0:
+		SaveMenu.visible = true
+		return
 	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
 		Main.pause(true, [self])
 	var save_game = File.new()
 	
-	save_game.open(fileName, File.WRITE)
+	save_game.open(fileName % selectedSave, File.WRITE)
 	
 	var data = {}
 	
@@ -118,6 +189,7 @@ func save():
 		data[path] = serialize(node)
 	
 	data["Player"] = serialize_player()
+	data["PlaytimeSeconds"] = serialize(Main.PlaytimeSeconds)
 	var saveJSON = JSON.print(data)
 	var b64Encoded = Marshalls.utf8_to_base64(saveJSON)
 	save_game.store_string(b64Encoded)
@@ -127,7 +199,6 @@ func save():
 		Main.pause(false, [self])
 	print("Saved game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
 
-# Pain. Only pain.
 
 func serialize_player():
 	return {
@@ -155,6 +226,10 @@ func serialize(input):
 	var object = {
 		type = typeof(input)
 	}
+	
+	for type in IgnoredTypes:
+		if input is type:
+			return null
 	
 	match object.type:
 		TYPE_NIL:
@@ -188,7 +263,6 @@ func serialize(input):
 			object.data = input.to_html()
 		TYPE_NODE_PATH:
 			object.data = String(input)
-			pass
 		TYPE_OBJECT:
 			if not input:
 				return
@@ -212,6 +286,8 @@ func serialize(input):
 		TYPE_STRING_ARRAY:
 			object.data = serialize_array(input)
 		TYPE_VECTOR2_ARRAY:
+			object.data = serialize_array(input)
+		TYPE_RAW_ARRAY:
 			object.data = serialize_array(input)
 		TYPE_COLOR_ARRAY:
 			object.data = serialize_array(input)
@@ -305,6 +381,11 @@ func unserialize_object(input, _obj:Object = null):
 		
 		if not unserializedProperty:
 			unserializedProperty = unserialize(data)
+		
+		if !weakref(obj).get_ref():
+			return
+		if unserializedProperty == null:
+			return
 			
 		obj[property.name] = unserializedProperty
 	
@@ -361,7 +442,14 @@ func unserialize(input, obj: Node = null):
 			return unserialize_array(input)
 		TYPE_STRING_ARRAY:
 			return unserialize_array(input)
+		TYPE_RAW_ARRAY:
+			return unserialize_array(input)
 		TYPE_COLOR:
 			return Color(input.data)
+		TYPE_NODE_PATH:
+			var node = get_node_or_null(input.data)
+			if not input.data or !weakref(node).get_ref():
+				return null
+			return get_node(input.data).get_path()
 		_:
 			print("Could not parse type %d" % type)

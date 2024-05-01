@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://art/GUI/stam_empty.png" type="Texture" id=1]
 [ext_resource path="res://art/GUI/arrow.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://art/GUI/autoaim_indicator.png" type="Texture" id=21]
 [ext_resource path="res://Assets/keybutton_style.tres" type="StyleBox" id=22]
 [ext_resource path="res://art/Effects/Status Cond..png" type="Texture" id=23]
+[ext_resource path="res://Assets/VCR_OSD_MONO.ttf" type="DynamicFontData" id=24]
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.337255, 0.337255, 0.337255, 1 )
@@ -148,30 +149,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id=39]
-bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 20
-
-[sub_resource type="StyleBoxFlat" id=40]
-bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 20
-
-[sub_resource type="StyleBoxFlat" id=41]
-bg_color = Color( 0.313726, 0.74902, 0.835294, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 20
-
 [sub_resource type="StyleBoxFlat" id=42]
 bg_color = Color( 0.894118, 0.168627, 0.168627, 0.705882 )
 border_width_left = 2
@@ -231,6 +208,69 @@ font_path = "res://Assets/VCR_OSD_MONO.ttf"
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 37 )
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[sub_resource type="DynamicFont" id=47]
+size = 40
+font_data = ExtResource( 24 )
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.313726, 0.792157, 0.380392, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0.278431, 0.729412, 0.345098, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.34902, 0.886275, 0.427451, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.792157, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=54]
+bg_color = Color( 0.729412, 0.278431, 0.278431, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.886275, 0.34902, 0.34902, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="DynamicFont" id=52]
+size = 30
+font_data = SubResource( 33 )
+
+[sub_resource type="DynamicFont" id=51]
+size = 64
+font_data = SubResource( 33 )
 
 [node name="GUI" type="Control"]
 pause_mode = 2
@@ -292,6 +332,7 @@ texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 3 )
 
 [node name="spellwheel" type="CanvasLayer" parent="IngameUI"]
+visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -577,7 +618,6 @@ margin_bottom = 208.0
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
-visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -605,25 +645,14 @@ text = "You Play as a Frog"
 
 [node name="Button" type="Button" parent="MainMenu"]
 margin_left = -256.0
-margin_top = -128.0
+margin_top = -64.0
 margin_right = 256.0
+margin_bottom = 64.0
 custom_fonts/font = SubResource( 21 )
 custom_styles/hover = SubResource( 24 )
 custom_styles/pressed = SubResource( 23 )
 custom_styles/normal = SubResource( 22 )
 text = "Start Game"
-icon_align = 1
-
-[node name="Button2" type="Button" parent="MainMenu"]
-margin_left = -256.0
-margin_top = 64.0
-margin_right = 256.0
-margin_bottom = 192.0
-custom_fonts/font = SubResource( 21 )
-custom_styles/hover = SubResource( 39 )
-custom_styles/pressed = SubResource( 40 )
-custom_styles/normal = SubResource( 41 )
-text = "Load Game"
 icon_align = 1
 
 [node name="NoSaveFile" type="RichTextLabel" parent="MainMenu"]
@@ -1055,3 +1084,127 @@ custom_styles/normal = ExtResource( 22 )
 shortcut_in_tooltip = false
 text = "W"
 icon_align = 1
+
+[node name="SaveMenu" type="CanvasLayer" parent="."]
+layer = 15
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="SaveMenu"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 46 )
+
+[node name="s1Button" type="Button" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = -128.0
+margin_right = 200.0
+margin_bottom = -64.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+text = "Save Slot 1"
+icon_align = 1
+
+[node name="s1Delete" type="Button" parent="SaveMenu"]
+visible = false
+margin_left = 210.0
+margin_top = -128.0
+margin_right = 310.0
+margin_bottom = -64.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Del"
+icon_align = 1
+
+[node name="s1Playtime" type="Label" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = -64.0
+margin_right = 400.0
+margin_bottom = -37.0
+custom_fonts/font = SubResource( 52 )
+text = "No save found"
+valign = 1
+
+[node name="s2Button" type="Button" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = -32.0
+margin_right = 200.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+text = "Save Slot 2"
+icon_align = 1
+
+[node name="s2Delete" type="Button" parent="SaveMenu"]
+visible = false
+margin_left = 210.0
+margin_top = -32.0
+margin_right = 310.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Del"
+icon_align = 1
+
+[node name="s2Playtime" type="Label" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = 32.0
+margin_right = 400.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 52 )
+text = "No save found"
+valign = 1
+
+[node name="s3Button" type="Button" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+text = "Save Slot 3"
+icon_align = 1
+
+[node name="s3Delete" type="Button" parent="SaveMenu"]
+visible = false
+margin_left = 210.0
+margin_top = 64.0
+margin_right = 310.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Del"
+icon_align = 1
+
+[node name="s3Playtime" type="Label" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = 128.0
+margin_right = 400.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 52 )
+text = "No save found"
+valign = 1
+
+[node name="label" type="Label" parent="SaveMenu"]
+margin_left = -342.0
+margin_top = -290.0
+margin_right = 342.0
+margin_bottom = -233.0
+custom_fonts/font = SubResource( 51 )
+text = "Select a save slot"
+valign = 1

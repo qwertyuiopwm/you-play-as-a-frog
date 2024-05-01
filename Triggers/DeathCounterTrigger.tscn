@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Triggerables/DeathCounterTrigger.gd" type="Script" id=1]
 [ext_resource path="res://Triggers/DeathTrigger.tscn" type="PackedScene" id=2]
 
-[node name="ManyDeathTrigger" type="Node2D"]
+[node name="ManyDeathTrigger" type="Node2D" groups=["Trigger"]]
 script = ExtResource( 1 )
 
 [node name="DeathTrigger" parent="." instance=ExtResource( 2 )]
