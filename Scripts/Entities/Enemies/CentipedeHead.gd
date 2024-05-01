@@ -49,7 +49,7 @@ func _physics_process(delta):
 	
 	if get_num_slippy_segments() >= SLIPPY_SEGMENTS_TO_SLIP \
 	   and not has_effect(Effects.slippy):
-		Afflict(Effects.slippy, 10, true)
+		Afflict(Effects.slippy, 10, 1, true)
 	
 	move(target_pos, delta)
 
