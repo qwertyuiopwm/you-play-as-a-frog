@@ -1,10 +1,10 @@
 extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
-export var CONTACT_DAMAGE = 20
-export var NUM_SEGMENTS = 3
-export var SEG_SCALE_MULT = 1
-export var SLIPPY_SEGMENTS_TO_SLIP = 5
+export var CONTACT_DAMAGE: int = 20
+export var NUM_SEGMENTS: int = 3
+export var SEG_SCALE_MULT: float = 1
+export var SLIPPY_SEGMENTS_TO_SLIP: int = 5
 export var ALWAYS_SEE_TARGET: bool = true
 export var SCALE: float = 1
 
@@ -31,9 +31,11 @@ func _ready():
 	for segment in segments:
 		i+=1
 		segment.head = self
-		segment.scale *= SCALE
 		var seg_scale = pow(SEG_SCALE_MULT, i)
 		segment.scale = Vector2(seg_scale, seg_scale)
+		segment.scale *= SCALE
+		for child in segment.get_children():
+			child.position *= scale
 		get_parent().call_deferred("add_child", segment)
 		segment.get_node("HitCollider").connect("body_entered", self, "_body_entered")
 
