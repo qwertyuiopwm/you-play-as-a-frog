@@ -14,7 +14,8 @@ var GroupsToSave = [
 	"Interactable",
 	"Doors",
 	"Triggerable",
-	"Trigger"
+	"Trigger",
+	"Popup"
 ]
 var IgnoredTypes = [
 	AudioStreamMP3,
@@ -43,7 +44,6 @@ var IgnoredProperties = [
 	"Script Variables",
 	"beam",
 	"filename",
-	"GUI",
 	"Main",
 	"transform",
 	"rand",
@@ -59,7 +59,15 @@ var IgnoredProperties = [
 	"friction",
 	"bounce",
 	"Player",
-	"layers"
+	"layers",
+	"SaveMenu",
+	"IngameUI",
+	"MainMenu",
+	"PauseMenu",
+	"GUI",
+	"custom_multiplayer",
+	"process_priority",
+	"unique_name_in_owner"
 ]
 
 func playtimeFromSave(num: int):
@@ -234,6 +242,10 @@ func serialize(input):
 	}
 	
 	for type in IgnoredTypes:
+		if not input:
+			return null
+		if typeof(input) == TYPE_OBJECT and !weakref(input).get_ref():
+			return null
 		if input is type:
 			return null
 	
