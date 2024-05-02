@@ -19,46 +19,6 @@ position = Vector2( 6717, 2880 )
 [node name="ForestLevel3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 6585, 6848 )
 
-[node name="1-2" parent="." instance=ExtResource( 5 )]
-BackgroundColor = Color( 0.137255, 0.266667, 0, 1 )
-TopText = "Forest"
-TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
-BottomText = "Level 2"
-BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
-SetPlayerPosition = NodePath("TPpos")
-CreateSavePoint = true
-
-[node name="TPpos" type="Node2D" parent="1-2"]
-position = Vector2( 6750, 2810.66 )
-
-[node name="PlayerDetector" parent="1-2" instance=ExtResource( 4 )]
-Triggerables = [ NodePath("..") ]
-DeleteOnTrigger = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="1-2/PlayerDetector"]
-position = Vector2( 5532.62, 2809.66 )
-shape = SubResource( 1 )
-
-[node name="2-1" parent="." instance=ExtResource( 5 )]
-position = Vector2( 59, 0 )
-BackgroundColor = Color( 0.137255, 0.266667, 0, 1 )
-TopText = "Forest"
-TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
-BottomText = "Level 1"
-BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
-SetPlayerPosition = NodePath("TPpos")
-
-[node name="TPpos" type="Node2D" parent="2-1"]
-position = Vector2( 5295, 2816.65 )
-
-[node name="PlayerDetector" parent="2-1" instance=ExtResource( 4 )]
-Triggerables = [ NodePath("..") ]
-DeleteOnTrigger = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2-1/PlayerDetector"]
-position = Vector2( 6401, 2809.66 )
-shape = SubResource( 1 )
-
 [node name="2-3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 59, 0 )
 BackgroundColor = Color( 0.137255, 0.266667, 0, 1 )
