@@ -936,8 +936,26 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
-text = "Defeat the [Enemies] to unlock [Shake]."
+bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock the [color=#ffccaa][Chest][/color].[/center][/valign]"
+text = "Defeat the [Enemies] to unlock the [Chest]."
+fit_content_height = true
+custom_effects = [ SubResource( 26 ) ]
+
+[node name="shoottosave" type="RichTextLabel" parent="Popups" groups=["Popup"]]
+visible = false
+margin_left = -288.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Attack the [color=#ffffcc][Dummy][/color] to [color=#aaffff]save your progress[/color]![/center][/valign]"
+text = "Attack the [Dummy] to save your progress!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 

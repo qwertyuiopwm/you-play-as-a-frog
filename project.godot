@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Spells",
 "language": "GDScript",
 "path": "res://Scripts/Spells.gd"
+}, {
+"base": "Node2D",
+"class": "Triggerable",
+"language": "GDScript",
+"path": "res://Scripts/BaseScripts/Triggerable.gd"
 } ]
 _global_script_class_icons={
 "Effects": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "GitAPI": "",
 "Ladder": "",
 "RichTextVAlign": "",
-"Spells": ""
+"Spells": "",
+"Triggerable": ""
 }
 
 [application]
