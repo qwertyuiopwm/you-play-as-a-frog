@@ -464,11 +464,17 @@ func unserialize(input, obj: Node = null):
 		TYPE_VECTOR2:
 			return Vector2(input.data.x, input.data.y)
 		TYPE_TRANSFORM2D:
-			return Transform2D(
-				Vector2(input.data.x.data.x, input.data.y.data.y),
-				Vector2(input.data.y.data.x, input.data.y.data.y),
-				Vector2(input.data.origin.data.x, input.data.origin.data.y)
-			);
+			var x = Vector2.ZERO
+			var y = Vector2.ZERO
+			var origin = Vector2.ZERO
+			if typeof(input.data.x) == TYPE_OBJECT:
+				x = Vector2(input.data.x.data.x, input.data.x.data.y)
+			if typeof(input.data.y) == TYPE_OBJECT:
+				y = Vector2(input.data.y.data.x, input.data.y.data.y)
+			if typeof(input.data.origin) == TYPE_OBJECT:
+				origin = Vector2(input.data.origin.data.x, input.data.origin.data.y)
+			
+			return Transform2D(x, y, origin);
 		TYPE_OBJECT:
 			if obj:
 				return unserialize_object(input, obj)
