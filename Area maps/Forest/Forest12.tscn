@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Triggers/ActionTrigger.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Interactables/SavePoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Interactables/SavePoint.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
@@ -76,9 +76,6 @@ position = Vector2( 96, 1700 )
 Triggerables = [ NodePath("showcenti"), NodePath("ToggleTrigger") ]
 TriggerVal = true
 
-[node name="showcenti" parent="PlayerDetector2" instance=ExtResource( 9 )]
-PopupName = "centipede"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
 shape = SubResource( 3 )
 
@@ -86,14 +83,16 @@ shape = SubResource( 3 )
 Trigger = NodePath("../../ActionTrigger")
 Toggle = true
 
+[node name="showcenti" parent="PlayerDetector2" instance=ExtResource( 9 )]
+PopupName = "centipede"
+
 [node name="ActionTrigger" parent="." instance=ExtResource( 11 )]
 Triggerables = [ NodePath("hidecenti") ]
 Enabled = false
 Actions = [ "cast_spell" ]
 
 [node name="hidecenti" parent="ActionTrigger" instance=ExtResource( 9 )]
-position = Vector2( 96, 1500 )
-State = true
 PopupName = "centipede"
-[node name="SavePoint" parent="." instance=ExtResource( 9 )]
+
+[node name="SavePoint" parent="." instance=ExtResource( 12 )]
 position = Vector2( 93, 1300 )
