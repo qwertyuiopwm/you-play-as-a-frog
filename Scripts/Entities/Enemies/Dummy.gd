@@ -22,7 +22,7 @@ func hurt(damage, _ignore_hit_delay=false):
 	label_timer = DMG_DISPLAY_TIME
 	
 	for child in get_children():
-		if child.has_method("trigger"):
+		if child is Triggerable:
 			child.trigger(true)
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.flip_h = global_position.direction_to(Player.global_position).x < 0
