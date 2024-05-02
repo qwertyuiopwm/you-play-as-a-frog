@@ -942,6 +942,7 @@ fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
 [node name="shoottosave" type="RichTextLabel" parent="Popups" groups=["Popup"]]
+visible = false
 margin_left = -288.0
 margin_top = -32.0
 margin_right = 288.0
