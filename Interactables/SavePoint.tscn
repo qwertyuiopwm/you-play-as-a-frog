@@ -12,24 +12,14 @@ extents = Vector2( 84.5, 84.5 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 2 )]
 Triggerables = [ NodePath("shoottosave") ]
+DeleteOnTrigger = false
+TriggerOnExit = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource( 1 )
 
 [node name="shoottosave" parent="PlayerDetector" instance=ExtResource( 1 )]
 PopupName = "shoottosave"
-
-[node name="PlayerDetector2" parent="." instance=ExtResource( 2 )]
-Triggerables = [ NodePath("shoottosave") ]
-TriggerOnEnter = false
-TriggerOnExit = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
-shape = SubResource( 1 )
-
-[node name="shoottosave" parent="PlayerDetector2" instance=ExtResource( 1 )]
-PopupName = "shoottosave"
-Inverted = true
 
 [node name="Dummy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, -9 )
