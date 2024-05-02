@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=15 format=2]
-=======
-[gd_scene load_steps=12 format=2]
->>>>>>> e1b027663650f2f058b5bc1dc60d49086a21a130
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=2]
@@ -12,13 +8,10 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Triggerables/PlayerDropItem.tscn" type="PackedScene" id=8]
-<<<<<<< HEAD
 [ext_resource path="res://Triggerables/PopupTrigger.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Triggers/ActionTrigger.tscn" type="PackedScene" id=11]
-=======
 [ext_resource path="res://Interactables/SavePoint.tscn" type="PackedScene" id=9]
->>>>>>> e1b027663650f2f058b5bc1dc60d49086a21a130
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.25, 73.75 )
@@ -78,7 +71,6 @@ shape = SubResource( 2 )
 
 [node name="DropItem" parent="PlayerDetector" instance=ExtResource( 8 )]
 
-<<<<<<< HEAD
 [node name="PlayerDetector2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 96, 1700 )
 Triggerables = [ NodePath("showcenti"), NodePath("ToggleTrigger") ]
@@ -103,7 +95,5 @@ Actions = [ "cast_spell" ]
 position = Vector2( 96, 1500 )
 State = true
 PopupName = "centipede"
-=======
 [node name="SavePoint" parent="." instance=ExtResource( 9 )]
 position = Vector2( 93, 1300 )
->>>>>>> e1b027663650f2f058b5bc1dc60d49086a21a130
