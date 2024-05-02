@@ -1,4 +1,6 @@
 extends Node2D
+class_name Triggerable
+
 
 export var State = false
 onready var Main = get_node("/root/Main")
