@@ -123,10 +123,9 @@ func _on_HitCollider_body_shape_entered(_body_rid, hitBody, _body_shape_index, _
 	head.play("stunned")
 	body.play("still")
 	if hitBody.is_in_group("Player"):
-		print("hit player!")
+		hitBody.hurt(RAM_DAMAGE)
 		return
 	if hitBody.is_in_group("Enemy"):
-		print("Hit another enemy :(")
 		return
 	if hitBody.is_in_group("ground"):
 		return
