@@ -24,7 +24,7 @@ var randnum = 0
 
 
 func _ready():
-	$HitCollider.connect("body_entered", self, "HitCollider_body_entered")
+	var _c = $HitCollider.connect("body_entered", self, "HitCollider_body_entered")
 
 
 func _physics_process(delta):
