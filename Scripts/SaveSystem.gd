@@ -55,7 +55,6 @@ var IgnoredProperties = [
 	"global_transform",
 	"tile_set",
 	"target_player",
-	"target_pos",
 	"friction",
 	"bounce",
 	"Player",
@@ -100,7 +99,6 @@ func onSaveDelete(num: int):
 	render_save(num)
 
 func render_save(i):
-	var button = SaveMenu.get_node("s%dButton" % i)
 	var playtime = SaveMenu.get_node("s%dPlaytime" % i)
 	var delete = SaveMenu.get_node("s%dDelete" % i)
 	
@@ -241,11 +239,12 @@ func serialize(input):
 		type = typeof(input)
 	}
 	
+	if input == null:
+		return null
+#	if typeof(input) == TYPE_OBJECT and !weakref(input).get_ref():
+#		return null
+	
 	for type in IgnoredTypes:
-		if not input:
-			return null
-		if typeof(input) == TYPE_OBJECT and !weakref(input).get_ref():
-			return null
 		if input is type:
 			return null
 	
@@ -416,7 +415,6 @@ func unserialize_object(input, _obj:Object = null):
 				var layer = int(key)
 				obj.set_collision_layer_bit(layer, data[key])
 			continue
-		
 		
 		if property.name == "collision_mask":
 			for key in data:

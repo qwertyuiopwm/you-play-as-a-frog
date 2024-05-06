@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileSets/ForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemies/Extras/Dummy.tscn" type="PackedScene" id=2]
@@ -10,10 +10,6 @@
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=8]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=9]
 [ext_resource path="res://Triggers/PassTrigger.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=11]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 100, 50 )
 
 [node name="Forest1" type="Node2D"]
 
@@ -160,14 +156,3 @@ tile_data = PoolIntArray( 1245198, -1610612736, 0, 1310734, -1610612736, 0, 1376
 script = ExtResource( 9 )
 State = true
 OpenOffset = Vector2( 0, 400 )
-
-[node name="PlayerDetector" parent="." instance=ExtResource( 11 )]
-position = Vector2( 415, 470 )
-Triggerables = [ NodePath("showwasd") ]
-TriggerVal = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-shape = SubResource( 1 )
-
-[node name="showwasd" parent="PlayerDetector" instance=ExtResource( 3 )]
-PopupName = "wasdtomove"

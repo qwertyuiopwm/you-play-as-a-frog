@@ -11,7 +11,7 @@ export var OpenSpeed = -1
 
 var start_pos
 var open_pos
-var target_pos
+var closed:bool
 
 
 func _ready():
@@ -26,7 +26,8 @@ func setup():
 
 
 func _process(delta):
-	if not target_pos: return
+	var target_pos = start_pos if closed else open_pos
+	
 	var dist_to = global_position.distance_to(target_pos)
 	if (OpenSpeed <= 0) or (0 < dist_to and dist_to < TARGET_COMFORT_RANGE):
 		global_position = target_pos
@@ -39,7 +40,6 @@ func _process(delta):
 
 
 func onTriggerAny(close: bool):
-	target_pos = start_pos if close else open_pos
-	
+	closed = close
 	if Hide:
 		visible = close
