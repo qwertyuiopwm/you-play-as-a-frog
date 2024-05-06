@@ -23,6 +23,10 @@ var rng = RandomNumberGenerator.new()
 var randnum = 0
 
 
+func _ready():
+	$HitCollider.connect("body_entered", self, "HitCollider_body_entered")
+
+
 func _physics_process(delta):
 	set_target()
 	state = get_state()
@@ -80,6 +84,8 @@ func get_state():
 
 func HitCollider_body_entered(body):
 	if state != states.JUMPING:
+		return
+	if not body.is_in_group("Player"):
 		return
 	
 	body.hurt(CONTACT_DAMAGE)
