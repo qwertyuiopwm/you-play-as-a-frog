@@ -22,6 +22,7 @@ onready var enemies = {
 	Scorpion = preload("res://Enemies/Swamp/Scorpion.tscn"),
 	CobaltBeetle = preload("res://Enemies/CaveCrypt/CobaltBeetle.tscn"),
 	BabyCentipede = preload("res://Enemies/CaveCrypt/BabyCentipedeHead.tscn"),
+	SmallSpider = preload("res://Enemies/CaveCrypt/SpiderSmall.tscn"),
 }
 
 var selectedEnemy: PackedScene
