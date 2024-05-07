@@ -11,7 +11,7 @@ export var SCALE: float = 1
 var segment_scene = preload("res://Enemies/Forest/Centipede/CentipedeSegment.tscn")
 var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
 
-var segments = []
+var segments := []
 
 func _ready():
 	scale *= SCALE
@@ -41,6 +41,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	var target = get_nearest_player()
 	if ALWAYS_SEE_TARGET:
 		target = Main.get_node("Player")
@@ -74,8 +76,22 @@ func Cure(effect):
 
 
 func on_death():
-	for segment in segments:
-		segment.queue_free()
+	for segment in Main.reversed(segments):
+		var sprite = segment.get_node("AnimatedSprite")
+		
+		sprite.play("death")
+		segment.global_rotation = 0
+		sprite.global_rotation = 0
+		yield(Main.wait(.25), "completed")
+	
+	scale *= 3
+	print(scale)
+	$AnimatedSprite.play("death")
+	global_rotation = 0
+	flip_body(false)
+	$AnimatedSprite.global_rotation = 0
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
 
 
 func _body_entered(body):
