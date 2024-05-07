@@ -21,6 +21,11 @@ func _ready():
 	var _c = $DetectorCollider.connect("body_entered", self, "StingCollider_body_entered")
 	var __c = $TailSprite.connect("animation_finished", self, "TailSprite_animation_finished")
 
+func on_death():
+	$TailSprite.visible = false
+	$AnimatedSprite.play("death")
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
 
 func _physics_process(delta):
 	set_target()

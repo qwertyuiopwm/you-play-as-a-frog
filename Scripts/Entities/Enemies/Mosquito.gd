@@ -25,6 +25,10 @@ func _ready():
 	var _obj = $AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
 	$targ_vis.visible = debug
 
+func on_death():
+	$AnimatedSprite.play("death")
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
 
 func _process(_delta):
 	set_target()

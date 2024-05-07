@@ -22,8 +22,13 @@ enum states {
 
 
 var state = states.WALK
-	
-	
+
+func on_death():
+	head.visible = false
+	body.play("death")
+	yield(body, "animation_finished")
+	emit_signal("death_finished")
+
 func _physics_process(delta):
 	set_target()
 	if target_player != null:
