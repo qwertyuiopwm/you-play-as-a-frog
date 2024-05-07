@@ -4,6 +4,10 @@ onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node("Player")
 onready var GUI = Player.get_node("GUI")
 onready var SaveMenu = GUI.get_node("SaveMenu")
+onready var SavingPopup = GUI.get_node("Saving")
+
+signal SaveFinished
+signal LoadFinished
 
 var fileName = "user://ypaaf-%d.save"
 var selectedSave = 0
@@ -76,6 +80,10 @@ func playtimeFromSave(num: int):
 		var b64 = file.get_as_text()
 		var json = Marshalls.base64_to_utf8(b64)
 		var result = JSON.parse(json)
+		
+		if result.error:
+			return null
+		
 		if result.result.has("PlaytimeSeconds"):
 			return unserialize(result.result["PlaytimeSeconds"])
 	
@@ -92,6 +100,10 @@ func onSaveDelete(num: int):
 	var file = File.new()
 	if not file.file_exists(fileName % num):
 		return
+	
+	# Write empty string to delete file on web
+	file.open(fileName % num)
+	file.store_string("")
 	
 	var d = Directory.new()
 	d.remove(fileName % num)
@@ -179,12 +191,14 @@ func loadSave():
 	GUI.generateWheel()
 	
 	print("Loaded game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
+	emit_signal("LoadFinished")
 
 
 func save():
 	if selectedSave == 0:
 		SaveMenu.visible = true
 		return
+	SavingPopup.visible = true
 	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
@@ -209,7 +223,9 @@ func save():
 	
 	if pauseGame:
 		Main.pause(false, [self])
+	SavingPopup.visible = false
 	print("Saved game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
+	emit_signal("SaveFinished")
 
 
 func serialize_player():

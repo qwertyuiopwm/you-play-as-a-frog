@@ -18,6 +18,10 @@ enum states {
 var state
 var randomnum = randf()
 
+func on_death():
+	$AnimatedSprite.play("death")
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
 
 func _physics_process(delta):
 	set_target()

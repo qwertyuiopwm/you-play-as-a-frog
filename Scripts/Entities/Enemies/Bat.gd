@@ -20,7 +20,12 @@ func _ready():
 	sprite.play("Default")
 	var _obj = $HitCollider.connect("body_entered", self, "_on_hit")
 	var _obj2 = sprite.connect("animation_finished", self, "_on_animation_finished")
-	
+
+func on_death():
+	$AnimatedSprite.play("death")
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
+
 func _physics_process(delta):
 	set_target()
 	if target_player != null:

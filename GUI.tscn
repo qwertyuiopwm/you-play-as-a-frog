@@ -1122,6 +1122,27 @@ shortcut_in_tooltip = false
 text = "W"
 icon_align = 1
 
+[node name="Saving" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="Saving"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 30 )
+
+[node name="Label" type="Label" parent="Saving"]
+margin_left = -161.0
+margin_top = -18.0
+margin_right = 161.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 19 )
+text = "Saving game..."
+
 [node name="SaveMenu" type="CanvasLayer" parent="."]
 layer = 15
 visible = false

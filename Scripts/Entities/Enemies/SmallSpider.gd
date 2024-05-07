@@ -26,6 +26,10 @@ var randnum = 0
 func _ready():
 	var _c = $HitCollider.connect("body_entered", self, "HitCollider_body_entered")
 
+func on_death():
+	$AnimatedSprite.play("death")
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
 
 func _physics_process(delta):
 	set_target()
