@@ -102,7 +102,7 @@ func onSaveDelete(num: int):
 		return
 	
 	# Write empty string to delete file on web
-	file.open(fileName % num)
+	file.open(fileName % num, File.WRITE)
 	file.store_string("")
 	
 	var d = Directory.new()
@@ -257,8 +257,8 @@ func serialize(input):
 	
 	if input == null:
 		return null
-#	if typeof(input) == TYPE_OBJECT and !weakref(input).get_ref():
-#		return null
+	if typeof(input) == TYPE_OBJECT and !weakref(input).get_ref():
+		return null
 	
 	for type in IgnoredTypes:
 		if input is type:
