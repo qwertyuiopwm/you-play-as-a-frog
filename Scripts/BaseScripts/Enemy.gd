@@ -36,6 +36,9 @@ func get_state():
 
 
 func hurt(damage: float, _ignore_hit_delay=false):
+	if health <= 0:
+		return
+	
 	health = max(health - damage, 0)
 	
 	if has_node("HPBar"):
@@ -145,6 +148,8 @@ func get_nearest_player():
 	return nearest_player
 
 func player_in_sight(player):
+	if health <= 0:
+		return
 	if player == null:
 		return false
 	
