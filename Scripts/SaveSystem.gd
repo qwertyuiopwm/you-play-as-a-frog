@@ -4,6 +4,7 @@ onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node("Player")
 onready var GUI = Player.get_node("GUI")
 onready var SaveMenu = GUI.get_node("SaveMenu")
+onready var SavingPopup = GUI.get_node("Saving")
 
 signal SaveFinished
 signal LoadFinished
@@ -189,6 +190,7 @@ func save():
 	if selectedSave == 0:
 		SaveMenu.visible = true
 		return
+	SavingPopup.visible = true
 	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
@@ -213,6 +215,7 @@ func save():
 	
 	if pauseGame:
 		Main.pause(false, [self])
+	SavingPopup.visible = false
 	print("Saved game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
 	emit_signal("SaveFinished")
 
