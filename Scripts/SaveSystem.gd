@@ -5,6 +5,9 @@ onready var Player = Main.get_node("Player")
 onready var GUI = Player.get_node("GUI")
 onready var SaveMenu = GUI.get_node("SaveMenu")
 
+signal SaveFinished
+signal LoadFinished
+
 var fileName = "user://ypaaf-%d.save"
 var selectedSave = 0
 
@@ -179,6 +182,7 @@ func loadSave():
 	GUI.generateWheel()
 	
 	print("Loaded game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
+	emit_signal("LoadFinished")
 
 
 func save():
@@ -210,6 +214,7 @@ func save():
 	if pauseGame:
 		Main.pause(false, [self])
 	print("Saved game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
+	emit_signal("SaveFinished")
 
 
 func serialize_player():
