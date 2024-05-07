@@ -1,6 +1,8 @@
 tool
 extends "res://Scripts/BaseScripts/Entity.gd"
 
+signal death_finished
+
 
 export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
@@ -42,6 +44,7 @@ func hurt(damage: float, _ignore_hit_delay=false
 	
 	if health == 0:
 		on_death()
+		yield(self, "death_finished")
 		queue_free()
 
 
