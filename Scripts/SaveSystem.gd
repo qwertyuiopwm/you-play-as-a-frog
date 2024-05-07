@@ -80,6 +80,10 @@ func playtimeFromSave(num: int):
 		var b64 = file.get_as_text()
 		var json = Marshalls.base64_to_utf8(b64)
 		var result = JSON.parse(json)
+		
+		if result.error:
+			return null
+		
 		if result.result.has("PlaytimeSeconds"):
 			return unserialize(result.result["PlaytimeSeconds"])
 	
@@ -96,6 +100,10 @@ func onSaveDelete(num: int):
 	var file = File.new()
 	if not file.file_exists(fileName % num):
 		return
+	
+	# Write empty string to delete file on web
+	file.open(fileName % num)
+	file.store_string("")
 	
 	var d = Directory.new()
 	d.remove(fileName % num)
