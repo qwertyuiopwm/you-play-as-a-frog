@@ -35,14 +35,14 @@ func get_state():
 	assert(false, "Script does not override get_state method!")
 
 
-func hurt(damage: float, _ignore_hit_delay=false
-):
+func hurt(damage: float, _ignore_hit_delay=false):
 	health = max(health - damage, 0)
 	
 	if has_node("HPBar"):
-		$HPBar.visible = true
+		$HPBar.visible = (health > 0)
 	
 	if health == 0:
+		$CollisionShape2D.disabled = true
 		on_death()
 		yield(self, "death_finished")
 		queue_free()
@@ -78,6 +78,8 @@ func on_slip_into_wall():
 
 func move(_target, delta):
 	if Main.Paused or has_effect(Effects.stunned):
+		return
+	if health <= 0:
 		return
 	
 	if ROTATE_TO_TARGET:
