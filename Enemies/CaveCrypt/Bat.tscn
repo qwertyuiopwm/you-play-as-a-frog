@@ -118,7 +118,7 @@ height = 15.0
 
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 256
-collision_mask = 258
+collision_mask = 2
 script = ExtResource( 2 )
 IMMUNITIES = [ ExtResource( 4 ) ]
 

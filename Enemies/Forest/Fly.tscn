@@ -40,7 +40,7 @@ radius = 9.0
 [node name="Fly" type="KinematicBody2D" groups=["Enemy"]]
 z_index = 2
 collision_layer = 256
-collision_mask = 258
+collision_mask = 2
 script = ExtResource( 1 )
 IMMUNITIES = [ ExtResource( 2 ) ]
 SPEED = 75
