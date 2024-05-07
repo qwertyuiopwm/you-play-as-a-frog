@@ -77,7 +77,7 @@ func animation_finished():
 
 
 func get_state():
-	if target_player == null or target_pos == null:
+	if target_player == null:
 		return states.DEFAULT
 	
 	if state == states.SWOOPING:
@@ -85,7 +85,7 @@ func get_state():
 			return states.DEFAULT
 		return states.SWOOPING
 	
-	if state == states.CIRCLE and global_position.distance_to(target_pos) < 3:
+	if state == states.CIRCLE and target_pos and global_position.distance_to(target_pos) < 3:
 		return states.SWOOP
 		
 	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
