@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Area maps/Forest/Forest13.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Area maps/Forest/Forest14.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Area maps/Forest/Forest10.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Area maps/Forest/Forest11.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Area maps/Forest/Forest12.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Triggerables/ReInstanceRoom.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Triggers/DeathTrigger.tscn" type="PackedScene" id=7]
 
 [node name="ForestLevel3" type="Node2D"]
 
@@ -22,11 +20,4 @@ position = Vector2( -1537, 2814 )
 position = Vector2( -1537, 4734 )
 
 [node name="Forest14" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1537, 5950 )
-
-[node name="RoomReset" parent="." instance=ExtResource( 6 )]
-PACKED_SCENE = ExtResource( 1 )
-Scene = NodePath("../Forest13")
-
-[node name="DeathTrigger" parent="." instance=ExtResource( 7 )]
-Triggerables = [ NodePath("../RoomReset") ]
+position = Vector2( -1537, 5948 )

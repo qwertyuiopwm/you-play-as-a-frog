@@ -4,6 +4,8 @@ extends Node2D
 export var Paused = true
 export var PlaytimeSeconds = 0
 
+onready var SaveSys = get_node("Save")
+
 func _process(delta):
 	if Paused:
 		return
@@ -43,3 +45,8 @@ func cast_ray_towards_point(root, point, distance, layer, ignore):
 	var targetPos = root + (root.direction_to(point)*distance)
 	
 	return cast_ray(root, targetPos, layer, ignore)
+
+func reversed(array: Array):
+	var new_array = array.duplicate()
+	new_array.invert()
+	return new_array

@@ -1,27 +1,29 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=69 format=2]
 
-[ext_resource path="res://art/stam_empty.png" type="Texture" id=1]
-[ext_resource path="res://art/arrow.png" type="Texture" id=2]
-[ext_resource path="res://art/stam_full.png" type="Texture" id=3]
-[ext_resource path="res://art/hp_full.png" type="Texture" id=4]
+[ext_resource path="res://art/GUI/stam_empty.png" type="Texture" id=1]
+[ext_resource path="res://art/GUI/arrow.png" type="Texture" id=2]
+[ext_resource path="res://art/GUI/stam_full.png" type="Texture" id=3]
+[ext_resource path="res://art/GUI/hp_full.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Comfortaa.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Scripts/LineEditScript.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/GUI.gd" type="Script" id=7]
-[ext_resource path="res://art/spellicon.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/CheckBoxScript.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/DevToolsScript.gd" type="Script" id=10]
-[ext_resource path="res://art/full_mana.png" type="Texture" id=11]
-[ext_resource path="res://art/empty_mana.png" type="Texture" id=12]
-[ext_resource path="res://art/stats_bg.png" type="Texture" id=13]
-[ext_resource path="res://art/hp_empty.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/GUI/LineEditScript.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/GUI/GUI.gd" type="Script" id=7]
+[ext_resource path="res://art/GUI/spellicon.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/GUI/CheckBoxScript.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/GUI/DevToolsScript.gd" type="Script" id=10]
+[ext_resource path="res://art/GUI/full_mana.png" type="Texture" id=11]
+[ext_resource path="res://art/GUI/empty_mana.png" type="Texture" id=12]
+[ext_resource path="res://art/GUI/stats_bg.png" type="Texture" id=13]
+[ext_resource path="res://art/GUI/hp_empty.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Comfortaa-Bold.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Assets/vcr_osd_mono.tres" type="DynamicFont" id=16]
 [ext_resource path="res://Assets/popup_style.tres" type="StyleBox" id=17]
 [ext_resource path="res://Assets/VAllign.gd" type="Script" id=18]
 [ext_resource path="res://Assets/vcr_osd_mono_large.tres" type="DynamicFont" id=19]
-[ext_resource path="res://art/Restorative elixer-1.png.png" type="Texture" id=20]
-[ext_resource path="res://art/autoaim_indicator.png" type="Texture" id=21]
+[ext_resource path="res://art/Interactables/Restorative elixer-1.png.png" type="Texture" id=20]
+[ext_resource path="res://art/GUI/autoaim_indicator.png" type="Texture" id=21]
 [ext_resource path="res://Assets/keybutton_style.tres" type="StyleBox" id=22]
+[ext_resource path="res://art/Effects/Status Cond..png" type="Texture" id=23]
+[ext_resource path="res://Assets/VCR_OSD_MONO.ttf" type="DynamicFontData" id=24]
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.337255, 0.337255, 0.337255, 1 )
@@ -52,6 +54,42 @@ anti_aliasing_size = 0.01
 bg_color = Color( 0, 0, 0, 1 )
 anti_aliasing = false
 anti_aliasing_size = 0.01
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 23 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=43]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 23 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=44]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 23 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=45]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.356863, 0.356863, 0.356863, 1 )
@@ -111,6 +149,14 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 20
 
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.894118, 0.168627, 0.168627, 0.705882 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.411765, 0, 0, 1 )
+
 [sub_resource type="RichTextEffect" id=25]
 script = ExtResource( 18 )
 
@@ -163,6 +209,69 @@ size = 20
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 37 )
 
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[sub_resource type="DynamicFont" id=47]
+size = 40
+font_data = ExtResource( 24 )
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.313726, 0.792157, 0.380392, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0.278431, 0.729412, 0.345098, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.34902, 0.886275, 0.427451, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.792157, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=54]
+bg_color = Color( 0.729412, 0.278431, 0.278431, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.886275, 0.34902, 0.34902, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="DynamicFont" id=52]
+size = 30
+font_data = SubResource( 33 )
+
+[sub_resource type="DynamicFont" id=51]
+size = 64
+font_data = SubResource( 33 )
+
 [node name="GUI" type="Control"]
 pause_mode = 2
 physics_interpolation_mode = 2
@@ -204,6 +313,7 @@ transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 margin_top = 5.0
 margin_right = 128.0
 margin_bottom = 21.0
+step = 0.01
 value = 40.0
 texture_under = ExtResource( 14 )
 texture_progress = ExtResource( 4 )
@@ -223,6 +333,7 @@ texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 3 )
 
 [node name="spellwheel" type="CanvasLayer" parent="IngameUI"]
+visible = false
 offset = Vector2( 400, 400 )
 transform = Transform2D( 1, 0, 0, 1, 400, 400 )
 
@@ -266,6 +377,16 @@ texture = ExtResource( 2 )
 
 [node name="WheelParts" type="Control" parent="IngameUI/spellwheel"]
 
+[node name="spellname" type="Label" parent="IngameUI/spellwheel"]
+margin_left = -400.0
+margin_top = -150.0
+margin_right = 400.0
+margin_bottom = -126.0
+custom_fonts/font = ExtResource( 16 )
+text = "Conjure Condiment"
+align = 1
+valign = 1
+
 [node name="spellspot" type="CanvasLayer" parent="IngameUI"]
 offset = Vector2( 400, 780 )
 transform = Transform2D( 1, 0, 0, 1, 400, 780 )
@@ -288,17 +409,22 @@ margin_bottom = -80.0
 rect_scale = Vector2( 3, 3 )
 
 [node name="potions" type="Label" parent="IngameUI"]
-margin_right = 736.0
-margin_bottom = 64.0
+margin_left = 429.0
+margin_top = 50.0
+margin_right = 1165.0
+margin_bottom = 114.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 19 )
-text = "0x"
+text = "0x pots"
 align = 2
 valign = 1
 
 [node name="potionicon" type="TextureRect" parent="IngameUI"]
-margin_left = 736.0
-margin_right = 800.0
-margin_bottom = 64.0
+margin_left = 709.0
+margin_top = -16.0
+margin_right = 773.0
+margin_bottom = 48.0
+rect_scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 20 )
 
 [node name="autoaim" type="CanvasLayer" parent="IngameUI"]
@@ -327,6 +453,21 @@ margin_bottom = 734.0
 rect_scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 21 )
 
+[node name="effects" type="CanvasLayer" parent="IngameUI"]
+offset = Vector2( 288, 48 )
+transform = Transform2D( 1, 0, 0, 1, 288, 48 )
+
+[node name="slipped" type="AnimatedSprite" parent="IngameUI/effects"]
+frames = SubResource( 43 )
+
+[node name="slowed" type="AnimatedSprite" parent="IngameUI/effects"]
+position = Vector2( 64, 0 )
+frames = SubResource( 44 )
+
+[node name="poisoned" type="AnimatedSprite" parent="IngameUI/effects"]
+position = Vector2( 128, 0 )
+frames = SubResource( 45 )
+
 [node name="devtools" type="CanvasLayer" parent="."]
 layer = 5
 visible = false
@@ -343,13 +484,13 @@ custom_styles/panel = SubResource( 15 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="devtools"]
 margin_left = -129.0
-margin_top = -92.5
+margin_top = -106.0
 margin_right = 129.0
-margin_bottom = 92.5
+margin_bottom = 106.0
 
 [node name="Labels" type="VBoxContainer" parent="devtools/HBoxContainer"]
 margin_right = 182.0
-margin_bottom = 185.0
+margin_bottom = 212.0
 
 [node name="GodmodeLabel" type="Label" parent="devtools/HBoxContainer/Labels"]
 margin_right = 182.0
@@ -399,10 +540,17 @@ margin_bottom = 185.0
 custom_fonts/font = ExtResource( 5 )
 text = "Spawn Enemy"
 
+[node name="AddSoellLabel" type="Label" parent="devtools/HBoxContainer/Labels"]
+margin_top = 189.0
+margin_right = 182.0
+margin_bottom = 212.0
+custom_fonts/font = ExtResource( 5 )
+text = "Give Spell"
+
 [node name="Values" type="VBoxContainer" parent="devtools/HBoxContainer"]
 margin_left = 186.0
 margin_right = 258.0
-margin_bottom = 185.0
+margin_bottom = 212.0
 
 [node name="GodmodeCheckbox" type="CheckBox" parent="devtools/HBoxContainer/Values"]
 margin_right = 72.0
@@ -464,6 +612,11 @@ margin_top = 164.0
 margin_right = 72.0
 margin_bottom = 184.0
 
+[node name="SpellOption" type="OptionButton" parent="devtools/HBoxContainer/Values"]
+margin_top = 188.0
+margin_right = 72.0
+margin_bottom = 208.0
+
 [node name="MainMenu" type="CanvasLayer" parent="."]
 layer = 10
 visible = false
@@ -504,11 +657,28 @@ custom_styles/normal = SubResource( 22 )
 text = "Start Game"
 icon_align = 1
 
+[node name="NoSaveFile" type="RichTextLabel" parent="MainMenu"]
+visible = false
+margin_left = -340.0
+margin_top = -64.0
+margin_right = 340.0
+margin_bottom = 64.0
+custom_fonts/mono_font = ExtResource( 19 )
+custom_fonts/bold_italics_font = ExtResource( 19 )
+custom_fonts/italics_font = ExtResource( 19 )
+custom_fonts/bold_font = ExtResource( 19 )
+custom_fonts/normal_font = ExtResource( 19 )
+custom_styles/normal = SubResource( 42 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]No save file could be found.[/center][/valign]"
+text = "No save file could be found."
+custom_effects = [ SubResource( 25 ) ]
+
 [node name="Popups" type="CanvasLayer" parent="."]
 offset = Vector2( 400, 600 )
 transform = Transform2D( 1, 0, 0, 1, 400, 600 )
 
-[node name="wasdtomove" type="RichTextLabel" parent="Popups"]
+[node name="wasdtomove" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 margin_left = -128.0
 margin_top = -32.0
 margin_right = 128.0
@@ -524,7 +694,7 @@ bbcode_text = "[valign][center]Use [color=#34ebe1][WASD][/color] to move![/cente
 text = "Use [WASD] to move!"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="wasdtomoveW" type="RichTextLabel" parent="Popups"]
+[node name="wasdtomoveW" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -128.0
 margin_top = -32.0
@@ -541,7 +711,7 @@ bbcode_text = "[valign][center][color=lime]W        [/color][/center][/valign]"
 text = "W        "
 custom_effects = [ SubResource( 29 ) ]
 
-[node name="wasdtomoveA" type="RichTextLabel" parent="Popups"]
+[node name="wasdtomoveA" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -128.0
 margin_top = -32.0
@@ -558,7 +728,7 @@ bbcode_text = "[valign][center][color=lime]A      [/color][/center][/valign]"
 text = "A      "
 custom_effects = [ SubResource( 29 ) ]
 
-[node name="wasdtomoveS" type="RichTextLabel" parent="Popups"]
+[node name="wasdtomoveS" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -128.0
 margin_top = -32.0
@@ -575,7 +745,7 @@ bbcode_text = "[valign][center][color=lime]S    [/color][/center][/valign]"
 text = "S    "
 custom_effects = [ SubResource( 29 ) ]
 
-[node name="wasdtomoveD" type="RichTextLabel" parent="Popups"]
+[node name="wasdtomoveD" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -128.0
 margin_top = -32.0
@@ -592,7 +762,7 @@ bbcode_text = "[valign][center][color=lime]D  [/color][/center][/valign]"
 text = "D  "
 custom_effects = [ SubResource( 29 ) ]
 
-[node name="qtoselect" type="RichTextLabel" parent="Popups"]
+[node name="qtoselect" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -202.0
 margin_top = -32.0
@@ -609,7 +779,7 @@ bbcode_text = "[valign][center][color=lime]Hold[/color] [color=#34ebe1][Q][/colo
 text = "Hold [Q] to open the spell wheel!"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="qtoselect2" type="RichTextLabel" parent="Popups"]
+[node name="qtoselect2" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -192.0
 margin_top = -32.0
@@ -626,7 +796,7 @@ bbcode_text = "[valign][center][color=lime]Release[/color] [color=#34ebe1][Q][/c
 text = "Release [Q] to select the spell closest to the mouse!"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="etocast" type="RichTextLabel" parent="Popups"]
+[node name="etocast" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -192.0
 margin_top = -32.0
@@ -643,7 +813,7 @@ bbcode_text = "[valign][center]Click [color=#34ebe1][E][/color] to cast a spell[
 text = "Click [E] to cast a spell"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="fightgrub" type="RichTextLabel" parent="Popups"]
+[node name="fightgrub" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -384.0
 margin_top = -32.0
@@ -661,7 +831,7 @@ text = "Lure the [Grub] to a wall and slip it using [Conjure Condiment]"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="bridge" type="RichTextLabel" parent="Popups"]
+[node name="bridge" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -288.0
 margin_top = -32.0
@@ -679,7 +849,7 @@ text = "Grab the [Bridge] and place it on the [water]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="flies" type="RichTextLabel" parent="Popups"]
+[node name="flies" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -320.0
 margin_top = -32.0
@@ -697,7 +867,7 @@ text = "[Flies] cannot slip, [Left Click] to melee instead!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="cantopenyet" type="RichTextLabel" parent="Popups"]
+[node name="cantopenyet" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -200.0
 margin_top = -32.0
@@ -714,7 +884,7 @@ bbcode_text = "[valign][center]I can't get past these trees, maybe I'll find a w
 text = "I can't get past these trees, maybe I'll find a way later"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="defeatallenemies" type="RichTextLabel" parent="Popups"]
+[node name="defeatallenemies" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -200.0
 margin_top = -32.0
@@ -731,12 +901,12 @@ bbcode_text = "[valign][center]Defeat [color=lime]all[/color] the [color=red][en
 text = "Defeat all the [enemies] to open the [Barrier]"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="ctopotion" type="RichTextLabel" parent="Popups"]
+[node name="ctopotion" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
-margin_left = -192.0
-margin_top = -32.0
-margin_right = 192.0
-margin_bottom = 32.0
+margin_left = -165.0
+margin_top = -45.0
+margin_right = 164.0
+margin_bottom = 38.0
 custom_fonts/mono_font = ExtResource( 16 )
 custom_fonts/bold_italics_font = ExtResource( 16 )
 custom_fonts/italics_font = ExtResource( 16 )
@@ -744,11 +914,15 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Click [color=#34ebe1][C][/color] to use a potion[/center][/valign]"
-text = "Click [C] to use a potion"
+bbcode_text = "[valign][center]Click [color=#34ebe1][C][/color] to use a [color=#FFE000][Potion][/color]
+Potions give you [color=lime]Hp[/color], [color=#00CCFF]Mana[/color],
+and [color=#FF9933]Stamina[/color][/center][/valign]"
+text = "Click [C] to use a [Potion]
+Potions give you Hp, Mana,
+and Stamina"
 custom_effects = [ SubResource( 25 ) ]
 
-[node name="thenextspell" type="RichTextLabel" parent="Popups"]
+[node name="thenextspell" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -288.0
 margin_top = -32.0
@@ -761,12 +935,30 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock [color=#c8c8c8][Shake][/color].[/center][/valign]"
-text = "Defeat the [Enemies] to unlock [Shake]."
+bbcode_text = "[valign][center]Defeat the [color=red][Enemies][/color] to unlock the [color=#ffccaa][Chest][/color].[/center][/valign]"
+text = "Defeat the [Enemies] to unlock the [Chest]."
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="useshake" type="RichTextLabel" parent="Popups"]
+[node name="shoottosave" type="RichTextLabel" parent="Popups" groups=["Popup"]]
+visible = false
+margin_left = -288.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 32.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]Attack the [color=#ffffcc][Dummy][/color] to [color=#aaffff]save your progress[/color]![/center][/valign]"
+text = "Attack the [Dummy] to save your progress!"
+fit_content_height = true
+custom_effects = [ SubResource( 26 ) ]
+
+[node name="useshake" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -300.0
 margin_top = -32.0
@@ -784,7 +976,7 @@ text = "Select the [Shake] spell to get past the trees!"
 fit_content_height = true
 custom_effects = [ SubResource( 26 ) ]
 
-[node name="learntodash" type="RichTextLabel" parent="Popups"]
+[node name="learntodash" type="RichTextLabel" parent="Popups" groups=["Popup"]]
 visible = false
 margin_left = -192.0
 margin_top = -32.0
@@ -800,6 +992,23 @@ bbcode_enabled = true
 bbcode_text = "[valign][center]Press [color=#34ebe1][Space][/color] to Dash![/center][/valign]"
 text = "Press [Space] to Dash!"
 custom_effects = [ SubResource( 26 ) ]
+
+[node name="centipede" type="RichTextLabel" parent="Popups" groups=["Popup"]]
+visible = false
+margin_left = -250.0
+margin_top = -32.0
+margin_right = 250.0
+margin_bottom = 48.0
+custom_fonts/mono_font = ExtResource( 16 )
+custom_fonts/bold_italics_font = ExtResource( 16 )
+custom_fonts/italics_font = ExtResource( 16 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 16 )
+custom_styles/normal = ExtResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[valign][center]In order to [color=yellow]slip[/color] the [color=red]Centipede[/color], you must use [color=yellow]Conjure Condiment[/color] on [color=lime]5[/color] segments.[/center][/valign]"
+text = "In order to slip the Centipede, you must use Conjure Condiment on 5 segments."
+custom_effects = [ SubResource( 25 ) ]
 
 [node name="LevelTransition" type="CanvasLayer" parent="."]
 layer = 100
@@ -847,8 +1056,18 @@ margin_right = 400.0
 margin_bottom = 400.0
 custom_styles/panel = SubResource( 30 )
 
-[node name="Button" type="Button" parent="PauseMenu"]
+[node name="Load" type="Button" parent="PauseMenu"]
 margin_left = -128.0
+margin_top = -340.0
+margin_bottom = -276.0
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 22 )
+text = "Load"
+icon_align = 1
+
+[node name="Save" type="Button" parent="PauseMenu"]
 margin_top = -340.0
 margin_right = 128.0
 margin_bottom = -276.0
@@ -856,7 +1075,7 @@ custom_fonts/font = SubResource( 32 )
 custom_styles/hover = SubResource( 24 )
 custom_styles/pressed = SubResource( 23 )
 custom_styles/normal = SubResource( 22 )
-text = "Play Game"
+text = "Save"
 icon_align = 1
 
 [node name="playtime" type="Label" parent="PauseMenu"]
@@ -903,5 +1122,147 @@ shortcut_in_tooltip = false
 text = "W"
 icon_align = 1
 
-[connection signal="item_selected" from="devtools/HBoxContainer/Values/EnemyOption" to="devtools" method="_on_EnemyOption_item_selected"]
-[connection signal="pressed" from="MainMenu/Button" to="." method="_on_Button_pressed"]
+[node name="Saving" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="Saving"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 30 )
+
+[node name="Label" type="Label" parent="Saving"]
+margin_left = -161.0
+margin_top = -18.0
+margin_right = 161.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 19 )
+text = "Saving game..."
+
+[node name="SaveMenu" type="CanvasLayer" parent="."]
+layer = 15
+visible = false
+offset = Vector2( 400, 400 )
+transform = Transform2D( 1, 0, 0, 1, 400, 400 )
+
+[node name="bg" type="Panel" parent="SaveMenu"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_styles/panel = SubResource( 46 )
+
+[node name="s1Button" type="Button" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = -128.0
+margin_right = 200.0
+margin_bottom = -64.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+text = "Save Slot 1"
+icon_align = 1
+
+[node name="s1Delete" type="Button" parent="SaveMenu"]
+visible = false
+margin_left = 210.0
+margin_top = -128.0
+margin_right = 310.0
+margin_bottom = -64.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Del"
+icon_align = 1
+
+[node name="s1Playtime" type="Label" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = -64.0
+margin_right = 400.0
+margin_bottom = -37.0
+custom_fonts/font = SubResource( 52 )
+text = "No save found"
+valign = 1
+
+[node name="s2Button" type="Button" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = -32.0
+margin_right = 200.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+text = "Save Slot 2"
+icon_align = 1
+
+[node name="s2Delete" type="Button" parent="SaveMenu"]
+visible = false
+margin_left = 210.0
+margin_top = -32.0
+margin_right = 310.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Del"
+icon_align = 1
+
+[node name="s2Playtime" type="Label" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = 32.0
+margin_right = 400.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 52 )
+text = "No save found"
+valign = 1
+
+[node name="s3Button" type="Button" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+text = "Save Slot 3"
+icon_align = 1
+
+[node name="s3Delete" type="Button" parent="SaveMenu"]
+visible = false
+margin_left = 210.0
+margin_top = 64.0
+margin_right = 310.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 47 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Del"
+icon_align = 1
+
+[node name="s3Playtime" type="Label" parent="SaveMenu"]
+margin_left = -200.0
+margin_top = 128.0
+margin_right = 400.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 52 )
+text = "No save found"
+valign = 1
+
+[node name="label" type="Label" parent="SaveMenu"]
+margin_left = -342.0
+margin_top = -290.0
+margin_right = 342.0
+margin_bottom = -233.0
+custom_fonts/font = SubResource( 51 )
+text = "Select a save slot"
+valign = 1

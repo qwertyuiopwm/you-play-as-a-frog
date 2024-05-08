@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Scripts/Shake.gd" type="Script" id=1]
-[ext_resource path="res://art/shake shockwave.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Spells/Shake.gd" type="Script" id=1]
+[ext_resource path="res://art/Spells/shake shockwave.png" type="Texture" id=2]
+[ext_resource path="res://Triggerables/BreakTiles.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 260.002
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
@@ -56,21 +54,26 @@ animations = [ {
 "speed": 6.0
 } ]
 
-[node name="shake" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id=14]
+radius = 200.0
+
+[node name="Shake" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
 MANA_COST = 24
-SpellIcon = "res://art/spellicons-3.png"
+SpellIcon = "res://art/Spells/Icons/spellicons-3.png"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 7, 7 )
 frames = SubResource( 3 )
+
+[node name="BreakTiles" parent="." instance=ExtResource( 3 )]
+TagToBreak = "(shake)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakTiles"]
+shape = SubResource( 14 )

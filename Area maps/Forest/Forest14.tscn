@@ -43,7 +43,7 @@ shape = SubResource( 1 )
 [node name="Boat" parent="." instance=ExtResource( 5 )]
 position = Vector2( 95, 284 )
 
-[node name="water_wall1" parent="." instance=ExtResource( 4 )]
+[node name="water_wall1" parent="." groups=["Doors"] instance=ExtResource( 4 )]
 State = true
 OpenOffset = Vector2( -500, 0 )
 
@@ -51,7 +51,7 @@ OpenOffset = Vector2( -500, 0 )
 position = Vector2( -38, 246 )
 shape = SubResource( 2 )
 
-[node name="water_wall2" parent="." instance=ExtResource( 4 )]
+[node name="water_wall2" parent="." groups=["Doors"] instance=ExtResource( 4 )]
 State = true
 OpenOffset = Vector2( 500, 0 )
 
@@ -59,7 +59,8 @@ OpenOffset = Vector2( 500, 0 )
 position = Vector2( 230, 246 )
 shape = SubResource( 2 )
 
-[node name="water_wall3" parent="." instance=ExtResource( 4 )]
+[node name="water_wall3" parent="." groups=["Doors"] instance=ExtResource( 4 )]
+visible = false
 OpenOffset = Vector2( -500, 0 )
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="water_wall3"]

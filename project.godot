@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://Scripts/Entity.gd"
+"path": "res://Scripts/BaseScripts/Entity.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Ladder",
 "language": "GDScript",
-"path": "res://Scripts/Ladder.gd"
+"path": "res://Scripts/Items/Ladder.gd"
 }, {
 "base": "RichTextEffect",
 "class": "RichTextVAlign",
@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Spells",
 "language": "GDScript",
 "path": "res://Scripts/Spells.gd"
+}, {
+"base": "Node2D",
+"class": "Triggerable",
+"language": "GDScript",
+"path": "res://Scripts/BaseScripts/Triggerable.gd"
 } ]
 _global_script_class_icons={
 "Effects": "",
@@ -45,21 +50,29 @@ _global_script_class_icons={
 "GitAPI": "",
 "Ladder": "",
 "RichTextVAlign": "",
-"Spells": ""
+"Spells": "",
+"Triggerable": ""
 }
 
 [application]
 
 config/name="You play as a frog"
 run/main_scene="res://Main.tscn"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://art/icon.png"
+config/macos_native_icon="res://icon.icns"
+config/windows_native_icon="res://icon.ico"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
 
 [display]
 
 window/size/width=800
 window/size/height=800
 window/size/fullscreen=true
-mouse_cursor/custom_image="res://art/cursor.png"
+mouse_cursor/custom_image="res://art/GUI/cursor.png"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -67,6 +80,10 @@ window/stretch/aspect="keep"
 
 version_control_autoload_on_startup=true
 version_control_plugin_name="GitAPI"
+
+[global]
+
+debugger=false
 
 [gui]
 
@@ -136,21 +153,25 @@ ui_down={
 move_up={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_down={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 select_spell={
@@ -208,6 +229,10 @@ pause_game={
 
 project/assembly_name="Test"
 
+[network]
+
+limits/debugger_stdout/max_chars_per_second=65536
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -217,5 +242,6 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
-environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

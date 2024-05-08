@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/TestBeam.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Spells/TestBeam.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=3]
 interpolation_mode = 1
@@ -8,13 +8,13 @@ colors = PoolColorArray( 0.188235, 0, 0, 1, 1, 0, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Developer Beam" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
 DAMAGE = 500
 MANA_COST = 0
-SpellIcon = "res://art/deathicon.png"
+SpellIcon = "res://art/Spells/Icons/deathicon.png"
 MANA_REQUIRED = 0
 
 [node name="Line2D" type="Line2D" parent="."]

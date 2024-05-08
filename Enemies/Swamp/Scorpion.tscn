@@ -1,0 +1,211 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://EffectManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Entities/Enemies/Scorpion.gd" type="Script" id=2]
+[ext_resource path="res://art/Enemies/scorpion_tail.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/Effects/POW_explosion.png" type="Texture" id=5]
+[ext_resource path="res://art/Enemies/scorpion body (1) (1).png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.0
+height = 19.0
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 192, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 29 ) ],
+"loop": true,
+"name": "still",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": false,
+"name": "sting",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
+"loop": false,
+"name": "death",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 28 ) ],
+"loop": true,
+"name": "still",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 22.5499
+
+[node name="Scorpion" type="KinematicBody2D" groups=["Enemy"]]
+scale = Vector2( 2, 2 )
+collision_layer = 256
+collision_mask = 259
+script = ExtResource( 2 )
+STING_DAMAGE = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3.57628e-07 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="TailSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 12, -7 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 13 )
+animation = "still"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, -7 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "still"
+
+[node name="DetectorCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorCollider"]
+shape = SubResource( 11 )
+
+[node name="HitCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
+shape = SubResource( 11 )
+
+[node name="EffectManager" parent="." instance=ExtResource( 1 )]
+SLIPPY_COLOR_MODULATE = Color( 1, 1, 0.392157, 1 )
+
+[node name="HPBar" parent="." instance=ExtResource( 4 )]
+margin_left = -16.0
+margin_top = -35.0
+margin_right = -16.0
+margin_bottom = -35.0
+
+[node name="PropertyChecker" parent="." instance=ExtResource( 7 )]
+margin_left = -1.0
+margin_top = -40.0
+margin_right = -1.0
+margin_bottom = -26.0
+Property = "target_radius"
+
+[node name="TailLeft" type="Position2D" parent="."]
+position = Vector2( -12, -7 )
+
+[node name="TailRight" type="Position2D" parent="."]
+position = Vector2( 12, -7 )
