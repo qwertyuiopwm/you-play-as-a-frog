@@ -198,11 +198,15 @@ func save():
 	if selectedSave == 0:
 		SaveMenu.visible = true
 		return
-	SavingPopup.visible = true
+	
 	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
 		Main.pause(true, [self])
+	
+	SavingPopup.visible = true
+	yield(Main.wait(0.25), "completed")
+	
 	var save_game = File.new()
 	
 	save_game.open(fileName % selectedSave, File.WRITE)
@@ -223,6 +227,7 @@ func save():
 	
 	if pauseGame:
 		Main.pause(false, [self])
+		
 	SavingPopup.visible = false
 	print("Saved game in %d milliseconds" % (Time.get_ticks_msec() - startTime))
 	emit_signal("SaveFinished")
