@@ -2,11 +2,16 @@ extends "res://Scripts/InstantSpell.gd"
 
 
 onready var radius = $Area2D/CollisionShape2D.shape.radius
+onready var SHAKE_SOUND = $Shake
 
 
 func on_cast(_caster):
 	var _c = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	var __c = $AnimatedSprite.play("default")
+	Player.MusicPlayer.PlayOnNode(SHAKE_SOUND, Player)
+	
+
+
 
 
 func animation_finished():

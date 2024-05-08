@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Music/Boss1-song.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Music/Forest-bg.mp3" type="AudioStream" id=2]
@@ -8,7 +8,9 @@
 [ext_resource path="res://Music/Boss2-song.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Music/Fightsong-song.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Music/misc-song.mp3" type="AudioStream" id=8]
-[ext_resource path="res://SFX/Musard-fx.mp3" type="AudioStream" id=9]
+[ext_resource path="res://SFX/Mustard (1).mp3" type="AudioStream" id=9]
+[ext_resource path="res://SFX/Mustard_Slip.mp3" type="AudioStream" id=10]
+[ext_resource path="res://SFX/Shake.mp3" type="AudioStream" id=11]
 
 [node name="Node" type="Node"]
 script = ExtResource( 3 )
@@ -36,3 +38,9 @@ stream = ExtResource( 8 )
 
 [node name="Mustard" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
+
+[node name="Mustard_Slip" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Shake" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )

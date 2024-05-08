@@ -1,8 +1,10 @@
 extends "res://Scripts/BouncingSpell.gd"
 
 
-export var SLIPPY_DURATION = 2
-export var SELF_SLIPPY_DURATION = 1.5
+export(float) var SLIPPY_DURATION = 2
+export(float) var SELF_SLIPPY_DURATION = 1.5
+export var SETTLE_SOUND := ""
+export var SLIP_SOUND := ""
 
 
 var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn")
@@ -11,9 +13,12 @@ var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn
 func on_settle(body):
 	if body is Entity:
 		body.Afflict(Effects.slippy, SLIPPY_DURATION)
+		Player.MusicPlayer.PlayOnNode(SLIP_SOUND, Player)
 		return
 	
 	if not body is TileMap: return
+	
+	Player.MusicPlayer.PlayOnNode(SETTLE_SOUND, Player)
 	
 	var residue = condiment_residue.instance()
 	get_parent().call_deferred("add_child", residue)
