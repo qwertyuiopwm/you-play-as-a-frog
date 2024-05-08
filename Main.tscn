@@ -34,11 +34,10 @@ PlayerSpells = [ ExtResource( 6 ) ]
 stamina_per_potion = 10.0
 
 [node name="forest-swamp" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1000, 0 )
 BackgroundColor = Color( 0.203922, 0.168627, 0.137255, 1 )
 TopText = "Swamp"
 TopColor = Color( 0.0784314, 0.435294, 0.0352941, 1 )
-BottomText = "Level 1"
+BottomText = "Level 2"
 BottomColor = Color( 0.462745, 0.164706, 0.584314, 1 )
 SetPlayerPosition = NodePath("TPpos")
 CreateSavePoint = true
@@ -56,11 +55,10 @@ position = Vector2( 5554, 3167.98 )
 shape = SubResource( 1 )
 
 [node name="swamp-forest" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1000, 0 )
 BackgroundColor = Color( 0.137255, 0.266667, 0, 1 )
 TopText = "Forest"
 TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
-BottomText = "Boss Level"
+BottomText = "Level 1"
 BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
 SetPlayerPosition = NodePath("TPpos")
 CreateSavePoint = true
