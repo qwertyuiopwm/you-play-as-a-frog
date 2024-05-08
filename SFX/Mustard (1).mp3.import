@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mustard (1).mp3-02a3f291407433537e8d047f801f5340.mp3str"
+
+[deps]
+
+source_file="res://SFX/Mustard (1).mp3"
+dest_files=[ "res://.import/Mustard (1).mp3-02a3f291407433537e8d047f801f5340.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

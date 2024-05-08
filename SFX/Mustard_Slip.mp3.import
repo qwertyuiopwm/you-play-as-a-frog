@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mustard_Slip.mp3-b02c4ab1864fabbbe918ef748e0feee6.mp3str"
+
+[deps]
+
+source_file="res://SFX/Mustard_Slip.mp3"
+dest_files=[ "res://.import/Mustard_Slip.mp3-b02c4ab1864fabbbe918ef748e0feee6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

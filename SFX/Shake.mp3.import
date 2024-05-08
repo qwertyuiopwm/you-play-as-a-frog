@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Shake.mp3-fa61015e5dbb91f270b7f66ab75ac4d5.mp3str"
+
+[deps]
+
+source_file="res://SFX/Shake.mp3"
+dest_files=[ "res://.import/Shake.mp3-fa61015e5dbb91f270b7f66ab75ac4d5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
