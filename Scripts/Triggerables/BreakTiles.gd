@@ -1,30 +1,11 @@
 extends Area2D
 
 
-<<<<<<< HEAD:Scripts/Shake.gd
-onready var radius = $Area2D/CollisionShape2D.shape.radius
-onready var SHAKE_SOUND = $Shake
-
-
-func on_cast(_caster):
-	var _c = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
-	var __c = $AnimatedSprite.play("default")
-	Player.MusicPlayer.PlayOnNode(SHAKE_SOUND, Player)
-	
-
-
-
-
-func animation_finished():
-	
-	for body in $Area2D.get_overlapping_bodies():
-=======
 export var TagToBreak := ""
 
 
 func break_tiles():
 	for body in get_overlapping_bodies():
->>>>>>> 0ac80e42295ab507043cf95343afad113e369356:Scripts/Triggerables/BreakTiles.gd
 		if not body is TileMap:
 			continue
 			
