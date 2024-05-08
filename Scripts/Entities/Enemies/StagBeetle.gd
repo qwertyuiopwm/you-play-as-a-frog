@@ -30,6 +30,8 @@ func on_death():
 	emit_signal("death_finished")
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	set_target()
 	if target_player != null:
 		target_pos = target_player.global_position
@@ -79,6 +81,8 @@ func flip_body(flipped):
 	
 
 func animation_finished():
+	if health <= 0:
+		return
 	match head.animation:
 		"enraging":
 			state = states.ENRAGED
@@ -122,6 +126,8 @@ func get_state():
 
 
 func _on_HitCollider_body_shape_entered(_body_rid, hitBody, _body_shape_index, _local_shape_index):
+	if health <= 0:
+		return
 	if state != states.ENRAGED:
 		return
 	moveToPos = null
