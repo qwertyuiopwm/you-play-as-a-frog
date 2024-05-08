@@ -46,6 +46,9 @@ func hurt(damage: float, _ignore_hit_delay=false):
 	
 	if health == 0:
 		$CollisionShape2D.disabled = true
+		for child in get_children():
+			if child is AnimatedSprite:
+				child.flip_h = false
 		on_death()
 		yield(self, "death_finished")
 		queue_free()
