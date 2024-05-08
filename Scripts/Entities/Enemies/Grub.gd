@@ -21,6 +21,8 @@ func on_death():
 	emit_signal("death_finished")
 	
 func _physics_process(delta):
+	if health <= 0:
+		return
 	set_target()
 	if target_player != null:
 		target_pos = target_player.global_position
@@ -43,6 +45,8 @@ func _physics_process(delta):
 	
 
 func animation_finished():
+	if health <= 0:
+		return
 	match $AnimatedSprite.animation:
 		"raise":
 			for body in $SlamCollider.get_overlapping_bodies():

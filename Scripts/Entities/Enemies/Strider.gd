@@ -23,6 +23,8 @@ func on_death():
 	emit_signal("death_finished")
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	set_target()
 	
 	if is_sliding() and state == states.CHARGING:

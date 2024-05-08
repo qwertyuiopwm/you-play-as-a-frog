@@ -24,6 +24,8 @@ func on_death():
 	emit_signal("death_finished")
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	set_target()
 	state = get_state()
 	
@@ -45,6 +47,8 @@ func _physics_process(delta):
 
 
 func get_state():
+	if health <= 0:
+		return states.STILL
 	if target_player == null:
 		return states.STILL
 	
@@ -66,6 +70,8 @@ func get_state():
 
 
 func animation_finished():
+	if health <= 0:
+		return
 	match $AnimatedSprite.animation:
 		"ready_attack":
 			for body in $HitCollider.get_overlapping_bodies():

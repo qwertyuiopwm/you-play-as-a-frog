@@ -28,6 +28,8 @@ func on_death():
 	emit_signal("death_finished")
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	set_target()
 	state = get_state()
 	
@@ -61,6 +63,8 @@ func get_state():
 
 
 func StingCollider_body_entered(body):
+	if health <= 0:
+		return
 	if $TailSprite.animation == "sting":
 		return
 	if not body.is_in_group("Player"):
@@ -71,6 +75,8 @@ func StingCollider_body_entered(body):
 
 
 func TailSprite_animation_finished():
+	if health <= 0:
+		return
 	if $TailSprite.animation != "sting":
 		return
 	

@@ -32,6 +32,8 @@ func on_death():
 	emit_signal("death_finished")
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	set_target()
 	state = get_state()
 	
