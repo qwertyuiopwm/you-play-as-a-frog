@@ -13,24 +13,17 @@ var condiment_residue = preload("res://Spells/Spell Extras/CondimentResidue.tscn
 func on_settle(body):
 	if body is Entity:
 		body.Afflict(Effects.slippy, SLIPPY_DURATION)
-<<<<<<< HEAD:Scripts/ProcureCondiment.gd
 		Player.MusicPlayer.PlayOnNode(SLIP_SOUND, Player)
-		return
-=======
 		emit_signal("settled")
 		return false
->>>>>>> 0ac80e42295ab507043cf95343afad113e369356:Scripts/Spells/ProcureCondiment.gd
 	
 	if not body is TileMap: 
 		emit_signal("settled")
 		return false
 	
-<<<<<<< HEAD:Scripts/ProcureCondiment.gd
 	Player.MusicPlayer.PlayOnNode(SETTLE_SOUND, Player)
 	
-=======
 	emit_signal("settled")
->>>>>>> 0ac80e42295ab507043cf95343afad113e369356:Scripts/Spells/ProcureCondiment.gd
 	var residue = condiment_residue.instance()
 	get_parent().call_deferred("add_child", residue)
 	residue.global_position = global_position
