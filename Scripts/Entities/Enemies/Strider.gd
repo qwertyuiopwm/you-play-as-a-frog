@@ -14,7 +14,7 @@ enum states {
 }
 
 
-var state
+var state = states.STILL
 var randomnum = randf()
 
 func on_death():
@@ -25,7 +25,7 @@ func on_death():
 func _physics_process(delta):
 	set_target()
 	
-	if is_sliding():
+	if is_sliding() and state == states.CHARGING:
 		move(0, delta)
 		return
 	
