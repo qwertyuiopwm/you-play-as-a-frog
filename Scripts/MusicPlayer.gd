@@ -12,19 +12,30 @@ func PauseSong(paused: bool):
 		return
 	Songs[CurrentlyPlaying].get_tree().paused = paused
 
+func PlaySongWithIntro(intro: String, song: String):
+	StopMusic()
+	
+	var introFile = Songs[intro]
+	introFile.play()
+	yield(introFile, "finished")
+	
+	PlaySong(song)
+
+func StopMusic():
+	if CurrentlyPlaying == "NONE": return
+	Songs[CurrentlyPlaying].stop()
+	CurrentlyPlaying = "NONE"
+
 func PlaySong(song: String):
 	if song == "NONE":
-		if CurrentlyPlaying == "NONE": return
-		Songs[CurrentlyPlaying].stop()
-		CurrentlyPlaying = "NONE"
+		StopMusic()
 		return
 	
 	if not Songs.has(song):
 		return
 		
 	print("Switching music from "+CurrentlyPlaying+" to "+song)
-	if CurrentlyPlaying != "NONE":
-		Songs[CurrentlyPlaying].stop()
+	StopMusic()
 	Songs[song].play()
 	CurrentlyPlaying = song
 
