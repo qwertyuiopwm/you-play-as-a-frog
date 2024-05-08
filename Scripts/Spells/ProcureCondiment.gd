@@ -1,8 +1,8 @@
 extends "res://Scripts/BaseScripts/BouncingSpell.gd"
 
 
-export(float) var SLIPPY_DURATION = 2
-export(float) var SELF_SLIPPY_DURATION = 1.5
+export var SLIPPY_DURATION: float = 2
+export var SELF_SLIPPY_DURATION: float = 1.5
 export var SETTLE_SOUND := ""
 export var SLIP_SOUND := ""
 
