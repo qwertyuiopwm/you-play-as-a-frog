@@ -3,4 +3,6 @@
 [ext_resource path="res://Scripts/Triggerables/BreakTiles.gd" type="Script" id=1]
 
 [node name="BreakTiles" type="Area2D"]
+collision_layer = 15
+collision_mask = 15
 script = ExtResource( 1 )
