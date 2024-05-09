@@ -261,7 +261,7 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 14/shape_one_way_margin = 0.0
 14/shapes = [  ]
 14/z_index = 0
-15/name = "Rock"
+15/name = "Rock (croc)"
 15/texture = ExtResource( 4 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
@@ -303,7 +303,7 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 16/z_index = 0
-17/name = "BreakRock (smash)"
+17/name = "BreakRock (smash) (croc)"
 17/texture = ExtResource( 4 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
