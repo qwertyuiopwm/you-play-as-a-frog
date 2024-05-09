@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=4]
+[ext_resource path="res://Triggerables/InvisibleWall.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 71.5, 195.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 256 )
@@ -39,6 +43,14 @@ format = 1
 tile_data = PoolIntArray( -131074, 1610612736, 0, -131073, 1610612736, 0, -196608, 1610612736, 0, -196607, 1610612736, 0 )
 script = ExtResource( 4 )
 OpenOffset = Vector2( 0, -3e+07 )
+
+[node name="water_wall1" parent="." groups=["Doors"] instance=ExtResource( 5 )]
+State = true
+OpenOffset = Vector2( -500, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="water_wall1"]
+position = Vector2( 827, -452 )
+shape = SubResource( 2 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 Triggerables = [ NodePath("../Walls") ]

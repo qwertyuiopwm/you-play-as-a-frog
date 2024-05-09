@@ -61,7 +61,7 @@ position = Vector2( -10304, 2496 )
 position = Vector2( -10624, 641 )
 
 [node name="Swamp15" parent="." instance=ExtResource( 15 )]
-position = Vector2( -20736, -256 )
+position = Vector2( -20736, -255 )
 
 [node name="SavePoint" parent="." instance=ExtResource( 16 )]
 position = Vector2( -154, 1126 )
