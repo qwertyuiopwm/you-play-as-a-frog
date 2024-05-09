@@ -13,7 +13,8 @@ class effect_sorter:
 
 
 func _process(delta):
-	get_parent().modulate = get_parent_modulate()
+	if visible:
+		get_parent().modulate = get_parent_modulate()
 	
 	CurrEffects = get_effects()
 	

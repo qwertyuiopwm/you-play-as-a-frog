@@ -40,7 +40,6 @@ TopColor = Color( 0.0784314, 0.435294, 0.0352941, 1 )
 BottomText = "Level 2"
 BottomColor = Color( 0.462745, 0.164706, 0.584314, 1 )
 SetPlayerPosition = NodePath("TPpos")
-CreateSavePoint = true
 
 [node name="TPpos" type="Node2D" parent="forest-swamp"]
 position = Vector2( 5145, 14974.5 )
@@ -61,7 +60,6 @@ TopColor = Color( 0.164706, 0.607843, 0.113725, 1 )
 BottomText = "Level 1"
 BottomColor = Color( 0.611765, 0.247059, 0.384314, 1 )
 SetPlayerPosition = NodePath("TPpos")
-CreateSavePoint = true
 
 [node name="TPpos" type="Node2D" parent="swamp-forest"]
 position = Vector2( 5136, 13500.3 )
