@@ -20,7 +20,9 @@ func break_tiles():
 			if tile_id == -1:
 				continue
 			
-			if not TagToBreak in body.tile_set.tile_get_name(tile_id):
+			var tileName = body.tile_set.tile_get_name(tile_id)
+			
+			if not TagToBreak in tileName:
 				continue
 			
 			var tile_global_pos = body.map_to_world(tile_pos)
@@ -33,7 +35,7 @@ func break_tiles():
 					continue
 			
 			elif shape is CircleShape2D:
-				var dist_to_tile = global_position.distance_to(tile_global_pos + body.global_position)
+				var dist_to_tile = $CollisionShape2D.global_position.distance_to(tile_global_pos + body.global_position)
 				if dist_to_tile > shape.radius:
 					continue
 			
