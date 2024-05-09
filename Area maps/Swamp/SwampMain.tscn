@@ -65,3 +65,12 @@ position = Vector2( -20736, -255 )
 
 [node name="SavePoint" parent="." instance=ExtResource( 16 )]
 position = Vector2( -154, 1126 )
+
+[node name="SavePoint2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 424, 7081 )
+
+[node name="SavePoint3" parent="." instance=ExtResource( 16 )]
+position = Vector2( -3885, 6044 )
+
+[node name="SavePoint4" parent="." instance=ExtResource( 16 )]
+position = Vector2( -10267, 1513 )
