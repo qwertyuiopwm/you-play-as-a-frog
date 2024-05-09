@@ -50,6 +50,7 @@ func hurt(damage: float, _ignore_hit_delay=false):
 			if child is AnimatedSprite:
 				child.flip_h = false
 		$EffectManager.visible = false
+		flip_body(false)
 		on_death()
 		yield(self, "death_finished")
 		queue_free()
