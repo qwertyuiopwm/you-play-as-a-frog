@@ -28,7 +28,7 @@ tile_set = ExtResource( 1 )
 collision_layer = 11
 collision_mask = 11
 format = 1
-tile_data = PoolIntArray( 196613, 15, 0, 196625, 15, 0, 327685, 15, 0, 327697, 15, 0, 524305, 15, 0, 655377, 15, 0 )
+tile_data = PoolIntArray( 196613, 15, 0, 196625, 15, 0, 262161, 17, 0, 327685, 15, 0, 327697, 15, 0, 458771, 17, 0, 458772, 17, 0, 458773, 17, 0, 524306, 17, 0, 589842, 17, 0, 655378, 17, 0 )
 
 [node name="Chest" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1316, 611 )

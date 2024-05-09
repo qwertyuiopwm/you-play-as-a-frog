@@ -56,7 +56,9 @@ func _physics_process(delta):
 			pass
 		
 		states.SWOOPING:
-			var vel: Vector2 = move(target_pos, delta)
+			var vel = move(target_pos, delta)
+			if not vel:
+				return
 			if vel.length() < 5:
 				state = states.DEFAULT
 		
