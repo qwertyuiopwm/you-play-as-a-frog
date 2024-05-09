@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Swamp/StagBeetle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 80.625, 82.875 )
 
 [node name="Swamp4" type="Node2D"]
 
@@ -41,7 +46,25 @@ tile_data = PoolIntArray( 196597, 17, 0, 262133, 15, 0, 327669, 15, 0 )
 position = Vector2( -345, 279 )
 
 [node name="Chest" parent="." instance=ExtResource( 2 )]
-position = Vector2( -928, 228 )
+position = Vector2( -921, 221 )
+DroppedItems = [ ExtResource( 6 ) ]
+
+[node name="PlayerDetector" parent="Chest" instance=ExtResource( 5 )]
+position = Vector2( -2, -1 )
+Triggerables = [ NodePath("") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
+position = Vector2( -1, 1 )
+shape = SubResource( 1 )
 
 [node name="Chest2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -288, 663 )
+DroppedItems = [ ExtResource( 6 ) ]
+
+[node name="PlayerDetector" parent="Chest2" instance=ExtResource( 5 )]
+position = Vector2( -1, 2 )
+Triggerables = [ NodePath("") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest2/PlayerDetector"]
+position = Vector2( 2, 4 )
+shape = SubResource( 1 )
