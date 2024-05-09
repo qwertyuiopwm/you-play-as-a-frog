@@ -79,12 +79,3 @@ position = Vector2( -537, 160 )
 
 [node name="Strider4" parent="EnemyManager" instance=ExtResource( 7 )]
 position = Vector2( -539, 38 )
-
-[node name="Strider5" parent="EnemyManager" instance=ExtResource( 7 )]
-position = Vector2( -600, 347 )
-
-[node name="Strider6" parent="EnemyManager" instance=ExtResource( 7 )]
-position = Vector2( -591, -155 )
-
-[node name="Strider7" parent="EnemyManager" instance=ExtResource( 7 )]
-position = Vector2( -874, 99 )
