@@ -5,8 +5,12 @@ signal enabled
 
 export var CONTACT_DAMAGE: float = 40
 export var KNOCKBACK_VELOCITY: Vector2 = Vector2(-200, 0)
+export var END_POS_COMFORT_RADIUS: int = 10
 
+export var EndPosPath: NodePath 
 export var Enabled := false setget set_Enabled
+
+onready var EndPos = get_node(EndPosPath)
 
 func set_Enabled(val):
 	Enabled = val
@@ -19,11 +23,18 @@ func _ready():
 	$AnimatedSprite.play("default")
 
 
+func hurt(_dmg, _ignore_hit_delay=false):
+	pass
+
+
 func _physics_process(delta):
 	if not Enabled:
 		return
 	
-	move(global_position + Vector2(-1, 0), delta)
+	move(EndPos, delta)
+	
+	if global_position.distance_to(EndPos) < END_POS_COMFORT_RADIUS:
+		queue_free()
 	
 	for body in $BreakTiles.get_overlapping_bodies():
 		if body is TileMap and not body.is_in_group("ground"):
