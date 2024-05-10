@@ -11,6 +11,7 @@ export var SlideBackTime: float = 2
 export var FreezeTime: float = 5
 
 export var ZoomChange: Vector2 = Vector2.ZERO
+export var EndZoomChange: Vector2 = Vector2.ZERO
 
 export var FreezePlayer: bool = true
 
@@ -63,8 +64,9 @@ func MoveTween_completed(_p1, _p2):
 	)
 	$ZoomTween.interpolate_property($Camera2D, "zoom", 
 		PlayerCamera.zoom + ZoomChange, 
-		PlayerCamera.zoom, 
+		PlayerCamera.zoom + EndZoomChange, 
 		SlideBackTime, Tween.TRANS_EXPO, Tween.EASE_IN_OUT
 	)
 	$MoveTween.start()
 	$ZoomTween.start()
+	PlayerCamera.zoom += EndZoomChange
