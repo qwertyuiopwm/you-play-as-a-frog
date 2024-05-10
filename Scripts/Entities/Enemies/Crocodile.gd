@@ -27,20 +27,19 @@ func on_death():
 
 func _physics_process(delta):
 	move(global_position + Vector2(-1, 0), delta)
+	
 	if state == states.BREAKING:
 		return
 	
 	for body in $BreakTiles.get_overlapping_bodies():
-		if body is TileMap:
+		if body is TileMap and not body.is_in_group("ground"):
 			state = states.BREAKING
 			break_tiles()
 			break
 
 
 func break_tiles():
-	print("waiting...")
 	yield(Main.wait(1), "completed")
-	print("breaking")
 	$BreakTiles.break_tiles()
 	state = states.MOVING
 
