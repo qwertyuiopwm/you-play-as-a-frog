@@ -14,14 +14,12 @@
 [ext_resource path="res://Spells/ProcureCondiment.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scripts/SaveSystem.gd" type="Script" id=13]
 [ext_resource path="res://Triggerables/SlideCamera.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemies/CaveCrypt/SpiderMedium.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 100 )
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 39.0128
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 7 )
@@ -92,15 +90,6 @@ ZoomChange = Vector2( 0.1, 0.1 )
 [node name="Position2D" type="Position2D" parent="SlideCamera"]
 position = Vector2( 109, -36 )
 
-[node name="PlayerDetector2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -268, -107 )
-Triggerables = [ NodePath("../SlideCamera") ]
-
-[node name="Line2D2" type="Line2D" parent="PlayerDetector2"]
-position = Vector2( 29, 79 )
-points = PoolVector2Array( 18, -123, -80, -131, -77, -30 )
-width = 20.0
-default_color = Color( 1, 1, 1, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
-shape = SubResource( 3 )
+[node name="MediumSpider" parent="." instance=ExtResource( 15 )]
+position = Vector2( -329, -113 )
+BABY_SPIDERS_SPAWNED = 30
