@@ -8,9 +8,12 @@ export var JUMP_ROTATION_SPEED: int = 400
 export var JUMP_DIST: int = 200
 export var TARGET_COMFORT_RADIUS: int = 10
 export var DIR_ROT_OFFSET: int = 30
+export var BABY_SPAWN_DIST: int = 25
 export var BABY_SPIDERS_SPAWNED: int = 0
 export var BabySpiderScene: PackedScene
 
+var rng = RandomNumberGenerator.new()
+var randnum = 0
 
 enum states {
 	STILL,
@@ -19,14 +22,12 @@ enum states {
 	JUMPING,
 }
 
-
 var state = states.STILL
-var rng = RandomNumberGenerator.new()
-var randnum = 0
 
 
 func _ready():
 	var _c = $HitCollider.connect("body_entered", self, "HitCollider_body_entered")
+
 
 func on_death():
 	$AnimatedSprite.play("death")
@@ -34,10 +35,15 @@ func on_death():
 	for _x in range(BABY_SPIDERS_SPAWNED):
 		var inst = BabySpiderScene.instance()
 		Main.call_deferred("add_child", inst)
-		inst.global_position = global_position + Vector2(_x, _x)
+		
+		var x = rng.randi_range(-BABY_SPAWN_DIST, BABY_SPAWN_DIST)
+		var y = rng.randi_range(-BABY_SPAWN_DIST, BABY_SPAWN_DIST)
+		
+		inst.global_position = global_position + Vector2(x, y)
 	
 	yield($AnimatedSprite, "animation_finished")
 	emit_signal("death_finished")
+
 
 func _physics_process(delta):
 	if health <= 0:
@@ -48,7 +54,6 @@ func _physics_process(delta):
 	if is_sliding():
 		move(0, delta)
 		return
-	
 	
 	match state:
 		states.STILL: 
