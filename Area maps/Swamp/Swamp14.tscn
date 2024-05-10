@@ -96,13 +96,13 @@ Delay = 2.0
 Trigger = NodePath("../Crocodile")
 Toggle = true
 
-[node name="PlayerDetector2" parent="." instance=ExtResource( 3 )]
+[node name="SaveGame" parent="." instance=ExtResource( 3 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaveGame"]
 position = Vector2( 62, -40 )
 shape = SubResource( 3 )
 
-[node name="SaveTriggerable" parent="PlayerDetector2" instance=ExtResource( 10 )]
+[node name="SaveTriggerable" parent="SaveGame" instance=ExtResource( 10 )]
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( -11500, -492 )
