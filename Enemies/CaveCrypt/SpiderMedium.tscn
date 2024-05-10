@@ -1,13 +1,13 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/SmallSpider.gd" type="Script" id=1]
-[ext_resource path="res://art/Enemies/spidor_baby.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/CaveCrypt/SpiderSmall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/Effects/BAM_explosion.png" type="Texture" id=5]
+[ext_resource path="res://art/Enemies/spidor_med.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
 height = 0.0
 
 [sub_resource type="AtlasTexture" id=22]
@@ -58,17 +58,33 @@ region = Rect2( 64, 192, 64, 64 )
 atlas = ExtResource( 5 )
 region = Rect2( 128, 192, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 64, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
@@ -77,20 +93,21 @@ animations = [ {
 "name": "death",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 18 ) ],
+"frames": [ SubResource( 34 ) ],
 "loop": false,
 "name": "still",
 "speed": 0.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
 "loop": true,
 "name": "walk",
 "speed": 8.0
 } ]
 
 [sub_resource type="CircleShape2D" id=21]
+radius = 10.6667
 
-[node name="SmallSpider" type="KinematicBody2D" groups=["Enemy"]]
+[node name="MediumSpider" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 256
 collision_mask = 258
@@ -99,6 +116,8 @@ SPEED = 100
 STEERING_MULT = 5.0
 health = 3.0
 CONTACT_DAMAGE = 2
+BABY_SPIDERS_SPAWNED = 10
+BabySpiderScene = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
