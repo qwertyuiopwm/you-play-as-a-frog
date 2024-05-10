@@ -108,7 +108,7 @@ radius = 15.0
 height = 388.0
 
 [sub_resource type="CircleShape2D" id=55]
-radius = 211.038
+radius = 387.005
 
 [node name="Crocodile" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 256
@@ -139,5 +139,5 @@ shape = SubResource( 32 )
 TagToBreak = "(croc)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BreakTiles"]
-position = Vector2( -423, 23 )
+position = Vector2( -162, 26 )
 shape = SubResource( 55 )
