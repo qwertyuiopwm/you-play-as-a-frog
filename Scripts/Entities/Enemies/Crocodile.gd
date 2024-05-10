@@ -1,11 +1,18 @@
 extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
+signal enabled
+
 export var BREAK_DELAY: float = 1
 export var CONTACT_DAMAGE: float = 40
 export var KNOCKBACK_VELOCITY: Vector2 = Vector2(-200, 0)
 
-export var Enabled := false
+export var Enabled := false setget set_Enabled
+
+func set_Enabled(val):
+	Enabled = val
+	emit_signal("enabled")
+
 
 enum states {
 	MOVING,
@@ -18,12 +25,8 @@ var state = states.MOVING
 
 func _ready():
 	var _c = $HitCollider.connect("body_entered", self, "HitCollider_body_entered")
-
-
-func on_death():
-	$AnimatedSprite.play("death")
-	yield($AnimatedSprite, "animation_finished")
-	emit_signal("death_finished")
+	yield(self, "enabled")
+	$AnimatedSprite.play("default")
 
 
 func _physics_process(delta):
@@ -40,6 +43,12 @@ func _physics_process(delta):
 			state = states.BREAKING
 			break_tiles()
 			break
+
+
+func on_death():
+	$AnimatedSprite.play("death")
+	yield($AnimatedSprite, "animation_finished")
+	emit_signal("death_finished")
 
 
 func break_tiles():
