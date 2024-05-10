@@ -31,9 +31,9 @@ func _physics_process(delta):
 	if not Enabled:
 		return
 	
-	move(EndPos, delta)
+	move(EndPos.global_position, delta)
 	
-	if global_position.distance_to(EndPos) < END_POS_COMFORT_RADIUS:
+	if global_position.distance_to(EndPos.global_position) < END_POS_COMFORT_RADIUS:
 		queue_free()
 	
 	for body in $BreakTiles.get_overlapping_bodies():
