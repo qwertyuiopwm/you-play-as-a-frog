@@ -1,13 +1,15 @@
 extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
-export var CIRCLE_RADIUS = 60
-export var ATTACK_RADIUS = 70
-export var CONTACT_DAMAGE = 10
-export var JUMP_ROTATION_SPEED = 400
-export var JUMP_DIST = 200
-export var TARGET_COMFORT_RADIUS = 10
-export var DIR_ROT_OFFSET = 30
+export var CIRCLE_RADIUS: int = 60
+export var ATTACK_RADIUS: int = 70
+export var CONTACT_DAMAGE: int = 10
+export var JUMP_ROTATION_SPEED: int = 400
+export var JUMP_DIST: int = 200
+export var TARGET_COMFORT_RADIUS: int = 10
+export var DIR_ROT_OFFSET: int = 30
+export var BABY_SPIDERS_SPAWNED: int = 0
+export var BabySpiderScene: PackedScene
 
 
 enum states {
@@ -28,6 +30,12 @@ func _ready():
 
 func on_death():
 	$AnimatedSprite.play("death")
+	
+	for _x in range(BABY_SPIDERS_SPAWNED):
+		var inst = BabySpiderScene.instance()
+		Main.call_deferred("add_child", inst)
+		inst.global_position = global_position + Vector2(_x, _x)
+	
 	yield($AnimatedSprite, "animation_finished")
 	emit_signal("death_finished")
 
