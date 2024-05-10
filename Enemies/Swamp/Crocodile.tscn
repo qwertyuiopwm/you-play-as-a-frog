@@ -1,10 +1,14 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://art/Enemies/crocodile.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/Crocodile.gd" type="Script" id=2]
 [ext_resource path="res://Triggerables/BreakTiles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/Poison.tscn" type="PackedScene" id=4]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/Effects/BLAM_explosion.png" type="Texture" id=6]
+[ext_resource path="res://Effects/Stunned.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Effects/Slowed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 6 )
@@ -114,6 +118,7 @@ radius = 387.005
 collision_layer = 256
 collision_mask = 258
 script = ExtResource( 2 )
+IMMUNITIES = [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ) ]
 CONTACT_DAMAGE = 60.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
