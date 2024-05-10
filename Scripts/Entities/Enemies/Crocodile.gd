@@ -5,6 +5,7 @@ export var BREAK_DELAY: float = 1
 export var CONTACT_DAMAGE: float = 40
 export var KNOCKBACK_VELOCITY: Vector2 = Vector2(-200, 0)
 
+export var Enabled := false
 
 enum states {
 	MOVING,
@@ -26,6 +27,9 @@ func on_death():
 
 
 func _physics_process(delta):
+	if not Enabled:
+		return
+	
 	move(global_position + Vector2(-1, 0), delta)
 	
 	if state == states.BREAKING:
