@@ -8,7 +8,6 @@
 [ext_resource path="res://art/Enemies/spidor_med.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 10.0
 height = 0.0
 
 [sub_resource type="AtlasTexture" id=22]
