@@ -82,7 +82,6 @@ EndPosPath = NodePath("../Position2D")
 [node name="SlideCamera" parent="." instance=ExtResource( 9 )]
 SlidePosPath = NodePath("Position2D")
 SlideBackTime = 1.0
-FreezeTime = 4.0
 ZoomChange = Vector2( 0.5, 0.5 )
 EndZoomChange = Vector2( 0.25, 0.25 )
 
