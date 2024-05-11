@@ -246,7 +246,10 @@ RAM_DAMAGE = 15
 =======
 health = 20.0
 RUSH_SPEED_MULT = 10
+<<<<<<< HEAD
 >>>>>>> 2ecba96689f04499952225bada3b6b764ed0e2cb
+=======
+>>>>>>> 641148d277a403e53cee74b5ac9ab1fd91b1dfbf
 
 [node name="body" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
