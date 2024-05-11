@@ -23,6 +23,7 @@ onready var enemies = {
 	CobaltBeetle = preload("res://Enemies/CaveCrypt/CobaltBeetle.tscn"),
 	BabyCentipede = preload("res://Enemies/CaveCrypt/BabyCentipedeHead.tscn"),
 	SmallSpider = preload("res://Enemies/CaveCrypt/SpiderSmall.tscn"),
+	MediumSpider = preload("res://Enemies/CaveCrypt/SpiderMedium.tscn"),
 	Bat = preload("res://Enemies/CaveCrypt/Bat.tscn")
 }
 

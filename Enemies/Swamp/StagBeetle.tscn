@@ -230,17 +230,23 @@ animations = [ {
 radius = 25.0
 height = 30.0
 
-[sub_resource type="CapsuleShape2D" id=32]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id=47]
+radius = 30.0
+height = 30.0
 
-[node name="Entity" type="KinematicBody2D" groups=["Enemy"]]
+[node name="StagBeetle" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 256
 collision_mask = 259
 script = ExtResource( 2 )
+<<<<<<< HEAD
 SLIP_WALL_DAMAGE = 15
 SLIP_SPEED_MULT = 7
 health = 35.0
 RAM_DAMAGE = 15
+=======
+health = 20.0
+RUSH_SPEED_MULT = 10
+>>>>>>> 2ecba96689f04499952225bada3b6b764ed0e2cb
 
 [node name="body" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
@@ -258,12 +264,13 @@ rotation = 1.5708
 shape = SubResource( 31 )
 
 [node name="HitCollider" type="Area2D" parent="." groups=["Enemy"]]
-position = Vector2( -35, 4 )
 collision_layer = 9
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
-shape = SubResource( 32 )
+position = Vector2( -8, 4 )
+rotation = 1.5708
+shape = SubResource( 47 )
 
 [node name="HPBar" parent="." instance=ExtResource( 4 )]
 margin_left = -16.0

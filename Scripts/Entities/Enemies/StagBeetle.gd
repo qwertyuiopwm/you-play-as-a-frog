@@ -3,7 +3,7 @@ extends "res://Scripts/BaseScripts/Enemy.gd"
 
 export var RAM_DAMAGE = 10
 export var RUSH_SPEED_MULT = 5
-export var VERT_DISTANCE_TO_RUSH = 10
+export var RUSH_DISTANCE_ERROR_RANGE = 10
 
 onready var head = $head
 onready var body = $body
@@ -52,7 +52,7 @@ func _physics_process(delta):
 			body.speed_scale = 1
 			body.play("walk_vert")
 			head.play("still")
-			move(Vector2(global_position.x, target_pos.y), delta)
+			align(delta)
 		states.ENRAGING:
 			moveToPos = target_pos
 			var rayResult = Main.cast_ray_towards_point(global_position, target_pos, 900, 0b00000000_00000000_00000000_00001000, [])
@@ -66,17 +66,27 @@ func _physics_process(delta):
 			head.play("rushing")
 			body.play("walk_horo")
 			move(moveToPos, delta)
+
+func align(delta):
+	if not target_pos:
+		return
+		
+	var yDistance = Vector2(0, global_position.y).distance_to(Vector2(0, target_pos.y))
+	var xDistance = Vector2(global_position.x, 0).distance_to(Vector2(target_pos.x, 0))
 	
+	if yDistance <= xDistance:
+		move(Vector2(global_position.x, target_pos.y), delta)
+		return
+		
+	move(Vector2(target_pos.x, global_position.y), delta)
 
 func flip_body(flipped):
 	body.flip_h = flipped
 	head.flip_h = flipped
 	
 	if flipped:
-		HitCollider.position = Vector2(35, 4)
 		head.offset = Vector2(30, -13)
 	else:
-		HitCollider.position = Vector2(-35, 4)
 		head.offset = Vector2(-30, -13)
 	
 
@@ -114,14 +124,15 @@ func get_state():
 		return states.STILL
 	
 	var yDistance = Vector2(0, global_position.y).distance_to(Vector2(0, target_pos.y))
+	var xDistance = Vector2(global_position.x, 0).distance_to(Vector2(target_pos.x, 0))
 	
-	if yDistance < VERT_DISTANCE_TO_RUSH and (head.animation == "enraging" or head.animation == "rushing"):
+	if (yDistance < RUSH_DISTANCE_ERROR_RANGE or xDistance < RUSH_DISTANCE_ERROR_RANGE) and (head.animation == "enraging" or head.animation == "rushing"):
 		return states.ENRAGED
 	
-	if yDistance < VERT_DISTANCE_TO_RUSH:
+	if (yDistance < RUSH_DISTANCE_ERROR_RANGE or xDistance < RUSH_DISTANCE_ERROR_RANGE):
 		return states.ENRAGING
 	
-	if yDistance >= VERT_DISTANCE_TO_RUSH:
+	if (yDistance >= RUSH_DISTANCE_ERROR_RANGE or xDistance >= RUSH_DISTANCE_ERROR_RANGE):
 		return states.WALK
 
 
