@@ -12,10 +12,6 @@ export var Enabled := false setget set_Enabled
 
 onready var EndPos = get_node(EndPosPath)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 641148d277a403e53cee74b5ac9ab1fd91b1dfbf
 func set_Enabled(val):
 	$AnimatedSprite.play("wake up")
 	yield($AnimatedSprite, "animation_finished")

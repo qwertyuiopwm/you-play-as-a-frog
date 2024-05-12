@@ -114,14 +114,8 @@ collision_mask = 258
 script = ExtResource( 1 )
 SPEED = 100
 STEERING_MULT = 5.0
-<<<<<<< HEAD
-health = 3.0
-CONTACT_DAMAGE = 2
-BABY_SPIDERS_SPAWNED = 10
-=======
 health = 13.0
-BABY_SPIDERS_SPAWNED = 60
->>>>>>> 641148d277a403e53cee74b5ac9ab1fd91b1dfbf
+BABY_SPIDERS_SPAWNED = 5
 BabySpiderScene = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

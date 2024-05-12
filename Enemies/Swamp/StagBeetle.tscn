@@ -238,18 +238,10 @@ height = 30.0
 collision_layer = 256
 collision_mask = 259
 script = ExtResource( 2 )
-<<<<<<< HEAD
-SLIP_WALL_DAMAGE = 15
+SLIP_WALL_DAMAGE = 10
 SLIP_SPEED_MULT = 7
-health = 35.0
-RAM_DAMAGE = 15
-=======
 health = 20.0
-RUSH_SPEED_MULT = 10
-<<<<<<< HEAD
->>>>>>> 2ecba96689f04499952225bada3b6b764ed0e2cb
-=======
->>>>>>> 641148d277a403e53cee74b5ac9ab1fd91b1dfbf
+RAM_DAMAGE = 15
 
 [node name="body" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
