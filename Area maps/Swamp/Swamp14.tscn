@@ -123,5 +123,5 @@ position = Vector2( -9293, -453 )
 position = Vector2( -9825, -849 )
 shape = SubResource( 4 )
 
-[node name="AdjustCamera" parent="PlayerDetector2" instance=ExtResource( 11 )]
+[node name="AdjustCamera" parent="." instance=ExtResource( 11 )]
 ZoomChange = Vector2( -0.25, -0.25 )
