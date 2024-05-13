@@ -50,6 +50,7 @@ func _physics_process(delta):
 	
 	if global_position.x - EndAligningPos.global_position.x < 0:
 		aligning = false
+		$HitCollider/CollisionShape2D.disabled = true
 	
 	if global_position.x - EndPos.global_position.x < 0:
 		queue_free()

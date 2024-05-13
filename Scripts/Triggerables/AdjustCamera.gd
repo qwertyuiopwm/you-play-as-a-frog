@@ -18,6 +18,7 @@ func _ready():
 
 
 func onTriggerAny(_trigger):
+	print("fixing camera")
 	Player.can_move = not FreezePlayer
 	
 	$MoveTween.interpolate_property(PlayerCamera, "position", 

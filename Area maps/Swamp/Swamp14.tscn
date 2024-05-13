@@ -118,6 +118,7 @@ position = Vector2( -10818, -436 )
 position = Vector2( -9293, -453 )
 
 [node name="PlayerDetector2" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("../AdjustCamera") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
 position = Vector2( -9825, -849 )
