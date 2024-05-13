@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/centipede bossbar full (1).png-45537f56eed20f9b6c574a0ea889284f.stex"
+path="res://.import/hp_empty_new.png-5d4ade2d56487e284dfb5a6097d73a31.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Enemies/Extras/centipede bossbar full (1).png"
-dest_files=[ "res://.import/centipede bossbar full (1).png-45537f56eed20f9b6c574a0ea889284f.stex" ]
+source_file="res://art/GUI/hp_empty_new.png"
+dest_files=[ "res://.import/hp_empty_new.png-5d4ade2d56487e284dfb5a6097d73a31.stex" ]
 
 [params]
 
