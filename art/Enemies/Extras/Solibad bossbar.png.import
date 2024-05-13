@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/centipede bossbar empty (1).png-e9f8db744d8c05a4bc3f2f27fb6e1d26.stex"
+path="res://.import/Solibad bossbar.png-0754cbcfba1d7902bb715f31f2c3fdda.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Enemies/Extras/centipede bossbar empty (1).png"
-dest_files=[ "res://.import/centipede bossbar empty (1).png-e9f8db744d8c05a4bc3f2f27fb6e1d26.stex" ]
+source_file="res://art/Enemies/Extras/Solibad bossbar.png"
+dest_files=[ "res://.import/Solibad bossbar.png-0754cbcfba1d7902bb715f31f2c3fdda.stex" ]
 
 [params]
 
