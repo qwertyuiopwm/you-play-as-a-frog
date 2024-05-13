@@ -77,13 +77,16 @@ shape = SubResource( 1 )
 
 [node name="Crocodile" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1052, -492 )
-EndPosPath = NodePath("../Position2D")
+SPEED_DIST_MULT = 1.1
+EndAligningPosPath = NodePath("../CrocEndAlignPos")
+EndPosPath = NodePath("../CrocEndPos")
 
 [node name="SlideCamera" parent="." instance=ExtResource( 9 )]
 SlidePosPath = NodePath("Position2D")
 SlideBackTime = 1.0
 ZoomChange = Vector2( 0.5, 0.5 )
 EndZoomChange = Vector2( 0.25, 0.25 )
+EndCamOffset = Vector2( 150, 0 )
 
 [node name="Position2D" type="Position2D" parent="SlideCamera"]
 position = Vector2( 529, -458 )
@@ -104,5 +107,8 @@ shape = SubResource( 3 )
 
 [node name="SaveTriggerable" parent="SaveGame" instance=ExtResource( 10 )]
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( -11500, -492 )
+[node name="CrocEndPos" type="Position2D" parent="."]
+position = Vector2( -10818, -436 )
+
+[node name="CrocEndAlignPos" type="Position2D" parent="."]
+position = Vector2( -9293, -453 )
