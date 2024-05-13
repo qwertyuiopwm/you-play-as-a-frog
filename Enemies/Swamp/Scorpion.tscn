@@ -159,7 +159,9 @@ scale = Vector2( 2, 2 )
 collision_layer = 256
 collision_mask = 259
 script = ExtResource( 2 )
-STING_DAMAGE = 15
+health = 50.0
+POISON_STACKS = 10
+POISON_DURATION = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3.57628e-07 )

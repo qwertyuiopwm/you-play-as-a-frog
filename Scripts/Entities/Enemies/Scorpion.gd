@@ -1,9 +1,11 @@
 extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
-export var MIN_CIRCLE_RADIUS = -30
-export var STING_DAMAGE = 20
-export var TARGET_COMFORT_RADIUS = 10
+export var MIN_CIRCLE_RADIUS: int = -30
+export var STING_DAMAGE: float = 20
+export var TARGET_COMFORT_RADIUS: int = 10
+export var POISON_STACKS: int = 5
+export var POISON_DURATION: float = 8
 
 enum states {
 	STILL,
@@ -83,7 +85,7 @@ func TailSprite_animation_finished():
 	for body in $HitCollider.get_overlapping_bodies():
 		if body.is_in_group("Player"):
 			body.hurt(STING_DAMAGE, true)
-			body.Afflict(Effects.poison, 5, 8)
+			body.Afflict(Effects.poison, POISON_DURATION, POISON_STACKS)
 	
 	$TailSprite.play("still")
 	yield(Main.wait(1.5), "completed")

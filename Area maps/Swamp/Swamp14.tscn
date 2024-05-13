@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Triggers/PassTrigger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Triggerables/SlideCamera.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Triggerables/SaveGame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Triggerables/AdjustCamera.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 71.5, 195.5 )
@@ -19,6 +20,9 @@ extents = Vector2( 25, 256 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 65, 21 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 290.5, 42.5 )
 
 [node name="Swamp14" type="Node2D"]
 
@@ -65,7 +69,7 @@ State = true
 OpenOffset = Vector2( -500, 0 )
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="wall2"]
-position = Vector2( -10192, -458 )
+position = Vector2( -10184, -458 )
 shape = SubResource( 2 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
@@ -77,13 +81,16 @@ shape = SubResource( 1 )
 
 [node name="Crocodile" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1052, -492 )
-EndPosPath = NodePath("../Position2D")
+SPEED_DIST_MULT = 1.1
+EndAligningPosPath = NodePath("../CrocEndAlignPos")
+EndPosPath = NodePath("../CrocEndPos")
 
 [node name="SlideCamera" parent="." instance=ExtResource( 9 )]
 SlidePosPath = NodePath("Position2D")
 SlideBackTime = 1.0
 ZoomChange = Vector2( 0.5, 0.5 )
 EndZoomChange = Vector2( 0.25, 0.25 )
+EndCamOffset = Vector2( 150, 0 )
 
 [node name="Position2D" type="Position2D" parent="SlideCamera"]
 position = Vector2( 529, -458 )
@@ -104,5 +111,19 @@ shape = SubResource( 3 )
 
 [node name="SaveTriggerable" parent="SaveGame" instance=ExtResource( 10 )]
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( -11500, -492 )
+[node name="CrocEndPos" type="Position2D" parent="."]
+position = Vector2( -10818, -436 )
+
+[node name="CrocEndAlignPos" type="Position2D" parent="."]
+position = Vector2( -9293, -453 )
+
+[node name="PlayerDetector2" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("../AdjustCamera") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
+position = Vector2( -9825, -849 )
+shape = SubResource( 4 )
+
+[node name="AdjustCamera" parent="." instance=ExtResource( 11 )]
+ZoomChange = Vector2( -0.25, -0.25 )
+FreezePlayer = false

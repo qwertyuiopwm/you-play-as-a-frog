@@ -100,9 +100,9 @@ script = ExtResource( 1 )
 IMMUNITIES = [ ExtResource( 7 ) ]
 SPEED = 200
 STEERING_MULT = 5.0
-health = 9.0
+health = 12.0
 SWOOP_SPEED = 300
-DAMAGE = 4
+DAMAGE = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 physics_interpolation_mode = 1
