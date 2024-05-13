@@ -126,3 +126,4 @@ shape = SubResource( 4 )
 
 [node name="AdjustCamera" parent="." instance=ExtResource( 11 )]
 ZoomChange = Vector2( -0.25, -0.25 )
+FreezePlayer = false
