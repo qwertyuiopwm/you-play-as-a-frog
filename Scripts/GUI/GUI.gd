@@ -75,7 +75,7 @@ func onKeyClick(inputMenu, actionName):
 	for action in InputMap.get_action_list("pause_game"):
 		InputMap.action_erase_event("pause_game", action)
 	
-	inputMenu.get_node("Key").text = "Click a key to set input!"
+	inputMenu.get_node("Key").text = "Select Key"
 	for action in InputMap.get_action_list(actionName):
 		InputMap.action_erase_event(actionName, action)
 	waitingInputMenu = inputMenu
@@ -85,19 +85,19 @@ func onKeyClick(inputMenu, actionName):
 func eventToString(event: InputEvent):
 	var inputStr = event.as_text()
 	if event is InputEventMouseButton:
-		inputStr = "Mouse Button %s" % event.button_index
+		inputStr = "MB%s" % event.button_index
 	if event is InputEventJoypadButton:
-		inputStr = "Joypad Button %s" % event.button_index
+		inputStr = "Joypad %s" % event.button_index
 	if event is InputEventJoypadMotion:
 		match event.axis:
 			event.JoyAxis.JOY_AXIS_LEFT_X:
-				inputStr = "Left Joystick"
+				inputStr = "L Joy"
 			event.JoyAxis.JOY_AXIS_RIGHT_X:
-				inputStr = "Right Joystick"
+				inputStr = "R Joy"
 			event.JoyAxis.JOY_AXIS_RIGHT_Y:
-				inputStr = "Right Joystick"
+				inputStr = "R Joy"
 			event.JoyAxis.JOY_AXIS_LEFT_Y:
-				inputStr = "Left Joystick"
+				inputStr = "L Joy"
 	return inputStr
 
 func _input(event):
@@ -106,7 +106,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		return
 	var keyButton = waitingInputMenu.get_node("Key")
-	keyButton.text = "No input selected"
+	keyButton.text = "None"
 	if event.as_text() != "Escape":
 		keyButton.text = eventToString(event)
 		InputMap.action_add_event(waitingInputName, event)

@@ -5,6 +5,7 @@ onready var Player = Main.get_node("Player")
 onready var GUI = Player.get_node("GUI")
 onready var SaveMenu = GUI.get_node("SaveMenu")
 onready var SavingPopup = GUI.get_node("Saving")
+onready var SelectedSaveLabel = GUI.get_node("PauseMenu/selectedsave")
 
 signal SaveFinished
 signal LoadFinished
@@ -91,6 +92,7 @@ func playtimeFromSave(num: int):
 
 func onSaveSelect(num: int):
 	selectedSave = num
+	SelectedSaveLabel.text = "Save Slot: %d" % num
 	SaveMenu.visible = false
 	if GUI.get_node("MainMenu").visible:
 		GUI.get_node("MainMenu").visible = false
