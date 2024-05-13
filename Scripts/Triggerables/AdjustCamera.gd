@@ -25,12 +25,12 @@ func onTriggerAny(_trigger):
 		CamOffset, 
 		ChangeTime, Tween.TRANS_EXPO, Tween.EASE_IN_OUT
 	)
-	$MoveTween.start()
 	$ZoomTween.interpolate_property(PlayerCamera, "zoom", 
 		PlayerCamera.zoom, 
 		PlayerCamera.zoom + ZoomChange, 
 		ChangeTime, Tween.TRANS_EXPO, Tween.EASE_IN_OUT
 	)
+	$MoveTween.start()
 	$ZoomTween.start()
 
 
