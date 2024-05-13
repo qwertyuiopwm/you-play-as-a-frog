@@ -13,6 +13,8 @@ export var FreezeTime: float = 5
 export var ZoomChange: Vector2 = Vector2.ZERO
 export var EndZoomChange: Vector2 = Vector2.ZERO
 
+export var EndCamOffset: Vector2 = Vector2.ZERO
+
 export var FreezePlayer: bool = true
 
 onready var slidePos: Node = get_node(SlidePosPath)
@@ -59,7 +61,7 @@ func MoveTween_completed(_p1, _p2):
 	
 	$MoveTween.interpolate_property($Camera2D, "global_position", 
 		slidePos.global_position, 
-		Player.global_position, 
+		Player.global_position + EndCamOffset, 
 		SlideBackTime, Tween.TRANS_EXPO, Tween.EASE_IN_OUT
 	)
 	$ZoomTween.interpolate_property($Camera2D, "zoom", 
@@ -70,3 +72,4 @@ func MoveTween_completed(_p1, _p2):
 	$MoveTween.start()
 	$ZoomTween.start()
 	PlayerCamera.zoom += EndZoomChange
+	PlayerCamera.position = EndCamOffset
