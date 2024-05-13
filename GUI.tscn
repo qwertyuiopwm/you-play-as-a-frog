@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=72 format=2]
-=======
-[gd_scene load_steps=71 format=2]
->>>>>>> 8b09f4601046a56a7ef7c8720da58141f2a72715
 
 [ext_resource path="res://art/GUI/stam_full-1.png.png" type="Texture" id=1]
 [ext_resource path="res://art/GUI/arrow.png" type="Texture" id=2]
