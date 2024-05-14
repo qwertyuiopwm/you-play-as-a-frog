@@ -25,7 +25,7 @@ tile_set = ExtResource( 1 )
 collision_layer = 11
 collision_mask = 11
 format = 1
-tile_data = PoolIntArray( 262143, 15, 0, 524277, 15, 0, 589815, 15, 0, 589825, 15, 0, 1114122, 15, 0, 1507318, 17, 0, 1507321, 12, 0, 1572854, 17, 0 )
+tile_data = PoolIntArray( 262143, 15, 0, 393225, 17, 0, 524277, 15, 0, 589815, 15, 0, 589825, 15, 0, 1507318, 17, 0, 1507321, 12, 0, 1572854, 17, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
 
