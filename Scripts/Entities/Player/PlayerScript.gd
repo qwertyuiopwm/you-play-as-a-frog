@@ -88,10 +88,7 @@ var held_big_item: Node2D
 func _ready():
 	PlayerSprite.connect("animation_finished", self, "sprite_animation_finished")
 	var _obj = get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
-	
-	if debug:
-		AddSpell("Dev_Beam")
-		
+
 
 func _remove_focus():
 	currentFocus.disconnect("focus_exited", self, "_remove_focus")

@@ -10,23 +10,21 @@ export var Hide = true
 export var OpenSpeed = -1
 
 var start_pos
-var open_pos
 var closed:bool
 
 
 func _ready():
+	start_pos = global_position
 	call_deferred("setup")
 
 
 func setup():
-	start_pos = global_position
-	open_pos = global_position + OpenOffset
 	if not TRIGGER_ON_START: return
 	trigger(State)
 
 
 func _process(delta):
-	var target_pos = start_pos if closed else open_pos
+	var target_pos = start_pos if closed else global_position + OpenOffset
 	
 	var dist_to = global_position.distance_to(target_pos)
 	if (OpenSpeed <= 0) or (0 < dist_to and dist_to < TARGET_COMFORT_RANGE):

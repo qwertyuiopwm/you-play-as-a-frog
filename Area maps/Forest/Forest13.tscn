@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileSets/AutoForestTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=5]
-[ext_resource path="res://Triggerables/EnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Forest/Centipede/CentipedeHead.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=9]
@@ -33,32 +32,26 @@ tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, 1114112, 107
 script = ExtResource( 5 )
 OpenOffset = Vector2( 250, 0 )
 
+[node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
+position = Vector2( 73, 87 )
+Triggerables = [ NodePath("../Walls"), NodePath("../ToggleTrigger"), NodePath("../CentipedeMusic") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( 25, 0.5 )
+shape = SubResource( 1 )
+
+[node name="ToggleTrigger" parent="." instance=ExtResource( 8 )]
+Trigger = NodePath("../EnemyManager/Centipede")
+Toggle = true
+
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 position = Vector2( 78, 88 )
 Triggerables = [ NodePath("../Walls"), NodePath("../NoMusic"), NodePath("../SaveTriggerable") ]
 Enabled = false
 DeleteOnTrigger = false
 
-[node name="ToggleTrigger" parent="." instance=ExtResource( 8 )]
-Trigger = NodePath("../EnemyManager")
-Toggle = true
-
-[node name="EnemySpawner" parent="." instance=ExtResource( 6 )]
-position = Vector2( 78, 88 )
-Enemies = [ ExtResource( 7 ) ]
-EnemyManager = NodePath("../EnemyManager")
-SpawnPos = NodePath("Position2D")
-
-[node name="Position2D" type="Position2D" parent="EnemySpawner"]
-position = Vector2( 18, 456 )
-
-[node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
-position = Vector2( 73, 87 )
-Triggerables = [ NodePath("../Walls"), NodePath("../EnemySpawner"), NodePath("../ToggleTrigger"), NodePath("../CentipedeMusic") ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 25, 0.5 )
-shape = SubResource( 1 )
+[node name="Centipede" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( 26, 447 )
 
 [node name="CentipedeMusic" parent="." instance=ExtResource( 9 )]
 Song = "Centipede"

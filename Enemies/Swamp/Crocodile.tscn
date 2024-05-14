@@ -95,7 +95,7 @@ collision_layer = 256
 collision_mask = 258
 script = ExtResource( 2 )
 IMMUNITIES = [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ) ]
-SPEED = 80
+SPEED = 40
 CONTACT_DAMAGE = 60.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

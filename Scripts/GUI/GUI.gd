@@ -32,6 +32,7 @@ var configFileName = "user://ypaaf.userconfig"
 # Not intended to be secure, it's just not safe to manually modify config.
 var configPW = "configuration"
 onready var configFile = ConfigFile.new()
+var DefaultControls = {}
 
 var SpellWheelPositions = []
 var shownkeys = {
@@ -39,11 +40,12 @@ var shownkeys = {
 	"move_down": "Move Down",
 	"move_left": "Move Left",
 	"move_right": "Move Right",
+	"dash": "Dash",
 	"select_spell": "Select Spell",
 	"cast_spell": "Cast Spell",
 	"melee": "Melee",
 	"restore": "Use Potion",
-	"toggle_auto_aim": "Toggle Auto Aim"
+	"toggle_auto_aim": "Toggle Auto Aim",
 }
 
 
@@ -61,21 +63,42 @@ func magnitude(vec: Vector2):
 	return sqrt(pow(vec.x, 2)+pow(vec.y, 2))
 
 func _ready():
+	# Register default controls dictionary
+	for inputName in shownkeys:
+		DefaultControls[inputName] = InputMap.get_action_list(inputName)
+	
 	MainMenu.visible = true
 	Main.pause(true, [Player])
 	var _playbuttoncon = MainMenu.get_node("Button").connect("pressed", self, "_on_play_pressed")
 	var _loadbuttonconnection = LoadSaveButton.connect("pressed", SaveSys, "loadSave")
 	var _savebuttonconnection = SaveButton.connect("pressed", SaveSys, "save")
+	var _reset_keys_connection = $PauseMenu/ResetControls.connect("pressed", self, "onResetClick")
 	configFile.load_encrypted_pass(configFileName, configPW)
 	
 	generateWheel()
+	generateControls()
+
+func onResetClick():
+	print(DefaultControls)
+	for actionName in DefaultControls:
+		InputMap.action_erase_events(actionName)
+		var action = DefaultControls[actionName][0]
+		var serializedInput = SaveSys.serialize(action)
+		configFile.set_value("controls", actionName, serializedInput)
+		InputMap.action_add_event(actionName, action)
+	configFile.save_encrypted_pass(configFileName, configPW)
+	
+	for child in ControlsContainer.get_children():
+		if child.name == "base":
+			continue
+		child.queue_free()
 	generateControls()
 
 func onKeyClick(inputMenu, actionName):
 	for action in InputMap.get_action_list("pause_game"):
 		InputMap.action_erase_event("pause_game", action)
 	
-	inputMenu.get_node("Key").text = "Click a key to set input!"
+	inputMenu.get_node("Key").text = "Select Key"
 	for action in InputMap.get_action_list(actionName):
 		InputMap.action_erase_event(actionName, action)
 	waitingInputMenu = inputMenu
@@ -85,19 +108,19 @@ func onKeyClick(inputMenu, actionName):
 func eventToString(event: InputEvent):
 	var inputStr = event.as_text()
 	if event is InputEventMouseButton:
-		inputStr = "Mouse Button %s" % event.button_index
+		inputStr = "MB%s" % event.button_index
 	if event is InputEventJoypadButton:
-		inputStr = "Joypad Button %s" % event.button_index
+		inputStr = "Joypad %s" % event.button_index
 	if event is InputEventJoypadMotion:
 		match event.axis:
 			event.JoyAxis.JOY_AXIS_LEFT_X:
-				inputStr = "Left Joystick"
+				inputStr = "L Joy"
 			event.JoyAxis.JOY_AXIS_RIGHT_X:
-				inputStr = "Right Joystick"
+				inputStr = "R Joy"
 			event.JoyAxis.JOY_AXIS_RIGHT_Y:
-				inputStr = "Right Joystick"
+				inputStr = "R Joy"
 			event.JoyAxis.JOY_AXIS_LEFT_Y:
-				inputStr = "Left Joystick"
+				inputStr = "L Joy"
 	return inputStr
 
 func _input(event):
@@ -106,7 +129,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		return
 	var keyButton = waitingInputMenu.get_node("Key")
-	keyButton.text = "No input selected"
+	keyButton.text = "None"
 	if event.as_text() != "Escape":
 		keyButton.text = eventToString(event)
 		InputMap.action_add_event(waitingInputName, event)
@@ -144,6 +167,10 @@ func generateControls():
 
 func generateWheel():
 	var spellSlots = len(Player.PlayerSpells)
+	
+	if spellSlots <= 0:
+		return
+	
 	for child in wheelComponents.get_children():
 		child.queue_free()
 	var positions = []
@@ -216,6 +243,9 @@ func _process(_delta):
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
+	if not SpellWheelPositions:
+		return
+	
 	if spellWheel.visible:
 		var mousePos = vp.get_mouse_position()
 		var lowestMag = INF
@@ -239,7 +269,7 @@ func _process(_delta):
 			
 			tempSpell.queue_free()
 	
-	if Input.is_action_just_released("select_spell"):
+	if Input.is_action_just_released("select_spell") :
 		var tempSpell = Player.selected_spell.instance()
 		spellSpot.get_node("spellicon").texture = load(tempSpell.SpellIcon)
 		tempSpell.queue_free()

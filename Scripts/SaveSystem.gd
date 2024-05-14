@@ -5,9 +5,11 @@ onready var Player = Main.get_node("Player")
 onready var GUI = Player.get_node("GUI")
 onready var SaveMenu = GUI.get_node("SaveMenu")
 onready var SavingPopup = GUI.get_node("Saving")
+onready var SelectedSaveLabel = GUI.get_node("PauseMenu/selectedsave")
 
 signal SaveFinished
 signal LoadFinished
+signal RemadeScenes
 
 var fileName = "user://ypaaf-%d.save"
 var selectedSave = 0
@@ -26,6 +28,7 @@ var IgnoredTypes = [
 	AudioStreamOGGVorbis,
 ]
 var IgnoredProperties = [
+	"DefaultControls",
 	"owner",
 	"Reference",
 	"_import_path",
@@ -91,6 +94,7 @@ func playtimeFromSave(num: int):
 
 func onSaveSelect(num: int):
 	selectedSave = num
+	SelectedSaveLabel.text = "Save Slot: %d" % num
 	SaveMenu.visible = false
 	if GUI.get_node("MainMenu").visible:
 		GUI.get_node("MainMenu").visible = false
@@ -156,9 +160,23 @@ func saveExists():
 		return false
 	return true
 
+func remakeScenes():
+	var oldForest = Main.get_node("ForestAll")
+	oldForest.name = "old%s" % oldForest.name
+	oldForest.queue_free()
+	yield(oldForest, "tree_exited")
+	var forestAll = load("res://Area maps/Forest/ForestAll.tscn").instance()
+	Main.add_child(forestAll)
+	Main.move_child(forestAll, 0)
+	forestAll.name = "ForestAll"
+	
+	emit_signal("RemadeScenes")
 
 func loadSave():
 	var startTime = Time.get_ticks_msec()
+	
+	remakeScenes()
+	yield(self, "RemadeScenes")
 	
 	var save_game = File.new()
 	if not save_game.file_exists(fileName % selectedSave):

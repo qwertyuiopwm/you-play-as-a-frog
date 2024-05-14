@@ -86,16 +86,16 @@ func on_slip_into_wall():
 
 func move(_target, delta):
 	if Main.Paused or has_effect(Effects.stunned):
-		return
+		return velocity
 	if health <= 0:
-		return
+		return velocity
 	
 	if ROTATE_TO_TARGET:
 		rotation = Vector2.ZERO.angle_to_point(velocity)
 	
 	if is_sliding() and velocity.length_squared() != 0:
 		slip(delta)
-		return
+		return velocity
 	
 	var direction = (_target - global_position).normalized()
 	var desired_velocity = direction * curr_speed
