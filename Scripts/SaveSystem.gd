@@ -9,6 +9,7 @@ onready var SelectedSaveLabel = GUI.get_node("PauseMenu/selectedsave")
 
 signal SaveFinished
 signal LoadFinished
+signal RemadeScenes
 
 var fileName = "user://ypaaf-%d.save"
 var selectedSave = 0
@@ -159,9 +160,23 @@ func saveExists():
 		return false
 	return true
 
+func remakeScenes():
+	var oldForest = Main.get_node("ForestAll")
+	oldForest.name = "old%s" % oldForest.name
+	oldForest.queue_free()
+	yield(oldForest, "tree_exited")
+	var forestAll = load("res://Area maps/Forest/ForestAll.tscn").instance()
+	Main.add_child(forestAll)
+	Main.move_child(forestAll, 0)
+	forestAll.name = "ForestAll"
+	
+	emit_signal("RemadeScenes")
 
 func loadSave():
 	var startTime = Time.get_ticks_msec()
+	
+	remakeScenes()
+	yield(self, "RemadeScenes")
 	
 	var save_game = File.new()
 	if not save_game.file_exists(fileName % selectedSave):
