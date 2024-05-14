@@ -15,3 +15,8 @@ func setEnabled(val):
 
 func on_enabled():
 	pass
+
+
+func _process(_delta):
+	if has_node("BossBar"):
+		$BossBar.visible = Enabled
