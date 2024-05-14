@@ -167,6 +167,10 @@ func generateControls():
 
 func generateWheel():
 	var spellSlots = len(Player.PlayerSpells)
+	
+	if spellSlots <= 0:
+		return
+	
 	for child in wheelComponents.get_children():
 		child.queue_free()
 	var positions = []
@@ -239,6 +243,9 @@ func _process(_delta):
 	
 	spellWheel.visible = Input.is_action_pressed("select_spell")
 	
+	if not SpellWheelPositions:
+		return
+	
 	if spellWheel.visible:
 		var mousePos = vp.get_mouse_position()
 		var lowestMag = INF
@@ -262,7 +269,7 @@ func _process(_delta):
 			
 			tempSpell.queue_free()
 	
-	if Input.is_action_just_released("select_spell"):
+	if Input.is_action_just_released("select_spell") :
 		var tempSpell = Player.selected_spell.instance()
 		spellSpot.get_node("spellicon").texture = load(tempSpell.SpellIcon)
 		tempSpell.queue_free()
