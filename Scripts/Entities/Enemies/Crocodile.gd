@@ -18,14 +18,19 @@ var speed_up = false
 var aligning := true
 
 
+func setEnabled(val):
+	
+	$AnimatedSprite.play("wake up")
+	yield($AnimatedSprite, "animation_finished")
+	
+	.setEnabled(val)
+
+
 func _ready():
 	target_player = Main.get_node("Player")
 	var _c = $HitCollider.connect("body_entered", self, "HitCollider_body_entered")
 	
 	yield(self, "enabled")
-	
-	$AnimatedSprite.play("wake up")
-	yield($AnimatedSprite, "animation_finished")
 	
 	$AnimatedSprite.play("default")
 	
