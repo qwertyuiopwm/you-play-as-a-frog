@@ -1,7 +1,5 @@
-extends "res://Scripts/BaseScripts/Enemy.gd"
+extends "res://Scripts/BaseScripts/Boss.gd"
 
-
-signal enabled
 
 export var CONTACT_DAMAGE: float = 40
 export var KNOCKBACK_VELOCITY: Vector2 = Vector2(-700, 0)
@@ -12,7 +10,6 @@ export var END_SPEED: int = 150
 
 export var EndAligningPosPath: NodePath
 export var EndPosPath: NodePath
-export var Enabled := false setget set_Enabled
 
 onready var EndAligningPos = get_node(EndAligningPosPath)
 onready var EndPos = get_node(EndPosPath)
@@ -20,11 +17,10 @@ onready var EndPos = get_node(EndPosPath)
 var speed_up = false
 var aligning := true
 
-func set_Enabled(val):
+
+func on_enabled():
 	$AnimatedSprite.play("wake up")
 	yield($AnimatedSprite, "animation_finished")
-	Enabled = val
-	emit_signal("enabled")
 
 
 func _ready():

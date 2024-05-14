@@ -1,4 +1,4 @@
-extends "res://Scripts/BaseScripts/Enemy.gd"
+extends "res://Scripts/BaseScripts/Boss.gd"
 
 
 export var CONTACT_DAMAGE: int = 20
@@ -13,7 +13,10 @@ var tail_scene = preload("res://Enemies//Forest/Centipede/CentipedeTail.tscn")
 
 var segments := []
 
+
 func _ready():
+	yield(self, "enabled")
+	
 	scale *= SCALE
 	var next_segment = self
 	for x in NUM_SEGMENTS:
@@ -41,9 +44,13 @@ func _ready():
 
 
 func _physics_process(delta):
+	if not Enabled:
+		return
 	if health <= 0:
 		return
+	
 	var target = get_nearest_player()
+	
 	if ALWAYS_SEE_TARGET:
 		target = Main.get_node("Player")
 	
