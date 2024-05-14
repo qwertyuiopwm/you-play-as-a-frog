@@ -866,8 +866,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]Click [color=#34ebe1][E][/color] to cast a spell[/center][/valign]"
-text = "Click [E] to cast a spell"
+bbcode_text = "[valign][center]Click [color=#34ebe1][E][/color] to cast a spell at the [color=#ffffcc][Dummy][/color][/center][/valign]"
+text = "Click [E] to cast a spell at the [Dummy]"
 custom_effects = [ SubResource( 25 ) ]
 
 [node name="fightgrub" type="RichTextLabel" parent="Popups" groups=["Popup"]]
