@@ -8,10 +8,11 @@ export var Enabled: bool = false setget setEnabled
 func setEnabled(val):
 	Enabled = val
 	
-	yield(on_enabled(), "completed")
+	on_enabled()
 	
 	if val:
 		emit_signal("enabled")
+
 
 func on_enabled():
 	pass
