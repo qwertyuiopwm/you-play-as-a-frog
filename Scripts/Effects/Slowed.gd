@@ -1,12 +1,10 @@
 extends "res://Scripts/BaseScripts/Effect.gd"
 
 
-export var speed_multiplier = 0.5
+export var speed_mult_per_stack = 0.9
 
-var oldSpeed: int
 func on_affect(entity, _delta):
-	oldSpeed = entity.SPEED
-	entity.SPEED = oldSpeed*speed_multiplier
+	entity.slowness_mult = pow(speed_mult_per_stack, stacks)
 	
 func on_effect_removed(entity):
-	entity.SPEED = oldSpeed
+	entity.slowness_mult = 1

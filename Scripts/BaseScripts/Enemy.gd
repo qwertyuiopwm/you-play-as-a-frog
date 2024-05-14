@@ -98,7 +98,7 @@ func move(_target, delta):
 		return velocity
 	
 	var direction = (_target - global_position).normalized()
-	var desired_velocity = direction * curr_speed
+	var desired_velocity = direction * curr_speed * slowness_mult
 	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
 	velocity += steering
 	flip_body(velocity.x > 0)

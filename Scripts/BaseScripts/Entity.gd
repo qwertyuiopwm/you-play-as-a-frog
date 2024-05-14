@@ -7,6 +7,7 @@ export(Array, PackedScene) var PERMANENT_EFFECTS = []
 
 var sliding = false
 var can_move = true
+var slowness_mult: float = 1
 
 
 func is_sliding():
