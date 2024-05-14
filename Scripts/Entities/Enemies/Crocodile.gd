@@ -7,9 +7,12 @@ export var SPEED_UP_DIST: int = 700
 export var SPEED_DIST_MULT: float = 1
 export var SPEED_UP_DELAY: float = 6
 export var END_SPEED: int = 150
+export var MIN_THROW_DELAY: float = 4
+export var MAX_THROW_DELAY: float = 6
 
 export var EndAligningPosPath: NodePath
 export var EndPosPath: NodePath
+export var MudScene: PackedScene = preload("res://Enemies/Attacks/CrocMudBall.tscn")
 
 onready var EndAligningPos = get_node(EndAligningPosPath)
 onready var EndPos = get_node(EndPosPath)
@@ -31,6 +34,8 @@ func _ready():
 	var _c = $HitCollider.connect("body_entered", self, "HitCollider_body_entered")
 	
 	yield(self, "enabled")
+	
+	throw_mud()
 	
 	$AnimatedSprite.play("default")
 	
@@ -59,6 +64,18 @@ func _physics_process(delta):
 		if body is TileMap and not body.is_in_group("ground"):
 			break_tiles()
 			break
+
+
+func throw_mud():
+	var delay = rand.randi_range(MIN_THROW_DELAY, MAX_THROW_DELAY)
+	yield(Main.wait(delay), "completed")
+	
+	var ball = MudScene.instance()
+	ball.global_position = $MudPos.global_position
+	print("e")
+	Main.call_deferred("add_child", ball)
+	
+	throw_mud()
 
 
 func move_forward(delta):
