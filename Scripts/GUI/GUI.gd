@@ -32,6 +32,7 @@ var configFileName = "user://ypaaf.userconfig"
 # Not intended to be secure, it's just not safe to manually modify config.
 var configPW = "configuration"
 onready var configFile = ConfigFile.new()
+var DefaultControls = {}
 
 var SpellWheelPositions = []
 var shownkeys = {
@@ -39,11 +40,12 @@ var shownkeys = {
 	"move_down": "Move Down",
 	"move_left": "Move Left",
 	"move_right": "Move Right",
+	"dash": "Dash",
 	"select_spell": "Select Spell",
 	"cast_spell": "Cast Spell",
 	"melee": "Melee",
 	"restore": "Use Potion",
-	"toggle_auto_aim": "Toggle Auto Aim"
+	"toggle_auto_aim": "Toggle Auto Aim",
 }
 
 
@@ -61,14 +63,35 @@ func magnitude(vec: Vector2):
 	return sqrt(pow(vec.x, 2)+pow(vec.y, 2))
 
 func _ready():
+	# Register default controls dictionary
+	for inputName in shownkeys:
+		DefaultControls[inputName] = InputMap.get_action_list(inputName)
+	
 	MainMenu.visible = true
 	Main.pause(true, [Player])
 	var _playbuttoncon = MainMenu.get_node("Button").connect("pressed", self, "_on_play_pressed")
 	var _loadbuttonconnection = LoadSaveButton.connect("pressed", SaveSys, "loadSave")
 	var _savebuttonconnection = SaveButton.connect("pressed", SaveSys, "save")
+	var _reset_keys_connection = $PauseMenu/ResetControls.connect("pressed", self, "onResetClick")
 	configFile.load_encrypted_pass(configFileName, configPW)
 	
 	generateWheel()
+	generateControls()
+
+func onResetClick():
+	print(DefaultControls)
+	for actionName in DefaultControls:
+		InputMap.action_erase_events(actionName)
+		var action = DefaultControls[actionName][0]
+		var serializedInput = SaveSys.serialize(action)
+		configFile.set_value("controls", actionName, serializedInput)
+		InputMap.action_add_event(actionName, action)
+	configFile.save_encrypted_pass(configFileName, configPW)
+	
+	for child in ControlsContainer.get_children():
+		if child.name == "base":
+			continue
+		child.queue_free()
 	generateControls()
 
 func onKeyClick(inputMenu, actionName):

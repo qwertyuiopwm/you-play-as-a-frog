@@ -27,6 +27,7 @@ var IgnoredTypes = [
 	AudioStreamOGGVorbis,
 ]
 var IgnoredProperties = [
+	"DefaultControls",
 	"owner",
 	"Reference",
 	"_import_path",
