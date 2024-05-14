@@ -13,7 +13,7 @@ export(Array, PackedScene) var BlockedTargets
 
 
 onready var Main = get_node("/root/Main")
-onready var Player = get_parent().get_node("Player")
+onready var Player = Main.get_node("Player")
 
 # 2 to the power of layer - 1
 var EnemyCollision = int(pow(2,8))
