@@ -13,12 +13,10 @@ func PauseSong(paused: bool):
 	Songs[CurrentlyPlaying].get_tree().paused = paused
 
 func PlaySongWithIntro(intro: String, song: String):
-	StopMusic()
-	
 	var introFile = Songs[intro]
 	PlaySong(intro)
 	yield(introFile, "finished")
-	if !introFile.playing:
+	if CurrentlyPlaying != intro:
 		return
 	
 	PlaySong(song)
