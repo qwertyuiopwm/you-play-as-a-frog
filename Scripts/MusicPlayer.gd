@@ -18,6 +18,8 @@ func PlaySongWithIntro(intro: String, song: String):
 	var introFile = Songs[intro]
 	PlaySong(intro)
 	yield(introFile, "finished")
+	if !introFile.playing:
+		return
 	
 	PlaySong(song)
 
