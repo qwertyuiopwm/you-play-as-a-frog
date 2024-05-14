@@ -16,7 +16,7 @@ func PlaySongWithIntro(intro: String, song: String):
 	StopMusic()
 	
 	var introFile = Songs[intro]
-	introFile.play()
+	PlaySong(intro)
 	yield(introFile, "finished")
 	
 	PlaySong(song)
