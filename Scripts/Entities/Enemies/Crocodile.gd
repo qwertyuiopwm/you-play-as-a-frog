@@ -6,10 +6,11 @@ export var KNOCKBACK_VELOCITY: Vector2 = Vector2(-700, 0)
 export var SPEED_UP_DIST: int = 700
 export var SPEED_DIST_MULT: float = 1
 export var SPEED_UP_DELAY: float = 6
-export var START_THROWING_DELAY: float = 3
 export var END_SPEED: int = 150
+export var START_THROWING_DELAY: float = 3
 export var MIN_THROW_DELAY: float = 4
 export var MAX_THROW_DELAY: float = 6
+export var THROW_STACKS: int = 2
 
 export var EndAligningPosPath: NodePath
 export var EndPosPath: NodePath
@@ -42,7 +43,8 @@ func _ready():
 	speed_up = true
 	
 	yield(Main.wait(START_THROWING_DELAY), "completed")
-	throw_mud()
+	for _x in range(THROW_STACKS):
+		throw_mud()
 
 
 func hurt(_dmg, _ignore_hit_delay=false):
