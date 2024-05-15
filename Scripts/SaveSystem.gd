@@ -80,7 +80,9 @@ var IgnoredProperties = [
 	"GUI",
 	"custom_multiplayer",
 	"process_priority",
-	"unique_name_in_owner"
+	"unique_name_in_owner",
+	"segments",
+	"next_segment"
 ]
 
 func playtimeFromSave(num: int):
@@ -414,7 +416,6 @@ func serialize_object(input, originalScenes:Dictionary = {}):
 		
 		var propValue = input.get(propName)
 		if originalObject and originalObject.get(propName) == propValue:
-			print("Property of %s was the same" % propName)
 			continue
 		if typeof(propValue) == typeof(input) and propValue == input:
 			continue
