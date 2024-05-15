@@ -81,6 +81,7 @@ shape = SubResource( 1 )
 
 [node name="Crocodile" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1052, -492 )
+SPEED_UP_DIST = 750
 SPEED_DIST_MULT = 1.1
 EndAligningPosPath = NodePath("../CrocEndAlignPos")
 EndPosPath = NodePath("../CrocEndPos")
