@@ -80,7 +80,9 @@ var IgnoredProperties = [
 	"GUI",
 	"custom_multiplayer",
 	"process_priority",
-	"unique_name_in_owner"
+	"unique_name_in_owner",
+	"segments",
+	"next_segment"
 ]
 
 func playtimeFromSave(num: int):
@@ -390,7 +392,9 @@ func serialize_object(input, originalScenes:Dictionary = {}):
 			if !String(path).begins_with("/root/Main/%s" % name):
 				continue
 			var newPathname = String(path).replace("/root/Main/%s/" % name, "")
-			originalObject = originalScenes[name].get_node(newPathname)
+			originalObject = originalScenes[name].get_node_or_null(newPathname)
+			if originalObject == null:
+				return
 	
 	if input.has_method("get_class") and input.get_class() == "PackedScene":
 		return {
@@ -414,7 +418,6 @@ func serialize_object(input, originalScenes:Dictionary = {}):
 		
 		var propValue = input.get(propName)
 		if originalObject and originalObject.get(propName) == propValue:
-			print("Property of %s was the same" % propName)
 			continue
 		if typeof(propValue) == typeof(input) and propValue == input:
 			continue
