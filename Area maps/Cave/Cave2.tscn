@@ -13,7 +13,7 @@
 [ext_resource path="res://Enemies/CaveCrypt/Bat.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 60 )
+extents = Vector2( 79, 74.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 31.625, 168 )
@@ -67,9 +67,9 @@ TriggerOnExit = false
 InverseSignal = false
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 5 )]
+Triggerables = [ NodePath("..") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
-position = Vector2( -2, 5 )
 shape = SubResource( 1 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 5 )]

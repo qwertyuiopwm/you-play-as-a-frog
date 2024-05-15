@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Mosquito.gd" type="Script" id=1]
 [ext_resource path="res://art/Enemies/Mosquito.png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/debug-ball.png" type="Texture" id=5]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=7]
@@ -134,5 +133,3 @@ margin_left = -16.0
 margin_top = -38.0
 margin_right = -16.0
 margin_bottom = -38.0
-
-[node name="Control" parent="." instance=ExtResource( 4 )]
