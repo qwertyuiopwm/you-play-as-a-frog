@@ -4,6 +4,9 @@ extends "res://Scripts/BaseScripts/Enemy.gd"
 export var BITE_DAMAGE: float = 10
 export var POISON_STACKS: int = 5
 export var POISON_DURATION: float = 10
+export var BABY_SPAWN_DIST: int = 25
+export var BABY_SPIDERS_SPAWNED: int = 0
+export var BabySpiderScene: PackedScene
 
 enum states {
 	STILL,
@@ -20,6 +23,16 @@ func _ready():
 
 func on_death():
 	$AnimatedSprite.play("death")
+	
+	for _x in range(BABY_SPIDERS_SPAWNED):
+		var inst = BabySpiderScene.instance()
+		Main.call_deferred("add_child", inst)
+		
+		var x = rand.randi_range(-BABY_SPAWN_DIST, BABY_SPAWN_DIST)
+		var y = rand.randi_range(-BABY_SPAWN_DIST, BABY_SPAWN_DIST)
+		
+		inst.global_position = global_position + Vector2(x, y)
+	
 	yield($AnimatedSprite, "animation_finished")
 	emit_signal("death_finished")
 
