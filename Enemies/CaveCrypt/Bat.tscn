@@ -189,6 +189,7 @@ script = ExtResource( 2 )
 IMMUNITIES = [ ExtResource( 4 ) ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 4096
 frames = SubResource( 5 )
 animation = "Default"
 playing = true
