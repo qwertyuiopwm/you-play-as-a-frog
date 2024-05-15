@@ -8,7 +8,7 @@
 [ext_resource path="res://Enemies/Swamp/StagBeetle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Swamp/Strider.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Spells/PoisonBubble.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Triggers/AddPoisonBubble.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80.625, 82.875 )

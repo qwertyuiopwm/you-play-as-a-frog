@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/DecorativeCrystals.tres" type="TileSet" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Enemies/CaveCrypt/CobaltBeetle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/CaveCrypt/BabyCentipedeHead.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/CaveCrypt/Bat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=7]
+[ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=8]
 
 [node name="Cave11" type="Node2D"]
 
@@ -23,7 +25,18 @@ collision_mask = 11
 format = 1
 tile_data = PoolIntArray( -1769480, 0, 0, -1703945, 2, 0, -1638407, 1, 0, -1507322, 1, 0, -1441787, 2, 0, -1310743, 1, 0, -1179671, 2, 0, -1114136, 0, 0, -1114127, 2, 0, -1114125, 1, 0, -1179645, 0, 0, -1048592, 0, 0, -1114111, 2, 0, -1048574, 1, 0, -786466, 0, 0, -720932, 1, 0, -655393, 2, 0, -458740, 2, 0, -393206, 0, 0, -262169, 1, 0, -196614, 0, 0, -196609, 1, 0, -131098, 0, 0, -131076, 2, 0 )
 
+[node name="Walls" type="TileMap" parent="."]
+tile_set = ExtResource( 7 )
+collision_layer = 11
+collision_mask = 11
+format = 1
+tile_data = PoolIntArray( -655406, -1073741824, 0, -589870, -1073741824, 0 )
+script = ExtResource( 8 )
+State = true
+OpenOffset = Vector2( 0, -3e+07 )
+
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
+Triggerables = [ NodePath("../Walls") ]
 
 [node name="Bat" parent="EnemyManager" instance=ExtResource( 6 )]
 position = Vector2( -303, -345 )

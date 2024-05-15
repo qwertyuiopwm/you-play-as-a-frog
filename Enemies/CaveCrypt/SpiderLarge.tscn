@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/SpiderLarge.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/CaveCrypt/SpiderSmall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/Effects/BAM_explosion.png" type="Texture" id=5]
@@ -164,6 +165,12 @@ scale = Vector2( 1.5, 1.5 )
 collision_layer = 256
 collision_mask = 259
 script = ExtResource( 1 )
+SLIP_WALL_DAMAGE = 9
+health = 18.0
+BITE_DAMAGE = 9.0
+POISON_DURATION = 5.0
+BABY_SPIDERS_SPAWNED = 3
+BabySpiderScene = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

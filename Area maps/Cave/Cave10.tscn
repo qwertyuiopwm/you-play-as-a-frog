@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/CaveCrypt/SpiderMedium.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/CaveCrypt/SpiderLarge.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 8.06897 )
@@ -46,6 +47,21 @@ position = Vector2( 1279, -462 )
 
 [node name="MediumSpider3" parent="EnemyManager" instance=ExtResource( 6 )]
 position = Vector2( 1802, -639 )
+
+[node name="LargeSpider" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( 1335, -126 )
+
+[node name="LargeSpider2" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( 1460, -691 )
+
+[node name="LargeSpider3" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( 1895, -421 )
+
+[node name="MediumSpider4" parent="EnemyManager" instance=ExtResource( 6 )]
+position = Vector2( 1529, -323 )
+
+[node name="LargeSpider4" parent="EnemyManager" instance=ExtResource( 7 )]
+position = Vector2( 1637, -461 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 4 )]
 position = Vector2( 250, 415 )
