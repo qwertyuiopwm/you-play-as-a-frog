@@ -52,3 +52,6 @@ stream = ExtResource( 13 )
 
 [node name="ForestLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )

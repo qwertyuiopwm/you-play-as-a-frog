@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/DecorativeCrystals.tres" type="TileSet" id=2]
+[ext_resource path="res://Enemies/CaveCrypt/CobaltBeetle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/CaveCrypt/BabyCentipedeHead.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/CaveCrypt/Bat.tscn" type="PackedScene" id=6]
 
 [node name="Cave 4" type="Node2D"]
 
@@ -25,3 +29,21 @@ collision_layer = 11
 collision_mask = 11
 format = 1
 tile_data = PoolIntArray( -1835023, 0, 0, -1572868, 2, 0, -1376275, 0, 0, -1310755, 1, 0, -1245221, 2, 0, -1245219, 2, 0, -1245215, 1, 0, -1179684, 1, 0, -1179683, 0, 0, -1179682, 2, 0, -1179678, 0, 0, -1179676, 0, 0, -1114152, 0, 0, -1114143, 0, 0, -1114141, 1, 0, -1048617, 2, 0, -1048606, 2, 0, -983080, 1, 0, -917542, 1, 0, -852007, 2, 0, -852005, 1, 0, -852004, 2, 0, -786470, 0, 0, -786466, 0, 0, -786459, 2, 0, -720931, 2, 0, -720926, 1, 0, -720925, 2, 0, -720924, 0, 0, -655388, 1, 0, -655387, 1, 0, -720892, 0, 0, -589838, 1, 0, -65535, 1, 0 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 4 )]
+
+[node name="CobaltBeetle" parent="EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( -1972, -863 )
+
+[node name="CobaltBeetle2" parent="EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( -1862, -984 )
+
+[node name="Bat" parent="EnemyManager" instance=ExtResource( 6 )]
+position = Vector2( -1015, -1521 )
+
+[node name="CobaltBeetle3" parent="EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( 24, -947 )
+
+[node name="Centipede" parent="EnemyManager" instance=ExtResource( 5 )]
+position = Vector2( -863, -920 )
+NUM_SEGMENTS = 4

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Poison_bubble.mp3-68ca74dabc95348109697a7390e5f912.mp3str"
+
+[deps]
+
+source_file="res://SFX/Poison_bubble.mp3"
+dest_files=[ "res://.import/Poison_bubble.mp3-68ca74dabc95348109697a7390e5f912.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
