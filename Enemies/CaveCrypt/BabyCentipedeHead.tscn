@@ -9,6 +9,10 @@ SPEED = 400
 SLIP_WALL_DAMAGE = 10
 SLIP_STUN_DUR = 2
 health = 26.0
+<<<<<<< HEAD
+=======
+Enabled = true
+>>>>>>> 5821f0d5fa94cad8673980eac84d3cce6eb30d42
 CONTACT_DAMAGE = 15
 NUM_SEGMENTS = 3
 SEG_SCALE_MULT = 0.95

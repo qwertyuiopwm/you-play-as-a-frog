@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Mosquito.gd" type="Script" id=1]
 [ext_resource path="res://art/Enemies/Mosquito.png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/debug-ball.png" type="Texture" id=5]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=7]
@@ -93,7 +92,7 @@ animations = [ {
 radius = 9.0
 
 [node name="Mosquito" type="KinematicBody2D" groups=["Enemy"]]
-scale = Vector2( 2.5, 2.5 )
+scale = Vector2( 2, 2 )
 z_index = 2
 collision_layer = 256
 collision_mask = 2
@@ -101,9 +100,9 @@ script = ExtResource( 1 )
 IMMUNITIES = [ ExtResource( 7 ) ]
 SPEED = 200
 STEERING_MULT = 5.0
-health = 12.0
+health = 9.0
 SWOOP_SPEED = 300
-DAMAGE = 12
+DAMAGE = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 physics_interpolation_mode = 1
@@ -134,5 +133,3 @@ margin_left = -16.0
 margin_top = -38.0
 margin_right = -16.0
 margin_bottom = -38.0
-
-[node name="Control" parent="." instance=ExtResource( 4 )]

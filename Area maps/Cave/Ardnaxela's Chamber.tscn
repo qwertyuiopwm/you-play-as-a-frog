@@ -1,13 +1,28 @@
+<<<<<<< ours
 [gd_scene load_steps=7 format=2]
+=======
+[gd_scene load_steps=10 format=2]
+>>>>>>> theirs
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=3]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=5]
+<<<<<<< ours
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 254.5, 29.5 )
+=======
+[ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 254.5, 29.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 95.5, 93 )
+>>>>>>> theirs
 
 [node name="Cave13" type="Node2D"]
 
@@ -52,3 +67,18 @@ shape = SubResource( 1 )
 [node name="EnemyManager" parent="." instance=ExtResource( 5 )]
 position = Vector2( 224, -94 )
 Triggerables = [ NodePath("../Walls") ]
+<<<<<<< ours
+=======
+
+[node name="Chest" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1439, -1060 )
+DroppedItems = [ ExtResource( 7 ), ExtResource( 7 ), ExtResource( 7 ), ExtResource( 7 ) ]
+
+[node name="PlayerDetector2" parent="Chest" instance=ExtResource( 4 )]
+position = Vector2( -2, 6 )
+Triggerables = [ NodePath("..") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector2"]
+position = Vector2( 3.5, -3 )
+shape = SubResource( 2 )
+>>>>>>> theirs

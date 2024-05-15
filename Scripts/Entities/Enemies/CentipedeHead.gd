@@ -15,7 +15,8 @@ var segments := []
 
 
 func _ready():
-	yield(self, "enabled")
+	if not Enabled:
+		yield(self, "enabled")
 	
 	scale *= SCALE
 	var next_segment = self
@@ -92,7 +93,6 @@ func on_death():
 		yield(Main.wait(.25), "completed")
 	
 	scale *= 3
-	print(scale)
 	$AnimatedSprite.play("death")
 	global_rotation = 0
 	flip_body(false)

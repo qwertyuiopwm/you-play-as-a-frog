@@ -6,7 +6,7 @@ export var TriggerOnExit = false
 export var InverseSignal = false
 
 
-func _init():
+func _ready():
 	var _c = connect("body_entered", self, "_on_PlayerDetector_body_entered")
 	var __c = connect("body_exited", self, "_on_PlayerDetector_body_exited")
 
