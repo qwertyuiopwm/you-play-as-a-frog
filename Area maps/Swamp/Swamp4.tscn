@@ -47,7 +47,7 @@ position = Vector2( -345, 279 )
 
 [node name="Chest" parent="." instance=ExtResource( 2 )]
 position = Vector2( -921, 221 )
-DroppedItems = [ ExtResource( 6 ) ]
+DroppedItems = [ ExtResource( 6 ), ExtResource( 6 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 5 )]
 position = Vector2( -2, -1 )
@@ -59,7 +59,7 @@ shape = SubResource( 1 )
 
 [node name="Chest2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -288, 663 )
-DroppedItems = [ ExtResource( 6 ), ExtResource( 6 ) ]
+DroppedItems = [ ExtResource( 6 ) ]
 
 [node name="PlayerDetector" parent="Chest2" instance=ExtResource( 5 )]
 position = Vector2( -1, 2 )
