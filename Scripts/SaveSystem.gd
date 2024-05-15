@@ -14,6 +14,13 @@ signal RemadeScenes
 var fileName = "user://ypaaf-%d.save"
 var selectedSave = 0
 
+var Scenes = {
+	ForestAll = preload("res://Area maps/Forest/ForestAll.tscn"),
+	Swamp = preload("res://Area maps/Swamp/SwampMain.tscn"),
+	Cave = preload("res://Area maps/Cave/CaveMain.tscn"),
+	Crypt = preload("res://Area maps/Crypt/CryptMain.tscn"),
+}
+
 var GroupsToSave = [
 	"Enemy",
 	"Item",
@@ -161,14 +168,23 @@ func saveExists():
 	return true
 
 func remakeScenes():
-	var oldForest = Main.get_node("ForestAll")
-	oldForest.name = "old%s" % oldForest.name
-	oldForest.queue_free()
-	yield(oldForest, "tree_exited")
-	var forestAll = load("res://Area maps/Forest/ForestAll.tscn").instance()
-	Main.add_child(forestAll)
-	Main.move_child(forestAll, 0)
-	forestAll.name = "ForestAll"
+	var startTime = Time.get_ticks_msec()
+	for SceneName in Scenes:
+		var scene = Scenes[SceneName]
+		# Remove the old scene
+		var oldScene = Main.get_node(SceneName)
+		var oldPosition = oldScene.global_position
+		oldScene.name = "old%s" % SceneName
+		oldScene.queue_free()
+		yield(oldScene, "tree_exited")
+		# Create the new scene
+		var newScene = scene.instance()
+		newScene.name = SceneName
+		Main.add_child(newScene)
+		Main.move_child(newScene, 0)
+		newScene.global_position = oldPosition
+	
+	print("Recreated scenes in %d milliseconds" % (Time.get_ticks_msec() - startTime))
 	
 	emit_signal("RemadeScenes")
 
@@ -226,15 +242,18 @@ func save():
 	yield(Main.wait(0.25), "completed")
 	
 	var save_game = File.new()
-	
 	save_game.open(fileName % selectedSave, File.WRITE)
+	
+	var originalScenes = {}
+	for name in Scenes:
+		originalScenes[name] = Scenes[name].instance()
 	
 	var data = {}
 	
 	var nodes = getSavedNodes()
 	for node in nodes:
 		var path = String(Main.get_path_to(node))
-		data[path] = serialize(node)
+		data[path] = serialize(node, originalScenes)
 	
 	data["Player"] = serialize_player()
 	data["PlaytimeSeconds"] = serialize(Main.PlaytimeSeconds)
@@ -273,7 +292,7 @@ func serialize_player():
 			# Respawn info
 		}
 	}
-func serialize(input):
+func serialize(input, originalScenes:Dictionary = {}):
 	var object = {
 		type = typeof(input)
 	}
@@ -328,7 +347,7 @@ func serialize(input):
 			if !weakref(input).get_ref():
 				return
 			object.classname = input.get_class()
-			object.data = serialize_object(input)
+			object.data = serialize_object(input, originalScenes)
 		TYPE_DICTIONARY:
 			if not input:
 				return
@@ -360,10 +379,19 @@ func serialize_array(input):
 	for v in input:
 		data.append(serialize(v))
 	return data
-func serialize_object(input):
+func serialize_object(input, originalScenes:Dictionary = {}):
 	var data = {}
 	if not input:
 		return
+	var originalObject
+	if input.has_method("get_path"):
+		var path = input.get_path()
+		for name in originalScenes:
+			if !String(path).begins_with("/root/Main/%s" % name):
+				continue
+			var newPathname = String(path).replace("/root/Main/%s/" % name, "")
+			originalObject = originalScenes[name].get_node(newPathname)
+	
 	if input.has_method("get_class") and input.get_class() == "PackedScene":
 		return {
 			path = input.get_path()
@@ -385,6 +413,9 @@ func serialize_object(input):
 			continue
 		
 		var propValue = input.get(propName)
+		if originalObject and originalObject.get(propName) == propValue:
+			print("Property of %s was the same" % propName)
+			continue
 		if typeof(propValue) == typeof(input) and propValue == input:
 			continue
 		#if input.has_method("get_children") and propValue in input.get_children():
