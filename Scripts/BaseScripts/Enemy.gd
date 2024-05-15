@@ -25,7 +25,7 @@ onready var curr_speed = SPEED
 var velocity = Vector2(0, 0)
 var target_player
 var target_pos
-
+var sound: String = "Explode"
 
 func animation_finished():
 	pass
@@ -45,6 +45,7 @@ func hurt(damage: float, _ignore_hit_delay=false):
 		$HPBar.visible = (health > 0)
 	
 	if health == 0:
+		var player = Main.get_node("Player")
 		$CollisionShape2D.disabled = true
 		for child in get_children():
 			if child is AnimatedSprite:
@@ -52,6 +53,7 @@ func hurt(damage: float, _ignore_hit_delay=false):
 		$EffectManager.visible = false
 		flip_body(false)
 		on_death()
+		player.MusicPlayer.PlayOnNode(sound, player)
 		yield(self, "death_finished")
 		queue_free()
 
