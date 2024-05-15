@@ -42,6 +42,7 @@ onready var TransferContainer:CanvasLayer = GUI.get_node("LevelTransition")
 onready var Background:Panel = TransferContainer.get_node("bg")
 onready var TopLabel:Label = TransferContainer.get_node("TopText")
 onready var BottomLabel:Label = TransferContainer.get_node("BottomText")
+
 var deathRunning = false
 
 export var melee_damage: float = 5
@@ -55,6 +56,7 @@ var dash_stamina_cost = 20
 var dash_speed_mult = 2
 var dash_duration = .2
 var dash_counter = 0
+var dash_sound = "Dash"
 
 var melee_distance = 100
 var tongue_speed = 350
@@ -312,7 +314,7 @@ func get_velocity():
 	vel.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
-	vel = vel.normalized() * SPEED
+	vel = vel.normalized() * SPEED * slowness_mult
 	
 	return vel
 
@@ -442,6 +444,8 @@ func dash_if_pressed():
 	
 	if stamina < dash_stamina_cost:
 		return
+	
+	$MusicPlayer.PlayOnNode(dash_sound, self)
 	
 	dash_counter = dash_duration
 	dashing = true

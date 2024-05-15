@@ -461,7 +461,7 @@ func unserialize_object(input, _obj:Object = null):
 				obj.set_collision_mask_bit(layer, data[key])
 			continue
 		
-		if data.has("classname") and data.classname == "PackedScene":
+		if data.has("classname") and data.classname == "PackedScene" and data.has("path"):
 			unserializedProperty = load(data.path)
 		
 		if not unserializedProperty and data.type == TYPE_NODE_PATH:
