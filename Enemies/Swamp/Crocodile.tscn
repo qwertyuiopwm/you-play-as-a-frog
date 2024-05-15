@@ -125,3 +125,6 @@ TagToBreak = "(croc)"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BreakTiles"]
 position = Vector2( -162, 26 )
 shape = SubResource( 55 )
+
+[node name="MudPos" type="Position2D" parent="."]
+position = Vector2( -479, 19 )

@@ -42,6 +42,7 @@ onready var TransferContainer:CanvasLayer = GUI.get_node("LevelTransition")
 onready var Background:Panel = TransferContainer.get_node("bg")
 onready var TopLabel:Label = TransferContainer.get_node("TopText")
 onready var BottomLabel:Label = TransferContainer.get_node("BottomText")
+
 var deathRunning = false
 
 export var melee_damage: float = 5
@@ -312,7 +313,7 @@ func get_velocity():
 	vel.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
-	vel = vel.normalized() * SPEED
+	vel = vel.normalized() * SPEED * slowness_mult
 	
 	return vel
 
