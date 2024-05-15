@@ -392,7 +392,9 @@ func serialize_object(input, originalScenes:Dictionary = {}):
 			if !String(path).begins_with("/root/Main/%s" % name):
 				continue
 			var newPathname = String(path).replace("/root/Main/%s/" % name, "")
-			originalObject = originalScenes[name].get_node(newPathname)
+			originalObject = originalScenes[name].get_node_or_null(newPathname)
+			if originalObject == null:
+				return
 	
 	if input.has_method("get_class") and input.get_class() == "PackedScene":
 		return {
