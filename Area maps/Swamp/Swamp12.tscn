@@ -54,7 +54,7 @@ DroppedItems = [ ExtResource( 9 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 8 )]
 position = Vector2( -1, 2 )
-Triggerables = [ NodePath("") ]
+Triggerables = [ NodePath("..") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector"]
 position = Vector2( 2, 4 )
