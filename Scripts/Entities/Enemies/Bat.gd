@@ -44,7 +44,7 @@ func _physics_process(delta):
 				state = states.REMOVED
 				sprite.play("Removed")
 				return
-			position = target_pos - Vector2(0, 20)
+			global_position = target_pos - Vector2(0, 20)
 			target_player.hurt(ATTACHED_DAMAGE_PER_SECOND * delta)
 		states.MOVING:
 			curr_speed = SPEED

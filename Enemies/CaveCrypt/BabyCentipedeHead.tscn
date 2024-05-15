@@ -4,7 +4,6 @@
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=2]
 
 [node name="Centipede" instance=ExtResource( 1 )]
-scale = Vector2( 0.6, 0.6 )
 SPEED = 400
 SLIP_WALL_DAMAGE = 10
 SLIP_STUN_DUR = 2
@@ -15,7 +14,7 @@ CONTACT_DAMAGE = 15
 NUM_SEGMENTS = 3
 SEG_SCALE_MULT = 0.95
 SLIPPY_SEGMENTS_TO_SLIP = 2
-SCALE = 0.5
+SCALE = 0.75
 
 [node name="BossBar" parent="." index="5"]
 visible = false
