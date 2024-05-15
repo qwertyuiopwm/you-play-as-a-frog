@@ -69,7 +69,7 @@ animations = [ {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
 "loop": false,
 "name": "sting",
-"speed": 10.0
+"speed": 15.0
 } ]
 
 [sub_resource type="AtlasTexture" id=41]
@@ -159,7 +159,7 @@ collision_layer = 256
 collision_mask = 259
 script = ExtResource( 2 )
 SLIP_WALL_DAMAGE = 15
-SLIP_SPEED_MULT = 3
+SLIP_SPEED_MULT = 4
 health = 50.0
 POISON_STACKS = 10
 
