@@ -6,6 +6,7 @@ export var KNOCKBACK_VELOCITY: Vector2 = Vector2(-700, 0)
 export var SPEED_UP_DIST: int = 700
 export var SPEED_DIST_MULT: float = 1
 export var SPEED_UP_DELAY: float = 6
+export var START_THROWING_DELAY: float = 3
 export var END_SPEED: int = 150
 export var MIN_THROW_DELAY: float = 4
 export var MAX_THROW_DELAY: float = 6
@@ -35,12 +36,13 @@ func _ready():
 	
 	yield(self, "enabled")
 	
-	throw_mud()
-	
 	$AnimatedSprite.play("default")
 	
 	yield(Main.wait(SPEED_UP_DELAY), "completed")
 	speed_up = true
+	
+	yield(Main.wait(START_THROWING_DELAY), "completed")
+	throw_mud()
 
 
 func hurt(_dmg, _ignore_hit_delay=false):
@@ -67,14 +69,12 @@ func _physics_process(delta):
 
 
 func throw_mud():
-	var delay = rand.randi_range(MIN_THROW_DELAY, MAX_THROW_DELAY)
-	yield(Main.wait(delay), "completed")
-	
 	var ball = MudScene.instance()
 	ball.global_position = $MudPos.global_position
-	print("e")
 	Main.call_deferred("add_child", ball)
 	
+	var delay = rand.randi_range(MIN_THROW_DELAY, MAX_THROW_DELAY)
+	yield(Main.wait(delay), "completed")
 	throw_mud()
 
 
