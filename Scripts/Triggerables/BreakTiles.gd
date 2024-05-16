@@ -1,10 +1,14 @@
 extends Area2D
 
 
-export var TagToBreak := ""
+export(Array, String) var TagsToBreak = []
 
 
 func break_tiles():
+	if not TagsToBreak:
+		print(get_path(), " BreakTiles trying to break without any tags! ")
+		return
+	
 	for body in get_overlapping_bodies():
 		if not body is TileMap:
 			continue
@@ -22,7 +26,7 @@ func break_tiles():
 			
 			var tileName = body.tile_set.tile_get_name(tile_id)
 			
-			if not TagToBreak in tileName:
+			if not has_breakable_tag(tileName):
 				continue
 			
 			var tile_global_pos = body.map_to_world(tile_pos)
@@ -44,3 +48,10 @@ func break_tiles():
 				continue
 			
 			body.set_cellv(tile_pos, -1)
+
+
+func has_breakable_tag(tile_name):
+	for tagToBreak in TagsToBreak:
+		if tagToBreak in tile_name:
+			return true
+	return false

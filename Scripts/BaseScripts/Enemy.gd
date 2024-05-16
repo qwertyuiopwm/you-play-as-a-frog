@@ -8,7 +8,7 @@ export var TARGET_RANGE = 300
 export var ATTACK_RANGE = 50
 export var SPEED = 50
 export var SLIP_WALL_DAMAGE = 10
-export var SLIP_SPEED_MULT = 2
+export var SLIP_SPEED_MULT: float = 2
 export var SLIP_STUN_DUR = 1
 export var STEERING_MULT = 2.5
 export var ROTATE_TO_TARGET = false
@@ -109,7 +109,8 @@ func move(_target, delta):
 
 
 func slip(delta):
-	var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
+	var slip_velocity = velocity.normalized() * curr_speed * SLIP_SPEED_MULT
+	var body = move_and_collide(slip_velocity * delta)
 	
 	if body == null:
 		return

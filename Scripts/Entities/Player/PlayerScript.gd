@@ -4,6 +4,7 @@ signal death_scene_finished
 signal death_scene_popup_finished
 
 export var SPEED = 400
+export var SLIP_SPEED_MULT = 1.1
 export var SELF_CAST_RANGE = 20
 export var HELD_ITEM_POS: Vector2
 export(Array, PackedScene) var PlayerSpells = [
@@ -137,7 +138,7 @@ func _physics_process(delta):
 	velocity_mult += (int(dashing) * dash_speed_mult)
 	
 	var vel = move_and_slide(velocity * velocity_mult)
-	if vel.length_squared() == 0:
+	if vel.length_squared() <= .01:
 		velocity = Vector2.ZERO
 	
 	if held_big_item != null:
@@ -290,8 +291,32 @@ func drop_big_item(dropAngle: int = -1):
 
 func AddSpell(spell):
 	if not Spells.AllSpells.has(spell):
+		print("Couldn't add spell '", spell, "'")
 		return
-	PlayerSpells.push_back(Spells.AllSpells[spell])
+	
+	var spell_scene = Spells.AllSpells[spell]
+	
+	if PlayerSpells.has(spell_scene):
+		print("Player already has '", spell, "', skipping adding spell")
+		return
+	
+	PlayerSpells.push_back(spell_scene)
+	get_node("GUI").generateWheel()
+
+
+func RemoveSpell(spell):
+	if not Spells.AllSpells.has(spell):
+		print("Couldn't remove spell '", spell, "'")
+		return
+	
+	var spell_scene = Spells.AllSpells[spell]
+	
+	if not PlayerSpells.has(spell_scene):
+		print("Player doesn't have '", spell, "', can't remove spell!")
+		return
+	
+	
+	PlayerSpells.erase(spell_scene)
 	get_node("GUI").generateWheel()
 
 
@@ -301,8 +326,16 @@ func get_velocity():
 	
 	var vel = Vector2.ZERO
 	
-	if is_sliding() and velocity.length_squared() != 0: 
-		return velocity
+	if is_sliding() and velocity.length_squared() != 0:
+		var slide_vel = Vector2.ZERO
+		
+		if velocity.x:
+			slide_vel.x = velocity.x
+		else:
+			slide_vel.y = velocity.y
+		
+		print(slide_vel)
+		return slide_vel.normalized() * SPEED * SLIP_SPEED_MULT
 	
 	if dashing:
 		return velocity
@@ -311,7 +344,7 @@ func get_velocity():
 	
 	vel.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
-	vel.x = int(Input.is_action_pressed("move_right")) - \
+	vel.x = .9 * int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
 	vel = vel.normalized() * SPEED * slowness_mult
