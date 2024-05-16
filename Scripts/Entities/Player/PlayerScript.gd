@@ -333,7 +333,6 @@ func get_velocity():
 		else:
 			slide_vel.y = velocity.y
 		
-		print(slide_vel)
 		return slide_vel.normalized() * SPEED * SLIP_SPEED_MULT
 	
 	if dashing:
@@ -343,7 +342,7 @@ func get_velocity():
 	
 	vel.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
-	vel.x = .9 * int(Input.is_action_pressed("move_right")) - \
+	vel.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
 	vel = vel.normalized() * SPEED * slowness_mult
