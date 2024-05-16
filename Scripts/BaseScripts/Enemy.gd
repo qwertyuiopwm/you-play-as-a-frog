@@ -107,7 +107,8 @@ func move(_target, delta):
 
 
 func slip(delta):
-	var body = move_and_collide(velocity * SLIP_SPEED_MULT * delta)
+	var slip_velocity = velocity.normalized() * curr_speed * SLIP_SPEED_MULT
+	var body = move_and_collide(slip_velocity * delta)
 	
 	if body == null:
 		return
