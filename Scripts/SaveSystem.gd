@@ -213,6 +213,8 @@ func loadSave():
 		print("Failed to load save.")
 		return
 	
+	Main.PlaytimeSeconds = unserialize(data["PlaytimeSeconds"])
+	
 	var nodes = getSavedNodes(true)
 	for _node in nodes:
 		var path = String(Main.get_path_to(_node))
@@ -223,7 +225,6 @@ func loadSave():
 			node.queue_free()
 			continue
 		unserialize(data[path], node)
-		pass
 	GUI.generateWheel()
 	
 	print("Loaded game in %d milliseconds" % (Time.get_ticks_msec() - startTime))

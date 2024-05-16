@@ -57,6 +57,7 @@ var dash_stamina_cost = 20
 var dash_speed_mult = 2
 var dash_duration = .2
 var dash_counter = 0
+var dash_sound = "Dash"
 
 var melee_distance = 100
 var tongue_speed = 350
@@ -475,6 +476,8 @@ func dash_if_pressed():
 	
 	if stamina < dash_stamina_cost:
 		return
+	
+	$MusicPlayer.PlayOnNode(dash_sound, self)
 	
 	dash_counter = dash_duration
 	dashing = true
