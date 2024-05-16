@@ -28,7 +28,7 @@ func _physics_process(delta):
 	set_target()
 	
 	if is_sliding() and state == states.CHARGING:
-		move(0, delta)
+		move(target_pos, delta)
 		return
 	
 	

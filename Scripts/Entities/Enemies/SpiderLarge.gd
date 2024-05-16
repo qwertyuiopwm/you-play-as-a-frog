@@ -21,6 +21,7 @@ func _ready():
 	var _c = $HitCollider.connect("body_entered", self, "_HitCollider_body_entered")
 	var __c = $AnimatedSprite.connect("animation_finished", self, "_animation_finished")
 
+
 func on_death():
 	$AnimatedSprite.play("death")
 	
@@ -35,6 +36,7 @@ func on_death():
 	
 	yield($AnimatedSprite, "animation_finished")
 	emit_signal("death_finished")
+
 
 func _physics_process(delta):
 	if health <= 0:
@@ -85,6 +87,7 @@ func _HitCollider_body_entered(body):
 	state = states.BITING
 	$AnimatedSprite.play("bite")
 
+
 func _animation_finished():
 	if health <= 0:
 		return
@@ -97,4 +100,3 @@ func _animation_finished():
 			body.Afflict(Effects.poison, POISON_DURATION, POISON_STACKS)
 	
 	state = states.STILL
-	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Enemies/Swamp/Scorpion.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Triggers/AddShake2ElectricBoogaloo.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80.625, 82.875 )
@@ -37,7 +38,7 @@ tile_data = PoolIntArray( 196613, 17, 0, 196625, 17, 0, 262149, 17, 0, 262161, 1
 
 [node name="Chest" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1316, 611 )
-DroppedItems = [ null ]
+DroppedItems = [ ExtResource( 9 ) ]
 
 [node name="PlayerDetector" parent="Chest" instance=ExtResource( 7 )]
 position = Vector2( -1, 2 )
