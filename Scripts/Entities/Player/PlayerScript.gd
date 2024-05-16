@@ -137,7 +137,7 @@ func _physics_process(delta):
 	velocity_mult += (int(dashing) * dash_speed_mult)
 	
 	var vel = move_and_slide(velocity * velocity_mult)
-	if vel.length_squared() == 0:
+	if vel.length_squared() <= .01:
 		velocity = Vector2.ZERO
 	
 	if held_big_item != null:
@@ -314,7 +314,8 @@ func RemoveSpell(spell):
 		print("Player doesn't have '", spell, "', can't remove spell!")
 		return
 	
-	PlayerSpells.remove(spell_scene)
+	
+	PlayerSpells.erase(spell_scene)
 	get_node("GUI").generateWheel()
 
 
