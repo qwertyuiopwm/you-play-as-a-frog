@@ -1,7 +1,8 @@
 extends "res://Scripts/BaseScripts/BouncingSpell.gd"
 
 
-export var POISON_DURATION = 2
+export var POISON_DURATION = 5
+export var POISON_STACKS = 4
 
 func on_settle(body):
 	$AnimatedSprite.play("hit")
@@ -10,7 +11,7 @@ func on_settle(body):
 	emit_signal("settled")
 	
 	if body is Entity:
-		body.Afflict(Effects.poison, POISON_DURATION)
+		body.Afflict(Effects.poison, POISON_DURATION, POISON_STACKS)
 		return true
 
 
