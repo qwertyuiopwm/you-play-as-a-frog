@@ -169,7 +169,7 @@ SLIP_WALL_DAMAGE = 9
 health = 18.0
 BITE_DAMAGE = 9.0
 POISON_DURATION = 5.0
-BABY_SPIDERS_SPAWNED = 3
+BABY_SPIDERS_SPAWNED = 8
 BabySpiderScene = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
