@@ -27,7 +27,7 @@ func break_tiles():
 			var tileName = body.tile_set.tile_get_name(tile_id)
 			
 			if not has_breakable_tag(tileName):
-				return
+				continue
 			
 			var tile_global_pos = body.map_to_world(tile_pos)
 			
