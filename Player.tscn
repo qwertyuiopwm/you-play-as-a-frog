@@ -174,7 +174,6 @@ __meta__ = {
 }
 SPEED = 200
 PlayerSpells = [ ExtResource( 7 ) ]
-restoration_potions = 1
 melee_damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
