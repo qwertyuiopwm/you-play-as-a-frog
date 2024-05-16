@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Swamp4-bg-loop.mp3-552f3282c400c9df1b08edd5e03964cb.mp3str"
+
+[deps]
+
+source_file="res://Music/Swamp4-bg-loop.mp3"
+dest_files=[ "res://.import/Swamp4-bg-loop.mp3-552f3282c400c9df1b08edd5e03964cb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Triggerables/InvisibleWall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Triggerables/Boat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 62, 7.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 223.5, 687.5 )
 
 [node name="Swamp1" type="Node2D"]
 
@@ -46,3 +50,14 @@ shape = SubResource( 2 )
 visible = false
 position = Vector2( 7, 772 )
 Inverse = true
+
+[node name="PlayerDetector2" parent="." instance=ExtResource( 2 )]
+Triggerables = [ NodePath("../ChangeMusic") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
+position = Vector2( 32.5, -439.5 )
+shape = SubResource( 3 )
+
+[node name="ChangeMusic" parent="." instance=ExtResource( 5 )]
+Song = "SwampLoop"
+Intro = "SwampIntro"
