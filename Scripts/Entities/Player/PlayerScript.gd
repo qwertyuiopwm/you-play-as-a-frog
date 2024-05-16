@@ -57,6 +57,7 @@ var dash_stamina_cost = 20
 var dash_speed_mult = 2
 var dash_duration = .2
 var dash_counter = 0
+var dash_sound = "Dash"
 
 var melee_distance = 100
 var tongue_speed = 350
@@ -333,7 +334,6 @@ func get_velocity():
 		else:
 			slide_vel.y = velocity.y
 		
-		print(slide_vel)
 		return slide_vel.normalized() * SPEED * SLIP_SPEED_MULT
 	
 	if dashing:
@@ -343,7 +343,7 @@ func get_velocity():
 	
 	vel.y = int(Input.is_action_pressed("move_down")) - \
 				 int(Input.is_action_pressed("move_up"))
-	vel.x = .9 * int(Input.is_action_pressed("move_right")) - \
+	vel.x = int(Input.is_action_pressed("move_right")) - \
 				 int(Input.is_action_pressed("move_left"))
 	
 	vel = vel.normalized() * SPEED * slowness_mult
@@ -477,6 +477,8 @@ func dash_if_pressed():
 	if stamina < dash_stamina_cost:
 		return
 	
+	$MusicPlayer.PlayOnNode(dash_sound, self)
+	
 	dash_counter = dash_duration
 	dashing = true
 	stamina -= dash_stamina_cost
@@ -567,7 +569,7 @@ func get_targetable_enemies():
 
 func get_target(blocked_effects = [], blocked_immunities = []):
 	var target = get_nearest_enemy(blocked_effects, blocked_immunities)
-	if not target:
+	if (not target) or auto_aim_enabled:
 		target = $Mouse
 	
 	return target

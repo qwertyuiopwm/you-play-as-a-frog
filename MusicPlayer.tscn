@@ -13,6 +13,7 @@
 [ext_resource path="res://SFX/Shake.mp3" type="AudioStream" id=11]
 [ext_resource path="res://Music/forest3-bg-loop.mp3" type="AudioStream" id=12]
 [ext_resource path="res://Music/Forest3-bg-intro.mp3" type="AudioStream" id=13]
+[ext_resource path="res://SFX/Dash.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Music/Chase theme2-song.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Music/Swamp4-bg-intro.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Music/Swamp4-bg-loop.mp3" type="AudioStream" id=16]
@@ -59,6 +60,8 @@ stream = ExtResource( 12 )
 [node name="Explode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
 
+[node name="Dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
 [node name="ChaseMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 

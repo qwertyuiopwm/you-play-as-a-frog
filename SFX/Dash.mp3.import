@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Dash.mp3-8e01df984325d98cdf13f9e3a4536606.mp3str"
+
+[deps]
+
+source_file="res://SFX/Dash.mp3"
+dest_files=[ "res://.import/Dash.mp3-8e01df984325d98cdf13f9e3a4536606.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
