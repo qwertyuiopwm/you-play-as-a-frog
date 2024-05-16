@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://TileSets/Swamp.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Triggerables/SlideCamera.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Triggerables/SaveGame.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Triggerables/AdjustCamera.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 71.5, 195.5 )
@@ -73,11 +74,14 @@ position = Vector2( -10184, -458 )
 shape = SubResource( 2 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
-Triggerables = [ NodePath("../Walls"), NodePath("../SlideCamera"), NodePath("../PassTrigger") ]
+Triggerables = [ NodePath("../Walls"), NodePath("../SlideCamera"), NodePath("../PassTrigger"), NodePath("../ChangeMusic") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( -188, -448 )
 shape = SubResource( 1 )
+
+[node name="ChangeMusic" parent="." instance=ExtResource( 12 )]
+Song = "ChaseMusic"
 
 [node name="Crocodile" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1052, -492 )
