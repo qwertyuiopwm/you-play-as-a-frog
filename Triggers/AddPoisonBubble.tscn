@@ -20,7 +20,7 @@ extents = Vector2( 14.625, 16 )
 script = ExtResource( 4 )
 
 [node name="AddSpell" parent="." instance=ExtResource( 3 )]
-Spell = "PoisonBubble"
+SpellsToAdd = [ "PoisonBubble" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

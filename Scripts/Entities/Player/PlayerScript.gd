@@ -289,8 +289,31 @@ func drop_big_item(dropAngle: int = -1):
 
 func AddSpell(spell):
 	if not Spells.AllSpells.has(spell):
+		print("Couldn't add spell '", spell, "'")
 		return
-	PlayerSpells.push_back(Spells.AllSpells[spell])
+	
+	var spell_scene = Spells.AllSpells[spell]
+	
+	if PlayerSpells.has(spell_scene):
+		print("Player already has '", spell, "', skipping adding spell")
+		return
+	
+	PlayerSpells.push_back(spell_scene)
+	get_node("GUI").generateWheel()
+
+
+func RemoveSpell(spell):
+	if not Spells.AllSpells.has(spell):
+		print("Couldn't remove spell '", spell, "'")
+		return
+	
+	var spell_scene = Spells.AllSpells[spell]
+	
+	if not PlayerSpells.has(spell_scene):
+		print("Player doesn't have '", spell, "', can't remove spell!")
+		return
+	
+	PlayerSpells.remove(spell_scene)
 	get_node("GUI").generateWheel()
 
 
