@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Chase theme2-song.mp3-d413e3d932b2fa0c170b65e5404dbd30.mp3str"
+
+[deps]
+
+source_file="res://Music/Chase theme2-song.mp3"
+dest_files=[ "res://.import/Chase theme2-song.mp3-d413e3d932b2fa0c170b65e5404dbd30.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
