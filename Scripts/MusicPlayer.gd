@@ -51,6 +51,7 @@ func PlayAtPosition(soundName: String, globalPosition: Vector2):
 func PlayOnNode(soundName: String, node: Node):
 	if not Songs.has(soundName):
 		return
+	print("Playing %s on %s" % [soundName, node.name])
 	var newSound = Songs[soundName].duplicate()
 	newSound.connect("finished", self, "onSoundFinish", [newSound])
 	node.add_child(newSound)
