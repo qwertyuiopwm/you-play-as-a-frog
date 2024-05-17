@@ -239,7 +239,7 @@ func save():
 	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
-		Main.pause(true, [self])
+		Main.pause(true, [self, Player.get_node("MusicPlayer")])
 	
 	SavingPopup.visible = true
 	yield(Main.wait(0.25), "completed")
