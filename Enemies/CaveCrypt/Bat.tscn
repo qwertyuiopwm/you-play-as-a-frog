@@ -183,6 +183,7 @@ radius = 15.0
 height = 15.0
 
 [node name="Bat" type="KinematicBody2D"]
+z_index = 4096
 collision_layer = 256
 collision_mask = 2
 script = ExtResource( 2 )
@@ -192,6 +193,7 @@ IMMUNITIES = [ ExtResource( 4 ) ]
 z_index = 4096
 frames = SubResource( 5 )
 animation = "Default"
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

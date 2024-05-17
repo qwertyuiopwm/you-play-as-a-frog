@@ -109,6 +109,7 @@ radius = 10.6667
 
 [node name="MediumSpider" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 1.5, 1.5 )
+z_index = 4096
 collision_layer = 256
 collision_mask = 258
 script = ExtResource( 1 )
