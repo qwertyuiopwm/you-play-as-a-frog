@@ -22,10 +22,10 @@ script = ExtResource( 4 )
 position = Vector2( 5112, 15614.3 )
 
 [node name="Crypt" parent="." instance=ExtResource( 5 )]
-position = Vector2( -15171, -4732 )
+position = Vector2( -16171, -4732 )
 
 [node name="Cave" parent="." instance=ExtResource( 10 )]
-position = Vector2( -15491, 12932 )
+position = Vector2( -16491, 12932 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 415, 450 )
