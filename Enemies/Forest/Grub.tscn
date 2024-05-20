@@ -97,7 +97,7 @@ animations = [ {
 "frames": [ SubResource( 12 ) ],
 "loop": false,
 "name": "raise",
-"speed": 1.0
+"speed": 3.0
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
@@ -111,15 +111,17 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=11]
-radius = 38.0132
+radius = 42.2222
 
 [node name="Grub" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 1.8, 1.8 )
 collision_layer = 256
 collision_mask = 259
 script = ExtResource( 2 )
+ATTACK_RANGE = 75
 SPEED = 60
 health = 25.0
+SLAM_DAMAGE = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

@@ -172,7 +172,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-SPEED = 200
+SPEED = 250
 PlayerSpells = [ ExtResource( 7 ) ]
 melee_damage = 3.0
 
