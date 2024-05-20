@@ -17,6 +17,7 @@ enum states {
 
 var state
 var randomnum = randf()
+var bite = "Nom"
 
 func on_death():
 	$AnimatedSprite.play("death")
@@ -57,6 +58,7 @@ func get_state():
 		
 	if (global_position.distance_to(target_player.global_position) <= ATTACK_RANGE):
 		$AnimatedSprite.play("ready_attack")
+		$MusicPlayer.PlayOnNode(bite, self)
 		return states.BITING
 	
 	if state == states.SWARM:

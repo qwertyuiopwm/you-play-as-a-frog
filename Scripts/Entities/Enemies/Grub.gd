@@ -2,7 +2,7 @@ extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
 export var SLAM_DAMAGE = 10
-
+var slam = "Slam"
 
 enum states {
 	STILL,
@@ -51,7 +51,6 @@ func animation_finished():
 		"raise":
 			for body in $SlamCollider.get_overlapping_bodies():
 				if !body.is_in_group("Player"): continue
-				
 				body.hurt(SLAM_DAMAGE)
 			$AnimatedSprite.play("hit")
 		"hit":

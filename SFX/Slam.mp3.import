@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Slam.mp3-4188ff6f388ba2bfd51e84eb4686f46c.mp3str"
+
+[deps]
+
+source_file="res://SFX/Slam.mp3"
+dest_files=[ "res://.import/Slam.mp3-4188ff6f388ba2bfd51e84eb4686f46c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
