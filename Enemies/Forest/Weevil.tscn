@@ -104,7 +104,7 @@ animations = [ {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": false,
 "name": "hit",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 15 ) ],
 "loop": false,
