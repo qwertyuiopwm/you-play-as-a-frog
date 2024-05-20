@@ -140,6 +140,7 @@ TARGET_RANGE = 400
 SPEED = 75
 SLIP_SPEED_MULT = 3
 CIRCLE_RADIUS = 80
+BITE_DAMAGE = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

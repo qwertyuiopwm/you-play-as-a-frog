@@ -94,6 +94,7 @@ health = 90.0
 CONTACT_DAMAGE = 10
 NUM_SEGMENTS = 15
 SLIPPY_SEGMENTS_TO_SLIP = 6
+SCALE = 1.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
