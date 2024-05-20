@@ -134,7 +134,7 @@ IMMUNITIES = [ ExtResource( 8 ) ]
 TARGET_RANGE = 500
 SPEED = 150
 STEERING_MULT = 7.0
-health = 100.0
+health = 55.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.8, 0.8 )
