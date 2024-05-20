@@ -5,6 +5,7 @@ export var DroppedItems = []
 
 var DROP_DIST = 75
 var DROP_SPEED = 75
+
 enum states {
 	CLOSED,
 	OPENING,
@@ -16,11 +17,15 @@ var dropping_item: Node2D
 var drop_dir: Vector2
 
 
+func _ready():
+	$AnimatedSprite.play("closed" if state == states.CLOSED else "open")
+
+
 func onTrigger(trigger):
 	if not trigger: return
 	
 	state = states.OPENING
-	$AnimatedSprite.frame = 1
+	$AnimatedSprite.play("open")
 
 
 func _process(delta):
