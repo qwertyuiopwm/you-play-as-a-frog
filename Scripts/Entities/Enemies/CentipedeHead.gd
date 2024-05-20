@@ -55,6 +55,9 @@ func _physics_process(delta):
 	if ALWAYS_SEE_TARGET:
 		target = Main.get_node("Player")
 	
+	if not target:
+		return
+	
 	var target_pos = target.global_position
 	
 	if get_num_slippy_segments() >= SLIPPY_SEGMENTS_TO_SLIP \
