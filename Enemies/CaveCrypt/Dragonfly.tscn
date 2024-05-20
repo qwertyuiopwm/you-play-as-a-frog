@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Dragonfly.gd" type="Script" id=1]
 [ext_resource path="res://art/Enemies/Ardnaxela.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/Effects/Warning!.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
@@ -129,6 +130,7 @@ scale = Vector2( 1.5, 1.5 )
 collision_layer = 256
 collision_mask = 0
 script = ExtResource( 1 )
+IMMUNITIES = [ ExtResource( 8 ) ]
 TARGET_RANGE = 500
 SPEED = 150
 STEERING_MULT = 7.0
