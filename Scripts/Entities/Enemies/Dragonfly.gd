@@ -12,6 +12,8 @@ export var LAP_COMPLETED_COMFORT_ZONE = 10
 export var LAPS_TO_MAKE = 3
 export var DASHES = 3
 export var FIRE_COOLDOWN_MS = 100
+export var RAYCAST_DIST: int = 100000
+export var LAP_ATTACK_DELAY: float = 15
 
 onready var AreaAttackCollider = $AreaAttackCollider.get_node("CollisionShape2D")
 onready var Fire = preload("res://Enemies/Attacks/Fire.tscn")
@@ -23,6 +25,7 @@ var dashingPosition
 var definedAreaPoints = []
 var startedArea
 var lastFire
+var lap_attack_counter: float = 0
 
 
 enum states {
@@ -51,12 +54,12 @@ func generateTargetPositions(from_pos:Vector2):
 	
 	var farLeftPos = Main.cast_ray_towards_point(
 		from_pos, from_pos + Vector2(-10, 0),
-		10000,
+		RAYCAST_DIST,
 		0b00000000_00000000_00000000_00001000, []
 	)
 	var farRightPos = Main.cast_ray_towards_point(
 		from_pos, from_pos + Vector2(10, 0),
-		10000,
+		RAYCAST_DIST,
 		0b00000000_00000000_00000000_00001000, []
 	)
 	var roomLength = farLeftPos.position.distance_to(farRightPos.position)
@@ -66,12 +69,12 @@ func generateTargetPositions(from_pos:Vector2):
 		var middle = farLeftPos.position + Vector2((AreaAttackCollider.shape.extents.x*2) * i+1, -(AreaAttackCollider.shape.extents.y/2))
 		var top = Main.cast_ray_towards_point(
 			middle, middle+Vector2(0, 10),
-			10000,
+			RAYCAST_DIST,
 			0b00000000_00000000_00000000_00001000, []
 		)
 		var bottom = Main.cast_ray_towards_point(
 			middle, middle+Vector2(0, -10),
-			10000,
+			RAYCAST_DIST,
 			0b00000000_00000000_00000000_00001000, []
 		)
 		
@@ -183,6 +186,7 @@ func _physics_process(delta):
 					dashesCompleted = 0
 					state = states.DEFAULT
 		states.LAPPING:
+			lap_attack_counter = max(0, lap_attack_counter - delta)
 			curr_speed = LAP_SPEED
 			var targetLapPosition = target_pos+Vector2(60,-120)
 			if lapsCompleted % 2 == 0:
@@ -193,7 +197,7 @@ func _physics_process(delta):
 			if global_position.distance_to(targetLapPosition) <= LAP_COMPLETED_COMFORT_ZONE:
 				lapsCompleted+=1
 			
-			if lapsCompleted >= LAPS_TO_MAKE:
+			if lapsCompleted >= LAPS_TO_MAKE or lap_attack_counter == 0:
 				lapsCompleted = 0
 				var selected = rand.randi_range(1,8)
 				if selected % 2 == 0:
@@ -228,8 +232,9 @@ func get_state():
 		return states.STILL
 	
 	if global_position.distance_to(target_player.global_position) <= DISTANCE_TO_LAP:
+		lap_attack_counter = LAP_ATTACK_DELAY
 		return states.LAPPING
-		
+	
 	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
 		return states.DEFAULT
 
