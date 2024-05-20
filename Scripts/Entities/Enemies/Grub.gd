@@ -2,6 +2,9 @@ extends "res://Scripts/BaseScripts/Enemy.gd"
 
 
 export var SLAM_DAMAGE = 10
+
+onready var Player = Main.get_node("Player")
+
 var slam = "Slam"
 
 enum states {
@@ -49,11 +52,17 @@ func animation_finished():
 		return
 	match $AnimatedSprite.animation:
 		"raise":
-			for body in $SlamCollider.get_overlapping_bodies():
-				if !body.is_in_group("Player"): continue
-				body.hurt(SLAM_DAMAGE)
 			$AnimatedSprite.play("hit")
+			
 		"hit":
+			Player.get_node("MusicPlayer").PlayOnNode(slam, self)
+			
+			for body in $SlamCollider.get_overlapping_bodies():
+				if !body.is_in_group("Player"):
+					continue
+				
+				body.hurt(SLAM_DAMAGE)
+			
 			state = states.STILL
 
 
