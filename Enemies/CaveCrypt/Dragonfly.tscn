@@ -1,10 +1,19 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Dragonfly.gd" type="Script" id=1]
-[ext_resource path="res://art/Enemies/dragonfly_almost.png" type="Texture" id=2]
+[ext_resource path="res://art/Enemies/Ardnaxela.png" type="Texture" id=2]
 [ext_resource path="res://art/Effects/POW_explosion.png" type="Texture" id=3]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://art/Effects/Warning!.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 192, 192, 192 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
@@ -54,30 +63,40 @@ region = Rect2( 64, 192, 64, 64 )
 atlas = ExtResource( 3 )
 region = Rect2( 128, 192, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 96, 96 )
+region = Rect2( 0, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 96, 96 )
+region = Rect2( 192, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
-region = Rect2( 192, 0, 96, 96 )
+region = Rect2( 384, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 2 )
-region = Rect2( 288, 0, 96, 96 )
+region = Rect2( 576, 0, 192, 192 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"frames": [ SubResource( 20 ) ],
 "loop": true,
+"name": "area",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ) ],
+"loop": true,
+"name": "dash",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": false,
 "name": "death",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
@@ -89,16 +108,35 @@ radius = 40.0
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 45.0
 
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 75, 50 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=28]
+animations = [ {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Dragonfly" type="KinematicBody2D"]
 collision_layer = 256
-collision_mask = 2
+collision_mask = 0
 script = ExtResource( 1 )
 SPEED = 150
+STEERING_MULT = 7.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.8, 0.8 )
+z_index = 2048
 frames = SubResource( 1 )
-frame = 1
+animation = "area"
 playing = true
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
@@ -115,3 +153,13 @@ margin_right = -16.0
 margin_bottom = -38.0
 
 [node name="EffectManager" parent="." instance=ExtResource( 4 )]
+
+[node name="AreaAttackCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAttackCollider"]
+shape = SubResource( 26 )
+
+[node name="AttackWarning" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 2.4, 2.4 )
+frames = SubResource( 28 )
