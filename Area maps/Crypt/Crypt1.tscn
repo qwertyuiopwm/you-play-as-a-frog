@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://TileSets/CryptTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/LitBrazier.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/Triggerables/Door.gd" type="Script" id=4]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Triggerables/SaveGame.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 288, 10 )
@@ -28,6 +29,9 @@ extents = Vector2( 159.75, 10 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 159.75, 10 )
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 94, 94 )
+
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 110.5, 18.75 )
 
@@ -47,7 +51,7 @@ collision_mask = 11
 format = 1
 tile_data = PoolIntArray( -3342334, 14, 0, -3342330, 14, 0, -3145726, 14, 0, -3145722, 14, 0, -2949118, 14, 0, -2949114, 14, 0, -2752510, 14, 0, -2752506, 14, 0, -1835008, 14, 0, -1835000, 14, 0, -1179649, 14, 0, -1245175, 14, 0, -589826, 14, 0, -655350, 14, 0 )
 
-[node name="Row1" type="TileMap" parent="Candles"]
+[node name="Row1" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -63,7 +67,7 @@ Triggerables = [ NodePath("../Row1") ]
 position = Vector2( 288, -502 )
 shape = SubResource( 1 )
 
-[node name="Row2" type="TileMap" parent="Candles"]
+[node name="Row2" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -79,7 +83,7 @@ Triggerables = [ NodePath("../Row2") ]
 position = Vector2( 288, -1074.56 )
 shape = SubResource( 2 )
 
-[node name="Row3" type="TileMap" parent="Candles"]
+[node name="Row3" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -95,7 +99,7 @@ Triggerables = [ NodePath("../Row3") ]
 position = Vector2( 288, -1654 )
 shape = SubResource( 3 )
 
-[node name="Row4" type="TileMap" parent="Candles"]
+[node name="Row4" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -111,7 +115,7 @@ Triggerables = [ NodePath("../Row4") ]
 position = Vector2( 288.25, -2626 )
 shape = SubResource( 4 )
 
-[node name="Row5" type="TileMap" parent="Candles"]
+[node name="Row5" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -127,7 +131,7 @@ Triggerables = [ NodePath("../Row5") ]
 position = Vector2( 288, -2819 )
 shape = SubResource( 5 )
 
-[node name="Row6" type="TileMap" parent="Candles"]
+[node name="Row6" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -143,7 +147,7 @@ Triggerables = [ NodePath("../Row6") ]
 position = Vector2( 288.25, -3013 )
 shape = SubResource( 6 )
 
-[node name="Row7" type="TileMap" parent="Candles"]
+[node name="Row7" type="TileMap" parent="Candles" groups=["Doors"]]
 visible = false
 tile_set = ExtResource( 2 )
 collision_layer = 11
@@ -159,8 +163,16 @@ Triggerables = [ NodePath("../Row7") ]
 position = Vector2( 288.25, -3203 )
 shape = SubResource( 7 )
 
-[node name="Chest" parent="." instance=ExtResource( 5 )]
-position = Vector2( -92, -1184 )
+[node name="Chest2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -89, -1181 )
+DroppedItems = [ ExtResource( 7 ) ]
+
+[node name="PlayerDetector" parent="Chest2" instance=ExtResource( 3 )]
+Triggerables = [ NodePath("../../Chest2") ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest2/PlayerDetector"]
+position = Vector2( 56, -3 )
+shape = SubResource( 9 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 Triggerables = [ NodePath("../SaveTriggerable") ]

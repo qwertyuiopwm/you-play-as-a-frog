@@ -239,7 +239,7 @@ func save():
 	var startTime = Time.get_ticks_msec()
 	var pauseGame = not Main.Paused
 	if pauseGame:
-		Main.pause(true, [self])
+		Main.pause(true, [self, Player.get_node("MusicPlayer")])
 	
 	SavingPopup.visible = true
 	yield(Main.wait(0.25), "completed")
@@ -409,6 +409,7 @@ func serialize_object(input, originalScenes:Dictionary = {}):
 				position = serialize(tilePosition),
 				x_flipped = input.is_cell_x_flipped(tilePosition.x, tilePosition.y),
 				y_flipped = input.is_cell_y_flipped(tilePosition.x, tilePosition.y),
+				transpose = input.is_cell_transposed(tilePosition.x, tilePosition.y),
 				tileID = tileID
 			})
 		data.cells = tiles
@@ -449,8 +450,15 @@ func unserialize_object(input, _obj:Object = null):
 		return load(input.data.path)
 	
 	if input.has("classname") and input.classname == "TileMap":
+		print(_obj.get_path())
 		for tile in input.data.cells:
-			_obj.set_cellv(unserialize(tile.position), tile.tileID, tile.x_flipped, tile.y_flipped)
+			print(tile)
+			_obj.set_cellv(
+				unserialize(tile.position), 
+				tile.tileID, 
+				tile.x_flipped, tile.y_flipped,
+				tile.transpose
+			)
 	
 	var obj = _obj
 	if input.has("classname") and input.classname.begins_with("InputEvent"):

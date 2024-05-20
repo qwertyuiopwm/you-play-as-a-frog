@@ -47,7 +47,6 @@ Toggle = true
 [node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 position = Vector2( 78, 88 )
 Triggerables = [ NodePath("../Walls"), NodePath("../NoMusic"), NodePath("../SaveTriggerable") ]
-DeleteOnTrigger = false
 
 [node name="Centipede" parent="EnemyManager" instance=ExtResource( 7 )]
 position = Vector2( 26, 447 )

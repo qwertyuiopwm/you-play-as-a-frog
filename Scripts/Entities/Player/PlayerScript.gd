@@ -569,7 +569,7 @@ func get_targetable_enemies():
 
 func get_target(blocked_effects = [], blocked_immunities = []):
 	var target = get_nearest_enemy(blocked_effects, blocked_immunities)
-	if (not target) or auto_aim_enabled:
+	if target == null or not auto_aim_enabled:
 		target = $Mouse
 	
 	return target

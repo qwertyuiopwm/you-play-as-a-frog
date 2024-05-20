@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=20 format=2]
+=======
+[gd_scene load_steps=18 format=2]
+>>>>>>> 730684bc13ef7b52cd2fea865f21c32f2843e64c
 
 [ext_resource path="res://Music/Boss1-song.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Music/Forest-bg.mp3" type="AudioStream" id=2]
@@ -13,12 +17,19 @@
 [ext_resource path="res://SFX/Shake.mp3" type="AudioStream" id=11]
 [ext_resource path="res://Music/forest3-bg-loop.mp3" type="AudioStream" id=12]
 [ext_resource path="res://Music/Forest3-bg-intro.mp3" type="AudioStream" id=13]
+<<<<<<< HEAD
 [ext_resource path="res://Music/Chase theme2-song.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Music/Swamp4-bg-intro.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Music/Swamp4-bg-loop.mp3" type="AudioStream" id=16]
 [ext_resource path="res://SFX/Slam.mp3" type="AudioStream" id=17]
 [ext_resource path="res://SFX/Nom.wav" type="AudioStream" id=18]
 [ext_resource path="res://SFX/Thud.mp3" type="AudioStream" id=19]
+=======
+[ext_resource path="res://SFX/Dash.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Music/Swamp4-bg-intro.mp3" type="AudioStream" id=15]
+[ext_resource path="res://Music/Swamp4-bg-loop.mp3" type="AudioStream" id=16]
+[ext_resource path="res://Music/Chase theme2-song.mp3" type="AudioStream" id=17]
+>>>>>>> 730684bc13ef7b52cd2fea865f21c32f2843e64c
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource( 3 )
@@ -66,7 +77,7 @@ stream = ExtResource( 11 )
 stream = ExtResource( 14 )
 
 [node name="ChaseMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
+stream = ExtResource( 17 )
 
 [node name="SwampIntro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
