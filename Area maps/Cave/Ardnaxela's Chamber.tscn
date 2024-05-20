@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/MagicBarrier.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Triggerables/AdjustCamera.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 254.5, 29.5 )
@@ -44,11 +45,12 @@ collision_mask = 11
 format = 1
 tile_data = PoolIntArray( -1966080, 0, 0, -1966079, 0, 0, -1966078, 0, 0, -1966077, 0, 0, -1966076, 0, 0, -1966075, 0, 0, -1966074, 0, 0, -65536, 1073741824, 0, -65535, 1073741824, 0, -65534, 1073741824, 0, -65533, 1073741824, 0, -65532, 1073741824, 0, -65531, 1073741824, 0, -65530, 1073741824, 0 )
 script = ExtResource( 3 )
-OpenOffset = Vector2( 0, -3e+07 )
+OpenOffset = Vector2( 500, 0 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 4 )]
 position = Vector2( 224, -94 )
-Triggerables = [ NodePath("../Walls") ]
+Triggerables = [ NodePath("../Walls"), NodePath("../AdjustCamera") ]
+TriggerVal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( -4, -60 )
@@ -69,3 +71,7 @@ Triggerables = [ NodePath("..") ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/PlayerDetector2"]
 position = Vector2( 3.5, -3 )
 shape = SubResource( 2 )
+
+[node name="AdjustCamera" parent="." instance=ExtResource( 8 )]
+ZoomChange = Vector2( 0.5, 0.5 )
+FreezePlayer = false
