@@ -66,7 +66,7 @@ position = Vector2( 1637, -461 )
 [node name="PlayerDetector" parent="." instance=ExtResource( 4 )]
 position = Vector2( 250, 415 )
 scale = Vector2( 3, 29 )
-Triggerables = [ NodePath("../Wall") ]
+Triggerables = [ NodePath("../Walls") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 246.667, -22.3793 )
