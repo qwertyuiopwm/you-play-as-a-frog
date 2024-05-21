@@ -9,6 +9,8 @@ onready var head = $head
 onready var body = $body
 onready var HitCollider = $HitCollider
 
+var train_sound = "Train"
+
 var moveToPos
 
 enum states {
@@ -95,6 +97,7 @@ func animation_finished():
 		return
 	match head.animation:
 		"enraging":
+			Main.get_node("Player/MusicPlayer").PlayOnNode(train_sound, self)
 			state = states.ENRAGED
 		"stunned":
 			state = states.STUNNED

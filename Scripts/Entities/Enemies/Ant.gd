@@ -67,6 +67,7 @@ func get_state():
 		
 	if (global_position.distance_to(target_player.global_position) <= ATTACK_RANGE):
 		$AnimatedSprite.play("ready_attack")
+		Main.get_node("Player/MusicPlayer").PlayOnNode(BITE_SOUND, self)
 		return states.BITING
 	
 	if state == states.SWARM:

@@ -193,7 +193,6 @@ shape = SubResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
 position = Vector2( 0.200001, -2 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 53 )
 
 [node name="EffectManager" parent="." instance=ExtResource( 1 )]
