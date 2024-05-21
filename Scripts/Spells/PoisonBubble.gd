@@ -3,6 +3,7 @@ extends "res://Scripts/BaseScripts/BouncingSpell.gd"
 
 export var POISON_DURATION = 5
 export var POISON_STACKS = 4
+var bubble_sound = "PoisonBubble"
 
 func on_settle(body):
 	$AnimatedSprite.play("hit")
@@ -12,6 +13,7 @@ func on_settle(body):
 	
 	if body is Entity:
 		body.Afflict(Effects.poison, POISON_DURATION, POISON_STACKS)
+		Player.MusicPlayer.PlayOnNode(bubble_sound, Player)
 		return true
 
 

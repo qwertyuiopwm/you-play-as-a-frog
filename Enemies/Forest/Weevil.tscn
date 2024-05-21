@@ -137,6 +137,7 @@ SLIP_WALL_DAMAGE = 12
 SLIP_SPEED_MULT = 3
 health = 35.0
 SLAM_DAMAGE = 8
+slam = "FleshHit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2, -5 )

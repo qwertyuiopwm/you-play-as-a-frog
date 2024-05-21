@@ -33,7 +33,7 @@ tile_set = ExtResource( 2 )
 collision_layer = 11
 collision_mask = 11
 format = 1
-tile_data = PoolIntArray( -1441791, 0, 0, -1441790, 0, 0, -1441789, 0, 0, -1441788, 0, 0, -1441787, 0, 0, -1441786, 0, 0, -1441785, 0, 0, -65536, 1073741824, 0, -65535, 1073741824, 0, -65534, 1073741824, 0 )
+tile_data = PoolIntArray( -1441791, 0, 0, -1441790, 0, 0, -1441789, 0, 0, -1441788, 0, 0, -1441787, 0, 0, -1441786, 0, 0, -1441785, 0, 0, 0, 1073741824, 0, 1, 1073741824, 0, 2, 1073741824, 0, 3, 1073741824, 0 )
 script = ExtResource( 5 )
 OpenOffset = Vector2( 0, -3e+07 )
 
@@ -74,8 +74,8 @@ collision_mask = 258
 [node name="PlayerDetector" parent="." instance=ExtResource( 3 )]
 position = Vector2( 250, 415 )
 scale = Vector2( 3, 29 )
-Triggerables = [ NodePath("../Wall") ]
+Triggerables = [ NodePath("../Walls") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( -53, -17.6552 )
+position = Vector2( -53, -17.9311 )
 shape = SubResource( 1 )
