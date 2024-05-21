@@ -75,7 +75,7 @@ func throw_mud():
 	ball.global_position = $MudPos.global_position
 	Main.call_deferred("add_child", ball)
 	
-	var delay = rand.randi_range(MIN_THROW_DELAY, MAX_THROW_DELAY)
+	var delay = rand.randf_range(MIN_THROW_DELAY, MAX_THROW_DELAY)
 	yield(Main.wait(delay), "completed")
 	throw_mud()
 

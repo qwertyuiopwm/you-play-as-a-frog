@@ -17,10 +17,11 @@ export var health: float = 10
 onready var maxHealth = health
 
 onready var Main = get_node("/root/Main")
-onready var rand = RandomNumberGenerator.new()
+onready var rand: RandomNumberGenerator = RandomNumberGenerator.new()
 onready var debug = OS.is_debug_build()
 
 onready var curr_speed = SPEED
+onready var curr_steering_mult = STEERING_MULT
 
 var velocity = Vector2(0, 0)
 var target_player
@@ -101,7 +102,7 @@ func move(_target, delta):
 	
 	var direction = (_target - global_position).normalized()
 	var desired_velocity = direction * curr_speed * slowness_mult
-	var steering = (desired_velocity - velocity) * delta * STEERING_MULT
+	var steering = (desired_velocity - velocity) * delta * curr_steering_mult
 	velocity += steering
 	flip_body(velocity.x > 0)
 	velocity = move_and_slide(velocity)
