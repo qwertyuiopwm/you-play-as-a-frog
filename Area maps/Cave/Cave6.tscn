@@ -78,5 +78,5 @@ scale = Vector2( 3, 29 )
 Triggerables = [ NodePath("../Wall") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 33.8333, -17.6897 )
+position = Vector2( 33.8333, -17.8966 )
 shape = SubResource( 1 )
