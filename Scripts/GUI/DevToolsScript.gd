@@ -26,7 +26,8 @@ onready var enemies = {
 	MediumSpider = preload("res://Enemies/CaveCrypt/SpiderMedium.tscn"),
 	LargeSpider = preload("res://Enemies/CaveCrypt/SpiderLarge.tscn"),
 	Bat = preload("res://Enemies/CaveCrypt/Bat.tscn"),
-	DragonFly = preload("res://Enemies/CaveCrypt/Dragonfly.tscn")
+	DragonFly = preload("res://Enemies/CaveCrypt/Dragonfly.tscn"),
+	FireFly = preload("res://Enemies/CaveCrypt/Firefly.tscn"),
 }
 
 var selectedEnemy: PackedScene
