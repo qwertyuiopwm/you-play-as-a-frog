@@ -31,8 +31,10 @@ var GroupsToSave = [
 	"Popup"
 ]
 var IgnoredTypes = [
+	AudioStreamPlayer,
 	AudioStreamMP3,
 	AudioStreamOGGVorbis,
+	AudioStreamPlayer2D,
 ]
 var IgnoredProperties = [
 	"DefaultControls",
@@ -82,7 +84,8 @@ var IgnoredProperties = [
 	"process_priority",
 	"unique_name_in_owner",
 	"segments",
-	"next_segment"
+	"next_segment",
+	"Save"
 ]
 
 func playtimeFromSave(num: int):
@@ -401,6 +404,7 @@ func serialize_object(input, originalScenes:Dictionary = {}):
 		return {
 			path = input.get_path()
 		}
+	
 	if input.has_method("get_class") and input.get_class() == "TileMap":
 		var tiles = []
 		for tilePosition in input.get_used_cells():
