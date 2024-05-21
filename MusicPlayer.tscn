@@ -16,7 +16,7 @@
 [ext_resource path="res://SFX/Dash.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Music/Swamp4-bg-intro.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Music/Swamp4-bg-loop.mp3" type="AudioStream" id=16]
-[ext_resource path="res://SFX/Slam.mp3" type="AudioStream" id=17]
+[ext_resource path="res://Music/Chase theme2-song.mp3" type="AudioStream" id=17]
 [ext_resource path="res://SFX/Nom.wav" type="AudioStream" id=18]
 [ext_resource path="res://SFX/Thud.mp3" type="AudioStream" id=19]
 [ext_resource path="res://SFX/Thud.wav" type="AudioStream" id=20]
