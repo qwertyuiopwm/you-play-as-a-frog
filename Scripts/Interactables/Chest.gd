@@ -3,45 +3,51 @@ extends "res://Scripts/BaseScripts/Triggerable.gd"
 
 export var DroppedItems = []
 
-var DROP_DIST = 75
-var DROP_SPEED = 75
-enum states {
-	CLOSED,
-	OPENING,
-	OPEN,
-}
+var DROP_DIST: float = 75
+var DROP_TIME: float = 1
+var DROP_DELAY: float = .5
+var INITIAL_DROP_DELAY: float = .5
 
-var state = states.CLOSED
 var dropping_item: Node2D
-var drop_dir: Vector2
+var closed: float = true
+
+func _ready():
+	$AnimatedSprite.play("closed" if closed else "open")
 
 
 func onTrigger(trigger):
 	if not trigger: return
 	
-	state = states.OPENING
-	$AnimatedSprite.frame = 1
+	closed = false
+	$AnimatedSprite.play("open")
+	
+	yield(Main.wait(INITIAL_DROP_DELAY), "completed")
+	
+	drop_item()
 
 
-func _process(delta):
-	if state != states.OPENING: return
-	if dropping_item == null and len(DroppedItems) <= 0: return
+func drop_item():
+	var drop_tween: Tween = Tween.new()
+	var item = DroppedItems.pop_back().instance()
 	
-	if dropping_item == null or global_position.distance_to(dropping_item.global_position) > DROP_DIST:
-		if not DroppedItems:
-			dropping_item.Pickupable = true
-			state = states.OPEN
-			return
-		
-		if dropping_item != null:
-			dropping_item.Pickupable = true
-		
-		dropping_item = DroppedItems.pop_back().instance()
-		dropping_item.Pickupable = false
-		get_parent().add_child(dropping_item)
-		dropping_item.global_position = global_position
-		drop_dir = Vector2(randf() - .5, randf() - .5)
-		drop_dir = drop_dir.normalized()
+	call_deferred("add_child", drop_tween)
+	call_deferred("add_child", item)
 	
-	dropping_item.global_position += drop_dir * DROP_SPEED * delta
+	yield(drop_tween, "tree_entered")
 	
+	var drop_dir = Vector2(randf() - .5, randf() - .5).normalized()
+	var drop_pos = drop_dir * DROP_DIST
+	
+	var _v = drop_tween.interpolate_property(item, "position", 
+		Vector2.ZERO, 
+		drop_pos, 
+		DROP_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT
+	)
+	var __v = drop_tween.start()
+	
+	if not DroppedItems:
+		return
+	
+	yield(Main.wait(DROP_DELAY), "completed")
+	
+	drop_item()
