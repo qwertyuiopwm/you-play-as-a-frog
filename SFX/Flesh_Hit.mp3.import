@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Flesh_Hit.mp3-1eaeae6ae464770fa764a7c898d7de94.mp3str"
+
+[deps]
+
+source_file="res://SFX/Flesh_Hit.mp3"
+dest_files=[ "res://.import/Flesh_Hit.mp3-1eaeae6ae464770fa764a7c898d7de94.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

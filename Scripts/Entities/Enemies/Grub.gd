@@ -5,7 +5,7 @@ export var SLAM_DAMAGE = 10
 
 onready var Player = Main.get_node("Player")
 
-var slam = "Slam"
+export var slam = "Slam"
 
 enum states {
 	STILL,
