@@ -5,6 +5,11 @@ export var CIRCLE_RADIUS = 100
 export var BITE_DAMAGE = 10
 export var TARGET_COMFORT_RADIUS = 10
 
+export var BITE_FRAME = 0
+export var BITE_SOUND = "Nom"
+
+onready var Player = Main.get_node("Player")
+
 
 enum states {
 	STILL,
@@ -17,7 +22,11 @@ enum states {
 
 var state
 var randomnum = randf()
-var bite = "Nom"
+
+
+func _ready():
+	var _c = $AnimatedSprite.connect("frame_changed", self, "frame_changed")
+
 
 func on_death():
 	$AnimatedSprite.play("death")
@@ -58,7 +67,7 @@ func get_state():
 		
 	if (global_position.distance_to(target_player.global_position) <= ATTACK_RANGE):
 		$AnimatedSprite.play("ready_attack")
-		Main.get_node("Player/MusicPlayer").PlayOnNode(bite, self)
+		Main.get_node("Player/MusicPlayer").PlayOnNode(BITE_SOUND, self)
 		return states.BITING
 	
 	if state == states.SWARM:
@@ -83,3 +92,11 @@ func animation_finished():
 			$AnimatedSprite.play("hit")
 		"hit":
 			state = states.STILL
+
+
+func frame_changed():
+	if $AnimatedSprite.animation != "hit":
+		return
+	var frame = $AnimatedSprite.frame
+	if frame == BITE_FRAME:
+		Player.get_node("MusicPlayer").PlayOnNode(BITE_SOUND, self)
