@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Misc4loop-song.mp3-2b8db773645f4df91893d555a6c32fa0.mp3str"
+
+[deps]
+
+source_file="res://Music/Misc4loop-song.mp3"
+dest_files=[ "res://.import/Misc4loop-song.mp3-2b8db773645f4df91893d555a6c32fa0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

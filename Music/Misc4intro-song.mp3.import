@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Misc4intro-song.mp3-0703088e782e17753a67086fb89c2229.mp3str"
+
+[deps]
+
+source_file="res://Music/Misc4intro-song.mp3"
+dest_files=[ "res://.import/Misc4intro-song.mp3-0703088e782e17753a67086fb89c2229.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
