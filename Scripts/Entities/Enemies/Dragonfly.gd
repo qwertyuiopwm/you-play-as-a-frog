@@ -13,7 +13,7 @@ export var LAPS_TO_MAKE = 3
 export var DASHES = 3
 export var FIRE_COOLDOWN_MS = 100
 export var RAYCAST_DIST: int = 100000
-export var LAP_ATTACK_DELAY: float = 15
+export var LAP_ATTACK_DELAY: float = 5
 
 onready var AreaAttackCollider = $AreaAttackCollider.get_node("CollisionShape2D")
 onready var Fire = preload("res://Enemies/Attacks/Fire.tscn")
