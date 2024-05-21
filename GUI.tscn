@@ -1063,8 +1063,8 @@ custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 16 )
 custom_styles/normal = ExtResource( 17 )
 bbcode_enabled = true
-bbcode_text = "[valign][center]In order to [color=yellow]slip[/color] the [color=red]Centipede[/color], you must use [color=yellow]Conjure Condiment[/color] on [color=lime]5[/color] segments.[/center][/valign]"
-text = "In order to slip the Centipede, you must use Conjure Condiment on 5 segments."
+bbcode_text = "[valign][center]In order to [color=yellow]slip[/color] the [color=red]Centipede[/color], you must use [color=yellow]Conjure Condiment[/color] on [color=lime]6[/color] segments.[/center][/valign]"
+text = "In order to slip the Centipede, you must use Conjure Condiment on 6 segments."
 custom_effects = [ SubResource( 25 ) ]
 
 [node name="LevelTransition" type="CanvasLayer" parent="."]
