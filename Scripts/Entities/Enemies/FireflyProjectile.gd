@@ -30,5 +30,6 @@ func body_entered(body):
 	
 	var residue = ResidueScene.instance()
 	Main.call_deferred("add_child", residue)
+	residue.global_position = global_position
 	
 	queue_free()
