@@ -15,6 +15,8 @@ class effect_sorter:
 func _process(delta):
 	if visible:
 		get_parent().modulate = get_parent_modulate()
+	else:
+		get_parent().modulate = Color(255, 255, 255)
 	
 	CurrEffects = get_effects()
 	
