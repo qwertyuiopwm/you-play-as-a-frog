@@ -1,12 +1,110 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://art/Enemies/firefly_movement.png" type="Texture" id=1]
+[ext_resource path="res://art/Enemies/firefly_spinattack.png" type="Texture" id=2]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Entities/Enemies/Firefly.gd" type="Script" id=4]
+[ext_resource path="res://art/Enemies/firefly_firing.png" type="Texture" id=5]
+[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/Attacks/FireflyProjectile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://art/Effects/BLAM_explosion.png" type="Texture" id=9]
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 9 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 9 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 9 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 192, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
@@ -26,10 +124,25 @@ region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 8 ) ],
 "loop": false,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "roll",
+"speed": 20.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 24 ), SubResource( 23 ), SubResource( 24 ), SubResource( 22 ), SubResource( 21 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 8.0
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
@@ -38,33 +151,75 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=6]
-height = 15.0
+radius = 19.0909
+height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 15.0
-height = 15.0
+radius = 26.3636
+height = 0.0
 
 [node name="Firefly" type="KinematicBody2D"]
+scale = Vector2( 1.1, 1.1 )
 collision_layer = 256
 collision_mask = 2
+script = ExtResource( 4 )
+IMMUNITIES = [ ExtResource( 6 ) ]
+health = 40.0
+ProjectileScene = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -5.45455 )
 z_index = 4096
 frames = SubResource( 5 )
-playing = true
+animation = "death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
 
 [node name="EffectManager" parent="." instance=ExtResource( 3 )]
+POISON_COLOR_MODULATE = Color( 0.8, 1, 0.803922, 1 )
 
-[node name="HitCollider" type="Area2D" parent="."]
+[node name="RollCollider" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RollCollider"]
+position = Vector2( 0, -5.45455 )
 shape = SubResource( 7 )
 
-[node name="HPBar" parent="." instance=ExtResource( 5 )]
-margin_left = -16.0
-margin_top = -38.0
-margin_right = -16.0
-margin_bottom = -38.0
+[node name="PropertyChecker4" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 22.7273
+margin_top = 7.27272
+margin_right = 30.7273
+margin_bottom = 21.2727
+text = "1"
+
+[node name="PropertyChecker" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 22.7273
+margin_top = 18.1818
+margin_right = 30.7273
+margin_bottom = 32.1818
+text = "1"
+Property = "state_name"
+
+[node name="PropertyChecker2" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 22.7273
+margin_top = 28.1818
+margin_right = 38.7273
+margin_bottom = 42.1818
+text = "13"
+Property = "dist_player"
+
+[node name="PropertyChecker3" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 22.7273
+margin_top = 39.0909
+margin_right = 38.7273
+margin_bottom = 53.0909
+text = "13"
+Property = "velocity"
