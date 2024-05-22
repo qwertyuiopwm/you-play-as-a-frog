@@ -46,7 +46,7 @@ const ACTION_FUNCS = {
 	states.ROLLING_AWAY: "roll_away",
 	states.ROLLING_TOWARDS: "roll_towards",
 	states.SHOOTING: "start_shooting",
-	#states.FLAMETHROWERING: "throw_flames",
+	states.FLAMETHROWERING: "throw_flames",
 }
 
 var state = states.DEFAULT
@@ -56,7 +56,6 @@ var dist_player
 var action_counter: float = -1
 var shoot_timer: float = 0
 var shots_counter: int = 0
-
 
 func _ready():
 	target_player = Main.get_node("Player")
@@ -103,8 +102,7 @@ func _physics_process(delta):
 			
 			var rotated_dir = player_dir.rotated(deg2rad(MOVE_ANGLE_OFFSET))
 			target_pos = player_pos + rotated_dir * player_dist
-			move(target_pos, delta)
-			
+			var vel = move(target_pos, delta)
 			if player_dist < DIST_TO_FOLLOW:
 				return
 			
@@ -131,6 +129,9 @@ func _physics_process(delta):
 				choose_action([ACTION_FUNCS[state]])
 				yield($AnimatedSprite, "animation_finished")
 				return
+			
+		states.FLAMETHROWERING:
+			pass
 	
 	if state == states.DEFAULT:
 		return
@@ -200,6 +201,8 @@ func throw_flames():
 	action_counter = FLAMETHROWER_DURATION
 	curr_steering_mult = FLAMETHROWER_STEERING_MULT
 	curr_speed = FLAMETHROWER_SPEED
+	
+	$Flamethrower.Enabled = true
 
 
 func shoot_projectile():
