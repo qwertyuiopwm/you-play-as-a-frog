@@ -166,7 +166,7 @@ collision_layer = 256
 collision_mask = 2
 script = ExtResource( 4 )
 IMMUNITIES = [ ExtResource( 6 ) ]
-SPEED = 80
+SPEED = 100
 health = 40.0
 ProjectileScene = ExtResource( 8 )
 
