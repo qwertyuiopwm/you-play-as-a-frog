@@ -8,7 +8,7 @@
 [ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 142.5, 537 )
+extents = Vector2( 142.5, 731 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,9 +35,10 @@ position = Vector2( -34, -1242 )
 position = Vector2( 127, -1004 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 6 )]
+Triggerables = [ NodePath("../ChangeMusic") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 132.5, 527 )
+position = Vector2( 132.5, 333 )
 shape = SubResource( 1 )
 
 [node name="ChangeMusic" parent="." instance=ExtResource( 5 )]
