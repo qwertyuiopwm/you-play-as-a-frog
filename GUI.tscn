@@ -1553,6 +1553,7 @@ Intro = "ForestIntro"
 
 [node name="Story" type="CanvasLayer" parent="."]
 layer = 128
+visible = false
 script = ExtResource( 33 )
 
 [node name="ColorRect" type="TextureRect" parent="Story"]
