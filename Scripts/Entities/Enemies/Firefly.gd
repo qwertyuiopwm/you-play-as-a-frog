@@ -15,7 +15,7 @@ export var LIKELY_ROLL_DIST: float = 75
 export(Array, PackedScene) var ROLL_IMMUNITIES = []
 
 export var ROLL_AWAY_SPEED: int = 400
-export var ROLL_AWAY_DIST: int = 200
+export var ROLL_AWAY_DIST: int = 100
 export var NO_ROLL_AWAY_DIST: int = 150
 
 export var ROLL_TOWARDS_SPEED: int = 300
@@ -116,7 +116,7 @@ func _physics_process(delta):
 			var vel: Vector2 = move(target_pos, delta)
 			
 			if vel.length() <= .001 or global_position.distance_to(target_pos) < TARGET_COMFORT_RADIUS:
-				choose_action()
+				choose_action([ACTION_FUNCS[state]])
 				return
 		
 		states.SHOOTING:
@@ -128,8 +128,8 @@ func _physics_process(delta):
 				shots_counter -= 1
 			
 			if shots_counter <= 0:
-				choose_action()
-				print("Done shooting")
+				choose_action([ACTION_FUNCS[state]])
+				yield($AnimatedSprite, "animation_finished")
 				return
 	
 	if state == states.DEFAULT:
@@ -139,11 +139,10 @@ func _physics_process(delta):
 		action_counter = max(0, action_counter - delta)
 	
 	if action_counter == 0:
-		choose_action()
+		choose_action([ACTION_FUNCS[state]])
 
 
 func choose_action(exclude: Array = []):
-	print("Choosing new action...")
 	state = states.DEFAULT
 	$AnimatedSprite.play("default")
 	
@@ -169,7 +168,7 @@ func choose_action(exclude: Array = []):
 		
 	available_actions.shuffle()
 	var selected_action = available_actions[0]
-	print("Chose action ", selected_action)
+	
 	call(selected_action)
 
 

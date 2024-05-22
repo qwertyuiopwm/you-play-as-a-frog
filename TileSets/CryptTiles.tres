@@ -5,8 +5,8 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 64, 64, 64, 64, 32, 0, 32 )
+[sub_resource type="ConcavePolygonShape2D" id=2]
+segments = PoolVector2Array( 0, 32, 32, 64, 32, 64, 64, 32, 64, 32, 32, 32, 32, 32, 0, 32 )
 
 [resource]
 0/name = "Crypt floor.png 0"

@@ -2,7 +2,7 @@ extends Node2D
 
 
 export(Color) var SLIPPY_COLOR_MODULATE = Color(1, 1, 0.8)
-export(Color) var POISON_COLOR_MODULATE = Color(1, 0.8, 1)
+export(Color) var POISON_COLOR_MODULATE = Color(.8, 1, .8)
 
 export var CurrEffects = []
 
@@ -16,7 +16,7 @@ func _process(delta):
 	if visible:
 		get_parent().modulate = get_parent_modulate()
 	else:
-		get_parent().modulate = Color(255, 255, 255)
+		get_parent().modulate = Color(1, 1, 1)
 	
 	CurrEffects = get_effects()
 	

@@ -41,7 +41,7 @@ func _physics_process(delta):
 	state = get_state()
 	
 	if is_sliding():
-		move(0, delta)
+		move(target_pos, delta)
 		return
 		
 	
