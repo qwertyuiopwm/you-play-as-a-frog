@@ -1,19 +1,26 @@
 extends Entity
 
 
-onready var next_segment_back = next_segment.get_node("Back")
+var next_segment_back
 
 var next_segment
 var head
 
 
 func _ready():
+	if not is_instance_valid(next_segment):
+		queue_free()
+		return
+	next_segment_back = next_segment.get_node("Back")
 	var _c = $AnimatedSprite.connect("animation_finished", self, "animation_finished")
 	$AnimatedSprite.playing = true
 	global_position = next_segment_back.global_position - $Front.position.rotated(rotation)
 
 
 func _physics_process(_delta):
+	if not is_instance_valid(next_segment_back):
+		queue_free()
+		return
 	if $AnimatedSprite.animation == "death":
 		return
 	rotation = global_position.angle_to_point(next_segment_back.global_position)
