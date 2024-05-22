@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 export var SPEED: int = 400
-export var DAMAGE: int = 10
+export var DAMAGE: int = 5
 
 export var ResidueScene: PackedScene = preload("res://Enemies/Attacks/Fire.tscn")
 
@@ -30,6 +30,7 @@ func body_entered(body):
 	
 	var residue = ResidueScene.instance()
 	Main.call_deferred("add_child", residue)
+	residue.DamagePerSecond = 7.5
 	residue.global_position = global_position
 	
 	queue_free()
