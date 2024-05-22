@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Spells/Explode.gd" type="Script" id=1]
-[ext_resource path="res://art/Effects/spell_explosion.png" type="Texture" id=2]
+[ext_resource path="res://art/Spells/spell_explosion.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 0.01
@@ -67,6 +67,7 @@ collision_mask = 0
 script = ExtResource( 1 )
 COOLDOWN = 3
 MANA_COST = 25
+SpellIcon = "res://art/Spells/Icons/spell_explosion_icon (1).png"
 Sound = "Explode"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
