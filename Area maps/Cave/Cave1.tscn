@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSets/Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/DecorativeCrystals.tres" type="TileSet" id=2]
 [ext_resource path="res://Enemies/CaveCrypt/Bat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Triggers/PlayerDetector.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 142.5, 537 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,3 +33,13 @@ position = Vector2( -34, -1242 )
 
 [node name="Bat2" parent="EnemyManager" instance=ExtResource( 3 )]
 position = Vector2( 127, -1004 )
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 6 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( 132.5, 527 )
+shape = SubResource( 1 )
+
+[node name="ChangeMusic" parent="." instance=ExtResource( 5 )]
+Song = "CaveLoop"
+Intro = "CaveIntro"
