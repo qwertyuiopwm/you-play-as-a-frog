@@ -178,6 +178,11 @@ script = ExtResource( 7 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 800.0
+margin_bottom = 800.0
+color = Color( 0.329412, 0.168627, 0.0156863, 1 )
+
 [node name="book" type="Control" parent="CanvasLayer"]
 margin_left = 400.0
 margin_top = 400.0
