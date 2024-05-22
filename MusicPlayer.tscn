@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Music/Boss1-song.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Music/Forest-bg.mp3" type="AudioStream" id=2]
@@ -20,9 +20,9 @@
 [ext_resource path="res://SFX/Nom.wav" type="AudioStream" id=18]
 [ext_resource path="res://SFX/Thud.mp3" type="AudioStream" id=19]
 [ext_resource path="res://SFX/Thud.wav" type="AudioStream" id=20]
-[ext_resource path="res://Music/Misc4loop-song.mp3" type="AudioStream" id=21]
-[ext_resource path="res://Music/Misc4intro-song.mp3" type="AudioStream" id=22]
 [ext_resource path="res://SFX/Flesh_Hit.mp3" type="AudioStream" id=21]
+[ext_resource path="res://Music/Misc4intro-song.mp3" type="AudioStream" id=22]
+[ext_resource path="res://Music/Misc4loop-song.mp3" type="AudioStream" id=23]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource( 3 )
@@ -94,7 +94,8 @@ stream = ExtResource( 18 )
 stream = ExtResource( 22 )
 
 [node name="CaveLoop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
+stream = ExtResource( 23 )
+
 [node name="FleshHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 21 )
 volume_db = 1.0
