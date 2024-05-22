@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://art/Enemies/firefly_movement.png" type="Texture" id=1]
 [ext_resource path="res://art/Enemies/firefly_spinattack.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/Attacks/FireflyProjectile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://art/Effects/BLAM_explosion.png" type="Texture" id=9]
+[ext_resource path="res://Enemies/Extras/FireflyBossBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 9 )
@@ -223,3 +224,5 @@ margin_right = 38.7273
 margin_bottom = 53.0909
 text = "13"
 Property = "velocity"
+
+[node name="BossBar" parent="." instance=ExtResource( 10 )]

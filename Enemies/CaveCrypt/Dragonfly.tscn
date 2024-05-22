@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/Dragonfly.gd" type="Script" id=1]
 [ext_resource path="res://art/Enemies/Ardnaxela.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://art/Effects/Warning!.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/Extras/DragonflyBossBar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
@@ -176,3 +177,5 @@ margin_top = -53.5
 margin_right = 18.5
 margin_bottom = -39.5
 text = "1"
+
+[node name="BossBar" parent="." instance=ExtResource( 9 )]
