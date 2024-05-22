@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://art/Enemies/firefly_movement.png" type="Texture" id=1]
 [ext_resource path="res://art/Enemies/firefly_spinattack.png" type="Texture" id=2]
@@ -9,8 +9,8 @@
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/Attacks/FireflyProjectile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://art/Effects/BLAM_explosion.png" type="Texture" id=9]
-[ext_resource path="res://Enemies/Attacks/Flamethrower.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemies/Extras/FireflyBossBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Enemies/Attacks/Flamethrower.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 9 )
@@ -187,8 +187,10 @@ POISON_COLOR_MODULATE = Color( 0.8, 1, 0.803922, 1 )
 position = Vector2( 0, -5.45455 )
 shape = SubResource( 7 )
 
-[node name="Flamethrower" parent="." instance=ExtResource( 10 )]
+[node name="Flamethrower" parent="." instance=ExtResource( 11 )]
 DPS = 20
+
+[node name="BossBar" parent="." instance=ExtResource( 10 )]
 
 [node name="PropertyChecker4" parent="." instance=ExtResource( 7 )]
 anchor_right = 0.0
@@ -228,5 +230,3 @@ margin_right = 38.7273
 margin_bottom = 53.0909
 text = "13"
 Property = "velocity"
-
-[node name="BossBar" parent="." instance=ExtResource( 10 )]
