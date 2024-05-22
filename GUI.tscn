@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://art/GUI/stam_full-1.png.png" type="Texture" id=1]
 [ext_resource path="res://art/GUI/arrow.png" type="Texture" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://art/4_LousyFrog.png" type="Texture" id=31]
 [ext_resource path="res://art/3_UpcomingTournament.png" type="Texture" id=32]
 [ext_resource path="res://Scripts/OpeningScene.gd" type="Script" id=33]
+[ext_resource path="res://art/book_bg-1.png.png" type="Texture" id=34]
 
 [sub_resource type="DynamicFont" id=56]
 font_data = ExtResource( 24 )
@@ -315,6 +316,10 @@ font_data = SubResource( 33 )
 [sub_resource type="DynamicFont" id=51]
 size = 64
 font_data = SubResource( 33 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 34 )
+region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=64]
 atlas = ExtResource( 26 )
@@ -1548,13 +1553,13 @@ Intro = "ForestIntro"
 
 [node name="Story" type="CanvasLayer" parent="."]
 layer = 128
-visible = false
 script = ExtResource( 33 )
 
-[node name="ColorRect" type="ColorRect" parent="Story"]
-margin_right = 800.0
-margin_bottom = 800.0
-color = Color( 0.329412, 0.168627, 0.0156863, 1 )
+[node name="ColorRect" type="TextureRect" parent="Story"]
+margin_right = 256.0
+margin_bottom = 256.0
+rect_scale = Vector2( 3.125, 3.125 )
+texture = SubResource( 92 )
 
 [node name="book" type="Control" parent="Story"]
 margin_left = 400.0
@@ -1609,6 +1614,10 @@ frames = SubResource( 67 )
 [node name="frame7" type="AnimatedSprite" parent="Story/book/BookBase/Frames"]
 visible = false
 frames = SubResource( 74 )
+
+[node name="frame8" type="Sprite" parent="Story/book/BookBase/Frames"]
+visible = false
+texture = ExtResource( 30 )
 
 [node name="ColorRect2" type="ColorRect" parent="Story/book/BookBase"]
 margin_left = -12.0
