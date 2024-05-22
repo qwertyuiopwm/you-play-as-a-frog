@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://art/GUI/stam_full-1.png.png" type="Texture" id=1]
 [ext_resource path="res://art/GUI/arrow.png" type="Texture" id=2]
@@ -26,6 +26,13 @@
 [ext_resource path="res://Assets/VCR_OSD_MONO.ttf" type="DynamicFontData" id=24]
 [ext_resource path="res://Triggerables/ChangeMusicTrigger.tscn" type="PackedScene" id=25]
 [ext_resource path="res://art/GUI/wizzard book 2 (1).png" type="Texture" id=26]
+[ext_resource path="res://art/6_otter fight.png" type="Texture" id=27]
+[ext_resource path="res://art/1_InAVillage.png" type="Texture" id=28]
+[ext_resource path="res://art/2_intro_frame.png" type="Texture" id=29]
+[ext_resource path="res://art/5_Directly hitting all the elderly frogs.png" type="Texture" id=30]
+[ext_resource path="res://art/4_LousyFrog.png" type="Texture" id=31]
+[ext_resource path="res://art/3_UpcomingTournament.png" type="Texture" id=32]
+[ext_resource path="res://Scripts/OpeningScene.gd" type="Script" id=33]
 
 [sub_resource type="DynamicFont" id=56]
 font_data = ExtResource( 24 )
@@ -308,6 +315,168 @@ font_data = SubResource( 33 )
 [sub_resource type="DynamicFont" id=51]
 size = 64
 font_data = SubResource( 33 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 26 )
+region = Rect2( 128, 128, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=65]
+animations = [ {
+"frames": [ SubResource( 64 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 27 )
+region = Rect2( 0, 0, 256, 192 )
+
+[sub_resource type="SpriteFrames" id=67]
+animations = [ {
+"frames": [ SubResource( 66 ) ],
+"loop": false,
+"name": "default",
+"speed": 1.0
+} ]
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 27 )
+region = Rect2( 0, 0, 256, 192 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 27 )
+region = Rect2( 256, 0, 256, 192 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 27 )
+region = Rect2( 512, 0, 256, 192 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 27 )
+region = Rect2( 256, 192, 256, 192 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 27 )
+region = Rect2( 512, 192, 256, 192 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 27 )
+region = Rect2( 0, 384, 256, 192 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 27 )
+region = Rect2( 256, 384, 256, 192 )
+
+[sub_resource type="SpriteFrames" id=74]
+animations = [ {
+"frames": [ SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 36 ), SubResource( 73 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 26 )
+region = Rect2( 256, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 26 )
+region = Rect2( 384, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 26 )
+region = Rect2( 128, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 26 )
+region = Rect2( 256, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 26 )
+region = Rect2( 384, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 26 )
+region = Rect2( 128, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 26 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 26 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 26 )
+region = Rect2( 384, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 26 )
+region = Rect2( 128, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 26 )
+region = Rect2( 384, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 26 )
+region = Rect2( 256, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 26 )
+region = Rect2( 128, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 26 )
+region = Rect2( 384, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 26 )
+region = Rect2( 256, 128, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=91]
+animations = [ {
+"frames": [ null, SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), null ],
+"loop": false,
+"name": "next page",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), null ],
+"loop": false,
+"name": "open",
+"speed": 8.0
+}, {
+"frames": [ null, SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), null ],
+"loop": false,
+"name": "prev page",
+"speed": 10.0
+} ]
 
 [node name="GUI" type="Control"]
 pause_mode = 2
@@ -1376,3 +1545,83 @@ valign = 1
 [node name="StartMusic" parent="." instance=ExtResource( 25 )]
 Song = "ForestLoop"
 Intro = "ForestIntro"
+
+[node name="Story" type="CanvasLayer" parent="."]
+layer = 128
+visible = false
+script = ExtResource( 33 )
+
+[node name="ColorRect" type="ColorRect" parent="Story"]
+margin_right = 800.0
+margin_bottom = 800.0
+color = Color( 0.329412, 0.168627, 0.0156863, 1 )
+
+[node name="book" type="Control" parent="Story"]
+margin_left = 400.0
+margin_top = 400.0
+margin_right = 440.0
+margin_bottom = 440.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="BookBase" type="Control" parent="Story/book"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="Story/book/BookBase"]
+scale = Vector2( 2.65625, 2.45312 )
+frames = SubResource( 65 )
+
+[node name="ColorRect" type="ColorRect" parent="Story/book/BookBase"]
+margin_left = -133.0
+margin_top = -118.0
+margin_right = 132.0
+margin_bottom = 83.0
+color = Color( 0.28, 0.215787, 0.1596, 1 )
+
+[node name="Frames" type="Node2D" parent="Story/book/BookBase"]
+position = Vector2( 0, -17 )
+
+[node name="frame1" type="Sprite" parent="Story/book/BookBase/Frames"]
+texture = ExtResource( 28 )
+
+[node name="frame2" type="Sprite" parent="Story/book/BookBase/Frames"]
+visible = false
+scale = Vector2( 0.667, 0.667 )
+texture = ExtResource( 29 )
+
+[node name="frame3" type="Sprite" parent="Story/book/BookBase/Frames"]
+visible = false
+texture = ExtResource( 32 )
+
+[node name="frame4" type="Sprite" parent="Story/book/BookBase/Frames"]
+visible = false
+texture = ExtResource( 31 )
+
+[node name="frame5" type="Sprite" parent="Story/book/BookBase/Frames"]
+visible = false
+texture = ExtResource( 30 )
+
+[node name="frame6" type="AnimatedSprite" parent="Story/book/BookBase/Frames"]
+visible = false
+frames = SubResource( 67 )
+
+[node name="frame7" type="AnimatedSprite" parent="Story/book/BookBase/Frames"]
+visible = false
+frames = SubResource( 74 )
+
+[node name="ColorRect2" type="ColorRect" parent="Story/book/BookBase"]
+margin_left = -12.0
+margin_top = -142.0
+margin_right = 11.0
+margin_bottom = 147.0
+color = Color( 0, 0, 0, 0.0588235 )
+
+[node name="BookOver" type="Control" parent="Story/book"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="bookchange" type="AnimatedSprite" parent="Story/book/BookOver"]
+scale = Vector2( 2.656, 2.453 )
+frames = SubResource( 91 )
+animation = "open"

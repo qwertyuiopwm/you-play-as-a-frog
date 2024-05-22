@@ -1,8 +1,8 @@
-extends Control
+extends CanvasLayer
 
 
-onready var Frames = $CanvasLayer/book/BookBase/Frames.get_children()
-onready var BookChange = $CanvasLayer/book/BookOver/bookchange
+onready var Frames = $book/BookBase/Frames.get_children()
+onready var BookChange = $book/BookOver/bookchange
 
 var curr_frame = 0
 
@@ -53,9 +53,9 @@ func prev_page():
 func frame_changed():
 	var frame = BookChange.frame
 	var frame_count = BookChange.frames.get_frame_count(BookChange.animation)
-	$CanvasLayer/book/BookBase.visible = (frame <= 1 or frame >= (frame_count - 2))
+	$book/BookBase.visible = (frame <= 1 or frame >= (frame_count - 2))
 	if BookChange.animation == "open" and frame < 5:
-		$CanvasLayer/book/BookBase.visible = false
+		$book/BookBase.visible = false
 
 
 func animation_finished():
