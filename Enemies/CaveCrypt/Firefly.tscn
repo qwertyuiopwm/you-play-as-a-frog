@@ -168,6 +168,7 @@ script = ExtResource( 4 )
 IMMUNITIES = [ ExtResource( 6 ) ]
 SPEED = 100
 health = 40.0
+ROLL_TOWARDS_OVERSHOT_DIST = 150
 ProjectileScene = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
