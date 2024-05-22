@@ -1,4 +1,4 @@
-extends "res://Scripts/BaseScripts/Boss.gd"
+	extends "res://Scripts/BaseScripts/Boss.gd"
 
 
 export var CONTACT_DAMAGE: float = 40
@@ -77,7 +77,9 @@ func throw_mud():
 	
 	var delay = rand.randf_range(MIN_THROW_DELAY, MAX_THROW_DELAY)
 	yield(Main.wait(delay), "completed")
-	throw_mud()
+	
+	if is_instance_valid(self):
+		throw_mud()
 
 
 func move_forward(delta):
