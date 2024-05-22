@@ -19,10 +19,10 @@
 
 [node name="Swamp" type="Node2D"]
 
-[node name="Swamp1" parent="." instance=ExtResource( 1 )]
-
 [node name="Swamp2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 960 )
+
+[node name="Swamp1" parent="." instance=ExtResource( 1 )]
 
 [node name="Swamp3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -64, 2048 )

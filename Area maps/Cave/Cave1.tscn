@@ -36,6 +36,7 @@ position = Vector2( 127, -1004 )
 
 [node name="PlayerDetector" parent="." instance=ExtResource( 6 )]
 Triggerables = [ NodePath("../ChangeMusic") ]
+DeleteOnTrigger = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 132.5, 333 )
