@@ -19,7 +19,9 @@ export var ROLL_AWAY_DIST: int = 100
 export var NO_ROLL_AWAY_DIST: int = 150
 
 export var ROLL_TOWARDS_SPEED: int = 300
+export var ROLL_DAMAGE: int = 15
 export var ROLL_TOWARDS_OVERSHOT_DIST: int = 100
+export(float, 0, 1) var ROLL_AGAIN_CHANCE: float = .5
 
 export var SHOOT_AMOUNT: int = 5
 export var SHOOT_DELAY: float = 1
@@ -52,12 +54,14 @@ const ACTION_FUNCS = {
 var state = states.DEFAULT
 var state_name
 var dist_player
+var vel_len: float
 
 var action_counter: float = -1
 var shoot_timer: float = 0
 var shots_counter: int = 0
 
 func _ready():
+	var _c = $RollCollider.connect("body_entered", self, "RollCollider_body_entered")
 	target_player = Main.get_node("Player")
 	$AnimatedSprite.play("default")
 	yield(self, "enabled")
@@ -69,6 +73,15 @@ func on_death():
 	$AnimatedSprite.play("death")
 	yield($AnimatedSprite, "animation_finished")
 	emit_signal("death_finished")
+
+
+func RollCollider_body_entered(body):
+	if state != states.ROLLING_TOWARDS:
+		return
+	if not body.is_in_group("Player"):
+		return
+	
+	body.hurt(ROLL_DAMAGE)
 
 
 func _physics_process(delta):
@@ -95,7 +108,10 @@ func _physics_process(delta):
 	match state:
 		states.DEFAULT:
 			curr_speed = SPEED
+			curr_steering_mult = STEERING_MULT
 			action_counter = -1
+			$Flamethrower.Enabled = false
+			
 			var player_pos = target_player.global_position
 			var player_dir: Vector2 = player_pos.direction_to(global_position)
 			var player_dist = player_pos.distance_to(global_position)
@@ -103,6 +119,11 @@ func _physics_process(delta):
 			var rotated_dir = player_dir.rotated(deg2rad(MOVE_ANGLE_OFFSET))
 			target_pos = player_pos + rotated_dir * player_dist
 			var vel = move(target_pos, delta)
+			
+			if vel.length() < .1:
+				roll_towards()
+				return
+				
 			if player_dist < DIST_TO_FOLLOW:
 				return
 			
@@ -114,6 +135,10 @@ func _physics_process(delta):
 			var vel: Vector2 = move(target_pos, delta)
 			
 			if vel.length() <= .001 or global_position.distance_to(target_pos) < TARGET_COMFORT_RADIUS:
+				if state == states.ROLLING_TOWARDS and \
+				   randf() < ROLL_AGAIN_CHANCE:
+					roll_towards()
+					return
 				choose_action([ACTION_FUNCS[state]])
 				return
 		
@@ -131,7 +156,7 @@ func _physics_process(delta):
 				return
 			
 		states.FLAMETHROWERING:
-			pass
+			move(target_player.global_position, delta)
 	
 	if state == states.DEFAULT:
 		return
@@ -203,6 +228,7 @@ func throw_flames():
 	curr_speed = FLAMETHROWER_SPEED
 	
 	$Flamethrower.Enabled = true
+	state = states.FLAMETHROWERING
 
 
 func shoot_projectile():
