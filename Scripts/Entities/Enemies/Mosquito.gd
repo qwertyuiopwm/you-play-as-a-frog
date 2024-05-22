@@ -48,7 +48,7 @@ func _physics_process(delta):
 	else: modulate = Color(1, 1, 1)
 	
 	if is_sliding():
-		move(0, delta)
+		move(target_pos, delta)
 		return
 	
 	match state:

@@ -121,6 +121,7 @@ func slip(delta):
 		hurt(SLIP_WALL_DAMAGE)
 		Cure(Effects.slippy)
 		Afflict(Effects.stunned, SLIP_STUN_DUR)
+		velocity = Vector2.ZERO
 
 
 func flip_body(flipped):
