@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-
+onready var Main = get_node("/root/Main")
+onready var GUI = get_parent()
 onready var Frames = $book/BookBase/Frames.get_children()
 onready var BookChange = $book/BookOver/bookchange
 
@@ -24,7 +25,8 @@ func _physics_process(_delta):
 
 func next_page():
 	if curr_frame >= len(Frames) - 1:
-		return
+		start_game()
+	
 	BookChange.play("next page")
 	
 	if curr_frame >= 0:
@@ -68,4 +70,9 @@ func animation_finished():
 			if sel_frame is AnimatedSprite:
 				sel_frame.frame = 0
 				sel_frame.playing = true
-	
+
+
+func start_game():
+	GUI.get_node("MainMenu").visible = false
+	visible = false
+	Main.pause(false, [])
