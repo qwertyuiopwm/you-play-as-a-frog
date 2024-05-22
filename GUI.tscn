@@ -476,6 +476,16 @@ text = "0x pots"
 align = 2
 valign = 1
 
+[node name="potions2" type="Label" parent="IngameUI"]
+margin_left = 12.0
+margin_top = 768.0
+margin_right = 748.0
+margin_bottom = 832.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 19 )
+text = "Press Esc to pause"
+valign = 1
+
 [node name="potionicon" type="TextureRect" parent="IngameUI"]
 margin_left = 709.0
 margin_top = -16.0
