@@ -108,9 +108,17 @@ func onSaveSelect(num: int):
 	selectedSave = num
 	SelectedSaveLabel.text = "Save Slot: %d" % num
 	SaveMenu.visible = false
-	if GUI.get_node("MainMenu").visible:
+	if not GUI.get_node("MainMenu").visible:
+		return
+	print("loading")
+	loadSave()
+	yield(self, "LoadFinished")
+	print("load done")
+	if Main.PlaytimeSeconds >= 2:
 		GUI.get_node("MainMenu").visible = false
-		loadSave()
+		return
+	GUI.get_node("Story").visible = true
+	Main.pause(true, [self])
 
 func onSaveDelete(num: int):
 	var file = File.new()
@@ -202,6 +210,7 @@ func loadSave():
 	var save_game = File.new()
 	if not save_game.file_exists(fileName % selectedSave):
 		print("Save file not found")
+		emit_signal("LoadFinished")
 		return
 	
 	save_game.open(fileName % selectedSave, File.READ)
@@ -210,10 +219,12 @@ func loadSave():
 	var result = JSON.parse(json)
 	if result.error != OK:
 		print("Failed to load save.")
+		emit_signal("LoadFinished")
 		return
 	var data = result.result
 	if not data is Dictionary:
 		print("Failed to load save.")
+		emit_signal("LoadFinished")
 		return
 	
 	Main.PlaytimeSeconds = unserialize(data["PlaytimeSeconds"])
