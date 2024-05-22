@@ -1,4 +1,4 @@
-extends "res://Scripts/BaseScripts/Enemy.gd"
+extends "res://Scripts/BaseScripts/Boss.gd"
 
 
 export var LAP_SPEED = 200
@@ -39,6 +39,7 @@ enum states {
 
 
 func _ready():
+	yield(self, "enabled")
 	$AnimatedSprite.play("default")
 	var _obj = $AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
 
@@ -87,13 +88,15 @@ func generateTargetPositions(from_pos:Vector2):
 		})
 
 func _physics_process(delta):
-	set_target()
-	if target_player != null:
-		target_pos = target_player.global_position
+	if not Enabled:
+		return
+	
+	target_player = Main.get_node("Player")
+	target_pos = target_player.global_position
 	state = get_state()
 	
 	if is_sliding():
-		move(0, delta)
+		move(target_pos, delta)
 		return
 	
 	if !target_pos:
