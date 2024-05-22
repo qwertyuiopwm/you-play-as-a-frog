@@ -7,7 +7,7 @@
 [ext_resource path="res://Triggers/EnemyManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/chest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Triggerables/AdjustCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/CaveCrypt/Dragonfly.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Triggerables/ToggleTrigger.tscn" type="PackedScene" id=10]
 
@@ -80,6 +80,9 @@ position = Vector2( 3.5, -3 )
 shape = SubResource( 2 )
 
 [node name="AdjustCamera" parent="." instance=ExtResource( 8 )]
+ChangeTime = 1.5
+ZoomChange = Vector2( 0.15, 0.15 )
+FreezePlayer = false
 
 [node name="PlayerDetector2" parent="." instance=ExtResource( 4 )]
 Triggerables = [ NodePath("../ToggleTrigger") ]
