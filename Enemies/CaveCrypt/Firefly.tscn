@@ -186,6 +186,9 @@ POISON_COLOR_MODULATE = Color( 0.8, 1, 0.803922, 1 )
 position = Vector2( 0, -5.45455 )
 shape = SubResource( 7 )
 
+[node name="Flamethrower" parent="." instance=ExtResource( 10 )]
+DPS = 20
+
 [node name="PropertyChecker4" parent="." instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -224,5 +227,3 @@ margin_right = 38.7273
 margin_bottom = 53.0909
 text = "13"
 Property = "velocity"
-
-[node name="Flamethrower" parent="." instance=ExtResource( 10 )]
