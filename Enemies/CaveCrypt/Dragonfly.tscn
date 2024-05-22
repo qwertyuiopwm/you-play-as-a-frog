@@ -4,10 +4,10 @@
 [ext_resource path="res://art/Enemies/Ardnaxela.png" type="Texture" id=2]
 [ext_resource path="res://art/Effects/POW_explosion.png" type="Texture" id=3]
 [ext_resource path="res://EffectManager.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/Extras/HPBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/Effects/Warning!.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Extras/PropertyChecker.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Effects/Slippy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/Extras/DragonflyBossBar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
@@ -152,12 +152,6 @@ shape = SubResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCollider"]
 shape = SubResource( 7 )
 
-[node name="HPBar" parent="." instance=ExtResource( 5 )]
-margin_left = -16.0
-margin_top = -38.0
-margin_right = -16.0
-margin_bottom = -38.0
-
 [node name="EffectManager" parent="." instance=ExtResource( 4 )]
 
 [node name="AreaAttackCollider" type="Area2D" parent="."]
@@ -176,3 +170,5 @@ margin_top = -53.5
 margin_right = 18.5
 margin_bottom = -39.5
 text = "1"
+
+[node name="BossBar" parent="." instance=ExtResource( 9 )]

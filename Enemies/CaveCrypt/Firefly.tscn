@@ -10,6 +10,7 @@
 [ext_resource path="res://Enemies/Attacks/FireflyProjectile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://art/Effects/BLAM_explosion.png" type="Texture" id=9]
 [ext_resource path="res://Enemies/Attacks/Flamethrower.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Enemies/Extras/FireflyBossBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 9 )
@@ -227,3 +228,5 @@ margin_right = 38.7273
 margin_bottom = 53.0909
 text = "13"
 Property = "velocity"
+
+[node name="BossBar" parent="." instance=ExtResource( 10 )]
