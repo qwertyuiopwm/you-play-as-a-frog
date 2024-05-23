@@ -28,7 +28,7 @@ position = Vector2( -16171, -4732 )
 position = Vector2( -16491, 12932 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -15885, -9996 )
+position = Vector2( 414, 440 )
 
 [node name="forest-swamp" parent="." instance=ExtResource( 8 )]
 BackgroundColor = Color( 0.203922, 0.168627, 0.137255, 1 )
