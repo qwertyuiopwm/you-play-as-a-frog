@@ -55,6 +55,7 @@ var state = states.DEFAULT
 var state_name
 var dist_player
 var vel_len: float
+var dead: bool = false
 
 var action_counter: float = -1
 var shoot_timer: float = 0
@@ -69,6 +70,7 @@ func _ready():
 
 
 func on_death():
+	dead = true
 	scale *= 4
 	$AnimatedSprite.play("death")
 	yield($AnimatedSprite, "animation_finished")
@@ -85,6 +87,8 @@ func RollCollider_body_entered(body):
 
 
 func _physics_process(delta):
+	if dead:
+		return
 	dist_player = global_position.distance_to(target_player.global_position)
 	state_name = states.keys()[state]
 	
@@ -169,11 +173,15 @@ func _physics_process(delta):
 
 
 func choose_action(exclude: Array = []):
+	if dead:
+		return
 	state = states.DEFAULT
 	$AnimatedSprite.play("default")
 	
 	var action_delay: float = rand.randf_range(MIN_ACTION_DELAY, MAX_ACTION_DELAY)
 	yield(Main.wait(action_delay), "completed")
+	if dead:
+		return
 	
 	var available_actions = []
 	
