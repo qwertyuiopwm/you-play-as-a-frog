@@ -169,7 +169,7 @@ jobs:
     needs: 
     - export
     - deploy-to-github-pages
-    - deploy-to-cloudflare
+    #- deploy-to-cloudflare
     
     steps:
       - name: "Checkout"
@@ -191,6 +191,6 @@ jobs:
             ${{ format( '{0}/mac/macos.zip', env.BUILD_PATH ) }}
             ${{ format( '{0}/windows/windows.exe', env.BUILD_PATH ) }}
             ${{ format( '{0}/linux/linux.x86_64', env.BUILD_PATH ) }}
-          body: "Web build: ${{ needs.deploy-to-cloudflare.outputs.build-url }}"
+          body: "Web build: none, use github."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
