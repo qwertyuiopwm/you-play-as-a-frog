@@ -59,7 +59,7 @@ PopupName = "cantopenyet"
 [node name="PassTrigger" parent="." instance=ExtResource( 6 )]
 position = Vector2( -5, -46 )
 Triggerables = [ NodePath("hidecantopenpopup") ]
-Delay = 3.0
+Delay = 6.0
 
 [node name="hidecantopenpopup" parent="PassTrigger" instance=ExtResource( 5 )]
 PopupName = "cantopenyet"
