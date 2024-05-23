@@ -40,6 +40,7 @@ enum states {
 
 func _ready():
 	yield(self, "enabled")
+	print("enabled")
 	$AnimatedSprite.play("default")
 	var _obj = $AttackCollider.connect("body_entered", self, "_on_AttackCollider_body_entered")
 
@@ -101,7 +102,6 @@ func _physics_process(delta):
 	
 	if !target_pos:
 		return
-	
 	match state:
 		states.STILL:
 			$AnimatedSprite.rotation_degrees = 0
@@ -132,7 +132,6 @@ func _physics_process(delta):
 			$AttackWarning.visible = true
 			
 			if not startedArea:
-				print("moving to start")
 				move(warningPos, delta)
 				$AnimatedSprite.play("default")
 				if global_position.distance_to(warningPos) <= LAP_COMPLETED_COMFORT_ZONE:
@@ -238,8 +237,8 @@ func get_state():
 		lap_attack_counter = LAP_ATTACK_DELAY
 		return states.LAPPING
 	
-	if (global_position.distance_to(target_player.global_position) <= TARGET_RANGE):
-		return states.DEFAULT
+	
+	return states.DEFAULT
 
 
 func _on_AttackCollider_body_entered(body):
