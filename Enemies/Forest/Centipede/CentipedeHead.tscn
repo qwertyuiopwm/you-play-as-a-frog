@@ -115,5 +115,6 @@ shape = SubResource( 5 )
 [node name="EffectManager" parent="." instance=ExtResource( 3 )]
 
 [node name="BossBar" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [connection signal="body_entered" from="HitCollider" to="." method="_body_entered"]

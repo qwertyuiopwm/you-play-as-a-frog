@@ -192,6 +192,7 @@ shape = SubResource( 7 )
 DPS = 20
 
 [node name="BossBar" parent="." instance=ExtResource( 10 )]
+visible = false
 
 [node name="PropertyChecker4" parent="." instance=ExtResource( 7 )]
 anchor_right = 0.0

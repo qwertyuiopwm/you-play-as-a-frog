@@ -172,3 +172,4 @@ margin_bottom = -39.5
 text = "1"
 
 [node name="BossBar" parent="." instance=ExtResource( 9 )]
+visible = false
