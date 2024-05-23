@@ -5,12 +5,15 @@ onready var GUI = get_parent()
 onready var Frames = $book/BookBase/Frames.get_children()
 onready var BookChange = $book/BookOver/bookchange
 
-var curr_frame = 0
+var curr_frame: int = 0
+var tween: Tween = Tween.new()
+var can_change: bool = true
 
 
 func _ready():
 	var _c = BookChange.connect("frame_changed", self, "frame_changed")
 	var __c = BookChange.connect("animation_finished", self, "animation_finished")
+	Main.call_deferred("add_child", tween)
 
 
 func _physics_process(_delta):
@@ -24,8 +27,12 @@ func _physics_process(_delta):
 
 
 func next_page():
+	if not can_change:
+		return
 	if curr_frame >= len(Frames) - 1:
+		can_change = false
 		start_game()
+		return
 	
 	BookChange.play("next page")
 	
@@ -39,6 +46,8 @@ func next_page():
 
 
 func prev_page():
+	if not can_change:
+		return
 	if curr_frame <= 0:
 		return
 	BookChange.play("prev page")
@@ -76,3 +85,4 @@ func start_game():
 	GUI.get_node("MainMenu").visible = false
 	visible = false
 	Main.pause(false, [])
+	$ChangeScene.trigger(true)
