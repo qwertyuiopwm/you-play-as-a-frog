@@ -280,3 +280,7 @@ func _on_play_pressed():
 	if not SaveSys.saveExists():
 		SaveSys.save()
 	Main.pause(false, [])
+
+
+func close():
+	$Ending.close()

@@ -21,6 +21,9 @@ func onTrigger(trigger):
 	closed = false
 	$AnimatedSprite.play("open")
 	
+	if not DroppedItems:
+		return
+	
 	yield(Main.wait(INITIAL_DROP_DELAY), "completed")
 	
 	drop_item()
