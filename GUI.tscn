@@ -1589,6 +1589,7 @@ Intro = "ForestIntro"
 
 [node name="Story" type="CanvasLayer" parent="."]
 layer = 128
+visible = false
 script = ExtResource( 33 )
 
 [node name="ChangeScene" parent="Story" instance=ExtResource( 36 )]
@@ -1612,6 +1613,7 @@ margin_bottom = 440.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="BookBase" type="Control" parent="Story/book"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -1776,7 +1778,6 @@ custom_fonts/font = SubResource( 97 )
 text = "D>"
 
 [node name="BookOver" type="Control" parent="Story/book"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
