@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://art/GUI/stam_full-1.png.png" type="Texture" id=1]
 [ext_resource path="res://art/GUI/arrow.png" type="Texture" id=2]
@@ -399,6 +399,13 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=97]
+size = 28
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 15 )
 
 [sub_resource type="AtlasTexture" id=75]
 atlas = ExtResource( 26 )
@@ -1582,7 +1589,6 @@ Intro = "ForestIntro"
 
 [node name="Story" type="CanvasLayer" parent="."]
 layer = 128
-visible = false
 script = ExtResource( 33 )
 
 [node name="ChangeScene" parent="Story" instance=ExtResource( 36 )]
@@ -1606,7 +1612,6 @@ margin_bottom = 440.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="BookBase" type="Control" parent="Story/book"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -1754,7 +1759,24 @@ margin_right = 11.0
 margin_bottom = 147.0
 color = Color( 0, 0, 0, 0.0588235 )
 
+[node name="Label" type="Label" parent="Story/book/BookBase"]
+margin_left = -168.5
+margin_top = -13.0
+margin_right = -128.5
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 97 )
+text = "<A"
+
+[node name="Label2" type="Label" parent="Story/book/BookBase"]
+margin_left = 131.5
+margin_top = -13.0
+margin_right = 171.5
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 97 )
+text = "D>"
+
 [node name="BookOver" type="Control" parent="Story/book"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
