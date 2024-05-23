@@ -83,6 +83,7 @@ func animation_finished():
 
 func start_game():
 	GUI.get_node("MainMenu").visible = false
-	visible = false
 	Main.pause(false, [])
 	$ChangeScene.trigger(true)
+	yield(Main.wait(.75), "completed")
+	visible = false
