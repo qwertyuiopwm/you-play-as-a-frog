@@ -11,7 +11,7 @@ on:
       - '*'
 
 env:
-  WORKFLOW_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || inputs.dev-deploy != null && 'dev-build' || github.ref }}
+  WORKFLOW_NAME: ${{ github.event.pull_request.number || inputs.dev-deploy != null && 'dev-build' || github.ref_name }}
   BUILD_PATH: './build'
 
 concurrency:
